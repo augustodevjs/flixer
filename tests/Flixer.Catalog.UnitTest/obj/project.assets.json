@@ -1712,6 +1712,16 @@
         "build": {
           "build/netcoreapp3.1/xunit.runner.visualstudio.props": {}
         }
+      },
+      "Flixer.Catalog.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Flixer.Catalog.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Flixer.Catalog.Domain.dll": {}
+        }
       }
     }
   },
@@ -5506,10 +5516,16 @@
         "xunit.runner.visualstudio.2.4.5.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "Flixer.Catalog.Domain/1.0.0": {
+      "type": "project",
+      "path": "../../src/Flixer.Catalog.Domain/Flixer.Catalog.Domain.csproj",
+      "msbuildProject": "../../src/Flixer.Catalog.Domain/Flixer.Catalog.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Flixer.Catalog.Domain >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.5.0",
       "coverlet.collector >= 3.2.0",
       "xunit >= 2.4.2",
@@ -5542,7 +5558,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
+              "projectPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Flixer.Catalog.Domain\Flixer.Catalog.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
