@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{81B9CC25-FC26-4227-97CF-8588F091E51D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flixer.Catalog.UnitTest", "tests\Flixer.Catalog.UnitTest\Flixer.Catalog.UnitTest.csproj", "{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{19FC4517-0BCD-4F0E-B25F-9147FFEA40A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flixer.Catalog.Domain", "src\Flixer.Catalog.Domain\Flixer.Catalog.Domain.csproj", "{D9D1944B-706D-41D9-947A-51FA84CF7F8F}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32361620-3495-4970-866C-8B2FAB2A9F43}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Debug|x64.Build.0 = Debug|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Debug|x86.Build.0 = Debug|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Release|x64.ActiveCfg = Release|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Release|x64.Build.0 = Release|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Release|x86.ActiveCfg = Release|Any CPU
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3}.Release|x86.Build.0 = Release|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Debug|x64.Build.0 = Debug|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Debug|x86.Build.0 = Debug|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Release|x64.ActiveCfg = Release|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Release|x64.Build.0 = Release|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Release|x86.ActiveCfg = Release|Any CPU
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3} = {81B9CC25-FC26-4227-97CF-8588F091E51D}
+		{D9D1944B-706D-41D9-947A-51FA84CF7F8F} = {19FC4517-0BCD-4F0E-B25F-9147FFEA40A0}
+	EndGlobalSection
+EndGlobal
