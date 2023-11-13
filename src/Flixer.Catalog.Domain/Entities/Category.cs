@@ -19,6 +19,18 @@ public class Category
         CreatedAt = DateTime.Now;
         Validate();
     }
+    
+    public void Activate()
+    {
+        IsActive = true;
+        Validate();
+    }
+
+    public void Deactivate()
+    {
+        IsActive = false;
+        Validate();
+    }
 
     private void Validate()
     {
@@ -31,10 +43,10 @@ public class Category
         if (Name.Length > 255)
             throw new EntityValidationException($"{nameof(Name)} should have less or equal 255 characters");
         
+        if (Description is null)
+            throw new EntityValidationException($"{nameof(Description)} should not be null");
+        
         if (Description.Length > 10000)
             throw new EntityValidationException($"{nameof(Description)} should have less or equal 10.000 characters");
-
-        if (Description == null)
-            throw new EntityValidationException($"{nameof(Description)} should not be null");
     }
 }
