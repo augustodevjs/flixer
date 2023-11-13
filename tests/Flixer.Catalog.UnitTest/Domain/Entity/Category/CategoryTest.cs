@@ -151,6 +151,31 @@ public class CategoryTest
         
         Assert.False(category.IsActive);
     }
+        
+    [Fact(DisplayName = nameof(Update))]
+    [Trait("Domain", "Category - Aggregates")]
+    public void Update()
+    {
+        var category = new DomainEntity.Category("Category Name", "Category Description");
+        var newValues = new { Name = "New Name", Description = "New Description" };
+        
+        category.Update(newValues.Name, newValues.Description);
+        
+        Assert.Equal(newValues.Name, category.Name);
+        Assert.Equal(newValues.Description, category.Description);
+    }
     
-    
+    [Fact(DisplayName = nameof(UpdateOnlyName))]
+    [Trait("Domain", "Category - Aggregates")]
+    public void UpdateOnlyName()
+    {
+        var category = new DomainEntity.Category("Category Name", "Category Description");
+        var newValues = new { Name = "New Name" };
+        var currentDescription = category.Description;
+        
+        category.Update(newValues.Name);
+        
+        Assert.Equal(newValues.Name, category.Name);
+        Assert.Equal(currentDescription, category.Description);
+    }
 }
