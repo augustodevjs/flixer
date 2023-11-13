@@ -1,11 +1,13 @@
-﻿namespace Flixer.Catalog.Domain.Entities;
+﻿using Flixer.Catalog.Domain.Exceptions;
+
+namespace Flixer.Catalog.Domain.Entities;
 
 public class Category
 {
     public Guid Id { get; private set; } 
     public string Name { get; private set; }
-    public string Description { get; private set; }
     public bool IsActive { get; private set; }
+    public string Description { get; private set; }
     public DateTime CreatedAt { get; private set; }
     
     public Category(string name, string description, bool isActive = true)
@@ -15,5 +17,14 @@ public class Category
         Description = description;
         IsActive = isActive;
         CreatedAt = DateTime.Now;
+        Validate();
+    }
+
+    public void Validate()
+    {
+        if(String.IsNullOrWhiteSpace(Name))
+        {
+            throw new EntityValidationException($"{nameof(Name)} should not be empty or null");
+        }
     }
 }

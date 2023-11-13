@@ -1,4 +1,5 @@
-﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
+﻿using Flixer.Catalog.Domain.Exceptions;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
 namespace Flixer.Catalog.UnitTest.Domain.Entity.Category;
 
 public class CategoryTest
@@ -51,5 +52,19 @@ public class CategoryTest
         Assert.True(category.CreatedAt <  dateTimeAfter);
         Assert.True(category.CreatedAt >  dateTimeBefore);
         Assert.Equal(isActive, category.IsActive);
+    }
+
+    [Theory(DisplayName = nameof(InstantiateThrowErrorWhenNameIsEmpty))]
+    [Trait("Domain", "Category - Aggregates")]
+    [InlineData("")]
+    [InlineData(null)]
+    [InlineData("  ")]
+    public void InstantiateThrowErrorWhenNameIsEmpty(string? name)
+    {
+        Action action = () => new DomainEntity.Category(name!, "category description");
+
+        var exception = Assert.Throws<EntityValidationException>(action);
+        
+        Assert.Equal("Name should not be empty or null", exception.Message);
     }
 }
