@@ -35,6 +35,7 @@ public class Category : AggregateRoot
     {
         Name = name;
         Description = description ?? Description;
+        Validate();
     }
     
     private void Validate()
