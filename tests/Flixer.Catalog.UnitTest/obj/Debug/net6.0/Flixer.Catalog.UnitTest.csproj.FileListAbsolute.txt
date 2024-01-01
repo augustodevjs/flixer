@@ -100,3 +100,4 @@ C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\obj\Deb
 C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\CoverletSourceRootsMapping
 C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Flixer.Catalog.Domain.dll
 C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Flixer.Catalog.Domain.pdb
+C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\obj\Debug\net6.0\Flixer.Catalog.UnitTest.sourcelink.json
