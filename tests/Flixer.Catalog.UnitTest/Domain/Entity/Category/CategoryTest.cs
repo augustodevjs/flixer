@@ -82,8 +82,7 @@ public class CategoryTest
 
     [Theory(DisplayName = nameof(InstantiateErrorWhenNameIsLessThanThreeCharecters))]
     [Trait("Domain", "Category - Aggregates")]
-    [InlineData("a")]
-    [InlineData("ab")]
+    [MemberData(nameof(GetWhenNameIsLessThanThreeCharecters), parameters: 10)]
     public void InstantiateErrorWhenNameIsLessThanThreeCharecters(string invalidName)
     {
         var validCategory = _categoryTestFixture.GetValidCategory();
@@ -92,13 +91,13 @@ public class CategoryTest
 
         action.Should().Throw<EntityValidationException>().WithMessage("Name should have at least 3 characters");
     }
-    
+
     [Fact(DisplayName = nameof(InstantiateErrorWhenNameIsGreaterThanTwoHundredFiftyFiveCharacters))]
     [Trait("Domain", "Category - Aggregates")]
     public void InstantiateErrorWhenNameIsGreaterThanTwoHundredFiftyFiveCharacters()
     {
         var validCategory = _categoryTestFixture.GetValidCategory();
-        var invalidName = String.Join(null, Enumerable.Range(1, 256).Select(_ => "a").ToArray());
+        var invalidName = _categoryTestFixture.Faker.Lorem.Letter(256);
 
         Action action = () => new DomainEntity.Category(invalidName, validCategory.Description);
 
@@ -110,8 +109,11 @@ public class CategoryTest
     public void InstantiateErrorWhenDescriptionIsGreaterThanOneThousandCharacters()
     {
         var validCategory = _categoryTestFixture.GetValidCategory();
-        var invalidDescription = String.Join(null, Enumerable.Range(1, 10001).Select(_ => "a").ToArray());
-        
+        var invalidDescription = _categoryTestFixture.Faker.Commerce.ProductDescription();
+
+        while (invalidDescription.Length <= 10000)
+            invalidDescription = $"{invalidDescription}{_categoryTestFixture.Faker.Commerce.ProductDescription()}";
+
         Action action = () => new DomainEntity.Category(validCategory.Name, invalidDescription);
 
         action.Should().Throw<EntityValidationException>().WithMessage("Description should have less or equal 10.000 characters");
@@ -187,8 +189,7 @@ public class CategoryTest
 
     [Theory(DisplayName = nameof(UpdateErrorWhenNameIsLessThanThreeCharecters))]
     [Trait("Domain", "Category - Aggregates")]
-    [InlineData("a")]
-    [InlineData("ab")]
+    [MemberData(nameof(GetWhenNameIsLessThanThreeCharecters), parameters: 10)]
     public void UpdateErrorWhenNameIsLessThanThreeCharecters(string invalidName)
     {
         var category = _categoryTestFixture.GetValidCategory();
@@ -223,5 +224,16 @@ public class CategoryTest
         Action action = () => category.Update("New Category Name", invalidDescription!);
 
         action.Should().Throw<EntityValidationException>().WithMessage("Description should have less or equal 10.000 characters");
+    }
+
+    public static IEnumerable<object[]> GetWhenNameIsLessThanThreeCharecters(int numberOfTests)
+    {
+        var fixture = new CategoryTestFixture();
+
+        for (int i = 0; i < numberOfTests; i++)
+        {
+            var isOdd = i % 2 == 1;
+            yield return new object[] { fixture.GetValidCategoryName()[..(isOdd ? 1 : 2)] };
+        }
     }
 }
