@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "oXz7x9E8U+fkZIEyO67hWEy0FcbKs7MtGt5ujUWcgUuioaV/rAlSrQM30MmpslpfeEiIpp8Knp2018ItzZMiqA==",
+  "dgSpecHash": "iDwvtW3IwV38WQMlcoXJikxfpEv481QFIlwF6+n08Sd7oFGCcXevPJoySb0BTE1rEOCAXt5es0rOlt2n6dP+QA==",
   "success": true,
   "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\joaoa\\.nuget\\packages\\bogus\\35.3.0\\bogus.35.3.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\fluentassertions\\7.0.0-alpha.3\\fluentassertions.7.0.0-alpha.3.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",

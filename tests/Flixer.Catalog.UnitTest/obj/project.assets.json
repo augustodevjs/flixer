@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "Bogus/35.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Bogus.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Bogus.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "coverlet.collector/3.2.0": {
         "type": "package",
         "build": {
@@ -1773,6 +1786,25 @@
     }
   },
   "libraries": {
+    "Bogus/35.3.0": {
+      "sha512": "A+SV1AZQR+cuKLaq4GifqGWl+E85q/9ewHCXqtdNZIH0NZIHr5wrlKOS2dcp94eXKxY9DJpgwRKdPu9pWqV9dw==",
+      "type": "package",
+      "path": "bogus/35.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bogus.35.3.0.nupkg.sha512",
+        "bogus.nuspec",
+        "lib/net40/Bogus.dll",
+        "lib/net40/Bogus.xml",
+        "lib/net6.0/Bogus.dll",
+        "lib/net6.0/Bogus.xml",
+        "lib/netstandard1.3/Bogus.dll",
+        "lib/netstandard1.3/Bogus.xml",
+        "lib/netstandard2.0/Bogus.dll",
+        "lib/netstandard2.0/Bogus.xml"
+      ]
+    },
     "coverlet.collector/3.2.0": {
       "sha512": "xjY8xBigSeWIYs4I7DgUHqSNoGqnHi7Fv7/7RZD02rvZyG3hlsjnQKiVKVWKgr9kRKgmV+dEfu8KScvysiC0Wg==",
       "type": "package",
@@ -5658,6 +5690,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Bogus >= 35.3.0",
       "Flixer.Catalog.Domain >= 1.0.0",
       "FluentAssertions >= 7.0.0-alpha.3",
       "Microsoft.NET.Test.Sdk >= 17.5.0",
@@ -5709,6 +5742,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Bogus": {
+            "target": "Package",
+            "version": "[35.3.0, )"
+          },
           "FluentAssertions": {
             "target": "Package",
             "version": "[7.0.0-alpha.3, )"

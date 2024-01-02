@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Flixer.Catalog.UnitTest/1.0.0": {
         "dependencies": {
+          "Bogus": "35.3.0",
           "Flixer.Catalog.Domain": "1.0.0",
           "FluentAssertions": "7.0.0-alpha.3",
           "Microsoft.NET.Test.Sdk": "17.5.0",
@@ -17,6 +18,14 @@
         },
         "runtime": {
           "Flixer.Catalog.UnitTest.dll": {}
+        }
+      },
+      "Bogus/35.3.0": {
+        "runtime": {
+          "lib/net6.0/Bogus.dll": {
+            "assemblyVersion": "35.3.0.0",
+            "fileVersion": "35.3.0.0"
+          }
         }
       },
       "coverlet.collector/3.2.0": {},
@@ -1072,6 +1081,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Bogus/35.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A+SV1AZQR+cuKLaq4GifqGWl+E85q/9ewHCXqtdNZIH0NZIHr5wrlKOS2dcp94eXKxY9DJpgwRKdPu9pWqV9dw==",
+      "path": "bogus/35.3.0",
+      "hashPath": "bogus.35.3.0.nupkg.sha512"
     },
     "coverlet.collector/3.2.0": {
       "type": "package",
