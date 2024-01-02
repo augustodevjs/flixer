@@ -405,3 +405,4 @@ appsettings.Development.json
 dotCover.Output.xml
 coverage
 coverage/**
+/src/Flixer.Catalog.Domain/Entities/Category.cs

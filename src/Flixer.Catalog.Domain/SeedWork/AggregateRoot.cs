@@ -1,7 +1,6 @@
-﻿namespace Flixer.Catalog.Domain.SeedWork
+﻿namespace Flixer.Catalog.Domain.SeedWork;
+
+public abstract class AggregateRoot : Entity
 {
-    public abstract class AggregateRoot : Entity
-    {
-        protected AggregateRoot(): base() { }
-    }
+    protected AggregateRoot(): base() { }
 }
