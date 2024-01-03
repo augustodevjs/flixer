@@ -1,4 +1,5 @@
 ﻿using Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Domain.Repository;
 using UseCases = Flixer.Catalog.UnitTest.Application.UseCases.CreateCategory;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.CreateCategoryUseCase;
@@ -28,6 +29,6 @@ public class CreateCategoryUseCaseTest
         (output.CreatedAt != null && output.CreatedAt != default(DateTime)).Should().BeTrue();
 
         unitOfWorkMock.Verify(uow => uow.Commit(It.IsAny<CancellationToken>), Times.Once);
-        repositoryMock.Verify(repository => repository.Create(It.IsAny<Category>, It.IsAny<CancellationToken>), Times.Once);
+        repositoryMock.Verify(repository => repository.Insert(It.IsAny<Category>, It.IsAny<CancellationToken>), Times.Once);
     }
 }
