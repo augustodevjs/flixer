@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "iDwvtW3IwV38WQMlcoXJikxfpEv481QFIlwF6+n08Sd7oFGCcXevPJoySb0BTE1rEOCAXt5es0rOlt2n6dP+QA==",
+  "dgSpecHash": "S/cpbAmIsR0xZlvFVv1jSkRO78mri9pCYQOAtbRnTVd71hCyfIlOWLRlPR1hSCelFZJSFJLHU3EGal+q3VPeKA==",
   "success": true,
   "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joaoa\\.nuget\\packages\\bogus\\35.3.0\\bogus.35.3.0.nupkg.sha512",
+    "C:\\Users\\joaoa\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\fluentassertions\\7.0.0-alpha.3\\fluentassertions.7.0.0-alpha.3.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",
@@ -14,6 +15,7 @@
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.5.0\\microsoft.testplatform.objectmodel.17.5.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.testplatform.testhost\\17.5.0\\microsoft.testplatform.testhost.17.5.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\joaoa\\.nuget\\packages\\moq\\4.20.70\\moq.4.20.70.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\nuget.frameworks\\5.11.0\\nuget.frameworks.5.11.0.nupkg.sha512",
@@ -41,6 +43,7 @@
     "C:\\Users\\joaoa\\.nuget\\packages\\system.console\\4.3.0\\system.console.4.3.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.3.0\\system.diagnostics.diagnosticsource.4.3.0.nupkg.sha512",
+    "C:\\Users\\joaoa\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\system.diagnostics.tracing\\4.3.0\\system.diagnostics.tracing.4.3.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
