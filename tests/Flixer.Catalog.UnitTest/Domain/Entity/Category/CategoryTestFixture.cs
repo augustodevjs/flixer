@@ -3,6 +3,12 @@ using DomainEntity = Flixer.Catalog.Domain.Entities;
 
 namespace Flixer.Catalog.UnitTest.Domain.Entity.Category;
 
+[CollectionDefinition(nameof(CategoryTestFixture))]
+public class CategoryFixtureCollection : ICollectionFixture<CategoryTestFixture>
+{
+
+}
+
 public class CategoryTestFixture : BaseFixture
 {
     public CategoryTestFixture() : base() { }
@@ -34,10 +40,4 @@ public class CategoryTestFixture : BaseFixture
         GetValidCategoryName(),
         GetValidCategoryDescription()
      );
-}
-
-[CollectionDefinition(nameof(CategoryTestFixture))]
-public class CategoryFixtureCollection: ICollectionFixture<CategoryTestFixture>
-{
-
 }
