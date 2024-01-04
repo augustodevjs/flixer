@@ -26,6 +26,7 @@ public class Category : AggregateRoot
         IsActive = true;
         Validate();
     }
+
     public void Deactivate()
     {
         IsActive = false;

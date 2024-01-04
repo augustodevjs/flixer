@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "S/cpbAmIsR0xZlvFVv1jSkRO78mri9pCYQOAtbRnTVd71hCyfIlOWLRlPR1hSCelFZJSFJLHU3EGal+q3VPeKA==",
+  "dgSpecHash": "bZAxJWtifhdJr7jBpRu3LmjzEjITsGMxB9Ek21kFoyK1z3PPfOxrZaIt7atTkuwg/ox4HN8nIgw2eS40gEKeBg==",
   "success": true,
   "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joaoa\\.nuget\\packages\\bogus\\35.3.0\\bogus.35.3.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
-    "C:\\Users\\joaoa\\.nuget\\packages\\fluentassertions\\7.0.0-alpha.3\\fluentassertions.7.0.0-alpha.3.nupkg.sha512",
+    "C:\\Users\\joaoa\\.nuget\\packages\\fluentassertions\\6.5.1\\fluentassertions.6.5.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.net.test.sdk\\17.5.0\\microsoft.net.test.sdk.17.5.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
