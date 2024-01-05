@@ -1,7 +1,6 @@
 ﻿using Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.UseCases.Category.CreateCategory;
-
 namespace Flixer.Catalog.UnitTest.Application.UseCases.CreateCategoryUseCase;
 
 [Collection(nameof(CreateCategoryUseCaseTestFixture))]
@@ -96,10 +95,14 @@ public class CreateCategoryUseCaseTest
         );
     }
 
-    [Theory(DisplayName = nameof(ThrowWhenCantInstantiateAggregate))]
+    [Theory(DisplayName = nameof(ThrowWhenCantInstantiateCategory))]
     [Trait("Application", "CreateCategory - Use Cases")]
-    [MemberData(nameof(GetInvalidInputs))]
-    public async void ThrowWhenCantInstantiateAggregate(CreateCategoryInput input, string exceptionMessage)
+    [MemberData(
+        nameof(CreateCategoryUseCaseTestDataGenerator.GetInvalidInputs), 
+        parameters: 24,
+        MemberType = typeof(CreateCategoryUseCaseTestDataGenerator)
+     )]
+    public async void ThrowWhenCantInstantiateCategory(CreateCategoryInput input, string exceptionMessage)
     {
         var unitOfWorkMock = _fixture.GetUnityOfWorkMock();
         var repositoryMock = _fixture.GetCategoryRepositoryMock();
@@ -115,51 +118,5 @@ public class CreateCategoryUseCaseTest
             It.IsAny<CancellationToken>()),
             Times.Never
         );
-    }
-
-    public static IEnumerable<object[]> GetInvalidInputs()
-    {
-        var fixture = new CreateCategoryUseCaseTestFixture();
-        var invalidInputsLists = new List<object[]>();
-
-        var invalidInputShortName = fixture.GetInput();
-        invalidInputShortName.Name = invalidInputShortName.Name[..2];
-        invalidInputsLists.Add(new object[]
-        {
-            invalidInputShortName,
-            "Name should be at least 3 characters long"
-        });
-
-        var invalidInputTooLongName = fixture.GetInput();
-        var tooLongNameForCategory = fixture.Faker.Commerce.ProductName();
-        while (tooLongNameForCategory.Length <= 255)
-            tooLongNameForCategory = $"{tooLongNameForCategory} {fixture.Faker.Commerce.ProductName()}";
-        invalidInputTooLongName.Name = tooLongNameForCategory;
-        invalidInputsLists.Add(new object[]
-        {
-            invalidInputTooLongName,
-            "Name should be less or equal 255 characters long"
-        });
-
-        var invalidInputDescriptionNull = fixture.GetInput();
-        invalidInputDescriptionNull.Description = null!;
-        invalidInputsLists.Add(new object[]
-        {
-            invalidInputDescriptionNull,
-            "Description should not be null"
-        });
-
-        var invalidInputTooLongDescription = fixture.GetInput();
-        var tooLongDescriptionForCategory = fixture.Faker.Commerce.ProductDescription();
-        while (tooLongDescriptionForCategory.Length <= 10000)
-            tooLongDescriptionForCategory = $"{tooLongDescriptionForCategory} {fixture.Faker.Commerce.ProductDescription()}";
-        invalidInputTooLongDescription.Description = tooLongDescriptionForCategory;
-        invalidInputsLists.Add(new object[]
-        {
-            invalidInputTooLongDescription,
-            "Description should be less or equal 10000 characters long"
-        });
-
-        return invalidInputsLists;
     }
 }

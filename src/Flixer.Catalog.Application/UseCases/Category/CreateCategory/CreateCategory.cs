@@ -13,6 +13,7 @@ public class CreateCategory : ICreateCategory
         _unityOfWork = unityOfWork;
         _categoryRepository = categoryRepository;
     }
+
     public async Task<CreateCategoryOutput> Handle(CreateCategoryInput input, CancellationToken cancellationToken)
     {
         var category = new DomainEntity.Category(input.Name, input.Description, input.IsActive);
