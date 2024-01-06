@@ -1,6 +1,7 @@
 ﻿using Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.UseCases.Category.CreateCategory;
+
 namespace Flixer.Catalog.UnitTest.Application.UseCases.CreateCategoryUseCase;
 
 [Collection(nameof(CreateCategoryUseCaseTestFixture))]
@@ -15,8 +16,8 @@ public class CreateCategoryUseCaseTest
     [Trait("Application", "CreateCategory - Use Cases")]
     public async void CreateCategory()
     {
-        var unitOfWorkMock = _fixture.GetUnityOfWorkMock();
-        var repositoryMock = _fixture.GetCategoryRepositoryMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
+        var repositoryMock = _fixture.GetRepositoryMock();
 
         var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
@@ -43,8 +44,8 @@ public class CreateCategoryUseCaseTest
     [Trait("Application", "CreateCategory - Use Cases")]
     public async void CreateCategoryWithOnlyName()
     {
-        var unitOfWorkMock = _fixture.GetUnityOfWorkMock();
-        var repositoryMock = _fixture.GetCategoryRepositoryMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
+        var repositoryMock = _fixture.GetRepositoryMock();
 
         var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
@@ -71,8 +72,8 @@ public class CreateCategoryUseCaseTest
     [Trait("Application", "CreateCategory - Use Cases")]
     public async void CreateCategoryWithOnlyNameAndDescription()
     {
-        var unitOfWorkMock = _fixture.GetUnityOfWorkMock();
-        var repositoryMock = _fixture.GetCategoryRepositoryMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
+        var repositoryMock = _fixture.GetRepositoryMock();
 
         var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
@@ -104,8 +105,8 @@ public class CreateCategoryUseCaseTest
      )]
     public async void ThrowWhenCantInstantiateCategory(CreateCategoryInput input, string exceptionMessage)
     {
-        var unitOfWorkMock = _fixture.GetUnityOfWorkMock();
-        var repositoryMock = _fixture.GetCategoryRepositoryMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
+        var repositoryMock = _fixture.GetRepositoryMock();
 
         var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
