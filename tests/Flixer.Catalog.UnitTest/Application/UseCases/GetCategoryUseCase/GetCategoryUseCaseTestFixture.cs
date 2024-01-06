@@ -1,5 +1,11 @@
-﻿namespace Flixer.Catalog.UnitTest.Application.UseCases.GetCategoryUseCase;
+﻿using Flixer.Catalog.UnitTest.Application.Common;
 
-public class GetCategoryUseCaseTestFixture
-{
-}
+namespace Flixer.Catalog.UnitTest.Application.UseCases.GetCategoryUseCase;
+
+[CollectionDefinition(nameof(GetCategoryUseCaseTestFixture))]
+public class GetCategoryTestFixtureCollection :
+    ICollectionFixture<GetCategoryUseCaseTestFixture>
+{}
+
+public class GetCategoryUseCaseTestFixture : CategoryUseCasesBaseFixture
+{}
