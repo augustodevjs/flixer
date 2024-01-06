@@ -1,8 +1,10 @@
 ﻿using Flixer.Catalog.Domain.Repository;
 using Flixer.Catalog.Application.Contracts;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.Application.UseCases.Category.CreateCategory;
+
 public class CreateCategory : ICreateCategory
 {
     private readonly IUnityOfWork _unityOfWork;
@@ -14,7 +16,7 @@ public class CreateCategory : ICreateCategory
         _categoryRepository = categoryRepository;
     }
 
-    public async Task<CreateCategoryOutput> Handle(CreateCategoryInput input, CancellationToken cancellationToken)
+    public async Task<CategoryModelOutput> Handle(CreateCategoryInput input, CancellationToken cancellationToken)
     {
         var category = new DomainEntity.Category(input.Name, input.Description, input.IsActive);
 
@@ -22,6 +24,6 @@ public class CreateCategory : ICreateCategory
 
         await _unityOfWork.Commit(cancellationToken);
 
-        return CreateCategoryOutput.FromCategory(category);
+        return CategoryModelOutput.FromCategory(category);
     }
 }

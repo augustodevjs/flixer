@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jV6yab+kbjjd90NmI27eUOCqu84vboXuNy1PcH4/GwAlnfNkMwtZP7H/KhFpfvkkGi0IJtyQSAdRbH8mG0uNeg==",
+  "dgSpecHash": "vxPNlwM2HvVg5NGxmbJITwERQMPCuYJZbr08dhiUPloQqzNk2szvjN12IF/b8D54qeP0gnzIdxa3T4SobUEq/g==",
   "success": true,
   "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\joaoa\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\fluentassertions\\6.5.1\\fluentassertions.6.5.1.nupkg.sha512",
+    "C:\\Users\\joaoa\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",

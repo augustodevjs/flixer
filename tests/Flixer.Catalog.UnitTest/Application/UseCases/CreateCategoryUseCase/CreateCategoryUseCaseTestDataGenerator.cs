@@ -1,4 +1,5 @@
 ﻿namespace Flixer.Catalog.UnitTest.Application.UseCases.CreateCategoryUseCase;
+
 public class CreateCategoryUseCaseTestDataGenerator
 {
     public static IEnumerable<object[]> GetInvalidInputs(int times = 12)
