@@ -115,5 +115,4 @@ C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\obj\Deb
 C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\obj\Debug\net6.0\ref\Flixer.Catalog.UnitTest.dll
 C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\MediatR.dll
 C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\MediatR.Contracts.dll
-C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\FluentValidation.dll
