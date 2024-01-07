@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vxPNlwM2HvVg5NGxmbJITwERQMPCuYJZbr08dhiUPloQqzNk2szvjN12IF/b8D54qeP0gnzIdxa3T4SobUEq/g==",
+  "dgSpecHash": "Nzc01caFt1YuP16PE/ifUtQdMsHA8Go6hmuyqM4FRrbErHVzL6DJnIFFmT8x36ZS7OTFjnrpKMAEgoC4uzGakA==",
   "success": true,
   "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
   "expectedPackageFiles": [
@@ -9,10 +9,9 @@
     "C:\\Users\\joaoa\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\fluentassertions\\6.5.1\\fluentassertions.6.5.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
-    "C:\\Users\\joaoa\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
-    "C:\\Users\\joaoa\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\joaoa\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
+    "C:\\Users\\joaoa\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",
-    "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.net.test.sdk\\17.5.0\\microsoft.net.test.sdk.17.5.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
