@@ -1,8 +1,9 @@
-﻿using Flixer.Catalog.Domain.Validation;
+﻿using Flixer.Catalog.Domain.SeedWork;
+using Flixer.Catalog.Domain.Validation;
 
 namespace Flixer.Catalog.Domain.Entities;
 
-public class Genre : AggregateException
+public class Genre : AggregateRoot
 {
     public string Name { get; private set; }
     public bool IsActive { get; private set; }
