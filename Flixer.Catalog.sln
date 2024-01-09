@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{19FC4517-0BC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flixer.Catalog.Domain", "src\Flixer.Catalog.Domain\Flixer.Catalog.Domain.csproj", "{D9D1944B-706D-41D9-947A-51FA84CF7F8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flixer.Catalog.Application", "src\Flixer.Catalog.Application\Flixer.Catalog.Application.csproj", "{563F66E8-122A-475C-BC54-57E135AD294B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flixer.Catalog.Application", "src\Flixer.Catalog.Application\Flixer.Catalog.Application.csproj", "{563F66E8-122A-475C-BC54-57E135AD294B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flixer.Catalog.IntegrationTests", "tests\Flixer.Catalog.IntegrationTests\Flixer.Catalog.IntegrationTests.csproj", "{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,18 @@ Global
 		{563F66E8-122A-475C-BC54-57E135AD294B}.Release|x64.Build.0 = Release|Any CPU
 		{563F66E8-122A-475C-BC54-57E135AD294B}.Release|x86.ActiveCfg = Release|Any CPU
 		{563F66E8-122A-475C-BC54-57E135AD294B}.Release|x86.Build.0 = Release|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Debug|x64.Build.0 = Debug|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Debug|x86.Build.0 = Debug|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Release|x64.ActiveCfg = Release|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Release|x64.Build.0 = Release|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Release|x86.ActiveCfg = Release|Any CPU
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +81,7 @@ Global
 		{A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3} = {81B9CC25-FC26-4227-97CF-8588F091E51D}
 		{D9D1944B-706D-41D9-947A-51FA84CF7F8F} = {19FC4517-0BCD-4F0E-B25F-9147FFEA40A0}
 		{563F66E8-122A-475C-BC54-57E135AD294B} = {19FC4517-0BCD-4F0E-B25F-9147FFEA40A0}
+		{0B2846DE-35A2-4FDA-8DC1-EC96898295D4} = {81B9CC25-FC26-4227-97CF-8588F091E51D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32361620-3495-4970-866C-8B2FAB2A9F43}
