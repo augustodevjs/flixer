@@ -1,4 +1,4 @@
-﻿namespace Flixer.Catalog.Application.Contracts;
+﻿ namespace Flixer.Catalog.Application.Contracts;
 
 public interface IUnityOfWork
 {
