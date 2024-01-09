@@ -1,5 +1,4 @@
 ﻿using Flixer.Catalog.Domain.Repository;
-using Flixer.Catalog.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.Application.UseCases.Category.ListCategories;
 
@@ -15,23 +14,10 @@ public class ListCategories : IListCategories
     public async Task<ListCategoriesOutput> Handle(ListCategoriesInput request, CancellationToken cancellationToken)
     {
         var searchOutput = await _categoryRepository.Search(
-            new(
-                request.Page,
-                request.PerPage,
-                request.Search,
-                request.Sort,
-                request.Dir
-            ),
+            request.ToSearchInput(),
             cancellationToken
         );
 
-        return new ListCategoriesOutput(
-            searchOutput.CurrentPage,
-            searchOutput.PerPage,
-            searchOutput.Total,
-            searchOutput.Items
-                .Select(CategoryModelOutput.FromCategory)
-                .ToList()
-        );
+        return ListCategoriesOutput.FromSearchOutput(searchOutput);
     }
 }

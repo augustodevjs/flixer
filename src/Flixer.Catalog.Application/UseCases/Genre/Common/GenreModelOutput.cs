@@ -25,9 +25,8 @@ public class GenreModelOutput
         Categories = categories;
     }
 
-    public static GenreModelOutput FromGenre(
-        DomainEntity.Genre genre
-    ) => new(
+    public static GenreModelOutput FromGenre( DomainEntity.Genre genre) 
+        => new(
             genre.Id,
             genre.Name,
             genre.IsActive,

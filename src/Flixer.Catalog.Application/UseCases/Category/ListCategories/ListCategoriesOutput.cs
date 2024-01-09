@@ -1,4 +1,6 @@
 ﻿using Flixer.Catalog.Application.Common;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 using Flixer.Catalog.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.Application.UseCases.Category.ListCategories;
@@ -13,4 +15,14 @@ public class ListCategoriesOutput : PaginatedListOutput<CategoryModelOutput>
        : base(page, perPage, total, items)
     {
     }
+
+    public static ListCategoriesOutput FromSearchOutput(SearchOutput<DomainEntity.Category> searchOutput)
+        => new(
+            searchOutput.CurrentPage,
+            searchOutput.PerPage,
+            searchOutput.Total,
+            searchOutput.Items
+                .Select(CategoryModelOutput.FromCategory)
+                .ToList()
+        );
 }
