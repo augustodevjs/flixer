@@ -1,5 +1,6 @@
 ﻿using Flixer.Catalog.Domain.Exceptions;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
+
 namespace Flixer.Catalog.UnitTest.Domain.Entity.Category;
 
 [Collection(nameof(CategoryTestFixture))]
