@@ -1,7 +1,7 @@
 ﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.UnitTest.Application.Common;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 using Flixer.Catalog.Application.UseCases.Category.ListCategories;
+using Flixer.Catalog.UnitTest.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategoriesUseCase;
 

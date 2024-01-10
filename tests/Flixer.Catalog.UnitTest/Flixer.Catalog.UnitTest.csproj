@@ -31,4 +31,13 @@
     <ProjectReference Include="..\..\src\Flixer.Catalog.Domain\Flixer.Catalog.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\UseCases\Genre\Common\" />
+    <Folder Include="Application\UseCases\Genre\GetGenreUseCase\" />
+    <Folder Include="Application\UseCases\Genre\CreateGenreUseCase\" />
+    <Folder Include="Application\UseCases\Genre\DeleteGenreUseCase\" />
+    <Folder Include="Application\UseCases\Genre\ListGenreUseCase\" />
+    <Folder Include="Application\UseCases\Genre\UpdateGenreUseCase\" />
+  </ItemGroup>
+
 </Project>

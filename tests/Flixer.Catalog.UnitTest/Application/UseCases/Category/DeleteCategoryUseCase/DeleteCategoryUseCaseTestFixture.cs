@@ -1,4 +1,4 @@
-﻿using Flixer.Catalog.UnitTest.Application.Common;
+﻿using Flixer.Catalog.UnitTest.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.DeleteCategoryUseCase;
 

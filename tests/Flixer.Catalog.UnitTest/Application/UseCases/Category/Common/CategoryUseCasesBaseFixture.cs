@@ -1,9 +1,9 @@
-﻿using Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.UnitTest.Common;
+﻿using Flixer.Catalog.UnitTest.Common;
 using Flixer.Catalog.Domain.Repository;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Contracts = Flixer.Catalog.Application.Contracts;
 
-namespace Flixer.Catalog.UnitTest.Application.Common;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.Common;
 
 public class CategoryUseCasesBaseFixture : BaseFixture
 {
@@ -33,7 +33,7 @@ public class CategoryUseCasesBaseFixture : BaseFixture
         return categoryDescription;
     }
 
-    public Category GetExampleCategory()
+    public DomainEntity.Category GetExampleCategory()
         => new(
             GetValidCategoryName(),
             GetValidCategoryDescription(),

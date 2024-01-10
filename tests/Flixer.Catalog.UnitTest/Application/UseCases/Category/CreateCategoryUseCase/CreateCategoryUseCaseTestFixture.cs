@@ -1,5 +1,5 @@
-﻿using Flixer.Catalog.UnitTest.Application.Common;
-using Flixer.Catalog.Application.UseCases.Category.CreateCategory;
+﻿using Flixer.Catalog.Application.UseCases.Category.CreateCategory;
+using Flixer.Catalog.UnitTest.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.CreateCategoryUseCase;
 
