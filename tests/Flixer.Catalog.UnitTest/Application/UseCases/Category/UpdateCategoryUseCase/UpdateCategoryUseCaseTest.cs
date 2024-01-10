@@ -1,10 +1,10 @@
-﻿using Flixer.Catalog.Domain.Entities;
+﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.UseCases.Category.Common;
 using Flixer.Catalog.Application.UseCases.Category.UpdateCategory;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.UpdateCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
 
 [Collection(nameof(UpdateCategoryUseCaseTestFixture))]
 public class UpdateCategoryUseCaseTest
@@ -21,7 +21,7 @@ public class UpdateCategoryUseCaseTest
         parameters: 10,
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
-    public async Task UpdateCategory(Category exampleCategory, UpdateCategoryInput input)
+    public async Task UpdateCategory(DomainEntity.Category exampleCategory, UpdateCategoryInput input)
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
@@ -55,7 +55,7 @@ public class UpdateCategoryUseCaseTest
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
     public async Task UpdateCategoryWithoutProvidingIsActive(
-        Category exampleCategory,
+        DomainEntity.Category exampleCategory,
         UpdateCategoryInput exampleInput
     )
     {
@@ -85,7 +85,7 @@ public class UpdateCategoryUseCaseTest
         output.Name.Should().Be(input.Name);
         output.Description.Should().Be(input.Description);
         output.IsActive.Should().Be(exampleCategory.IsActive);
-        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
+        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Once);
         repositoryMock.Verify(x => x.Get(exampleCategory.Id, It.IsAny<CancellationToken>()), Times.Once);
         repositoryMock.Verify(x => x.Update(exampleCategory, It.IsAny<CancellationToken>()), Times.Once);
     }
@@ -98,7 +98,7 @@ public class UpdateCategoryUseCaseTest
         parameters: 10,
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
-    public async Task UpdateCategoryOnlyName(Category exampleCategory,UpdateCategoryInput exampleInput)
+    public async Task UpdateCategoryOnlyName(DomainEntity.Category exampleCategory, UpdateCategoryInput exampleInput)
     {
         var input = new UpdateCategoryInput(
             exampleInput.Id,
@@ -185,6 +185,6 @@ public class UpdateCategoryUseCaseTest
 
         await task.Should().ThrowAsync<EntityValidationException>().WithMessage(expectedExceptionMessage);
 
-        repositoryMock.Verify(x => x.Get(exampleCategory.Id, It.IsAny<CancellationToken>()),Times.Once);
+        repositoryMock.Verify(x => x.Get(exampleCategory.Id, It.IsAny<CancellationToken>()), Times.Once);
     }
 }

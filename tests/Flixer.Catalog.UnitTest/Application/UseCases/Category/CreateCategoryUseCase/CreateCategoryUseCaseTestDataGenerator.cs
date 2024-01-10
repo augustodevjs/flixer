@@ -1,4 +1,4 @@
-﻿namespace Flixer.Catalog.UnitTest.Application.UseCases.CreateCategoryUseCase;
+﻿namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.CreateCategoryUseCase;
 
 public class CreateCategoryUseCaseTestDataGenerator
 {
@@ -8,9 +8,9 @@ public class CreateCategoryUseCaseTestDataGenerator
         var invalidInputsLists = new List<object[]>();
         var totalInvalidCases = 4;
 
-        for(int index = 0; index < times; index++)
+        for (int index = 0; index < times; index++)
         {
-            switch(index % totalInvalidCases)
+            switch (index % totalInvalidCases)
             {
                 case 0:
                     invalidInputsLists.Add(new object[]

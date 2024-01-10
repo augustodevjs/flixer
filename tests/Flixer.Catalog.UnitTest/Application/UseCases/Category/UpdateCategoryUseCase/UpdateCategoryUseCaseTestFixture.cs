@@ -1,7 +1,7 @@
 ﻿using Flixer.Catalog.UnitTest.Application.Common;
 using Flixer.Catalog.Application.UseCases.Category.UpdateCategory;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.UpdateCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
 
 [CollectionDefinition(nameof(UpdateCategoryUseCaseTestFixture))]
 public class UpdateCategoryTestFixtureCollection : ICollectionFixture<UpdateCategoryUseCaseTestFixture>

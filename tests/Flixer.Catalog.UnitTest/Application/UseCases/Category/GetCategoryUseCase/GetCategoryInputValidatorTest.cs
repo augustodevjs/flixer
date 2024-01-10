@@ -1,6 +1,6 @@
 ﻿using Flixer.Catalog.Application.UseCases.Category.GetCategory;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.GetCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategoryUseCase;
 
 [Collection(nameof(GetCategoryUseCaseTestFixture))]
 public class GetCategoryInputValidatorTest

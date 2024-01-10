@@ -1,8 +1,8 @@
-﻿using Flixer.Catalog.Domain.Entities;
+﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.UseCases.Category.DeleteCategory;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.DeleteCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.DeleteCategoryUseCase;
 
 [Collection(nameof(DeleteCategoryUseCaseTestFixture))]
 public class DeleteCategoryUseCaseTest
@@ -65,7 +65,7 @@ public class DeleteCategoryUseCaseTest
         await task.Should().ThrowAsync<NotFoundException>();
 
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Never);
-        repositoryMock.Verify(x => x.Get(exampleGuid,It.IsAny<CancellationToken>()), Times.Once);
-        repositoryMock.Verify(x => x.Delete(It.IsAny<Category>(), It.IsAny<CancellationToken>()), Times.Never);
+        repositoryMock.Verify(x => x.Get(exampleGuid, It.IsAny<CancellationToken>()), Times.Once);
+        repositoryMock.Verify(x => x.Delete(It.IsAny<DomainEntity.Category>(), It.IsAny<CancellationToken>()), Times.Never);
     }
 }

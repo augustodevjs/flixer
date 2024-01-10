@@ -1,9 +1,9 @@
-﻿using Flixer.Catalog.Domain.Entities;
+﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.UnitTest.Application.Common;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 using Flixer.Catalog.Application.UseCases.Category.ListCategories;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.ListCategoriesUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategoriesUseCase;
 
 [CollectionDefinition(nameof(ListCategoriesUseCaseTestFixture))]
 public class ListCategoriesTestFixtureCollection
@@ -12,9 +12,9 @@ public class ListCategoriesTestFixtureCollection
 
 public class ListCategoriesUseCaseTestFixture : CategoryUseCasesBaseFixture
 {
-    public List<Category> GetExampleCategoriesList(int length = 10)
+    public List<DomainEntity.Category> GetExampleCategoriesList(int length = 10)
     {
-        var list = new List<Category>();
+        var list = new List<DomainEntity.Category>();
 
         for (int i = 0; i < length; i++)
             list.Add(GetExampleCategory());

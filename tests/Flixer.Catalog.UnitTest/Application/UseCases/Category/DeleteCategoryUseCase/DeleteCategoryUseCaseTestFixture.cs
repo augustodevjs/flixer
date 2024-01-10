@@ -1,6 +1,6 @@
 ﻿using Flixer.Catalog.UnitTest.Application.Common;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.DeleteCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.DeleteCategoryUseCase;
 
 [CollectionDefinition(nameof(DeleteCategoryUseCaseTestFixture))]
 public class DeleteCategoryUseCaseTestFixtureCollection : ICollectionFixture<DeleteCategoryUseCaseTestFixture>

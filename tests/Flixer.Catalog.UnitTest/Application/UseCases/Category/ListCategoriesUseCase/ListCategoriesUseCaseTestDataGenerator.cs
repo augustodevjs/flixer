@@ -1,6 +1,6 @@
 ﻿using Flixer.Catalog.Application.UseCases.Category.ListCategories;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.ListCategoriesUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategoriesUseCase;
 
 public class ListCategoriesUseCaseTestDataGenerator
 {

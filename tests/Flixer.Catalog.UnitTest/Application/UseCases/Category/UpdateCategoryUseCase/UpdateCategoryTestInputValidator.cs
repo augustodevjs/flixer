@@ -1,6 +1,6 @@
 ﻿using Flixer.Catalog.Application.UseCases.Category.UpdateCategory;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.UpdateCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
 
 [Collection(nameof(UpdateCategoryUseCaseTestFixture))]
 public class UpdateCategoryTestInputValidator

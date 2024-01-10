@@ -1,4 +1,4 @@
-﻿namespace Flixer.Catalog.UnitTest.Application.UseCases.UpdateCategoryUseCase;
+﻿namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
 
 public class UpdateCategoryUseCaseTestDataGenerator
 {

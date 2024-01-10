@@ -3,7 +3,7 @@ using Flixer.Catalog.Application.UseCases.Category.Common;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 using Flixer.Catalog.Application.UseCases.Category.ListCategories;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.ListCategoriesUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategoriesUseCase;
 
 [Collection(nameof(ListCategoriesUseCaseTestFixture))]
 public class ListCategoriesUseCase
