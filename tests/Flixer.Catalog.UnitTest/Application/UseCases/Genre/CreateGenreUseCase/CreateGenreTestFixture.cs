@@ -11,13 +11,13 @@ public class CreateGenreTestFixtureCollection : ICollectionFixture<CreateGenreTe
 public class CreateGenreTestFixture : GenreUseCasesBaseFixture
 {
     public CreateGenreInput GetExampleInput()
-        => new CreateGenreInput(
+        => new(
             GetValidGenreName(),
             GetRandomBoolean()
         );
 
     public CreateGenreInput GetExampleInput(string? name)
-        => new CreateGenreInput(
+        => new(
             name!,
             GetRandomBoolean()
         );

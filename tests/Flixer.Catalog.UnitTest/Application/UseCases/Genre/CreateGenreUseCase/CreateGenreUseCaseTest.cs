@@ -59,7 +59,7 @@ public class CreateGenreUseCaseTest
 
         categoryRepositoryMock.Setup(x => x.GetIdsListByIds(
             It.IsAny<List<Guid>>(), It.IsAny<CancellationToken>()
-        )).ReturnsAsync((IReadOnlyList<Guid>)input.CategoriesIds!);
+        )).ReturnsAsync(input.CategoriesIds!);
 
         var useCase = new CreateGenre(
             unitOfWorkMock.Object,
@@ -89,17 +89,14 @@ public class CreateGenreUseCaseTest
         var input = _fixture.GetExampleInputWithCategories();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
         var categoryRepositoryMock = _fixture.GetCategoryRepositoryMock();
+
         var exampleGuid = input.CategoriesIds![^1];
 
-        categoryRepositoryMock.Setup(
-            x => x.GetIdsListByIds(
+        categoryRepositoryMock.Setup(x => x.GetIdsListByIds(
                 It.IsAny<List<Guid>>(),
                 It.IsAny<CancellationToken>()
             )
-        ).ReturnsAsync(
-            (IReadOnlyList<Guid>)input.CategoriesIds
-                .FindAll(x => x != exampleGuid)
-        );
+        ).ReturnsAsync(input.CategoriesIds.FindAll(x => x != exampleGuid));
 
         var useCase = new CreateGenre(
             unitOfWorkMock.Object,
