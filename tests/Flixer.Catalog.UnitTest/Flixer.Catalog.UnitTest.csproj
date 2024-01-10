@@ -33,7 +33,6 @@
 
   <ItemGroup>
     <Folder Include="Application\UseCases\Genre\CreateGenreUseCase\" />
-    <Folder Include="Application\UseCases\Genre\DeleteGenreUseCase\" />
     <Folder Include="Application\UseCases\Genre\ListGenreUseCase\" />
     <Folder Include="Application\UseCases\Genre\UpdateGenreUseCase\" />
   </ItemGroup>
