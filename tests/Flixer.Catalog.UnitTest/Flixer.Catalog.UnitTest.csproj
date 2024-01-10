@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\UseCases\Genre\CreateGenreUseCase\" />
     <Folder Include="Application\UseCases\Genre\ListGenreUseCase\" />
     <Folder Include="Application\UseCases\Genre\UpdateGenreUseCase\" />
   </ItemGroup>
