@@ -24,7 +24,7 @@ public class UpdateCategory : IUpdateCategory
 
         if (category == null)
         {
-            NotFoundException.ThrowIfNull(category, $"Category '{request.Id}' not found");
+            NotFoundException.ThrowIfNull(category, $"Category '{request.Id}' not found.");
         }
 
         category!.Update(request.Name, request.Description);

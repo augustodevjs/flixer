@@ -21,7 +21,7 @@ public class GetCategory : IGetCategory
 
         if (category == null)
         {
-            NotFoundException.ThrowIfNull(category, $"Category '{request.Id}' not found");
+            NotFoundException.ThrowIfNull(category, $"Category '{request.Id}' not found.");
         }
 
         return CategoryViewModel.FromCategory(category!);

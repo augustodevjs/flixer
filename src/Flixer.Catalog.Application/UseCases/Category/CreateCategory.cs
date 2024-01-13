@@ -5,7 +5,7 @@ using Flixer.Catalog.Application.Contracts.Category;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
-namespace Flixer.Catalog.Application.UseCases.Category.CreateCategory;
+namespace Flixer.Catalog.Application.UseCases.Category;
 
 public class CreateCategory : ICreateCategory
 {

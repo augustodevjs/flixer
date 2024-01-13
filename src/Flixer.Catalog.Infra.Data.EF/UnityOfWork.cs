@@ -3,11 +3,11 @@ using Flixer.Catalog.Infra.Data.EF.Context;
 
 namespace Flixer.Catalog.Infra.Data.EF;
 
-public class UnitOfWork : IUnityOfWork
+public class UnityOfWork : IUnityOfWork
 {
     private readonly FlixerCatalogDbContext _context;
 
-    public UnitOfWork(FlixerCatalogDbContext context)
+    public UnityOfWork(FlixerCatalogDbContext context)
         => _context = context;
 
     public Task Commit(CancellationToken cancellationToken)

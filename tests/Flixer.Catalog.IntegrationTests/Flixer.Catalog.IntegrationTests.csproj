@@ -26,8 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Flixer.Catalog.Application\Flixer.Catalog.Application.csproj" />
     <ProjectReference Include="..\..\src\Flixer.Catalog.Domain\Flixer.Catalog.Domain.csproj" />
     <ProjectReference Include="..\..\src\Flixer.Catalog.Infra.Data.EF\Flixer.Catalog.Infra.Data.EF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\UseCases\Category\ListCategories\" />
+    <Folder Include="Application\UseCases\Category\UpdateCategory\" />
   </ItemGroup>
 
 </Project>
