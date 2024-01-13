@@ -48,19 +48,12 @@ public class GetCategoryUseCaseTest
         var repositoryMock = _fixture.GetRepositoryMock();
         var exampleGuid = Guid.NewGuid();
 
-        repositoryMock.Setup(x => x.Get(
-            It.IsAny<Guid>(),
-            It.IsAny<CancellationToken>()
-        )).ThrowsAsync(
-            new NotFoundException($"Category '{exampleGuid}' not found")
-        );
-
         var input = new GetCategoryInputModel(exampleGuid);
         var useCase = new GetCategory(repositoryMock.Object);
 
         var task = async () => await useCase.Handle(input, CancellationToken.None);
 
-        await task.Should().ThrowAsync<NotFoundException>();
+        await task.Should().ThrowAsync<NotFoundException>().WithMessage($"Category '{exampleGuid}' not found.");
         repositoryMock.Verify(x => x.Get(
             It.IsAny<Guid>(),
             It.IsAny<CancellationToken>()

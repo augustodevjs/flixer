@@ -48,13 +48,6 @@ public class DeleteCategoryUseCaseTest
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
-        repositoryMock.Setup(x => x.Get(
-            exampleGuid,
-            It.IsAny<CancellationToken>())
-        ).ThrowsAsync(
-            new NotFoundException($"Category '{exampleGuid}' not found")
-        );
-
         var input = new DeleteCategoryInputModel(exampleGuid);
 
         var useCase = new DeleteCategory(
@@ -63,7 +56,7 @@ public class DeleteCategoryUseCaseTest
 
         var task = async () => await useCase.Handle(input, CancellationToken.None);
 
-        await task.Should().ThrowAsync<NotFoundException>();
+        await task.Should().ThrowAsync<NotFoundException>().WithMessage($"Category '{exampleGuid}' not found.");
 
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Never);
         repositoryMock.Verify(x => x.Get(exampleGuid, It.IsAny<CancellationToken>()), Times.Once);

@@ -1,5 +1,5 @@
-﻿using Flixer.Catalog.Domain.SeedWork;
-using Flixer.Catalog.Infra.Data.EF.Context;
+﻿using Flixer.Catalog.Infra.Data.EF.Context;
+using Flixer.Catalog.Application.Contracts.UnityOfWork;
 
 namespace Flixer.Catalog.Infra.Data.EF;
 
@@ -15,7 +15,7 @@ public class UnityOfWork : IUnityOfWork
         return _context.SaveChangesAsync(cancellationToken);
     }
 
-    public Task RollBack(CancellationToken cancellationToken)
+    public Task Rollback(CancellationToken cancellationToken)
     {
         return Task.CompletedTask;
     }

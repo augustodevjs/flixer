@@ -17,10 +17,10 @@ public class CreateCategoryUseCaseTest
     [Trait("Application", "CreateCategory - Use Cases")]
     public async void CreateCategory()
     {
-        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
+        var unityOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
 
-        var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
+        var useCase = new CreateCategory(repositoryMock.Object, unityOfWorkMock.Object);
 
         var input = _fixture.GetInput();
 
@@ -33,7 +33,7 @@ public class CreateCategoryUseCaseTest
         output.Description.Should().Be(input.Description);
         output.CreatedAt.Should().NotBeSameDateAs(default);
 
-        unitOfWorkMock.Verify(uow => uow.Commit(It.IsAny<CancellationToken>()), Times.Once);
+        unityOfWorkMock.Verify(uow => uow.Commit(It.IsAny<CancellationToken>()), Times.Once);
         repositoryMock.Verify(repository => repository.Insert(
             It.IsAny<DomainEntity.Category>(),
             It.IsAny<CancellationToken>()),

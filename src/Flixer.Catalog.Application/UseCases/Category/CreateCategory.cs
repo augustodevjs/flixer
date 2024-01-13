@@ -1,6 +1,7 @@
 ﻿using Flixer.Catalog.Domain.SeedWork;
 using Flixer.Catalog.Domain.Repository;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Contracts.UnityOfWork;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Application.Contracts.UseCases.Category;

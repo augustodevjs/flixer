@@ -1,9 +1,9 @@
 ﻿using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
-using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.UseCases.Genre;
-using Flixer.Catalog.Application.Dtos.InputModel.Genre;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
+using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.UpdateGenreUseCase;
 
@@ -72,13 +72,6 @@ public class UpdateGenreUseCaseTest
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
 
         var exampleId = Guid.NewGuid();
-
-        genreRepositoryMock.Setup(x => x.Get(
-            It.IsAny<Guid>(),
-            It.IsAny<CancellationToken>()
-        )).ThrowsAsync(new NotFoundException(
-            $"Genre '{exampleId}' not found."
-        ));
 
         var useCase = new UpdateGenre(
             _fixture.GetUnitOfWorkMock().Object,

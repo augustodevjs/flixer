@@ -57,20 +57,13 @@ public class DeleteGenreUseCaseTest
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
         var exampleId = Guid.NewGuid();
 
-        genreRepositoryMock.Setup(x => x.Get(
-            It.Is<Guid>(x => x == exampleId),
-            It.IsAny<CancellationToken>()
-        )).ThrowsAsync(new NotFoundException(
-            $"Genre '{exampleId}' not found"
-        ));
-
         var useCase = new DeleteGenre(unitOfWorkMock.Object,genreRepositoryMock.Object);
 
         var input = new DeleteGenreInputModel(exampleId);
 
         var action = async () => await useCase.Handle(input, CancellationToken.None);
 
-        await action.Should().ThrowAsync<NotFoundException>().WithMessage($"Genre '{exampleId}' not found");
+        await action.Should().ThrowAsync<NotFoundException>().WithMessage($"Genre '{exampleId}' not found.");
 
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Never);
 

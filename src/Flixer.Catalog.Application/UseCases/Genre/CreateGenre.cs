@@ -1,9 +1,9 @@
-﻿using Flixer.Catalog.Domain.SeedWork;
-using Flixer.Catalog.Domain.Repository;
+﻿using Flixer.Catalog.Domain.Repository;
 using Flixer.Catalog.Application.Exceptions;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
 using Flixer.Catalog.Application.Dtos.InputModel.Genre;
+using Flixer.Catalog.Application.Contracts.UnityOfWork;
 using Flixer.Catalog.Application.Contracts.UseCases.Genre;
 
 namespace Flixer.Catalog.Application.UseCases.Genre;

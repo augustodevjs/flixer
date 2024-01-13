@@ -1,9 +1,9 @@
-﻿using Flixer.Catalog.Domain.SeedWork;
-using Flixer.Catalog.Domain.Repository;
+﻿using Flixer.Catalog.Domain.Repository;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
 using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 using Flixer.Catalog.Application.Contracts.UseCases.Genre;
+using Flixer.Catalog.Application.Contracts.UnityOfWork;
 
 namespace Flixer.Catalog.Application.UseCases.Genre;
 public class UpdateGenre
