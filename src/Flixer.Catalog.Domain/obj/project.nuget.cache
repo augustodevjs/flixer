@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EpSDSyzSJy3Zt3iVryAW+SxfIJNDF18h/ucT07C6saZWz6NRak7DoYfaiR9o+8/he4zrzgbJLZ/i8rEq+5HSMw==",
+  "dgSpecHash": "gsiFQCjIOfGS/GboIVmKuLOi9Y71Gd8Fvbq1X2DWYNqgVgEktpjYQQiOR6+lG9/17CTUj6+PmpWrNQntqdZ0Rg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj",
+  "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

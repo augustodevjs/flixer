@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NKixsbP5aDEffIsoxR1FK2VM+LljZUbszxBeec67FQ/hgHliYxJbRolZMS2sdyd9YTs8Vm6iF04ZCsfZvitjWw==",
+  "dgSpecHash": "2iKXe6MrmBuSSVcBl6nx/dN2PoJ7Gnikqs0710kGaaXGtKCjWLJNrVc6p+g5oFe81LrrCPm14j7hz9q7nby5lw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
+  "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joaoa\\.nuget\\packages\\bogus\\35.3.0\\bogus.35.3.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj": {}
+    "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj": {
+    "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj",
+        "projectUniqueName": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj",
         "projectName": "Flixer.Catalog.Application",
-        "projectPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj",
+        "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj",
         "packagesPath": "C:\\Users\\joaoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Application\\obj\\",
+        "outputPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\joaoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
-                "projectPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj"
+              "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
+                "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj"
               }
             }
           }
@@ -73,14 +73,14 @@
         }
       }
     },
-    "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
+    "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj",
         "projectName": "Flixer.Catalog.Domain",
-        "projectPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj",
+        "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj",
         "packagesPath": "C:\\Users\\joaoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\obj\\",
+        "outputPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\joaoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -128,14 +128,14 @@
         }
       }
     },
-    "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj": {
+    "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
+        "projectUniqueName": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
         "projectName": "Flixer.Catalog.UnitTest",
-        "projectPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
+        "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
         "packagesPath": "C:\\Users\\joaoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\tests\\Flixer.Catalog.UnitTest\\obj\\",
+        "outputPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.UnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\joaoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -152,11 +152,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj": {
-                "projectPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj"
+              "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj": {
+                "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj"
               },
-              "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
-                "projectPath": "C:\\Users\\joaoa\\source\\repos\\Flixer.Catalog\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj"
+              "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
+                "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj"
               }
             }
           }
