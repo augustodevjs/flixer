@@ -17,11 +17,11 @@ public class GetCategory : IGetCategory
     {
         var category = await _categoryRepository.Get(request.Id, cancellationToken);
         
-        if(category == null)
+        if (category == null)
         {
             NotFoundException.ThrowIfNull(category, $"Category '{request.Id}' not found");
         }
 
-        return CategoryModelOutput.FromCategory(category);
+        return CategoryModelOutput.FromCategory(category!);
     }
 }

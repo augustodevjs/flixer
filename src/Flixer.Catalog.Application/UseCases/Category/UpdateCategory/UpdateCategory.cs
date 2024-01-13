@@ -1,5 +1,6 @@
 ﻿using Flixer.Catalog.Domain.Repository;
 using Flixer.Catalog.Application.Contracts;
+using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.Application.UseCases.Category.UpdateCategory;
@@ -19,7 +20,12 @@ public class UpdateCategory : IUpdateCategory
     {
         var category = await _categoryRepository.Get(request.Id, cancellationToken);
 
-        category.Update(request.Name, request.Description);
+        if (category == null)
+        {
+            NotFoundException.ThrowIfNull(category, $"Category '{request.Id}' not found");
+        }
+
+        category!.Update(request.Name, request.Description);
 
         if (request.IsActive != null && request.IsActive != category.IsActive)
             if ((bool)request.IsActive!) 
