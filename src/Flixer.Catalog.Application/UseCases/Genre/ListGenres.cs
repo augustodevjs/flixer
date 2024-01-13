@@ -1,8 +1,8 @@
 ﻿using Flixer.Catalog.Domain.Repository;
-using Flixer.Catalog.Application.Contracts.Genre;
 namespace Flixer.Catalog.Application.UseCases.Genre;
 using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
 using Flixer.Catalog.Application.Dtos.InputModel.Genre;
+using Flixer.Catalog.Application.Contracts.UseCases.Genre;
 
 public class ListGenres : IListGenres
 {

@@ -2,8 +2,8 @@
 using Flixer.Catalog.Domain.SeedWork;
 using Flixer.Catalog.Domain.Repository;
 using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Application.Contracts.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Flixer.Catalog.Application.Contracts.UseCases.Category;
 
 namespace Flixer.Catalog.Application.UseCases.Category;
 
