@@ -33,4 +33,32 @@ public class CategoryRepositoryTest
         dbCategory.CreatedAt.Should().Be(exampleCategory.CreatedAt);
         dbCategory.Description.Should().Be(exampleCategory.Description);
     }
+
+    [Fact(DisplayName = nameof(Get))]
+    [Trait("Integration/Infra.Data", "categoryRepository - Repositories")]
+    public async Task Get()
+    {
+        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext();
+
+        var exampleCategory = _fixture.GetExampleCategory();
+        var exampleCategoriesList = _fixture.GetExampleCategoriesList(15);
+
+        exampleCategoriesList.Add(exampleCategory);
+
+        await dbContext.AddRangeAsync(exampleCategoriesList);
+        await dbContext.SaveChangesAsync(CancellationToken.None);
+
+        var categoryRepository = new Repository.CategoryRepository(
+            _fixture.CreateDbContext(true)
+        );
+
+        var dbCategory = await categoryRepository.Get(exampleCategory.Id, CancellationToken.None);
+
+        dbCategory.Should().NotBeNull();
+        dbCategory.Id.Should().Be(exampleCategory.Id);
+        dbCategory!.Name.Should().Be(exampleCategory.Name);
+        dbCategory.IsActive.Should().Be(exampleCategory.IsActive);
+        dbCategory.CreatedAt.Should().Be(exampleCategory.CreatedAt);
+        dbCategory.Description.Should().Be(exampleCategory.Description);
+    }
 }

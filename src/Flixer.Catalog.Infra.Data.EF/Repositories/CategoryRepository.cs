@@ -20,19 +20,16 @@ public class CategoryRepository : ICategoryRepository
         await _categories.AddAsync(aggregate, cancellationToken);
     }
 
-    public Task<Category> Get(Guid id, CancellationToken cancellationToken)
+    public async Task<Category> Get(Guid id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var category = await _categories.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        return category!;
     }
-    public Task Update(Category aggregate, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+    public Task Update(Category aggregate, CancellationToken _)
+        => Task.FromResult(_categories.Update(aggregate));
 
     public Task Delete(Category aggregate, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+        => Task.FromResult(_categories.Remove(aggregate));
 
     public Task<SearchOutput<Category>> Search(SearchInput input, CancellationToken cancellationToken)
     {

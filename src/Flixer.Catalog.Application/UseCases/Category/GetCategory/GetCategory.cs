@@ -1,4 +1,5 @@
 ﻿using Flixer.Catalog.Domain.Repository;
+using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.Application.UseCases.Category.GetCategory;
@@ -16,6 +17,11 @@ public class GetCategory : IGetCategory
     {
         var category = await _categoryRepository.Get(request.Id, cancellationToken);
         
+        if(category == null)
+        {
+            NotFoundException.ThrowIfNull(category, $"Category '{request.Id}' not found");
+        }
+
         return CategoryModelOutput.FromCategory(category);
     }
 }
