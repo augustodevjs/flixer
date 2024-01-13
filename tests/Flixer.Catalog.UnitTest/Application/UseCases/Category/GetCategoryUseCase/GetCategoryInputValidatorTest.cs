@@ -1,4 +1,4 @@
-﻿using Flixer.Catalog.Application.UseCases.Category.GetCategory;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategoryUseCase;
 
@@ -14,8 +14,8 @@ public class GetCategoryInputValidatorTest
     [Trait("Application", "GetCategoryInputValidation - UseCases")]
     public void ValidationOk()
     {
-        var validInput = new GetCategoryInput(Guid.NewGuid());
-        var validator = new GetCategoryInputValidator();
+        var validInput = new GetCategoryInputModel(Guid.NewGuid());
+        var validator = new GetCategoryValidatorInputModel();
 
         var validationResult = validator.Validate(validInput);
 
@@ -28,8 +28,8 @@ public class GetCategoryInputValidatorTest
     [Trait("Application", "GetCategoryInputValidation - UseCases")]
     public void InvalidWhenEmptyGuidId()
     {
-        var invalidInput = new GetCategoryInput(Guid.Empty);
-        var validator = new GetCategoryInputValidator();
+        var invalidInput = new GetCategoryInputModel(Guid.Empty);
+        var validator = new GetCategoryValidatorInputModel();
 
         var validationResult = validator.Validate(invalidInput);
 

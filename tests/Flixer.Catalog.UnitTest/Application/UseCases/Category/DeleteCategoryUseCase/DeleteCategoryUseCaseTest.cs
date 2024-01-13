@@ -1,6 +1,7 @@
-﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Application.UseCases.Category.DeleteCategory;
+﻿using Flixer.Catalog.Application.Exceptions;
+using Flixer.Catalog.Application.UseCases.Category;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.DeleteCategoryUseCase;
 
@@ -25,7 +26,7 @@ public class DeleteCategoryUseCaseTest
             It.IsAny<CancellationToken>())
         ).ReturnsAsync(categoryExample);
 
-        var input = new DeleteCategoryInput(categoryExample.Id);
+        var input = new DeleteCategoryInputModel(categoryExample.Id);
 
         var useCase = new DeleteCategory(
             repositoryMock.Object,
@@ -54,7 +55,7 @@ public class DeleteCategoryUseCaseTest
             new NotFoundException($"Category '{exampleGuid}' not found")
         );
 
-        var input = new DeleteCategoryInput(exampleGuid);
+        var input = new DeleteCategoryInputModel(exampleGuid);
 
         var useCase = new DeleteCategory(
             repositoryMock.Object,

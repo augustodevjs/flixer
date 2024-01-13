@@ -1,7 +1,7 @@
 ﻿using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
+using Flixer.Catalog.Application.UseCases.Genre;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.UseCases.Genre.CreateGenre;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.CreateGenreUseCase;
 

@@ -1,8 +1,9 @@
-﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Domain.Exceptions;
+﻿using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Application.UseCases.Category.Common;
-using Flixer.Catalog.Application.UseCases.Category.UpdateCategory;
+using Flixer.Catalog.Application.UseCases.Category;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Dtos.ViewModel.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
 
@@ -21,7 +22,7 @@ public class UpdateCategoryUseCaseTest
         parameters: 10,
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
-    public async Task UpdateCategory(DomainEntity.Category exampleCategory, UpdateCategoryInput input)
+    public async Task UpdateCategory(DomainEntity.Category exampleCategory, UpdateCategoryInputModel input)
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
@@ -36,7 +37,7 @@ public class UpdateCategoryUseCaseTest
             unitOfWorkMock.Object
         );
 
-        CategoryModelOutput output = await useCase.Handle(input, CancellationToken.None);
+        CategoryViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.Name.Should().Be(input.Name);
@@ -56,10 +57,10 @@ public class UpdateCategoryUseCaseTest
     )]
     public async Task UpdateCategoryWithoutProvidingIsActive(
         DomainEntity.Category exampleCategory,
-        UpdateCategoryInput exampleInput
+        UpdateCategoryInputModel exampleInput
     )
     {
-        var input = new UpdateCategoryInput(
+        var input = new UpdateCategoryInputModel(
             exampleInput.Id,
             exampleInput.Name,
             null,
@@ -79,7 +80,7 @@ public class UpdateCategoryUseCaseTest
             unitOfWorkMock.Object
         );
 
-        CategoryModelOutput output = await useCase.Handle(input, CancellationToken.None);
+        CategoryViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.Name.Should().Be(input.Name);
@@ -98,9 +99,9 @@ public class UpdateCategoryUseCaseTest
         parameters: 10,
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
-    public async Task UpdateCategoryOnlyName(DomainEntity.Category exampleCategory, UpdateCategoryInput exampleInput)
+    public async Task UpdateCategoryOnlyName(DomainEntity.Category exampleCategory, UpdateCategoryInputModel exampleInput)
     {
-        var input = new UpdateCategoryInput(
+        var input = new UpdateCategoryInputModel(
             exampleInput.Id,
             exampleInput.Name
         );
@@ -118,7 +119,7 @@ public class UpdateCategoryUseCaseTest
             unitOfWorkMock.Object
         );
 
-        CategoryModelOutput output = await useCase.Handle(input, CancellationToken.None);
+        CategoryViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.Name.Should().Be(input.Name);
@@ -163,7 +164,7 @@ public class UpdateCategoryUseCaseTest
         parameters: 12,
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
-    public async Task ThrowWhenCantUpdateCategory(UpdateCategoryInput input, string expectedExceptionMessage)
+    public async Task ThrowWhenCantUpdateCategory(UpdateCategoryInputModel input, string expectedExceptionMessage)
     {
         var exampleCategory = _fixture.GetExampleCategory();
         input.Id = exampleCategory.Id;

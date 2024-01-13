@@ -1,4 +1,4 @@
-﻿using Flixer.Catalog.Application.UseCases.Genre.CreateGenre;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 using Flixer.Catalog.UnitTest.Application.UseCases.Genre.Common;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.CreateGenreUseCase;
@@ -10,19 +10,19 @@ public class CreateGenreTestFixtureCollection : ICollectionFixture<CreateGenreTe
 
 public class CreateGenreTestFixture : GenreUseCasesBaseFixture
 {
-    public CreateGenreInput GetExampleInput()
+    public CreateGenreInputModel GetExampleInput()
         => new(
             GetValidGenreName(),
             GetRandomBoolean()
         );
 
-    public CreateGenreInput GetExampleInput(string? name)
+    public CreateGenreInputModel GetExampleInput(string? name)
         => new(
             name!,
             GetRandomBoolean()
         );
 
-    public CreateGenreInput GetExampleInputWithCategories()
+    public CreateGenreInputModel GetExampleInputWithCategories()
     {
         var numberOfCategoriesIds = (new Random()).Next(1, 10);
 

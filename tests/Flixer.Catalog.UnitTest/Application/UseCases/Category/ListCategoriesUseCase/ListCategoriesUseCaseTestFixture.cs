@@ -1,6 +1,6 @@
 ﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
-using Flixer.Catalog.Application.UseCases.Category.ListCategories;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.UnitTest.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategoriesUseCase;
@@ -22,11 +22,11 @@ public class ListCategoriesUseCaseTestFixture : CategoryUseCasesBaseFixture
         return list;
     }
 
-    public ListCategoriesInput GetExampleInput()
+    public ListCategoriesInputModel GetExampleInput()
     {
         var random = new Random();
 
-        return new ListCategoriesInput(
+        return new ListCategoriesInputModel(
             page: random.Next(1, 10),
             perPage: random.Next(15, 100),
             search: Faker.Commerce.ProductName(),

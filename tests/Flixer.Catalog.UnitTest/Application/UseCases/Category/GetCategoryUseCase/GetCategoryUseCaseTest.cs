@@ -1,5 +1,6 @@
 ﻿using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Application.UseCases.Category.GetCategory;
+using Flixer.Catalog.Application.UseCases.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategoryUseCase;
 
@@ -22,7 +23,7 @@ public class GetCategoryUseCaseTest
             It.IsAny<CancellationToken>()
         )).ReturnsAsync(exampleCategory);
 
-        var input = new GetCategoryInput(exampleCategory.Id);
+        var input = new GetCategoryInputModel(exampleCategory.Id);
         var useCase = new GetCategory(repositoryMock.Object);
 
         var output = await useCase.Handle(input, CancellationToken.None);
@@ -54,7 +55,7 @@ public class GetCategoryUseCaseTest
             new NotFoundException($"Category '{exampleGuid}' not found")
         );
 
-        var input = new GetCategoryInput(exampleGuid);
+        var input = new GetCategoryInputModel(exampleGuid);
         var useCase = new GetCategory(repositoryMock.Object);
 
         var task = async () => await useCase.Handle(input, CancellationToken.None);

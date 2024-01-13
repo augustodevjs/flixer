@@ -1,6 +1,7 @@
 ﻿using Flixer.Catalog.Application.Exceptions;
+using Flixer.Catalog.Application.UseCases.Genre;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.UseCases.Genre.DeleteGenre;
+using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.DeleteGenreUseCase;
 
@@ -65,7 +66,7 @@ public class DeleteGenreUseCaseTest
 
         var useCase = new DeleteGenre(unitOfWorkMock.Object,genreRepositoryMock.Object);
 
-        var input = new DeleteGenreInput(exampleId);
+        var input = new DeleteGenreInputModel(exampleId);
 
         var action = async () => await useCase.Handle(input, CancellationToken.None);
 

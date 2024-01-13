@@ -1,4 +1,4 @@
-﻿using Flixer.Catalog.Application.UseCases.Category.UpdateCategory;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
 
@@ -15,7 +15,7 @@ public class UpdateCategoryTestInputValidator
     public void DontValidateWhenEmptyGuid()
     {
         var input = _fixture.GetValidInput(Guid.Empty);
-        var validator = new UpdateCategoryInputValidator();
+        var validator = new UpdateCategoryValidatorInputModel();
 
         var validateResult = validator.Validate(input);
 
@@ -32,7 +32,7 @@ public class UpdateCategoryTestInputValidator
     public void ValidateWhenValid()
     {
         var input = _fixture.GetValidInput();
-        var validator = new UpdateCategoryInputValidator();
+        var validator = new UpdateCategoryValidatorInputModel();
 
         var validateResult = validator.Validate(input);
 

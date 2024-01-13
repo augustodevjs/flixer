@@ -1,8 +1,9 @@
 ﻿using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.UseCases.Genre.Common;
-using Flixer.Catalog.Application.UseCases.Genre.UpdateGenre;
+using Flixer.Catalog.Application.UseCases.Genre;
+using Flixer.Catalog.Application.Dtos.InputModel.Genre;
+using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.UpdateGenreUseCase;
 
@@ -36,13 +37,13 @@ public class UpdateGenreUseCaseTest
             _fixture.GetCategoryRepositoryMock().Object
         );
 
-        var input = new UpdateGenreInput(
+        var input = new UpdateGenreInputModel(
             exampleGenre.Id,
             newNameExample,
             newIsActive
         );
 
-        GenreModelOutput output = await useCase.Handle(input, CancellationToken.None);
+        GenreViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.Id.Should().Be(exampleGenre.Id);
@@ -85,7 +86,7 @@ public class UpdateGenreUseCaseTest
             _fixture.GetCategoryRepositoryMock().Object
         );
 
-        var input = new UpdateGenreInput(exampleId, _fixture.GetValidGenreName(), true);
+        var input = new UpdateGenreInputModel(exampleId, _fixture.GetValidGenreName(), true);
 
         var action = async () => await useCase.Handle(input, CancellationToken.None);
 
@@ -117,7 +118,7 @@ public class UpdateGenreUseCaseTest
             _fixture.GetCategoryRepositoryMock().Object
         );
 
-        var input = new UpdateGenreInput(exampleGenre.Id, name!, newIsActive);
+        var input = new UpdateGenreInputModel(exampleGenre.Id, name!, newIsActive);
 
         var action = async () => await useCase.Handle(input, CancellationToken.None);
 
@@ -148,9 +149,9 @@ public class UpdateGenreUseCaseTest
             _fixture.GetCategoryRepositoryMock().Object
         );
 
-        var input = new UpdateGenreInput(exampleGenre.Id, newNameExample);
+        var input = new UpdateGenreInputModel(exampleGenre.Id, newNameExample);
 
-        GenreModelOutput output =await useCase.Handle(input, CancellationToken.None);
+        GenreViewModel output =await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.IsActive.Should().Be(isActive);
@@ -199,14 +200,14 @@ public class UpdateGenreUseCaseTest
             categoryRepositoryMock.Object
         );
 
-        var input = new UpdateGenreInput(
+        var input = new UpdateGenreInputModel(
             exampleGenre.Id,
             newNameExample,
             newIsActive,
             exampleCategoriesIdsList
         );
 
-        GenreModelOutput output = await useCase.Handle(input, CancellationToken.None);
+        GenreViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.Id.Should().Be(exampleGenre.Id);
@@ -259,14 +260,14 @@ public class UpdateGenreUseCaseTest
             categoryRepositoryMock.Object
         );
 
-        var input = new UpdateGenreInput(
+        var input = new UpdateGenreInputModel(
             exampleGenre.Id,
             newNameExample,
             newIsActive,
             exampleCategoriesIdsList
         );
 
-        GenreModelOutput output = await useCase.Handle(input, CancellationToken.None);
+        GenreViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.Id.Should().Be(exampleGenre.Id);
@@ -323,7 +324,7 @@ public class UpdateGenreUseCaseTest
             categoryRepositoryMock.Object
         );
 
-        var input = new UpdateGenreInput(
+        var input = new UpdateGenreInputModel(
             exampleGenre.Id,
             newNameExample,
             newIsActive,
@@ -364,13 +365,13 @@ public class UpdateGenreUseCaseTest
             categoryRepositoryMock.Object
         );
 
-        var input = new UpdateGenreInput(
+        var input = new UpdateGenreInputModel(
             exampleGenre.Id,
             newNameExample,
             newIsActive
         );
 
-        GenreModelOutput output = await useCase.Handle(input, CancellationToken.None);
+        GenreViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.Id.Should().Be(exampleGenre.Id);
@@ -417,14 +418,14 @@ public class UpdateGenreUseCaseTest
             genreRepositoryMock.Object,
             categoryRepositoryMock.Object
         );
-        var input = new UpdateGenreInput(
+        var input = new UpdateGenreInputModel(
             exampleGenre.Id,
             newNameExample,
             newIsActive,
             new List<Guid>()
         );
 
-        GenreModelOutput output = await useCase.Handle(input, CancellationToken.None);
+        GenreViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.Id.Should().Be(exampleGenre.Id);

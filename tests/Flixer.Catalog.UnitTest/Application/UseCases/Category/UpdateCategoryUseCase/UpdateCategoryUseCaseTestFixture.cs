@@ -1,4 +1,4 @@
-﻿using Flixer.Catalog.Application.UseCases.Category.UpdateCategory;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.UnitTest.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
@@ -11,7 +11,7 @@ public class UpdateCategoryTestFixtureCollection : ICollectionFixture<UpdateCate
 
 public class UpdateCategoryUseCaseTestFixture : CategoryUseCasesBaseFixture
 {
-    public UpdateCategoryInput GetValidInput(Guid? id = null)
+    public UpdateCategoryInputModel GetValidInput(Guid? id = null)
         => new(
             id ?? Guid.NewGuid(),
             GetValidCategoryName(),
@@ -19,7 +19,7 @@ public class UpdateCategoryUseCaseTestFixture : CategoryUseCasesBaseFixture
             GetValidCategoryDescription()
         );
 
-    public UpdateCategoryInput GetInvalidInputShortName()
+    public UpdateCategoryInputModel GetInvalidInputShortName()
     {
         var invalidInputShortName = GetValidInput();
         invalidInputShortName.Name =
@@ -27,7 +27,7 @@ public class UpdateCategoryUseCaseTestFixture : CategoryUseCasesBaseFixture
         return invalidInputShortName;
     }
 
-    public UpdateCategoryInput GetInvalidInputTooLongName()
+    public UpdateCategoryInputModel GetInvalidInputTooLongName()
     {
         var invalidInputTooLongName = GetValidInput();
         var tooLongNameForCategory = Faker.Commerce.ProductName();
@@ -37,7 +37,7 @@ public class UpdateCategoryUseCaseTestFixture : CategoryUseCasesBaseFixture
         return invalidInputTooLongName;
     }
 
-    public UpdateCategoryInput GetInvalidInputTooLongDescription()
+    public UpdateCategoryInputModel GetInvalidInputTooLongDescription()
     {
         var invalidInputTooLongDescription = GetValidInput();
         var tooLongDescriptionForCategory = Faker.Commerce.ProductDescription();

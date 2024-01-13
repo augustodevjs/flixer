@@ -1,7 +1,8 @@
-﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.UseCases.Genre.Common;
+﻿using Flixer.Catalog.Application.UseCases.Genre;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
+using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
-using Flixer.Catalog.Application.UseCases.Genre.ListGenres;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.ListGenreUseCase;
 
@@ -35,14 +36,14 @@ public class ListGenreUseCaseTest
 
         var useCase = new ListGenres(genreRepositoryMock.Object);
 
-        ListGenresOutput output = await useCase.Handle(input, CancellationToken.None);
+        ListGenresViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Total.Should().Be(outputRepositorySearch.Total);
         output.Page.Should().Be(outputRepositorySearch.CurrentPage);
         output.PerPage.Should().Be(outputRepositorySearch.PerPage);
         output.Items.Should().HaveCount(outputRepositorySearch.Items.Count);
 
-        ((List<GenreModelOutput>)output.Items).ForEach(outputItem =>
+        ((List<GenreViewModel>)output.Items).ForEach(outputItem =>
         {
             var repositoryGenre = outputRepositorySearch.Items.FirstOrDefault(x => x.Id == outputItem.Id);
 
@@ -93,7 +94,7 @@ public class ListGenreUseCaseTest
 
         var useCase = new ListGenres(genreRepositoryMock.Object);
 
-        ListGenresOutput output = await useCase.Handle(input, CancellationToken.None);
+        ListGenresViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Total.Should().Be(outputRepositorySearch.Total);
         output.PerPage.Should().Be(outputRepositorySearch.PerPage);
@@ -135,7 +136,7 @@ public class ListGenreUseCaseTest
 
         var useCase = new ListGenres(genreRepositoryMock.Object);
 
-        ListGenresOutput output = await useCase.Handle(new ListGenresInput(), CancellationToken.None);
+        ListGenresViewModel output = await useCase.Handle(new ListGenresInputModel(), CancellationToken.None);
 
         genreRepositoryMock.Verify(
             x => x.Search(

@@ -1,4 +1,4 @@
-﻿using Flixer.Catalog.Application.UseCases.Category.ListCategories;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategoriesUseCase;
 
@@ -15,17 +15,17 @@ public class ListCategoriesUseCaseTestDataGenerator
             {
                 case 0:
                     yield return new object[] {
-                        new ListCategoriesInput()
+                        new ListCategoriesInputModel()
                     };
                     break;
                 case 1:
                     yield return new object[] {
-                        new ListCategoriesInput(inputExample.Page)
+                        new ListCategoriesInputModel(inputExample.Page)
                     };
                     break;
                 case 3:
                     yield return new object[] {
-                        new ListCategoriesInput(
+                        new ListCategoriesInputModel(
                             inputExample.Page,
                             inputExample.PerPage
                         )
@@ -33,7 +33,7 @@ public class ListCategoriesUseCaseTestDataGenerator
                     break;
                 case 4:
                     yield return new object[] {
-                        new ListCategoriesInput(
+                        new ListCategoriesInputModel(
                             inputExample.Page,
                             inputExample.PerPage,
                             inputExample.Search
@@ -42,7 +42,7 @@ public class ListCategoriesUseCaseTestDataGenerator
                     break;
                 case 5:
                     yield return new object[] {
-                        new ListCategoriesInput(
+                        new ListCategoriesInputModel(
                             inputExample.Page,
                             inputExample.PerPage,
                             inputExample.Search,
@@ -55,7 +55,7 @@ public class ListCategoriesUseCaseTestDataGenerator
                     break;
                 default:
                     yield return new object[] {
-                        new ListCategoriesInput()
+                        new ListCategoriesInputModel()
                     };
                     break;
             }

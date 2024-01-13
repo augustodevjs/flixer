@@ -1,7 +1,7 @@
 ﻿using Flixer.Catalog.UnitTest.Common;
+using Flixer.Catalog.Domain.SeedWork;
 using Flixer.Catalog.Domain.Repository;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Contracts = Flixer.Catalog.Application.Contracts;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.Common;
 
@@ -10,7 +10,7 @@ public class CategoryUseCasesBaseFixture : BaseFixture
     public Mock<ICategoryRepository> GetRepositoryMock()
         => new();
 
-    public Mock<Contracts.IUnityOfWork> GetUnitOfWorkMock()
+    public Mock<IUnityOfWork> GetUnitOfWorkMock()
         => new();
 
     public string GetValidCategoryName()

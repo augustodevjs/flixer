@@ -1,6 +1,7 @@
 ﻿using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Application.UseCases.Genre.Common;
-using Flixer.Catalog.Application.UseCases.Genre.GetGenre;
+using Flixer.Catalog.Application.UseCases.Genre;
+using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
+using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.GetGenreUseCase;
 
@@ -25,9 +26,9 @@ public class GetGenreUseCaseTest
         )).ReturnsAsync(exampleGenre);
 
         var useCase = new GetGenre(genreRepositoryMock.Object);
-        var input = new GetGenreInput(exampleGenre.Id);
+        var input = new GetGenreInputModel(exampleGenre.Id);
 
-        GenreModelOutput output = await useCase.Handle(input, CancellationToken.None);
+        GenreViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.Id.Should().Be(exampleGenre.Id);
@@ -63,7 +64,7 @@ public class GetGenreUseCaseTest
         ));
 
         var useCase = new GetGenre(genreRepositoryMock.Object);
-        var input = new GetGenreInput(exampleId);
+        var input = new GetGenreInputModel(exampleId);
 
         var action = async () => await useCase.Handle(input, CancellationToken.None);
 

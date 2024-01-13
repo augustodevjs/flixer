@@ -1,4 +1,4 @@
-﻿using Flixer.Catalog.Application.UseCases.Genre.ListGenres;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 using Flixer.Catalog.UnitTest.Application.UseCases.Genre.Common;
 
@@ -11,11 +11,11 @@ public class ListGenresTestFixtureCollection : ICollectionFixture<ListGenresTest
 
 public class ListGenresTestFixture : GenreUseCasesBaseFixture
 {
-    public ListGenresInput GetExampleInput()
+    public ListGenresInputModel GetExampleInput()
     {
         var random = new Random();
 
-        return new ListGenresInput(
+        return new ListGenresInputModel(
             page: random.Next(1, 10),
             perPage: random.Next(15, 100),
             search: Faker.Commerce.ProductName(),

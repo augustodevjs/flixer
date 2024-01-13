@@ -1,4 +1,4 @@
-﻿using Flixer.Catalog.Application.UseCases.Category.CreateCategory;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.UnitTest.Application.UseCases.Category.Common;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.CreateCategoryUseCase;
@@ -12,12 +12,12 @@ public class CreateCategoryUseCaseTestFixtureCollection : ICollectionFixture<Cre
 public class CreateCategoryUseCaseTestFixture : CategoryUseCasesBaseFixture
 {
 
-    public CreateCategoryInput GetInput()
+    public CreateCategoryInputModel GetInput()
     {
         return new(GetValidCategoryName(), GetValidCategoryDescription(), GetRandomBoolean());
     }
 
-    public CreateCategoryInput GetInvalidInputShortName()
+    public CreateCategoryInputModel GetInvalidInputShortName()
     {
         var invalidInputShortName = GetInput();
         invalidInputShortName.Name = invalidInputShortName.Name[..2];
@@ -25,7 +25,7 @@ public class CreateCategoryUseCaseTestFixture : CategoryUseCasesBaseFixture
         return invalidInputShortName;
     }
 
-    public CreateCategoryInput GetInvalidInputTooLongName()
+    public CreateCategoryInputModel GetInvalidInputTooLongName()
     {
         var invalidInputTooLongName = GetInput();
         var tooLongNameForCategory = Faker.Commerce.ProductName();
@@ -36,7 +36,7 @@ public class CreateCategoryUseCaseTestFixture : CategoryUseCasesBaseFixture
         return invalidInputTooLongName;
     }
 
-    public CreateCategoryInput GetInvalidCategoryInputNull()
+    public CreateCategoryInputModel GetInvalidCategoryInputNull()
     {
         var invalidInputDescriptionNull = GetInput();
         invalidInputDescriptionNull.Description = null!;
@@ -44,7 +44,7 @@ public class CreateCategoryUseCaseTestFixture : CategoryUseCasesBaseFixture
         return invalidInputDescriptionNull;
     }
 
-    public CreateCategoryInput GetInvalidInputTooLongDescription()
+    public CreateCategoryInputModel GetInvalidInputTooLongDescription()
     {
         var invalidInputTooLongDescription = GetInput();
         var tooLongDescriptionForCategory = Faker.Commerce.ProductDescription();

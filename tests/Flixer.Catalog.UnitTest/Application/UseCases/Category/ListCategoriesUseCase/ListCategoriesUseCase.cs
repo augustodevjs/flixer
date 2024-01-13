@@ -1,7 +1,8 @@
-﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.UseCases.Category.Common;
+﻿using Flixer.Catalog.Application.UseCases.Category;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Dtos.ViewModel.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
-using Flixer.Catalog.Application.UseCases.Category.ListCategories;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategoriesUseCase;
 
@@ -49,7 +50,7 @@ public class ListCategoriesUseCase
         output.Page.Should().Be(outputRepositorySearch.CurrentPage);
         output.Items.Should().HaveCount(outputRepositorySearch.Items.Count);
 
-        ((List<CategoryModelOutput>)output.Items).ForEach(outputItem =>
+        ((List<CategoryViewModel>)output.Items).ForEach(outputItem =>
         {
             var repositoryCategory = outputRepositorySearch.Items
                 .FirstOrDefault(x => x.Id == outputItem.Id);
@@ -128,7 +129,7 @@ public class ListCategoriesUseCase
         MemberType = typeof(ListCategoriesUseCaseTestDataGenerator)
     )]
     public async Task ListInputWithoutAllParameters(
-        ListCategoriesInput input
+        ListCategoriesInputModel input
     )
     {
         var repositoryMock = _fixture.GetRepositoryMock();
@@ -161,7 +162,7 @@ public class ListCategoriesUseCase
         output.PerPage.Should().Be(outputRepositorySearch.PerPage);
         output.Page.Should().Be(outputRepositorySearch.CurrentPage);
         output.Items.Should().HaveCount(outputRepositorySearch.Items.Count);
-        ((List<CategoryModelOutput>)output.Items).ForEach(outputItem =>
+        ((List<CategoryViewModel>)output.Items).ForEach(outputItem =>
         {
             var repositoryCategory = outputRepositorySearch.Items
                 .FirstOrDefault(x => x.Id == outputItem.Id);

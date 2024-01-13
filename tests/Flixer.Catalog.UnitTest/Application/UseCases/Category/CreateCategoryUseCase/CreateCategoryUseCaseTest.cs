@@ -1,5 +1,6 @@
-﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Domain.Exceptions;
+﻿using Flixer.Catalog.Domain.Exceptions;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Application.UseCases.Category.CreateCategory;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.CreateCategoryUseCase;
@@ -49,7 +50,7 @@ public class CreateCategoryUseCaseTest
 
         var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
-        var input = new CreateCategoryInput(_fixture.GetValidCategoryName());
+        var input = new CreateCategoryInputModel(_fixture.GetValidCategoryName());
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
@@ -77,7 +78,7 @@ public class CreateCategoryUseCaseTest
 
         var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
-        var input = new CreateCategoryInput(_fixture.GetValidCategoryName(), _fixture.GetValidCategoryDescription());
+        var input = new CreateCategoryInputModel(_fixture.GetValidCategoryName(), _fixture.GetValidCategoryDescription());
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
@@ -103,7 +104,7 @@ public class CreateCategoryUseCaseTest
         parameters: 24,
         MemberType = typeof(CreateCategoryUseCaseTestDataGenerator)
      )]
-    public async void ThrowWhenCantInstantiateCategory(CreateCategoryInput input, string exceptionMessage)
+    public async void ThrowWhenCantInstantiateCategory(CreateCategoryInputModel input, string exceptionMessage)
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
