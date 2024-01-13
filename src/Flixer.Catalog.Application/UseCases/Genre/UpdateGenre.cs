@@ -28,7 +28,12 @@ public class UpdateGenre
     {
         var genre = await _genreRepository.Get(request.Id, cancellationToken);
 
-        genre.Update(request.Name);
+        if (genre == null)
+        {
+            NotFoundException.ThrowIfNull(genre, $"Genre '{request.Id}' not found.");
+        }
+
+        genre!.Update(request.Name);
 
         if (request.IsActive is not null && request.IsActive != genre.IsActive)
         {

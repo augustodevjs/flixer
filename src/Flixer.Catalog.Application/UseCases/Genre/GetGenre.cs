@@ -1,4 +1,5 @@
 ﻿using Flixer.Catalog.Domain.Repository;
+using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.Contracts.Genre;
 using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
 using Flixer.Catalog.Application.Dtos.InputModel.Genre;
@@ -18,6 +19,11 @@ public class GetGenre : IGetGenre
     {
         var genre = await _genreRepository.Get(request.Id, cancellationToken);
 
-        return GenreViewModel.FromGenre(genre);
+        if (genre == null)
+        {
+            NotFoundException.ThrowIfNull(genre, $"Genre '{request.Id}' not found.");
+        }
+
+        return GenreViewModel.FromGenre(genre!);
     }
 }

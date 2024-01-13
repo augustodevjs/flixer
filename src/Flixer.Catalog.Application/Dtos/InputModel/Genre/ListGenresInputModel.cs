@@ -1,7 +1,7 @@
 ﻿using MediatR;
+using Flixer.Catalog.Application.Dtos.Common;
 using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
-using Flixer.Catalog.Application.Dtos.Common;
 
 namespace Flixer.Catalog.Application.Dtos.InputModel.Genre;
 

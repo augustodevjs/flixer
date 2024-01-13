@@ -1,6 +1,6 @@
-﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
+﻿using Flixer.Catalog.Application.Dtos.Common;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
-using Flixer.Catalog.Application.Dtos.Common;
 
 namespace Flixer.Catalog.Application.Dtos.ViewModel.Genre;
 

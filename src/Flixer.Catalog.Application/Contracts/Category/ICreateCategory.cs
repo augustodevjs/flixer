@@ -6,5 +6,4 @@ namespace Flixer.Catalog.Application.Contracts.Category;
 
 public interface ICreateCategory : IRequestHandler<CreateCategoryInputModel, CategoryViewModel>
 {
-    Task<CategoryViewModel> Handle(CreateCategoryInputModel input, CancellationToken cancellationToken);
 }
