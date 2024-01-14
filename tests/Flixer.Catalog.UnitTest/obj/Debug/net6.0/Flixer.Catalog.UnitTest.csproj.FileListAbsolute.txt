@@ -129,8 +129,8 @@ C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Deb
 C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 C:\Users\joaoa\source\repos\Flixer.Catalog\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\CoverletSourceRootsMapping
-C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\testhost.exe
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\testhost.dll
+C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\testhost.exe
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\xunit.runner.reporters.netcoreapp10.dll
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\xunit.runner.utility.netcoreapp10.dll

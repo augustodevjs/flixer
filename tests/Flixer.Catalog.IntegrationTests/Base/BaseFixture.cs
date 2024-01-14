@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Flixer.Catalog.Infra.Data.EF.Context;
 
-namespace Flixer.Catalog.IntegrationTests.Infra.Data.EF.Base;
+namespace Flixer.Catalog.IntegrationTests.Base;
 
 public class BaseFixture
 {
-    protected Faker Faker {  get; set; }
-
     public BaseFixture()
-        => Faker = new Faker("pt_BR");
+       => Faker = new Faker("pt_BR");
+
+    protected Faker Faker { get; set; }
 
     public FlixerCatalogDbContext CreateDbContext(bool preserveData = false)
     {
@@ -19,7 +19,7 @@ public class BaseFixture
         );
 
         if (preserveData == false)
-            context.Database.EnsureDeleted(); 
+            context.Database.EnsureDeleted();
 
         return context;
     }

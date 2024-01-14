@@ -38,8 +38,7 @@ public class UnityOfWorkTest
         var dbContext = _fixture.CreateDbContext();
         var unitOfWork = new InfraData.UnityOfWork(dbContext);
 
-        var task = async ()
-            => await unitOfWork.Rollback(CancellationToken.None);
+        var task = async () => await unitOfWork.Rollback(CancellationToken.None);
 
         await task.Should().NotThrowAsync();
     }

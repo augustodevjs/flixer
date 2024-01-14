@@ -1,5 +1,5 @@
 ﻿using Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.IntegrationTests.Infra.Data.EF.Base;
+using Flixer.Catalog.IntegrationTests.Base;
 
 namespace Flixer.Catalog.IntegrationTests.Infra.Data.EF.UnityOfWork;
 
@@ -31,14 +31,14 @@ public class UnitOfWorkTestFixture : BaseFixture
         return categoryDescription;
     }
 
-    public bool getRandomBoolean()
+    public bool GetRandomBoolean()
         => new Random().NextDouble() < 0.5;
 
     public Category GetExampleCategory()
         => new(
             GetValidCategoryName(),
             GetValidCategoryDescription(),
-            getRandomBoolean()
+            GetRandomBoolean()
         );
 
     public List<Category> GetExampleCategoriesList(int length = 10)

@@ -1,5 +1,5 @@
 ﻿using Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.IntegrationTests.Infra.Data.EF.Base;
+using Flixer.Catalog.IntegrationTests.Base;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 
 namespace Flixer.Catalog.IntegrationTests.Infra.Data.EF.Repositories.CategoryRepository;

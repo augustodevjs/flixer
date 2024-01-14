@@ -1,10 +1,10 @@
-﻿namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
+﻿namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.UpdateCategory;
 
-public class UpdateCategoryUseCaseTestDataGenerator
+public class UpdateCategoryTestDataGenerator
 {
     public static IEnumerable<object[]> GetCategoriesToUpdate(int times = 10)
     {
-        var fixture = new UpdateCategoryUseCaseTestFixture();
+        var fixture = new UpdateCategoryTestFixture();
 
         for (int indice = 0; indice < times; indice++)
         {
@@ -19,7 +19,7 @@ public class UpdateCategoryUseCaseTestDataGenerator
 
     public static IEnumerable<object[]> GetInvalidInputs(int times = 12)
     {
-        var fixture = new UpdateCategoryUseCaseTestFixture();
+        var fixture = new UpdateCategoryTestFixture();
         var invalidInputsList = new List<object[]>();
         var totalInvalidCases = 3;
 

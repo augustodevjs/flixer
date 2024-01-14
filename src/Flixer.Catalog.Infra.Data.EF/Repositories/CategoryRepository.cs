@@ -30,6 +30,12 @@ public class CategoryRepository : ICategoryRepository
 
     public Task Delete(Category aggregate, CancellationToken cancellationToken) => Task.FromResult(_categories.Remove(aggregate));
 
+    public async Task<IReadOnlyList<Guid>> GetIdsListByIds(List<Guid> ids, CancellationToken cancellationToken)
+    => await _categories.AsNoTracking().Where(category => ids.Contains(category.Id)).Select(category => category.Id).ToListAsync();
+
+    public async Task<IReadOnlyList<Category>> GetListByIds(List<Guid> ids, CancellationToken cancellationToken)
+        => await _categories.AsNoTracking().Where(category => ids.Contains(category.Id)).ToListAsync();
+
     public async Task<SearchOutput<Category>> Search(SearchInput input, CancellationToken cancellationToken)
     {
         var toSkip = (input.Page - 1) * input.PerPage;
@@ -50,7 +56,7 @@ public class CategoryRepository : ICategoryRepository
         return new(input.Page, input.PerPage, total, items);
     }
 
-    private IQueryable<Category> AddOrderToQuery(IQueryable<Category> query, string orderProperty,SearchOrder order)
+    private IQueryable<Category> AddOrderToQuery(IQueryable<Category> query, string orderProperty, SearchOrder order)
     {
         var orderedQuery = (orderProperty.ToLower(), order) switch
         {
@@ -59,15 +65,10 @@ public class CategoryRepository : ICategoryRepository
             ("id", SearchOrder.Asc) => query.OrderBy(x => x.Id),
             ("id", SearchOrder.Desc) => query.OrderByDescending(x => x.Id),
             ("createdat", SearchOrder.Asc) => query.OrderBy(x => x.CreatedAt),
-            ("createdat", SearchOrder.Desc) => query.OrderByDescending(x => x.CreatedAt),_ => query.OrderBy(x => x.Name).ThenBy(x => x.Id)
+            ("createdat", SearchOrder.Desc) => query.OrderByDescending(x => x.CreatedAt),
+            _ => query.OrderBy(x => x.Name).ThenBy(x => x.Id)
         };
 
         return orderedQuery;
     }
-
-    public async Task<IReadOnlyList<Guid>> GetIdsListByIds(List<Guid> ids, CancellationToken cancellationToken) 
-        => await _categories.AsNoTracking().Where(category => ids.Contains(category.Id)).Select(category => category.Id).ToListAsync();
-
-    public async Task<IReadOnlyList<Category>> GetListByIds(List<Guid> ids, CancellationToken cancellationToken)
-        => await _categories.AsNoTracking().Where(category => ids.Contains(category.Id)).ToListAsync();
 }
