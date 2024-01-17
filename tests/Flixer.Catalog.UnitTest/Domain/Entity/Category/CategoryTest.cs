@@ -11,54 +11,58 @@ public class CategoryTest
     public CategoryTest(CategoryTestFixture fixture)
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(Instantiate))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void Instantiate()
+    public void Category_ShouldHaveExpectedProperties_WhenInstantiated()
     {
         var validCategory = _fixture.GetValidCategory();
+
         var datetimeBefore = DateTime.Now;
 
         var category = new DomainEntity.Category(validCategory.Name, validCategory.Description);
+
         var datetimeAfter = DateTime.Now.AddSeconds(1);
 
         category.Should().NotBeNull();
-        category.Name.Should().Be(validCategory.Name);
-        category.Description.Should().Be(validCategory.Description);
         category.Id.Should().NotBeEmpty();
-        category.CreatedAt.Should().NotBeSameDateAs(default);
-        (category.CreatedAt >= datetimeBefore).Should().BeTrue();
-        (category.CreatedAt <= datetimeAfter).Should().BeTrue();
         (category.IsActive).Should().BeTrue();
+        category.Name.Should().Be(validCategory.Name);
+        category.CreatedAt.Should().NotBeSameDateAs(default);
+        (category.CreatedAt <= datetimeAfter).Should().BeTrue();
+        (category.CreatedAt >= datetimeBefore).Should().BeTrue();
+        category.Description.Should().Be(validCategory.Description);
     }
 
-    [Theory(DisplayName = nameof(InstantiateWithIsActive))]
+    [Theory]
     [Trait("Domain", "Category - Aggregates")]
     [InlineData(true)]
     [InlineData(false)]
-    public void InstantiateWithIsActive(bool isActive)
+    public void Category_ShouldHaveExpectedProperties_WhenInstantiatedWithIsActive(bool isActive)
     {
         var validCategory = _fixture.GetValidCategory();
+
         var datetimeBefore = DateTime.Now;
 
         var category = new DomainEntity.Category(validCategory.Name, validCategory.Description, isActive);
+
         var datetimeAfter = DateTime.Now.AddSeconds(1);
 
         category.Should().NotBeNull();
-        category.Name.Should().Be(validCategory.Name);
-        category.Description.Should().Be(validCategory.Description);
         category.Id.Should().NotBeEmpty();
-        category.CreatedAt.Should().NotBeSameDateAs(default);
-        (category.CreatedAt >= datetimeBefore).Should().BeTrue();
-        (category.CreatedAt <= datetimeAfter).Should().BeTrue();
         (category.IsActive).Should().Be(isActive);
+        category.Name.Should().Be(validCategory.Name);
+        category.CreatedAt.Should().NotBeSameDateAs(default);
+        (category.CreatedAt <= datetimeAfter).Should().BeTrue();
+        (category.CreatedAt >= datetimeBefore).Should().BeTrue();
+        category.Description.Should().Be(validCategory.Description);
     }
 
-    [Theory(DisplayName = nameof(InstantiateErrorWhenNameIsEmpty))]
+    [Theory]
     [Trait("Domain", "Category - Aggregates")]
     [InlineData("")]
     [InlineData(null)]
     [InlineData("   ")]
-    public void InstantiateErrorWhenNameIsEmpty(string? name)
+    public void Category_ShouldThrowError_WhenInstantiatedWithNameEmpty(string? name)
     {
         var validCategory = _fixture.GetValidCategory();
 
@@ -70,9 +74,9 @@ public class CategoryTest
             .WithMessage("Name should not be empty or null");
     }
 
-    [Fact(DisplayName = nameof(InstantiateErrorWhenDescriptionIsNull))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void InstantiateErrorWhenDescriptionIsNull()
+    public void Category_ShouldThrowError_WhenInstantiatedWithNullDescription()
     {
         var validCategory = _fixture.GetValidCategory();
 
@@ -84,10 +88,10 @@ public class CategoryTest
             .WithMessage("Description should not be null");
     }
 
-    [Theory(DisplayName = nameof(InstantiateErrorWhenNameIsLessThan3Characters))]
+    [Theory]
     [Trait("Domain", "Category - Aggregates")]
     [MemberData(nameof(GetNamesWithLessThan3Characters), parameters: 10)]
-    public void InstantiateErrorWhenNameIsLessThan3Characters(string invalidName)
+    public void Category_ShouldThrowError_WhenInstantiatedWithNameIsLessThan3Characters(string invalidName)
     {
         var validCategory = _fixture.GetValidCategory();
 
@@ -99,9 +103,9 @@ public class CategoryTest
             .WithMessage("Name should be at least 3 characters long");
     }
 
-    [Fact(DisplayName = nameof(InstantiateErrorWhenNameIsGreaterThan255Characters))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void InstantiateErrorWhenNameIsGreaterThan255Characters()
+    public void Category_ShouldThrowError_WhenInstantiatedWithNameIsGreaterThan255Characters()
     {
         var validCategory = _fixture.GetValidCategory();
         var invalidName = String.Join(null, Enumerable.Range(1, 256).Select(_ => "a").ToArray());
@@ -114,9 +118,9 @@ public class CategoryTest
             .WithMessage("Name should be less or equal 255 characters long");
     }
 
-    [Fact(DisplayName = nameof(InstantiateErrorWhenDescriptionIsGreaterThan10_000Characters))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void InstantiateErrorWhenDescriptionIsGreaterThan10_000Characters()
+    public void Category_ShouldThrowError_WhenInstantiatedWithDescriptionIsGreaterThan10_000Characters()
     {
         var invalidDescription = String.Join(null, Enumerable.Range(1, 10_001).Select(_ => "a").ToArray());
         var validCategory = _fixture.GetValidCategory();
@@ -129,9 +133,9 @@ public class CategoryTest
             .WithMessage("Description should be less or equal 10000 characters long");
     }
 
-    [Fact(DisplayName = nameof(Activate))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void Activate()
+    public void Category_ShouldIsActiveBeTrue_WhenMethodActivateIsCalled()
     {
         var validCategory = _fixture.GetValidCategory();
 
@@ -141,9 +145,9 @@ public class CategoryTest
         category.IsActive.Should().BeTrue();
     }
 
-    [Fact(DisplayName = nameof(Deactivate))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void Deactivate()
+    public void Category_ShouldIsActiveBeFalse_WhenMethodDeactivateIsCalled()
     {
         var validCategory = _fixture.GetValidCategory();
 
@@ -153,9 +157,9 @@ public class CategoryTest
         category.IsActive.Should().BeFalse();
     }
 
-    [Fact(DisplayName = nameof(Update))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void Update()
+    public void Category_ShouldUpdate_WhenMethodUpdateIsCalledWithParameters()
     {
         var category = _fixture.GetValidCategory();
         var categoryWithNewValues = _fixture.GetValidCategory();
@@ -166,9 +170,9 @@ public class CategoryTest
         category.Description.Should().Be(categoryWithNewValues.Description);
     }
 
-    [Fact(DisplayName = nameof(UpdateOnlyName))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void UpdateOnlyName()
+    public void Category_ShouldUpdateOnlyName_WhenMethodUpdateIsCalled()
     {
         var category = _fixture.GetValidCategory();
         var newName = _fixture.GetValidCategoryName();
@@ -180,12 +184,12 @@ public class CategoryTest
         category.Description.Should().Be(currentDescription);
     }
 
-    [Theory(DisplayName = nameof(UpdateErrorWhenNameIsEmpty))]
+    [Theory]
     [Trait("Domain", "Category - Aggregates")]
     [InlineData("")]
     [InlineData(null)]
     [InlineData("   ")]
-    public void UpdateErrorWhenNameIsEmpty(string? name)
+    public void Category_ShouldThrowError_WhenNameIsEmpty(string? name)
     {
         var category = _fixture.GetValidCategory();
         Action action =
@@ -195,10 +199,10 @@ public class CategoryTest
             .WithMessage("Name should not be empty or null");
     }
 
-    [Theory(DisplayName = nameof(UpdateErrorWhenNameIsLessThan3Characters))]
+    [Theory]
     [Trait("Domain", "Category - Aggregates")]
     [MemberData(nameof(GetNamesWithLessThan3Characters), parameters: 10)]
-    public void UpdateErrorWhenNameIsLessThan3Characters(string invalidName)
+    public void Category_ShouldThrowError_WhenNameIsLessThan3Characters(string invalidName)
     {
         var category = _fixture.GetValidCategory();
 
@@ -210,9 +214,9 @@ public class CategoryTest
             .WithMessage("Name should be at least 3 characters long");
     }
 
-    [Fact(DisplayName = nameof(UpdateErrorWhenNameIsGreaterThan255Characters))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void UpdateErrorWhenNameIsGreaterThan255Characters()
+    public void Category_ShouldThrowError_WhenNameIsGreaterThan255Characters()
     {
         var category = _fixture.GetValidCategory();
         var invalidName = _fixture.Faker.Lorem.Letter(256);
@@ -225,18 +229,18 @@ public class CategoryTest
             .WithMessage("Name should be less or equal 255 characters long");
     }
 
-    [Fact(DisplayName = nameof(UpdateErrorWhenDescriptionIsGreaterThan10_000Characters))]
+    [Fact]
     [Trait("Domain", "Category - Aggregates")]
-    public void UpdateErrorWhenDescriptionIsGreaterThan10_000Characters()
+    public void Category_ShouldThrowError_WhenDescriptionIsGreaterThan10_000Characters()
     {
         var category = _fixture.GetValidCategory();
-        var invalidDescription =
-            _fixture.Faker.Commerce.ProductDescription();
+
+        var invalidDescription = _fixture.Faker.Commerce.ProductDescription();
+
         while (invalidDescription.Length <= 10_000)
             invalidDescription = $"{invalidDescription} {_fixture.Faker.Commerce.ProductDescription()}";
 
-        Action action =
-            () => category.Update("Category New Name", invalidDescription);
+        Action action = () => category.Update("Category New Name", invalidDescription);
 
         action.Should()
             .Throw<EntityValidationException>()
