@@ -7,9 +7,9 @@ public class DomainValidationTest
 {
     private Faker Faker { get; set; } = new Faker();
 
-    [Fact(DisplayName = nameof(NotNullOk))]
+    [Fact]
     [Trait("Domain", "DomainValidation - Validation")]
-    public void NotNullOk()
+    public void DomainValidation_ShouldVaidate_WhenMethodNotNullIsCalled()
     {
         string fieldName = Faker.Commerce.ProductName().Replace(" ", "");
         var value = Faker.Commerce.ProductName();
@@ -18,9 +18,9 @@ public class DomainValidationTest
         action.Should().NotThrow();
     }
 
-    [Fact(DisplayName = nameof(NotNullThrowWhenNull))]
+    [Fact]
     [Trait("Domain", "DomainValidation - Validation")]
-    public void NotNullThrowWhenNull()
+    public void DomainValidation_ShouldThrowError_WhenMethodNotNullIsCalledWithValueIsNull()
     {
         string? value = null;
         string fieldName = Faker.Commerce.ProductName().Replace(" ", "");
@@ -33,12 +33,12 @@ public class DomainValidationTest
             .WithMessage($"{fieldName} should not be null");
     }
 
-    [Theory(DisplayName = nameof(NotNullOrEmptyThrowWhenEmpty))]
+    [Theory]
     [Trait("Domain", "DomainValidation - Validation")]
     [InlineData("")]
     [InlineData("   ")]
     [InlineData(null)]
-    public void NotNullOrEmptyThrowWhenEmpty(string? target)
+    public void DomainValidation_ShouldThrowError_WhenMethodNotNullOrEmptyIsCalledWithParametersNullOrEmpty(string? target)
     {
         string fieldName = Faker.Commerce.ProductName().Replace(" ", "");
 
@@ -49,9 +49,9 @@ public class DomainValidationTest
             .WithMessage($"{fieldName} should not be empty or null");
     }
 
-    [Fact(DisplayName = nameof(NotNullOrEmptyOk))]
+    [Fact]
     [Trait("Domain", "DomainValidation - Validation")]
-    public void NotNullOrEmptyOk()
+    public void DomainValidation_ShouldValidate_WhenMethodNotNullOrEmptyIsCalled()
     {
         var target = Faker.Commerce.ProductName();
         string fieldName = Faker.Commerce.ProductName().Replace(" ", "");
@@ -62,10 +62,10 @@ public class DomainValidationTest
         action.Should().NotThrow();
     }
 
-    [Theory(DisplayName = nameof(MinLengthThrowWhenLess))]
+    [Theory]
     [Trait("Domain", "DomainValidation - Validation")]
     [MemberData(nameof(GetValuesSmallerThanMin), parameters: 10)]
-    public void MinLengthThrowWhenLess(string target, int minLength)
+    public void DomainValidation_ShouldThrowError_WhenMethodMinLengthIsViolated(string target, int minLength)
     {
         string fieldName = Faker.Commerce.ProductName().Replace(" ", "");
 
@@ -88,10 +88,10 @@ public class DomainValidationTest
         }
     }
 
-    [Theory(DisplayName = nameof(MinLengthOk))]
+    [Theory]
     [Trait("Domain", "DomainValidation - Validation")]
     [MemberData(nameof(GetValuesGreaterThanMin), parameters: 10)]
-    public void MinLengthOk(string target, int minLength)
+    public void DomainValidation_ShouldValidate_WhenMethodMinLengthIsCalled(string target, int minLength)
     {
         string fieldName = Faker.Commerce.ProductName().Replace(" ", "");
 
@@ -113,10 +113,10 @@ public class DomainValidationTest
         }
     }
 
-    [Theory(DisplayName = nameof(maxLengthThrowWhenGreater))]
+    [Theory]
     [Trait("Domain", "DomainValidation - Validation")]
     [MemberData(nameof(GetValuesGreaterThanMax), parameters: 10)]
-    public void maxLengthThrowWhenGreater(string target, int maxLength)
+    public void DomainValidation_ShouldThrowError_WhenMethodMaxLengthIsViolated(string target, int maxLength)
     {
         string fieldName = Faker.Commerce.ProductName().Replace(" ", "");
 
@@ -139,10 +139,10 @@ public class DomainValidationTest
         }
     }
 
-    [Theory(DisplayName = nameof(maxLengthOk))]
+    [Theory]
     [Trait("Domain", "DomainValidation - Validation")]
     [MemberData(nameof(GetValuesLessThanMax), parameters: 10)]
-    public void maxLengthOk(string target, int maxLength)
+    public void DomainValidation_ShouldValidate_WhenMethodMaxLengthIsCalled(string target, int maxLength)
     {
         string fieldName = Faker.Commerce.ProductName().Replace(" ", "");
 
