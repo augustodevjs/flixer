@@ -11,9 +11,9 @@ public class GenreTest
     public GenreTest(GenreTestFixture fixture) 
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(Instantiate))]
+    [Fact]
     [Trait("Domain", "Genre - Aggregates")]
-    public void Instantiate()
+    public void Genre_ShouldHaveExpectedProperties_WhenInstantiated()
     {
         var genreName = _fixture.GetValidName();
 
@@ -32,23 +32,23 @@ public class GenreTest
         (genre.CreatedAt >= datetimeBefore).Should().BeTrue();
     }
 
-    [Theory(DisplayName = nameof(InstantiateThrowWhenNameEmpty))]
+    [Theory]
     [Trait("Domain", "Genre - Aggregates")]
     [InlineData("")]
     [InlineData("  ")]
     [InlineData(null)]
-    public void InstantiateThrowWhenNameEmpty(string? name)
+    public void Genre_ShouldThrowError_WhenInstantiatedWithNameEmpty(string? name)
     {
         var action = () => new DomainEntity.Genre(name!);
 
         action.Should().Throw<EntityValidationException>().WithMessage("Name should not be empty or null");
     }
 
-    [Theory(DisplayName = nameof(InstantiateWithIsActive))]
+    [Theory]
     [Trait("Domain", "Genre - Aggregates")]
     [InlineData(true)]
     [InlineData(false)]
-    public void InstantiateWithIsActive(bool isActive)
+    public void Genre_ShouldThrowError_WhenInstantiatedWithIsActive(bool isActive)
     {
         var genreName = _fixture.GetValidName();
 
@@ -67,11 +67,11 @@ public class GenreTest
         (genre.CreatedAt >= datetimeBefore).Should().BeTrue();
     }
 
-    [Theory(DisplayName = nameof(Activate))]
+    [Theory]
     [Trait("Domain", "Genre - Aggregates")]
     [InlineData(true)]
     [InlineData(false)]
-    public void Activate(bool isActive)
+    public void Genre_ShouldIsActiveBeTrue_WhenMethodActivateIsCalled(bool isActive)
     {
         var genre = _fixture.GetExampleGenre(isActive);
         var oldName = genre.Name;
@@ -85,11 +85,11 @@ public class GenreTest
         genre.CreatedAt.Should().NotBeSameDateAs(default);
     }
 
-    [Theory(DisplayName = nameof(Deactivate))]
+    [Theory]
     [Trait("Domain", "Genre - Aggregates")]
     [InlineData(true)]
     [InlineData(false)]
-    public void Deactivate(bool isActive)
+    public void Genre_ShouldIsActiveBeFalse_WhenMethodDeactivateIsCalled(bool isActive)
     {
         var genre = _fixture.GetExampleGenre(isActive);
         var oldName = genre.Name;
@@ -103,9 +103,9 @@ public class GenreTest
         genre.CreatedAt.Should().NotBeSameDateAs(default);
     }
 
-    [Fact(DisplayName = nameof(Update))]
+    [Fact]
     [Trait("Domain", "Genre - Aggregates")]
-    public void Update()
+    public void Genre_ShouldUpdate_WhenMethodUpdateIsCalledWithParameters()
     {
         var genre = _fixture.GetExampleGenre();
         var newName = _fixture.GetValidName();
@@ -121,23 +121,24 @@ public class GenreTest
         genre.CreatedAt.Should().NotBeSameDateAs(default);
     }
 
-    [Theory(DisplayName = nameof(UpdateThrowWhenNameIsEmpty))]
+    [Theory]
     [Trait("Domain", "Genre - Aggregates")]
     [InlineData("")]
     [InlineData("  ")]
     [InlineData(null)]
-    public void UpdateThrowWhenNameIsEmpty(string? name)
+    public void Genre_ShouldThrowError_WhenNameIsEmpty(string? name)
     {
         var genre = _fixture.GetExampleGenre();
 
         var action = () => genre.Update(name!);
 
-        action.Should().Throw<EntityValidationException>().WithMessage("Name should not be empty or null");
+        action.Should().Throw<EntityValidationException>()
+            .WithMessage("Name should not be empty or null");
     }
 
-    [Fact(DisplayName = nameof(AddCategory))]
+    [Fact]
     [Trait("Domain", "Genre - Aggregates")]
-    public void AddCategory()
+    public void Genre_ShouldAddCategory_WhenMethoAddCategoryIsCalled()
     {
         var genre = _fixture.GetExampleGenre();
         var categoryGuid = Guid.NewGuid();
@@ -148,9 +149,9 @@ public class GenreTest
         genre.Categories.Should().Contain(categoryGuid);
     }
 
-    [Fact(DisplayName = nameof(AddTwoCategories))]
+    [Fact]
     [Trait("Domain", "Genre - Aggregates")]
-    public void AddTwoCategories()
+    public void Genre_ShouldAddTwoCategories_WhenMethodAddCategoryIsCalledTwoTimes()
     {
         var genre = _fixture.GetExampleGenre();
 
@@ -165,9 +166,9 @@ public class GenreTest
         genre.Categories.Should().Contain(categoryGuid2);
     }
 
-    [Fact(DisplayName = nameof(RemoveCategory))]
+    [Fact]
     [Trait("Domain", "Genre - Aggregates")]
-    public void RemoveCategory()
+    public void Genre_ShouldRemoveCategory_WhenMethodRemoveCategoryIsCalled()
     {
         var exampleGuid = Guid.NewGuid();
         var genre = _fixture.GetExampleGenre(
@@ -187,9 +188,9 @@ public class GenreTest
         genre.Categories.Should().NotContain(exampleGuid);
     }
 
-    [Fact(DisplayName = nameof(RemoveAllCategories))]
+    [Fact]
     [Trait("Domain", "Genre - Aggregates")]
-    public void RemoveAllCategories()
+    public void Genre_ShouldRemoveAllCategories_WhenMethodRemoveAllCategoriesIsCalled()
     {
         var genre = _fixture.GetExampleGenre(
             categoriesIdsList: new List<Guid>()
