@@ -14,9 +14,9 @@ public class ListCategoriesUseCase
     public ListCategoriesUseCase(ListCategoriesUseCaseTestFixture fixture)
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(List))]
+    [Fact]
     [Trait("Application", "ListCategories - Use Cases")]
-    public async Task List()
+    public async Task UseCase_ShouldListCategories_WhenMethodHandleIsCalled()
     {
         var input = _fixture.GetExampleInput();
         var repositoryMock = _fixture.GetRepositoryMock();
@@ -25,7 +25,7 @@ public class ListCategoriesUseCase
         var outputRepositorySearch = new SearchOutput<DomainEntity.Category>(
             currentPage: input.Page,
             perPage: input.PerPage,
-            items: (IReadOnlyList<DomainEntity.Category>)categoriesExampleList,
+            items: categoriesExampleList,
             total: new Random().Next(50, 200)
         );
 
@@ -74,9 +74,9 @@ public class ListCategoriesUseCase
     }
 
 
-    [Fact(DisplayName = nameof(ListOkWhenEmpty))]
+    [Fact]
     [Trait("Application", "ListCategories - Use Cases")]
-    public async Task ListOkWhenEmpty()
+    public async Task UseCase_ShouldNotListCategories_WhenDoesntHaveCategories()
     {
         var input = _fixture.GetExampleInput();
         var repositoryMock = _fixture.GetRepositoryMock();
@@ -121,14 +121,14 @@ public class ListCategoriesUseCase
         ), Times.Once);
     }
 
-    [Theory(DisplayName = nameof(ListInputWithoutAllParameters))]
+    [Theory]
     [Trait("Application", "ListCategories - Use Cases")]
     [MemberData(
         nameof(ListCategoriesUseCaseTestDataGenerator.GetInputsWithoutAllParameter),
         parameters: 14,
         MemberType = typeof(ListCategoriesUseCaseTestDataGenerator)
     )]
-    public async Task ListInputWithoutAllParameters(
+    public async Task UseCase_ShouldListCategories_WhenParametersAreNotProvided(
         ListCategoriesInputModel input
     )
     {
@@ -138,7 +138,7 @@ public class ListCategoriesUseCase
         var outputRepositorySearch = new SearchOutput<DomainEntity.Category>(
             currentPage: input.Page,
             perPage: input.PerPage,
-            items: (IReadOnlyList<DomainEntity.Category>)categoriesExampleList,
+            items: categoriesExampleList,
             total: new Random().Next(50, 200)
         );
 

@@ -13,9 +13,9 @@ public class DeleteGenreUseCaseTest
     public DeleteGenreUseCaseTest(DeleteGenreTestFixture fixture)
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(DeleteGenre))]
+    [Fact]
     [Trait("Application", "DeleteGenre - Use Cases")]
-    public async Task DeleteGenre()
+    public async Task UseCase_DeleteGenre_WhenMethodHandleIsCalled()
     {
         var exampleGenre = _fixture.GetExampleGenre();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
@@ -28,7 +28,7 @@ public class DeleteGenreUseCaseTest
 
         var useCase = new DeleteGenre(unitOfWorkMock.Object, genreRepositoryMock.Object);
 
-        var input = new DeleteGenreInput(exampleGenre.Id);
+        var input = new DeleteGenreInputModel(exampleGenre.Id);
 
         await useCase.Handle(input, CancellationToken.None);
 
@@ -49,9 +49,9 @@ public class DeleteGenreUseCaseTest
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Once);
     }
 
-    [Fact(DisplayName = nameof(ThrowWhenNotFound))]
+    [Fact]
     [Trait("Application", "DeleteGenre - Use Cases")]
-    public async Task ThrowWhenNotFound()
+    public async Task UseCase_ShouldThrowError_WhenGenreIsNotFound()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();

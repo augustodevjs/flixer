@@ -11,9 +11,9 @@ public class GetCategoryUseCaseTest
 
     public GetCategoryUseCaseTest(GetCategoryUseCaseTestFixture fixture) => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(GetCategory))]
+    [Fact]
     [Trait("Application", "GetCategory - Use Cases")]
-    public async Task GetCategory()
+    public async Task UseCase_ShouldGetCategory_WhenMethodHandleIsCalled()
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var exampleCategory = _fixture.GetExampleCategory();
@@ -41,9 +41,9 @@ public class GetCategoryUseCaseTest
         ), Times.Once);
     }
 
-    [Fact(DisplayName = nameof(NotFoundExceptionWhenCategoryDoesntExist))]
+    [Fact]
     [Trait("Application", "GetCategory - Use Cases")]
-    public async Task NotFoundExceptionWhenCategoryDoesntExist()
+    public async Task UseCase_ShouldThrowException_WhenCategoryDoesntExist()
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var exampleGuid = Guid.NewGuid();

@@ -15,14 +15,14 @@ public class UpdateCategoryUseCaseTest
     public UpdateCategoryUseCaseTest(UpdateCategoryUseCaseTestFixture fixture)
         => _fixture = fixture;
 
-    [Theory(DisplayName = nameof(UpdateCategory))]
+    [Theory]
     [Trait("Application", "UpdateCategory - Use Cases")]
     [MemberData(
         nameof(UpdateCategoryUseCaseTestDataGenerator.GetCategoriesToUpdate),
         parameters: 10,
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
-    public async Task UpdateCategory(DomainEntity.Category exampleCategory, UpdateCategoryInputModel input)
+    public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalled(DomainEntity.Category exampleCategory, UpdateCategoryInputModel input)
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
@@ -48,14 +48,14 @@ public class UpdateCategoryUseCaseTest
         repositoryMock.Verify(x => x.Update(exampleCategory, It.IsAny<CancellationToken>()), Times.Once);
     }
 
-    [Theory(DisplayName = nameof(UpdateCategoryWithoutProvidingIsActive))]
+    [Theory]
     [Trait("Application", "UpdateCategory - Use Cases")]
     [MemberData(
         nameof(UpdateCategoryUseCaseTestDataGenerator.GetCategoriesToUpdate),
         parameters: 10,
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
-    public async Task UpdateCategoryWithoutProvidingIsActive(
+    public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalledWithoutProvidingIsActive(
         DomainEntity.Category exampleCategory,
         UpdateCategoryInputModel exampleInput
     )
@@ -92,14 +92,14 @@ public class UpdateCategoryUseCaseTest
     }
 
 
-    [Theory(DisplayName = nameof(UpdateCategoryOnlyName))]
+    [Theory]
     [Trait("Application", "UpdateCategory - Use Cases")]
     [MemberData(
         nameof(UpdateCategoryUseCaseTestDataGenerator.GetCategoriesToUpdate),
         parameters: 10,
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
-    public async Task UpdateCategoryOnlyName(DomainEntity.Category exampleCategory, UpdateCategoryInputModel exampleInput)
+    public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalledWithOnlyName(DomainEntity.Category exampleCategory, UpdateCategoryInputModel exampleInput)
     {
         var input = new UpdateCategoryInputModel(
             exampleInput.Id,
@@ -130,9 +130,9 @@ public class UpdateCategoryUseCaseTest
         repositoryMock.Verify(x => x.Update(exampleCategory, It.IsAny<CancellationToken>()), Times.Once);
     }
 
-    [Fact(DisplayName = nameof(ThrowWhenCategoryNotFound))]
+    [Fact]
     [Trait("Application", "UpdateCategory - Use Cases")]
-    public async Task ThrowWhenCategoryNotFound()
+    public async Task UseCase_ShouldThrowError_WhenCategoryNotFound()
     {
         var input = _fixture.GetValidInput();
         var repositoryMock = _fixture.GetRepositoryMock();
@@ -150,14 +150,14 @@ public class UpdateCategoryUseCaseTest
         , Times.Once);
     }
 
-    [Theory(DisplayName = nameof(ThrowWhenCantUpdateCategory))]
+    [Theory]
     [Trait("Application", "UpdateCategory - Use Cases")]
     [MemberData(
         nameof(UpdateCategoryUseCaseTestDataGenerator.GetInvalidInputs),
         parameters: 12,
         MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
     )]
-    public async Task ThrowWhenCantUpdateCategory(UpdateCategoryInputModel input, string expectedExceptionMessage)
+    public async Task UseCase_ShouldThrowError_WhenCantUpdateCategory(UpdateCategoryInputModel input, string expectedExceptionMessage)
     {
         var exampleCategory = _fixture.GetExampleCategory();
         input.Id = exampleCategory.Id;

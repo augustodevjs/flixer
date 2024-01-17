@@ -14,9 +14,9 @@ public class ListGenreUseCaseTest
     public ListGenreUseCaseTest(ListGenresTestFixture fixture)
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(ListGenres))]
+    [Fact]
     [Trait("Application", "ListGenres - Use Cases")]
-    public async Task ListGenres()
+    public async Task UseCase_ShouldListGenres_WhenMethodIsCalled()
     {
         var genresListExample = _fixture.GetExampleGenresList();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
@@ -73,9 +73,9 @@ public class ListGenreUseCaseTest
         );
     }
 
-    [Fact(DisplayName = nameof(ListEmpty))]
+    [Fact]
     [Trait("Application", "ListGenres - Use Cases")]
-    public async Task ListEmpty()
+    public async Task UseCase_ShouldListGenres_WhenListIsEmpty()
     {
         var input = _fixture.GetExampleInput();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
@@ -116,9 +116,9 @@ public class ListGenreUseCaseTest
         );
     }
 
-    [Fact(DisplayName = nameof(ListUsingDefaultInputValues))]
+    [Fact]
     [Trait("Application", "ListGenres - Use Cases")]
-    public async Task ListUsingDefaultInputValues()
+    public async Task UseCase_ShouldListGenres_WhenListUsingDefaultInputValues()
     {
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
 

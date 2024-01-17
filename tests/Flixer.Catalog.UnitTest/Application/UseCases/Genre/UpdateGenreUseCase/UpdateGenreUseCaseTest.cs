@@ -15,9 +15,9 @@ public class UpdateGenreUseCaseTest
     public UpdateGenreUseCaseTest(UpdateGenreTestFixture fixture)
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(UpdateGenre))]
+    [Fact]
     [Trait("Application", "UpdateGenre - Use Cases")]
-    public async Task UpdateGenre()
+    public async Task UseCase_ShouldUpdateGenre_WhenMethodHandleIsCalled()
     {
         var exampleGenre = _fixture.GetExampleGenre();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
@@ -65,9 +65,9 @@ public class UpdateGenreUseCaseTest
         );
     }
 
-    [Fact(DisplayName = nameof(ThrowWhenNotFound))]
+    [Fact]
     [Trait("Application", "UpdateGenre - Use Cases")]
-    public async Task ThrowWhenNotFound()
+    public async Task UseCase_ShouldThrowError_WhenGenreIsNotFound()
     {
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
 
@@ -86,12 +86,12 @@ public class UpdateGenreUseCaseTest
         await action.Should().ThrowAsync<NotFoundException>().WithMessage($"Genre '{exampleId}' not found.");
     }
 
-    [Theory(DisplayName = nameof(ThrowWhenNameIsInvalid))]
+    [Theory]
     [Trait("Application", "UpdateGenre - Use Cases")]
     [InlineData("")]
     [InlineData("   ")]
     [InlineData(null)]
-    public async Task ThrowWhenNameIsInvalid(string? name)
+    public async Task UseCase_ShouldThrowError_WhenNameIsInvalid(string? name)
     {
 
         var exampleGenre = _fixture.GetExampleGenre();
@@ -164,9 +164,9 @@ public class UpdateGenreUseCaseTest
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
     }
 
-    [Fact(DisplayName = nameof(UpdateGenreAddingCategoriesIds))]
+    [Fact]
     [Trait("Application", "UpdateGenre - Use Cases")]
-    public async Task UpdateGenreAddingCategoriesIds()
+    public async Task UseCase_ShouldUpdateGenre_WhenAddingCategoriesIds()
     {
         var exampleGenre = _fixture.GetExampleGenre();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
@@ -224,9 +224,9 @@ public class UpdateGenreUseCaseTest
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
     }
 
-    [Fact(DisplayName = nameof(UpdateGenreReplacingCategoriesIds))]
+    [Fact]
     [Trait("Application", "UpdateGenre - Use Cases")]
-    public async Task UpdateGenreReplacingCategoriesIds()
+    public async Task UseCase_ShouldUpdateGenre_WhenReplacingCategoriesIds()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var newNameExample = _fixture.GetValidGenreName();
@@ -284,9 +284,9 @@ public class UpdateGenreUseCaseTest
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
     }
 
-    [Fact(DisplayName = nameof(ThrowWhenCategoryNotFound))]
+    [Fact]
     [Trait("Application", "UpdateGenre - Use Cases")]
-    public async Task ThrowWhenCategoryNotFound()
+    public async Task UseCase_ShouldThrowError_WhenCategoryIsNotFound()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
@@ -334,9 +334,9 @@ public class UpdateGenreUseCaseTest
         );
     }
 
-    [Fact(DisplayName = nameof(UpdateGenreWithoutCategoriesIds))]
+    [Fact]
     [Trait("Application", "UpdateGenre - Use Cases")]
-    public async Task UpdateGenreWithoutCategoriesIds()
+    public async Task UseCase_ShouldUpdateGenre_WhenCategoriesIdsIsNotProviding()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var newNameExample = _fixture.GetValidGenreName();
@@ -388,9 +388,9 @@ public class UpdateGenreUseCaseTest
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
     }
 
-    [Fact(DisplayName = nameof(UpdateGenreWithEmptyCategoriesIdsList))]
+    [Fact]
     [Trait("Application", "UpdateGenre - Use Cases")]
-    public async Task UpdateGenreWithEmptyCategoriesIdsList()
+    public async Task UseCase_ShouldUpdateGenre_WhenGuidIsEmtpyInCategoriesIdsList()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var newNameExample = _fixture.GetValidGenreName();

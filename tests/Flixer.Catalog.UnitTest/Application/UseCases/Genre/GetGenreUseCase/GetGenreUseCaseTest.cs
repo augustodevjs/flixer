@@ -13,9 +13,9 @@ public class GetGenreUseCaseTest
     public GetGenreUseCaseTest(GetGenreTestFixture fixture)
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(GetGenre))]
+    [Fact]
     [Trait("Application", "GetGenre - Use Cases")]
-    public async Task GetGenre()
+    public async Task UseCase_ShouldGetGenre_WhenMethodIsCalled()
     {
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
         var exampleGenre = _fixture.GetExampleGenre(categoriesIds: _fixture.GetRandomIdsList());
@@ -49,9 +49,9 @@ public class GetGenreUseCaseTest
         );
     }
 
-    [Fact(DisplayName = nameof(ThrowWhenNotFound))]
+    [Fact]
     [Trait("Application", "GetGenre - Use Cases")]
-    public async Task ThrowWhenNotFound()
+    public async Task UseCase_ShouldThrowError_WhenGenreIsNotFound()
     {
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
         var exampleId = Guid.NewGuid();

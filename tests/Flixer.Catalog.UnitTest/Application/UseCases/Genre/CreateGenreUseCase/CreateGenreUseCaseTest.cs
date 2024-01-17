@@ -13,9 +13,9 @@ public class CreateGenreUseCaseTest
     public CreateGenreUseCaseTest(CreateGenreTestFixture fixture)
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(Create))]
+    [Fact]
     [Trait("Application", "CreateGenre - Use Cases")]
-    public async Task Create()
+    public async Task UseCase_ShouldCreateGenre_WhenMethodHandleIsCalled()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
@@ -48,9 +48,9 @@ public class CreateGenreUseCaseTest
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Once);
     }
 
-    [Fact(DisplayName = nameof(CreateWithRelatedCategories))]
+    [Fact]
     [Trait("Application", "CreateGenre - Use Cases")]
-    public async Task CreateWithRelatedCategories()
+    public async Task UseCase_ShouldCreateGenre_WhenMethodHandleIsCalledWithRelatedCategories()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var input = _fixture.GetExampleInputWithCategories();
@@ -81,9 +81,9 @@ public class CreateGenreUseCaseTest
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Once);
     }
 
-    [Fact(DisplayName = nameof(CreateThrowWhenRelatedCategoryNotFound))]
+    [Fact]
     [Trait("Application", "CreateGenre - Use Cases")]
-    public async Task CreateThrowWhenRelatedCategoryNotFound()
+    public async Task UseCase_ShouldThrowError_WhenRelatedCategoryNotFound()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var input = _fixture.GetExampleInputWithCategories();
@@ -116,12 +116,12 @@ public class CreateGenreUseCaseTest
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Never);
     }
 
-    [Theory(DisplayName = nameof(ThrowWhenNameIsInvalid))]
+    [Theory]
     [Trait("Application", "CreateGenre - Use Cases")]
     [InlineData("")]
     [InlineData(null)]
     [InlineData("  ")]
-    public async Task ThrowWhenNameIsInvalid(string name)
+    public async Task UseCase_ShouldThrowErro_WhenNameIsInvalid(string name)
     {
         var input = _fixture.GetExampleInput(name);
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();

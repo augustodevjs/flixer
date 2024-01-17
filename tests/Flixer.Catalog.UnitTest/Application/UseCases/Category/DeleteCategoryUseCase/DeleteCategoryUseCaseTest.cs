@@ -13,9 +13,9 @@ public class DeleteCategoryUseCaseTest
     public DeleteCategoryUseCaseTest(DeleteCategoryUseCaseTestFixture fixture) =>
         _fixture = fixture;
 
-    [Fact(DisplayName = nameof(DeleteCategory))]
+    [Fact]
     [Trait("Application", "DeleteCategory - Use Cases")]
-    public async Task DeleteCategory()
+    public async Task UseCase_ShouldDeleteCategory_WhenMethodHandleIsCalled()
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
@@ -40,9 +40,9 @@ public class DeleteCategoryUseCaseTest
         repositoryMock.Verify(x => x.Delete(categoryExample, It.IsAny<CancellationToken>()), Times.Once);
     }
 
-    [Fact(DisplayName = nameof(ThrowWhenCategoryNotFound))]
+    [Fact]
     [Trait("Application", "DeleteCategory - Use Cases")]
-    public async Task ThrowWhenCategoryNotFound()
+    public async Task UseCase_ShouldThrowError_WhenCategoryNotFound()
     {
         var exampleGuid = Guid.NewGuid();
         var repositoryMock = _fixture.GetRepositoryMock();

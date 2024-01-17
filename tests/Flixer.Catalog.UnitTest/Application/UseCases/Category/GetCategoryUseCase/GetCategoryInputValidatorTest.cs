@@ -10,9 +10,9 @@ public class GetCategoryInputValidatorTest
     public GetCategoryInputValidatorTest(GetCategoryUseCaseTestFixture fixture)
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(ValidationOk))]
+    [Fact]
     [Trait("Application", "GetCategoryInputValidation - UseCases")]
-    public void ValidationOk()
+    public void Validator_ShouldValidate_WhenMethodValidateIsCalled()
     {
         var validInput = new GetCategoryInputModel(Guid.NewGuid());
         var validator = new GetCategoryValidatorInputModel();
@@ -24,9 +24,9 @@ public class GetCategoryInputValidatorTest
         validationResult.Errors.Should().HaveCount(0);
     }
 
-    [Fact(DisplayName = nameof(InvalidWhenEmptyGuidId))]
+    [Fact]
     [Trait("Application", "GetCategoryInputValidation - UseCases")]
-    public void InvalidWhenEmptyGuidId()
+    public void Validator_ShouldShowErrorMessage_WhenGuidIsEmpty()
     {
         var invalidInput = new GetCategoryInputModel(Guid.Empty);
         var validator = new GetCategoryValidatorInputModel();

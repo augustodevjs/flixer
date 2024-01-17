@@ -10,9 +10,9 @@ public class UpdateCategoryTestInputValidator
     public UpdateCategoryTestInputValidator(UpdateCategoryUseCaseTestFixture fixture)
         => _fixture = fixture;
 
-    [Fact(DisplayName = nameof(DontValidateWhenEmptyGuid))]
+    [Fact]
     [Trait("Application", "UpdateCategoryInputValidator - Use Cases")]
-    public void DontValidateWhenEmptyGuid()
+    public void Validator_ShouldDontValidate_WhenGuidIsEmpty()
     {
         var input = _fixture.GetValidInput(Guid.Empty);
         var validator = new UpdateCategoryValidatorInputModel();
@@ -22,14 +22,12 @@ public class UpdateCategoryTestInputValidator
         validateResult.Should().NotBeNull();
         validateResult.IsValid.Should().BeFalse();
         validateResult.Errors.Should().HaveCount(1);
-        validateResult.Errors[0].ErrorMessage
-            .Should().Be("'Id' must not be empty.");
+        validateResult.Errors[0].ErrorMessage.Should().Be("'Id' must not be empty.");
     }
 
-
-    [Fact(DisplayName = nameof(ValidateWhenValid))]
+    [Fact]
     [Trait("Application", "UpdateCategoryInputValidator - Use Cases")]
-    public void ValidateWhenValid()
+    public void Validator_ShouldValidate_WhenIdIsProvided()
     {
         var input = _fixture.GetValidInput();
         var validator = new UpdateCategoryValidatorInputModel();

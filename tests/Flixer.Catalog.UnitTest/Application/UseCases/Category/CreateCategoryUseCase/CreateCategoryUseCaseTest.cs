@@ -13,9 +13,9 @@ public class CreateCategoryUseCaseTest
     public CreateCategoryUseCaseTest(CreateCategoryUseCaseTestFixture fixture) =>
         _fixture = fixture;
 
-    [Fact(DisplayName = nameof(CreateCategory))]
+    [Fact]
     [Trait("Application", "CreateCategory - Use Cases")]
-    public async void CreateCategory()
+    public async void UseCase_ShouldCreateCategory_WhenMethodHandleIsCalled()
     {
         var unityOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
@@ -41,9 +41,9 @@ public class CreateCategoryUseCaseTest
         );
     }
 
-    [Fact(DisplayName = nameof(CreateCategoryWithOnlyName))]
+    [Fact]
     [Trait("Application", "CreateCategory - Use Cases")]
-    public async void CreateCategoryWithOnlyName()
+    public async void UseCase_ShouldCreateCategory_WhenMethodHandleIsCalledWithOnlyName()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
@@ -69,9 +69,9 @@ public class CreateCategoryUseCaseTest
         );
     }
 
-    [Fact(DisplayName = nameof(CreateCategoryWithOnlyNameAndDescription))]
+    [Fact]
     [Trait("Application", "CreateCategory - Use Cases")]
-    public async void CreateCategoryWithOnlyNameAndDescription()
+    public async void UseCase_ShouldCreateCategory_WhenMethodHandleIsCalledWithOnlyNameAndDescription()
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
@@ -97,14 +97,14 @@ public class CreateCategoryUseCaseTest
         );
     }
 
-    [Theory(DisplayName = nameof(ThrowWhenCantInstantiateCategory))]
+    [Theory]
     [Trait("Application", "CreateCategory - Use Cases")]
     [MemberData(
         nameof(CreateCategoryUseCaseTestDataGenerator.GetInvalidInputs),
         parameters: 24,
         MemberType = typeof(CreateCategoryUseCaseTestDataGenerator)
      )]
-    public async void ThrowWhenCantInstantiateCategory(CreateCategoryInputModel input, string exceptionMessage)
+    public async void UseCase_ShouldThrowError_WhenMethodHandleIsCalledWithInvalidInputs(CreateCategoryInputModel input, string exceptionMessage)
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
