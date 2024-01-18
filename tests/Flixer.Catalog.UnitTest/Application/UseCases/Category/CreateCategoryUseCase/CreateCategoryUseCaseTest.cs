@@ -1,8 +1,8 @@
-﻿using Flixer.Catalog.Domain.Exceptions;
+﻿using Flixer.Catalog.Domain.Exceptions; 
 using Flixer.Catalog.Application.UseCases.Category;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
-
+ 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.CreateCategoryUseCase;
 
 [Collection(nameof(CreateCategoryUseCaseTestFixture))]

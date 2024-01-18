@@ -5,7 +5,7 @@ namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.CreateCa
 
 [CollectionDefinition(nameof(CreateCategoryTestFixture))]
 public class CreateCategoryTestFixtureCollection : ICollectionFixture<CreateCategoryTestFixture>
-{ 
+{
 }
 
 public class CreateCategoryTestFixture : CategoryUseCaseBaseFixture

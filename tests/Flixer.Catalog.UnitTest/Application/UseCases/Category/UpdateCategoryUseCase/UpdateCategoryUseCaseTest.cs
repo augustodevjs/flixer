@@ -1,9 +1,9 @@
-﻿using Flixer.Catalog.Domain.Exceptions;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.UseCases.Category;
+using Flixer.Catalog.Domain.Exceptions;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.Dtos.ViewModel.Category;
-using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
 

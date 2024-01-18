@@ -2,5 +2,5 @@
 
 public abstract class AggregateRoot : Entity
 {
-    protected AggregateRoot(): base() { }
+    protected AggregateRoot() : base() { }
 }

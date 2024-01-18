@@ -1,5 +1,5 @@
-﻿using Flixer.Catalog.Infra.Data.EF.Context;
-using Flixer.Catalog.Application.Contracts.UnityOfWork;
+﻿using Flixer.Catalog.Application.Contracts.UnityOfWork;
+using Flixer.Catalog.Infra.Data.EF.Context;
 
 namespace Flixer.Catalog.Infra.Data.EF;
 

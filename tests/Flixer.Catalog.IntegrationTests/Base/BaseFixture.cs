@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Flixer.Catalog.Infra.Data.EF.Context;
+﻿using Flixer.Catalog.Infra.Data.EF.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flixer.Catalog.IntegrationTests.Base;
 

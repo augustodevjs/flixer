@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿using Flixer.Catalog.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Flixer.Catalog.Domain.Entities;
+using System.Reflection;
 
 namespace Flixer.Catalog.Infra.Data.EF.Context;
 
@@ -8,7 +8,7 @@ public class FlixerCatalogDbContext : DbContext
 {
     public FlixerCatalogDbContext(DbContextOptions<FlixerCatalogDbContext> options) : base(options)
     {
-        
+
     }
 
     public DbSet<Category> Categories { get; set; } = null!;

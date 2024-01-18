@@ -1,7 +1,7 @@
-﻿using Flixer.Catalog.UnitTest.Common;
+﻿using Flixer.Catalog.Application.Contracts.UnityOfWork;
 using Flixer.Catalog.Domain.Repository;
+using Flixer.Catalog.UnitTest.Common;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.Contracts.UnityOfWork;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.Common;
 

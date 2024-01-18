@@ -4,9 +4,9 @@ namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.DeleteGenreUseCase;
 
 [CollectionDefinition(nameof(DeleteGenreTestFixture))]
 public class DeleteGenreTestFixtureCollection : ICollectionFixture<DeleteGenreTestFixture>
-{ 
+{
 }
 
 public class DeleteGenreTestFixture : GenreUseCasesBaseFixture
-{ 
+{
 }

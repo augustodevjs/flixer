@@ -1,8 +1,8 @@
-﻿using Flixer.Catalog.Infra.Data.EF;
-using Microsoft.EntityFrameworkCore;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Application.Exceptions;
+using Flixer.Catalog.Infra.Data.EF;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
-using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Microsoft.EntityFrameworkCore;
 using ApplicationUseCase = Flixer.Catalog.Application.UseCases.Category;
 
 namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.DeleteCategory;

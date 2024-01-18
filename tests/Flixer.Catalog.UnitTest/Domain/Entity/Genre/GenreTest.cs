@@ -8,7 +8,7 @@ public class GenreTest
 {
     private readonly GenreTestFixture _fixture;
 
-    public GenreTest(GenreTestFixture fixture) 
+    public GenreTest(GenreTestFixture fixture)
         => _fixture = fixture;
 
     [Fact]

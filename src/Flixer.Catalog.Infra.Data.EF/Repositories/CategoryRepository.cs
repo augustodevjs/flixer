@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Flixer.Catalog.Domain.Entities;
+﻿using Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Domain.Repository;
-using Flixer.Catalog.Infra.Data.EF.Context;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
+using Flixer.Catalog.Infra.Data.EF.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flixer.Catalog.Infra.Data.EF.Repositories;
 public class CategoryRepository : ICategoryRepository

@@ -1,7 +1,7 @@
-﻿using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Application.UseCases.Genre;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
-using Flixer.Catalog.Application.Dtos.InputModel.Genre;
+using Flixer.Catalog.Application.Exceptions;
+using Flixer.Catalog.Application.UseCases.Genre;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.GetGenreUseCase;
 
@@ -43,7 +43,7 @@ public class GetGenreUseCaseTest
         }
 
         genreRepositoryMock.Verify(x => x.Get(
-            It.Is<Guid>(x => x == exampleGenre.Id), 
+            It.Is<Guid>(x => x == exampleGenre.Id),
             It.IsAny<CancellationToken>()),
             Times.Once
         );

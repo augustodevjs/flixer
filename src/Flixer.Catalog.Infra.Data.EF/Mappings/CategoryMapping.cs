@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Flixer.Catalog.Domain.Entities;
+﻿using Flixer.Catalog.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Flixer.Catalog.Infra.Data.EF.Mappings;

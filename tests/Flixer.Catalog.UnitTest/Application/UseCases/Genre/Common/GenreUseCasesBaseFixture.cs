@@ -1,7 +1,7 @@
-﻿using Flixer.Catalog.UnitTest.Common;
+﻿using Flixer.Catalog.Application.Contracts.UnityOfWork;
 using Flixer.Catalog.Domain.Repository;
+using Flixer.Catalog.UnitTest.Common;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.Contracts.UnityOfWork;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.Common;
 
@@ -21,7 +21,7 @@ public class GenreUseCasesBaseFixture : BaseFixture
 
     public DomainEntity.Genre GetExampleGenre(bool? isActive = null, List<Guid>? categoriesIds = null)
     {
-        var genre = new DomainEntity.Genre(GetValidGenreName(),isActive ?? GetRandomBoolean());
+        var genre = new DomainEntity.Genre(GetValidGenreName(), isActive ?? GetRandomBoolean());
         categoriesIds?.ForEach(genre.AddCategory);
 
         return genre;

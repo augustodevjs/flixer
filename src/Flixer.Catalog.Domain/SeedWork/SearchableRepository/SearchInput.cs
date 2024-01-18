@@ -9,10 +9,10 @@ public class SearchInput
     public SearchOrder Order { get; set; }
 
     public SearchInput(
-        int page, 
-        int perPage, 
-        string search, 
-        string orderBy, 
+        int page,
+        int perPage,
+        string search,
+        string orderBy,
         SearchOrder order
     )
     {

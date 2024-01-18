@@ -1,11 +1,11 @@
-﻿using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
+﻿using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 using Flixer.Catalog.IntegrationTests.Application.UseCases.Category.Common;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
 
 namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.ListCategories;
 [CollectionDefinition(nameof(ListCategoriesTestFixture))]
 public class ListCategoriesTestFixtureCollection : ICollectionFixture<ListCategoriesTestFixture>
-{ 
+{
 }
 
 public class ListCategoriesTestFixture : CategoryUseCaseBaseFixture

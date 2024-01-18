@@ -1,9 +1,9 @@
-﻿using Flixer.Catalog.Domain.Exceptions;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Genre;
+using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.UseCases.Genre;
+using Flixer.Catalog.Domain.Exceptions;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
-using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.UpdateGenreUseCase;
 
@@ -144,7 +144,7 @@ public class UpdateGenreUseCaseTest
 
         var input = new UpdateGenreInputModel(exampleGenre.Id, newNameExample);
 
-        GenreViewModel output =await useCase.Handle(input, CancellationToken.None);
+        GenreViewModel output = await useCase.Handle(input, CancellationToken.None);
 
         output.Should().NotBeNull();
         output.IsActive.Should().Be(isActive);
@@ -161,7 +161,7 @@ public class UpdateGenreUseCaseTest
             Times.Once
         );
 
-        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
+        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -221,7 +221,7 @@ public class UpdateGenreUseCaseTest
             Times.Once
         );
 
-        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
+        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -281,7 +281,7 @@ public class UpdateGenreUseCaseTest
             Times.Once
         );
 
-        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
+        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -385,7 +385,7 @@ public class UpdateGenreUseCaseTest
             Times.Once
         );
 
-        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
+        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]
@@ -435,6 +435,6 @@ public class UpdateGenreUseCaseTest
             Times.Once
         );
 
-        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()),Times.Once);
+        unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Once);
     }
 }

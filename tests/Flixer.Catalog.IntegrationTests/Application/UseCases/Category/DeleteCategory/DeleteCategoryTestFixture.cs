@@ -4,7 +4,7 @@ namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.DeleteCa
 
 [CollectionDefinition(nameof(DeleteCategoryTestFixture))]
 public class DeleteCategoryTestFixtureCollection : ICollectionFixture<DeleteCategoryTestFixture>
-{ 
+{
 }
 
 public class DeleteCategoryTestFixture : CategoryUseCaseBaseFixture

@@ -5,7 +5,7 @@ namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.CreateGenreUseCase;
 
 [CollectionDefinition(nameof(CreateGenreTestFixture))]
 public class CreateGenreTestFixtureCollection : ICollectionFixture<CreateGenreTestFixture>
-{ 
+{
 }
 
 public class CreateGenreTestFixture : GenreUseCasesBaseFixture

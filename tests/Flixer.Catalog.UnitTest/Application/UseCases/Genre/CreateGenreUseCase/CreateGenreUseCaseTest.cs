@@ -1,6 +1,6 @@
-﻿using Flixer.Catalog.Domain.Exceptions;
-using Flixer.Catalog.Application.Exceptions;
+﻿using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.UseCases.Genre;
+using Flixer.Catalog.Domain.Exceptions;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.CreateGenreUseCase;
@@ -109,9 +109,9 @@ public class CreateGenreUseCaseTest
         await action.Should().ThrowAsync<RelatedAggregateException>().WithMessage($"Related category id (or ids) not found: {exampleGuid}");
 
         categoryRepositoryMock.Verify(x => x.GetIdsListByIds(
-            It.IsAny<List<Guid>>(), 
+            It.IsAny<List<Guid>>(),
             It.IsAny<CancellationToken>())
-        ,Times.Once);
+        , Times.Once);
 
         unitOfWorkMock.Verify(x => x.Commit(It.IsAny<CancellationToken>()), Times.Never);
     }

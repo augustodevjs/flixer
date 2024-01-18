@@ -1,8 +1,8 @@
-﻿using Flixer.Catalog.Application.UseCases.Genre;
-using DomainEntity = Flixer.Catalog.Domain.Entities;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
-using Flixer.Catalog.Application.Dtos.InputModel.Genre;
+using Flixer.Catalog.Application.UseCases.Genre;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.ListGenreUseCase;
 

@@ -1,8 +1,8 @@
-﻿using Flixer.Catalog.Infra.Data.EF.Context;
-using Flixer.Catalog.Infra.Data.EF.Repositories;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
-using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Flixer.Catalog.Infra.Data.EF.Context;
+using Flixer.Catalog.Infra.Data.EF.Repositories;
 using UseCase = Flixer.Catalog.Application.UseCases.Category;
 
 

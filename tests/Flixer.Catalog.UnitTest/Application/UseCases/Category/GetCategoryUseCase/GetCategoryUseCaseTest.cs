@@ -1,6 +1,6 @@
-﻿using Flixer.Catalog.Application.Exceptions;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.UseCases.Category;
-using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategoryUseCase;
 

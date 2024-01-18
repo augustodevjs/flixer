@@ -1,6 +1,6 @@
-﻿using Flixer.Catalog.Infra.Data.EF;
+﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Flixer.Catalog.Infra.Data.EF;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
-using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using ApplicationUseCase = Flixer.Catalog.Application.UseCases.Category;
 
 namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.CreateCategory;
