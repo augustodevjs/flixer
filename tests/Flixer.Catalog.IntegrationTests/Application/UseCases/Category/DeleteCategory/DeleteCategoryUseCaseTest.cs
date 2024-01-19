@@ -1,6 +1,6 @@
 ﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Infra.Data.EF;
+using Flixer.Catalog.Infra.Data.EF.Context;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
 using Microsoft.EntityFrameworkCore;
 using ApplicationUseCase = Flixer.Catalog.Application.UseCases.Category;

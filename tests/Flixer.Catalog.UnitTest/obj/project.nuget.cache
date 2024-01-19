@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2iKXe6MrmBuSSVcBl6nx/dN2PoJ7Gnikqs0710kGaaXGtKCjWLJNrVc6p+g5oFe81LrrCPm14j7hz9q7nby5lw==",
+  "dgSpecHash": "xqvZ/P1JHk6m9SbhTG016GGWY6/t9i8zyUVocoW2zeZcVyn/t60lh2Ues0dnzQ4CxlcFQ6lmbgBvX+QO9QGhPw==",
   "success": true,
   "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.UnitTest\\Flixer.Catalog.UnitTest.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\joaoa\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\joaoa\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\10.0.0\\mediatr.extensions.microsoft.dependencyinjection.10.0.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.25\\microsoft.entityframeworkcore.6.0.25.nupkg.sha512",
     "C:\\Users\\joaoa\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.25\\microsoft.entityframeworkcore.abstractions.6.0.25.nupkg.sha512",

@@ -1,7 +1,6 @@
 ﻿using Flixer.Catalog.Application.Contracts.UnityOfWork;
-using Flixer.Catalog.Infra.Data.EF.Context;
 
-namespace Flixer.Catalog.Infra.Data.EF;
+namespace Flixer.Catalog.Infra.Data.EF.Context;
 
 public class UnityOfWork : IUnityOfWork
 {

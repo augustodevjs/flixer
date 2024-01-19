@@ -1,8 +1,12 @@
+using Flixer.Catalog.Application;
+using Flixer.Catalog.Infra.Data.EF;
+using Flixer.Catalog.Api.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddUseCases();
+builder.Services.AddInfraData();
+builder.Services.AddAndConfigureControllers();
 
 var app = builder.Build();
 
