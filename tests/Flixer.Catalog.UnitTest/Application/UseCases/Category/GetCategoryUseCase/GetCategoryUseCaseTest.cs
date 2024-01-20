@@ -1,22 +1,23 @@
-﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
-using Flixer.Catalog.Application.Exceptions;
+﻿using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.UseCases.Category;
+using Flixer.Catalog.Common.Tests.Fixture.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategoryUseCase;
 
-[Collection(nameof(GetCategoryUseCaseTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class GetCategoryUseCaseTest
 {
-    private readonly GetCategoryUseCaseTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
 
-    public GetCategoryUseCaseTest(GetCategoryUseCaseTestFixture fixture) => _fixture = fixture;
+    public GetCategoryUseCaseTest(CategoryTestFixture fixture) => _fixture = fixture;
 
     [Fact]
     [Trait("Application", "GetCategory - Use Cases")]
     public async Task UseCase_ShouldGetCategory_WhenMethodHandleIsCalled()
     {
         var repositoryMock = _fixture.GetRepositoryMock();
-        var exampleCategory = _fixture.GetExampleCategory();
+        var exampleCategory = _fixture.GetValidCategory();
 
         repositoryMock.Setup(x => x.Get(
             It.IsAny<Guid>(),

@@ -121,11 +121,11 @@
           "build/netstandard2.0/Microsoft.CodeCoverage.targets": {}
         }
       },
-      "Microsoft.EntityFrameworkCore/6.0.25": {
+      "Microsoft.EntityFrameworkCore/6.0.26": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.25",
-          "Microsoft.EntityFrameworkCore.Analyzers": "6.0.25",
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.26",
+          "Microsoft.EntityFrameworkCore.Analyzers": "6.0.26",
           "Microsoft.Extensions.Caching.Memory": "6.0.1",
           "Microsoft.Extensions.DependencyInjection": "6.0.1",
           "Microsoft.Extensions.Logging": "6.0.0",
@@ -146,7 +146,7 @@
           "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/6.0.25": {
+      "Microsoft.EntityFrameworkCore.Abstractions/6.0.26": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
@@ -159,7 +159,7 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/6.0.25": {
+      "Microsoft.EntityFrameworkCore.Analyzers/6.0.26": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -2144,6 +2144,22 @@
           "bin/placeholder/Flixer.Catalog.Application.dll": {}
         }
       },
+      "Flixer.Catalog.Common.Tests/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Bogus": "35.3.0",
+          "Flixer.Catalog.Domain": "1.0.0",
+          "Flixer.Catalog.Infra.Data.EF": "1.0.0",
+          "Moq": "4.20.70"
+        },
+        "compile": {
+          "bin/placeholder/Flixer.Catalog.Common.Tests.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Flixer.Catalog.Common.Tests.dll": {}
+        }
+      },
       "Flixer.Catalog.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2152,6 +2168,22 @@
         },
         "runtime": {
           "bin/placeholder/Flixer.Catalog.Domain.dll": {}
+        }
+      },
+      "Flixer.Catalog.Infra.Data.EF/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Flixer.Catalog.Application": "1.0.0",
+          "Flixer.Catalog.Domain": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "6.0.26",
+          "Microsoft.EntityFrameworkCore.InMemory": "6.0.3"
+        },
+        "compile": {
+          "bin/placeholder/Flixer.Catalog.Infra.Data.EF.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Flixer.Catalog.Infra.Data.EF.dll": {}
         }
       }
     }
@@ -2413,10 +2445,10 @@
         "microsoft.codecoverage.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore/6.0.25": {
-      "sha512": "txcqw2xrmvMoTIgzAdUk8JHLELofGgTK3i6glswVZs4SC8BOU1M/iSAtwMIVtAtfzxuBIUAbHPx+Ly6lfkYe7g==",
+    "Microsoft.EntityFrameworkCore/6.0.26": {
+      "sha512": "eROc12jvc1jfFmWwu5km4IPNHSEQxEnwGoEpKhGs4dJtjXFrWd7W2opaupK8fynBZlUN6PndKrzZHIhI8e7Baw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/6.0.25",
+      "path": "microsoft.entityframeworkcore/6.0.26",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2424,35 +2456,35 @@
         "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props",
         "lib/net6.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.6.0.25.nupkg.sha512",
+        "microsoft.entityframeworkcore.6.0.26.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/6.0.25": {
-      "sha512": "DalO25C96LsIfAPlyizyun9y1XrIquRugPEGXC8+z7dFo+GyU0LRd0R11JDd3rJWjR18NOFYwqNenjyDpNRO3A==",
+    "Microsoft.EntityFrameworkCore.Abstractions/6.0.26": {
+      "sha512": "VGTCtP8OYEBwUY9xlunIlj1OPrV7TB218mOFvlgdutB8xfHk3Yc7njkE+Kez5L249nZ0eGW4a8UzPCF57uz3QQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/6.0.25",
+      "path": "microsoft.entityframeworkcore.abstractions/6.0.26",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.6.0.25.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.6.0.26.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/6.0.25": {
-      "sha512": "i6UpdWqWxSBbIFOkaMoubM40yIjTZO+0rIUkY5JRltSeFI4PzncBBQcNVNXXjAmiLXF/xY0xTS+ykClbkV46Yg==",
+    "Microsoft.EntityFrameworkCore.Analyzers/6.0.26": {
+      "sha512": "yW34XFVptV6xMZVCvfnXr/iIc8GJF9NMaM36KeoqOblZZ+l3n9FsdULB5HFQwzqsnz4+X2ttZz1bQoffBVEFfw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/6.0.25",
+      "path": "microsoft.entityframeworkcore.analyzers/6.0.26",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.6.0.25.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.6.0.26.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
@@ -6521,16 +6553,27 @@
       "path": "../../src/Flixer.Catalog.Application/Flixer.Catalog.Application.csproj",
       "msbuildProject": "../../src/Flixer.Catalog.Application/Flixer.Catalog.Application.csproj"
     },
+    "Flixer.Catalog.Common.Tests/1.0.0": {
+      "type": "project",
+      "path": "../Flixer.Catalog.Common.Tests/Flixer.Catalog.Common.Tests.csproj",
+      "msbuildProject": "../Flixer.Catalog.Common.Tests/Flixer.Catalog.Common.Tests.csproj"
+    },
     "Flixer.Catalog.Domain/1.0.0": {
       "type": "project",
       "path": "../../src/Flixer.Catalog.Domain/Flixer.Catalog.Domain.csproj",
       "msbuildProject": "../../src/Flixer.Catalog.Domain/Flixer.Catalog.Domain.csproj"
+    },
+    "Flixer.Catalog.Infra.Data.EF/1.0.0": {
+      "type": "project",
+      "path": "../../src/Flixer.Catalog.Infra.Data.EF/Flixer.Catalog.Infra.Data.EF.csproj",
+      "msbuildProject": "../../src/Flixer.Catalog.Infra.Data.EF/Flixer.Catalog.Infra.Data.EF.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Bogus >= 35.3.0",
       "Flixer.Catalog.Application >= 1.0.0",
+      "Flixer.Catalog.Common.Tests >= 1.0.0",
       "Flixer.Catalog.Domain >= 1.0.0",
       "FluentAssertions >= 6.5.1",
       "Microsoft.EntityFrameworkCore.InMemory >= 6.0.25",
@@ -6573,6 +6616,9 @@
             },
             "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
               "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj"
+            },
+            "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.Common.Tests\\Flixer.Catalog.Common.Tests.csproj": {
+              "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.Common.Tests\\Flixer.Catalog.Common.Tests.csproj"
             }
           }
         }

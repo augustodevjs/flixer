@@ -259,3 +259,7 @@ C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\obj\Debug\net6.
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\obj\Debug\net6.0\Flixer.Catalog.UnitTest.genruntimeconfig.cache
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\obj\Debug\net6.0\ref\Flixer.Catalog.UnitTest.dll
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Flixer.Catalog.Common.Tests.dll
+C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Flixer.Catalog.Common.Tests.pdb
+C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Flixer.Catalog.Infra.Data.EF.dll
+C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Flixer.Catalog.Infra.Data.EF.pdb

@@ -1,13 +1,14 @@
-﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
+﻿using Flixer.Catalog.Common.Tests.Fixture.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategoryUseCase;
 
-[Collection(nameof(GetCategoryUseCaseTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class GetCategoryInputValidatorTest
 {
-    private readonly GetCategoryUseCaseTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
 
-    public GetCategoryInputValidatorTest(GetCategoryUseCaseTestFixture fixture)
+    public GetCategoryInputValidatorTest(CategoryTestFixture fixture)
         => _fixture = fixture;
 
     [Fact]

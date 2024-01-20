@@ -1,24 +1,25 @@
-﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
-using Flixer.Catalog.Application.Dtos.ViewModel.Category;
+﻿using Flixer.Catalog.Common.Tests.Fixture.Category;
 using Flixer.Catalog.Application.UseCases.Category;
-using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Dtos.ViewModel.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategoriesUseCase;
 
-[Collection(nameof(ListCategoriesUseCaseTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class ListCategoriesUseCase
 {
-    private readonly ListCategoriesUseCaseTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
 
-    public ListCategoriesUseCase(ListCategoriesUseCaseTestFixture fixture)
+    public ListCategoriesUseCase(CategoryTestFixture fixture)
         => _fixture = fixture;
 
     [Fact]
     [Trait("Application", "ListCategories - Use Cases")]
     public async Task UseCase_ShouldListCategories_WhenMethodHandleIsCalled()
     {
-        var input = _fixture.GetExampleInput();
+        var input = _fixture.GetListInput();
         var repositoryMock = _fixture.GetRepositoryMock();
         var categoriesExampleList = _fixture.GetExampleCategoriesList();
 
@@ -78,7 +79,7 @@ public class ListCategoriesUseCase
     [Trait("Application", "ListCategories - Use Cases")]
     public async Task UseCase_ShouldNotListCategories_WhenDoesntHaveCategories()
     {
-        var input = _fixture.GetExampleInput();
+        var input = _fixture.GetListInput();
         var repositoryMock = _fixture.GetRepositoryMock();
 
         var outputRepositorySearch = new SearchOutput<DomainEntity.Category>(
@@ -124,9 +125,9 @@ public class ListCategoriesUseCase
     [Theory]
     [Trait("Application", "ListCategories - Use Cases")]
     [MemberData(
-        nameof(ListCategoriesUseCaseTestDataGenerator.GetInputsWithoutAllParameter),
+        nameof(DataGenerator.GetInputsListWithoutAllParameter),
         parameters: 14,
-        MemberType = typeof(ListCategoriesUseCaseTestDataGenerator)
+        MemberType = typeof(DataGenerator)
     )]
     public async Task UseCase_ShouldListCategories_WhenParametersAreNotProvided(
         ListCategoriesInputModel input

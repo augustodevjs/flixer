@@ -1,4 +1,5 @@
 ﻿using Flixer.Catalog.Domain.Exceptions;
+using Flixer.Catalog.Common.Tests.Fixture.Genre;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 
 namespace Flixer.Catalog.UnitTest.Domain.Entity.Genre;

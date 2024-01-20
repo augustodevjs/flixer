@@ -1,28 +1,32 @@
-﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
-using Flixer.Catalog.Application.Dtos.ViewModel.Category;
+﻿using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
+using Flixer.Catalog.Common.Tests.Fixture.Category;
 using Flixer.Catalog.Application.UseCases.Category;
-using Flixer.Catalog.Domain.Exceptions;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Dtos.ViewModel.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
 
-[Collection(nameof(UpdateCategoryUseCaseTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class UpdateCategoryUseCaseTest
 {
-    private readonly UpdateCategoryUseCaseTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
 
-    public UpdateCategoryUseCaseTest(UpdateCategoryUseCaseTestFixture fixture)
+    public UpdateCategoryUseCaseTest(CategoryTestFixture fixture)
         => _fixture = fixture;
 
     [Theory]
     [Trait("Application", "UpdateCategory - Use Cases")]
     [MemberData(
-        nameof(UpdateCategoryUseCaseTestDataGenerator.GetCategoriesToUpdate),
+        nameof(DataGenerator.GetCategoriesToUpdate),
         parameters: 10,
-        MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
+        MemberType = typeof(DataGenerator)
     )]
-    public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalled(DomainEntity.Category exampleCategory, UpdateCategoryInputModel input)
+    public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalled(
+        DomainEntity.Category exampleCategory, 
+        UpdateCategoryInputModel input
+    )
     {
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
@@ -51,9 +55,9 @@ public class UpdateCategoryUseCaseTest
     [Theory]
     [Trait("Application", "UpdateCategory - Use Cases")]
     [MemberData(
-        nameof(UpdateCategoryUseCaseTestDataGenerator.GetCategoriesToUpdate),
+        nameof(DataGenerator.GetCategoriesToUpdate),
         parameters: 10,
-        MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
+        MemberType = typeof(DataGenerator)
     )]
     public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalledWithoutProvidingIsActive(
         DomainEntity.Category exampleCategory,
@@ -95,11 +99,14 @@ public class UpdateCategoryUseCaseTest
     [Theory]
     [Trait("Application", "UpdateCategory - Use Cases")]
     [MemberData(
-        nameof(UpdateCategoryUseCaseTestDataGenerator.GetCategoriesToUpdate),
+        nameof(DataGenerator.GetCategoriesToUpdate),
         parameters: 10,
-        MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
+        MemberType = typeof(DataGenerator)
     )]
-    public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalledWithOnlyName(DomainEntity.Category exampleCategory, UpdateCategoryInputModel exampleInput)
+    public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalledWithOnlyName(
+        DomainEntity.Category exampleCategory, 
+        UpdateCategoryInputModel exampleInput
+    )
     {
         var input = new UpdateCategoryInputModel(
             exampleInput.Id,
@@ -134,7 +141,7 @@ public class UpdateCategoryUseCaseTest
     [Trait("Application", "UpdateCategory - Use Cases")]
     public async Task UseCase_ShouldThrowError_WhenCategoryNotFound()
     {
-        var input = _fixture.GetValidInput();
+        var input = _fixture.GetInputUpdate();
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
@@ -153,13 +160,16 @@ public class UpdateCategoryUseCaseTest
     [Theory]
     [Trait("Application", "UpdateCategory - Use Cases")]
     [MemberData(
-        nameof(UpdateCategoryUseCaseTestDataGenerator.GetInvalidInputs),
+        nameof(DataGenerator.GetInvalidUpdateInputs),
         parameters: 12,
-        MemberType = typeof(UpdateCategoryUseCaseTestDataGenerator)
+        MemberType = typeof(DataGenerator)
     )]
-    public async Task UseCase_ShouldThrowError_WhenCantUpdateCategory(UpdateCategoryInputModel input, string expectedExceptionMessage)
+    public async Task UseCase_ShouldThrowError_WhenCantUpdateCategory(
+        UpdateCategoryInputModel input, 
+        string expectedExceptionMessage
+    )
     {
-        var exampleCategory = _fixture.GetExampleCategory();
+        var exampleCategory = _fixture.GetValidCategory();
         input.Id = exampleCategory.Id;
 
         var repositoryMock = _fixture.GetRepositoryMock();

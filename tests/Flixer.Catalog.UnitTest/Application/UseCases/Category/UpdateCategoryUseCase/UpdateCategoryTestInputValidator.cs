@@ -1,20 +1,21 @@
-﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
+﻿using Flixer.Catalog.Common.Tests.Fixture.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
 
-[Collection(nameof(UpdateCategoryUseCaseTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class UpdateCategoryTestInputValidator
 {
-    private readonly UpdateCategoryUseCaseTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
 
-    public UpdateCategoryTestInputValidator(UpdateCategoryUseCaseTestFixture fixture)
+    public UpdateCategoryTestInputValidator(CategoryTestFixture fixture)
         => _fixture = fixture;
 
     [Fact]
     [Trait("Application", "UpdateCategoryInputValidator - Use Cases")]
     public void Validator_ShouldDontValidate_WhenGuidIsEmpty()
     {
-        var input = _fixture.GetValidInput(Guid.Empty);
+        var input = _fixture.GetInputUpdate(Guid.Empty);
         var validator = new UpdateCategoryValidatorInputModel();
 
         var validateResult = validator.Validate(input);
@@ -29,7 +30,7 @@ public class UpdateCategoryTestInputValidator
     [Trait("Application", "UpdateCategoryInputValidator - Use Cases")]
     public void Validator_ShouldValidate_WhenIdIsProvided()
     {
-        var input = _fixture.GetValidInput();
+        var input = _fixture.GetInputUpdate();
         var validator = new UpdateCategoryValidatorInputModel();
 
         var validateResult = validator.Validate(input);

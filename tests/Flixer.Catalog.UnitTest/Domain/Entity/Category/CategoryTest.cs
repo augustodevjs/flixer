@@ -1,4 +1,5 @@
 ﻿using Flixer.Catalog.Domain.Exceptions;
+using Flixer.Catalog.Common.Tests.Fixture.Category;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 
 namespace Flixer.Catalog.UnitTest.Domain.Entity.Category;
@@ -25,7 +26,7 @@ public class CategoryTest
 
         category.Should().NotBeNull();
         category.Id.Should().NotBeEmpty();
-        (category.IsActive).Should().BeTrue();
+        category.IsActive.Should().BeTrue();
         category.Name.Should().Be(validCategory.Name);
         category.CreatedAt.Should().NotBeSameDateAs(default);
         (category.CreatedAt <= datetimeAfter).Should().BeTrue();
@@ -49,7 +50,7 @@ public class CategoryTest
 
         category.Should().NotBeNull();
         category.Id.Should().NotBeEmpty();
-        (category.IsActive).Should().Be(isActive);
+        category.IsActive.Should().Be(isActive);
         category.Name.Should().Be(validCategory.Name);
         category.CreatedAt.Should().NotBeSameDateAs(default);
         (category.CreatedAt <= datetimeAfter).Should().BeTrue();
@@ -108,7 +109,7 @@ public class CategoryTest
     public void Category_ShouldThrowError_WhenInstantiatedWithNameIsGreaterThan255Characters()
     {
         var validCategory = _fixture.GetValidCategory();
-        var invalidName = String.Join(null, Enumerable.Range(1, 256).Select(_ => "a").ToArray());
+        var invalidName = string.Join(null, Enumerable.Range(1, 256).Select(_ => "a").ToArray());
 
         Action action =
             () => new DomainEntity.Category(invalidName, validCategory.Description);
@@ -122,7 +123,7 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldThrowError_WhenInstantiatedWithDescriptionIsGreaterThan10_000Characters()
     {
-        var invalidDescription = String.Join(null, Enumerable.Range(1, 10_001).Select(_ => "a").ToArray());
+        var invalidDescription = string.Join(null, Enumerable.Range(1, 10_001).Select(_ => "a").ToArray());
         var validCategory = _fixture.GetValidCategory();
 
         Action action =

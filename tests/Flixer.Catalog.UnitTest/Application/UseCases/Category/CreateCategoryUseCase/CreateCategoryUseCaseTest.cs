@@ -1,16 +1,17 @@
 ﻿using Flixer.Catalog.Domain.Exceptions; 
 using Flixer.Catalog.Application.UseCases.Category;
+using Flixer.Catalog.Common.Tests.Fixture.Category;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
- 
+
 namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.CreateCategoryUseCase;
 
-[Collection(nameof(CreateCategoryUseCaseTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class CreateCategoryUseCaseTest
 {
-    private readonly CreateCategoryUseCaseTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
 
-    public CreateCategoryUseCaseTest(CreateCategoryUseCaseTestFixture fixture) =>
+    public CreateCategoryUseCaseTest(CategoryTestFixture fixture) =>
         _fixture = fixture;
 
     [Fact]
@@ -22,7 +23,7 @@ public class CreateCategoryUseCaseTest
 
         var useCase = new CreateCategory(repositoryMock.Object, unityOfWorkMock.Object);
 
-        var input = _fixture.GetInput();
+        var input = _fixture.GetInputCreate();
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
@@ -100,11 +101,14 @@ public class CreateCategoryUseCaseTest
     [Theory]
     [Trait("Application", "CreateCategory - Use Cases")]
     [MemberData(
-        nameof(CreateCategoryUseCaseTestDataGenerator.GetInvalidInputs),
+        nameof(DataGenerator.GetInvalidCreateInputs),
         parameters: 24,
-        MemberType = typeof(CreateCategoryUseCaseTestDataGenerator)
+        MemberType = typeof(DataGenerator)
      )]
-    public async void UseCase_ShouldThrowError_WhenMethodHandleIsCalledWithInvalidInputs(CreateCategoryInputModel input, string exceptionMessage)
+    public async void UseCase_ShouldThrowError_WhenMethodHandleIsCalledWithInvalidInputs(
+        CreateCategoryInputModel input, 
+        string exceptionMessage
+    )
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
