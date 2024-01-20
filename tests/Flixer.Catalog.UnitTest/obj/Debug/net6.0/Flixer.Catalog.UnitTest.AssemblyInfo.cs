@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Flixer.Catalog.UnitTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a06b39eff824cbeeba05a2fa739f945022093492")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3d8e4b38934e65d2628458c9c6e2685227674eca")]
 [assembly: System.Reflection.AssemblyProductAttribute("Flixer.Catalog.UnitTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Flixer.Catalog.UnitTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

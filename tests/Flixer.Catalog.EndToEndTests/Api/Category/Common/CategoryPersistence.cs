@@ -1,5 +1,5 @@
-﻿using Flixer.Catalog.Infra.Data.EF.Context;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Flixer.Catalog.Infra.Data.EF.Context;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.Common;

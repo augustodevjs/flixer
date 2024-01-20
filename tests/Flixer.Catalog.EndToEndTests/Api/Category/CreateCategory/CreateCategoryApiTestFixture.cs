@@ -10,11 +10,10 @@ public class CreateCategoryApiTestFixtureCollection : ICollectionFixture<CreateC
 
 public class CreateCategoryApiTestFixture : CategoryBaseFixture
 {
-    public CreateCategoryInputModel getExampleInput()
+    public CreateCategoryInputModel GetExampleInput()
         => new(
             GetValidCategoryName(),
             GetValidCategoryDescription(),
             GetRandomBoolean()
-        );
-
+        );  
 }
