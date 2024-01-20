@@ -1,3 +1,3 @@
 # Flixer
 
-<img src="./assets/diagram-flixer.png">
+<img src="./src/Flixer.Catalog.Api/assets/diagram-flixer.png">
