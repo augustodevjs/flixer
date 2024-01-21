@@ -1,20 +1,22 @@
-﻿//using Flixer.Catalog.Infra.Data.EF;
-//using Microsoft.EntityFrameworkCore;
-//using Flixer.Catalog.Domain.Exceptions;
-//using Flixer.Catalog.Application.Exceptions;
+﻿//using Microsoft.EntityFrameworkCore;
 //using Flixer.Catalog.Infra.Data.EF.Repositories;
+//using Flixer.Catalog.Common.Tests.Fixture.Category;
 //using DomainEntity = Flixer.Catalog.Domain.Entities;
 //using Flixer.Catalog.Application.Dtos.InputModel.Category;
 //using UseCase = Flixer.Catalog.Application.UseCases.Category;
+//using Flixer.Catalog.Infra.Data.EF.Context;
+//using Flixer.Catalog.Application.Exceptions;
+//using Flixer.Catalog.Domain.Exceptions;
 
 //namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.UpdateCategory;
 
-//[Collection(nameof(UpdateCategoryTestFixture))]
+//[Collection(nameof(CategoryTestFixture))]
 //public class UpdateCategoryTest
 //{
-//    private readonly UpdateCategoryTestFixture _fixture;
+//    private readonly CategoryTestFixture _fixture;
+//    public const string nameDbContext = "integration-tests-db";
 
-//    public UpdateCategoryTest(UpdateCategoryTestFixture fixture)
+//    public UpdateCategoryTest(CategoryTestFixture fixture)
 //    {
 //        _fixture = fixture;
 //    }
@@ -22,16 +24,16 @@
 //    [Theory(DisplayName = nameof(UpdateCategory))]
 //    [Trait("Integration/Application", "UpdateCategory - Use Cases")]
 //    [MemberData(
-//         nameof(UpdateCategoryTestDataGenerator.GetCategoriesToUpdate),
+//         nameof(DataGenerator.GetCategoriesToUpdate),
 //         parameters: 5,
-//         MemberType = typeof(UpdateCategoryTestDataGenerator)
+//         MemberType = typeof(DataGenerator)
 //     )]
 //    public async Task UpdateCategory(
 //         DomainEntity.Category exampleCategory,
 //         UpdateCategoryInputModel input
 //     )
 //    {
-//        var dbContext = _fixture.CreateDbContext();
+//        var dbContext = _fixture.CreateDbContext(nameDbContext);
 
 //        var trackingInfo = await dbContext.AddAsync(exampleCategory);
 //        dbContext.SaveChanges();
@@ -43,7 +45,7 @@
 
 //        var output = await useCase.Handle(input, CancellationToken.None);
 
-//        var dbCategory = await (_fixture.CreateDbContext(true)).Categories.FindAsync(output.Id);
+//        var dbCategory = await (_fixture.CreateDbContext(nameDbContext, true)).Categories.FindAsync(output.Id);
 
 //        dbCategory.Should().NotBeNull();
 //        dbCategory!.Name.Should().Be(input.Name);
@@ -60,9 +62,9 @@
 //    [Theory(DisplayName = nameof(UpdateCategoryWithoutIsActive))]
 //    [Trait("Integration/Application", "UpdateCategory - Use Cases")]
 //    [MemberData(
-//        nameof(UpdateCategoryTestDataGenerator.GetCategoriesToUpdate),
+//        nameof(DataGenerator.GetCategoriesToUpdate),
 //        parameters: 5,
-//        MemberType = typeof(UpdateCategoryTestDataGenerator)
+//        MemberType = typeof(DataGenerator)
 //    )]
 //    public async Task UpdateCategoryWithoutIsActive(
 //        DomainEntity.Category exampleCategory,
@@ -75,7 +77,7 @@
 //            null,
 //            exampleInput.Description
 //        );
-//        var dbContext = _fixture.CreateDbContext();
+//        var dbContext = _fixture.CreateDbContext(nameDbContext);
 //        await dbContext.AddRangeAsync(_fixture.GetExampleCategoriesList());
 //        var trackingInfo = await dbContext.AddAsync(exampleCategory);
 //        dbContext.SaveChanges();
@@ -86,7 +88,7 @@
 
 //        var output = await useCase.Handle(input, CancellationToken.None);
 
-//        var dbCategory = await (_fixture.CreateDbContext(true))
+//        var dbCategory = await (_fixture.CreateDbContext(nameDbContext, true))
 //            .Categories.FindAsync(output.Id);
 //        dbCategory.Should().NotBeNull();
 //        dbCategory!.Name.Should().Be(input.Name);
@@ -102,9 +104,9 @@
 //    [Theory(DisplayName = nameof(UpdateCategoryOnlyName))]
 //    [Trait("Integration/Application", "UpdateCategory - Use Cases")]
 //    [MemberData(
-//        nameof(UpdateCategoryTestDataGenerator.GetCategoriesToUpdate),
+//        nameof(DataGenerator.GetCategoriesToUpdate),
 //        parameters: 5,
-//        MemberType = typeof(UpdateCategoryTestDataGenerator)
+//        MemberType = typeof(DataGenerator)
 //    )]
 //    public async Task UpdateCategoryOnlyName(
 //        DomainEntity.Category exampleCategory,
@@ -115,7 +117,7 @@
 //            exampleInput.Id,
 //            exampleInput.Name
 //        );
-//        var dbContext = _fixture.CreateDbContext();
+//        var dbContext = _fixture.CreateDbContext(nameDbContext);
 //        await dbContext.AddRangeAsync(_fixture.GetExampleCategoriesList());
 //        var trackingInfo = await dbContext.AddAsync(exampleCategory);
 //        dbContext.SaveChanges();
@@ -126,7 +128,7 @@
 
 //        var output = await useCase.Handle(input, CancellationToken.None);
 
-//        var dbCategory = await (_fixture.CreateDbContext(true))
+//        var dbCategory = await (_fixture.CreateDbContext(nameDbContext, true))
 //            .Categories.FindAsync(output.Id);
 //        dbCategory.Should().NotBeNull();
 //        dbCategory!.Name.Should().Be(input.Name);
@@ -143,8 +145,8 @@
 //    [Trait("Integration/Application", "UpdateCategory - Use Cases")]
 //    public async Task UpdateThrowsWhenNotFoundCategory()
 //    {
-//        var input = _fixture.GetValidInput();
-//        var dbContext = _fixture.CreateDbContext();
+//        var input = _fixture.GetInputUpdate();
+//        var dbContext = _fixture.CreateDbContext(nameDbContext);
 //        await dbContext.AddRangeAsync(_fixture.GetExampleCategoriesList());
 //        dbContext.SaveChanges();
 //        var repository = new CategoryRepository(dbContext);
@@ -161,16 +163,16 @@
 //    [Theory(DisplayName = nameof(UpdateThrowsWhenCantInstantiateCategory))]
 //    [Trait("Integration/Application", "UpdateCategory - Use Cases")]
 //    [MemberData(
-//        nameof(UpdateCategoryTestDataGenerator.GetInvalidInputs),
+//        nameof(DataGenerator.GetInvalidUpdateInputs),
 //        parameters: 6,
-//        MemberType = typeof(UpdateCategoryTestDataGenerator)
+//        MemberType = typeof(DataGenerator)
 //    )]
 //    public async Task UpdateThrowsWhenCantInstantiateCategory(
 //        UpdateCategoryInputModel input,
 //        string expectedExceptionMessage
 //    )
 //    {
-//        var dbContext = _fixture.CreateDbContext();
+//        var dbContext = _fixture.CreateDbContext(nameDbContext);
 //        var exampleCategories = _fixture.GetExampleCategoriesList();
 //        await dbContext.AddRangeAsync(exampleCategories);
 //        dbContext.SaveChanges();

@@ -1,18 +1,20 @@
-﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
-using Flixer.Catalog.Application.Exceptions;
+﻿using Microsoft.EntityFrameworkCore;
 using Flixer.Catalog.Infra.Data.EF.Context;
+using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
-using Microsoft.EntityFrameworkCore;
+using Flixer.Catalog.Common.Tests.Fixture.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using ApplicationUseCase = Flixer.Catalog.Application.UseCases.Category;
 
 namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.DeleteCategory;
 
-[Collection(nameof(DeleteCategoryTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class DeleteCategoryUseCaseTest
 {
-    private readonly DeleteCategoryTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
+    public const string nameDbContext = "integration-tests-db";
 
-    public DeleteCategoryUseCaseTest(DeleteCategoryTestFixture fixture)
+    public DeleteCategoryUseCaseTest(CategoryTestFixture fixture)
     {
         _fixture = fixture;
     }
@@ -21,8 +23,8 @@ public class DeleteCategoryUseCaseTest
     [Trait("Integration/Application", "DeleteCategory - Use Cases")]
     public async Task DeleteCategory()
     {
-        var dbContext = _fixture.CreateDbContext(true);
-        var categoryExample = _fixture.GetExampleCategory();
+        var categoryExample = _fixture.GetValidCategory();
+        var dbContext = _fixture.CreateDbContext(nameDbContext, true);
 
         var tracking = await dbContext.AddAsync(categoryExample);
         await dbContext.SaveChangesAsync();
@@ -37,7 +39,7 @@ public class DeleteCategoryUseCaseTest
 
         await useCase.Handle(input, CancellationToken.None);
 
-        var assertDbContext = _fixture.CreateDbContext(true);
+        var assertDbContext = _fixture.CreateDbContext(nameDbContext, true);
         var dbCategoryDeleted = await assertDbContext.Categories.FindAsync(categoryExample.Id);
 
         dbCategoryDeleted.Should().BeNull();
@@ -47,7 +49,7 @@ public class DeleteCategoryUseCaseTest
     [Trait("Integration/Application", "DeleteCategory - Use Cases")]
     public async Task DeleteCategoryThrowsWhenNotFound()
     {
-        var dbContext = _fixture.CreateDbContext();
+        var dbContext = _fixture.CreateDbContext(nameDbContext);
         var exampleList = _fixture.GetExampleCategoriesList(10);
 
         await dbContext.AddRangeAsync(exampleList);

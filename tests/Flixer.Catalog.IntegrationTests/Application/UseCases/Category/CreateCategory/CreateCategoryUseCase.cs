@@ -1,16 +1,18 @@
-﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
-using Flixer.Catalog.Infra.Data.EF.Context;
+﻿using Flixer.Catalog.Infra.Data.EF.Context;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
+using Flixer.Catalog.Common.Tests.Fixture.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using ApplicationUseCase = Flixer.Catalog.Application.UseCases.Category;
 
 namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.CreateCategory;
 
-[Collection(nameof(CreateCategoryTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class CreateCategoryUseCase
 {
-    private readonly CreateCategoryTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
+    public const string nameDbContext = "integration-tests-db";
 
-    public CreateCategoryUseCase(CreateCategoryTestFixture fixture)
+    public CreateCategoryUseCase(CategoryTestFixture fixture)
     {
         _fixture = fixture;
     }
@@ -19,8 +21,8 @@ public class CreateCategoryUseCase
     [Trait("Integration/Application", "CreateCategory - Use Cases")]
     public async void CreateCategory()
     {
-        var input = _fixture.GetInput();
-        var dbContext = _fixture.CreateDbContext();
+        var input = _fixture.GetInputCreate();
+        var dbContext = _fixture.CreateDbContext(nameDbContext);
 
         var unityOfWork = new UnityOfWork(dbContext);
         var repository = new CategoryRepository(dbContext);
@@ -29,7 +31,7 @@ public class CreateCategoryUseCase
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
-        var dbCategory = await (_fixture.CreateDbContext(true)).Categories.FindAsync(output.Id);
+        var dbCategory = await (_fixture.CreateDbContext(nameDbContext, true)).Categories.FindAsync(output.Id);
 
         dbCategory.Should().NotBeNull();
         dbCategory!.Name.Should().Be(input.Name);
@@ -49,18 +51,18 @@ public class CreateCategoryUseCase
     [Trait("Integration/Application", "CreateCategory - Use Cases")]
     public async void CreateCategoryOnlyWithName()
     {
-        var dbContext = _fixture.CreateDbContext();
+        var dbContext = _fixture.CreateDbContext(nameDbContext);
 
         var repository = new CategoryRepository(dbContext);
         var unityOfWork = new UnityOfWork(dbContext);
 
         var useCase = new ApplicationUseCase.CreateCategory(repository, unityOfWork);
 
-        var input = new CreateCategoryInputModel(_fixture.GetInput().Name);
+        var input = new CreateCategoryInputModel(_fixture.GetValidCategory().Name);
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
-        var dbCategory = await (_fixture.CreateDbContext(true)).Categories.FindAsync(output.Id);
+        var dbCategory = await (_fixture.CreateDbContext(nameDbContext, true)).Categories.FindAsync(output.Id);
 
         dbCategory.Should().NotBeNull();
         dbCategory!.IsActive.Should().Be(true);
@@ -80,8 +82,8 @@ public class CreateCategoryUseCase
     [Trait("Integration/Application", "CreateCategory - Use Cases")]
     public async void CreateCategoryOnlyWithNameAndDescription()
     {
-        var exampleInput = _fixture.GetInput();
-        var dbContext = _fixture.CreateDbContext();
+        var exampleInput = _fixture.GetInputCreate();
+        var dbContext = _fixture.CreateDbContext(nameDbContext);
 
         var unityOfWork = new UnityOfWork(dbContext);
         var repository = new CategoryRepository(dbContext);
@@ -92,7 +94,7 @@ public class CreateCategoryUseCase
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
-        var dbCategory = await (_fixture.CreateDbContext(true)).Categories.FindAsync(output.Id);
+        var dbCategory = await (_fixture.CreateDbContext(nameDbContext, true)).Categories.FindAsync(output.Id);
 
         dbCategory.Should().NotBeNull();
         dbCategory!.IsActive.Should().Be(true);

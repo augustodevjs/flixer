@@ -1,19 +1,20 @@
-﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
-using Flixer.Catalog.Application.Dtos.ViewModel.Category;
-using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
-using Flixer.Catalog.Infra.Data.EF.Context;
+﻿using Flixer.Catalog.Infra.Data.EF.Context;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
+using Flixer.Catalog.Common.Tests.Fixture.Category;
+using Flixer.Catalog.Application.Dtos.ViewModel.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 using UseCase = Flixer.Catalog.Application.UseCases.Category;
-
 
 namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.ListCategories;
 
-[Collection(nameof(ListCategoriesTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class ListCategoriesUseCaseTest
 {
-    private readonly ListCategoriesTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
+    public const string nameDbContext = "integration-tests-db";
 
-    public ListCategoriesUseCaseTest(ListCategoriesTestFixture fixture)
+    public ListCategoriesUseCaseTest(CategoryTestFixture fixture)
     {
         _fixture = fixture;
     }
@@ -22,12 +23,16 @@ public class ListCategoriesUseCaseTest
     [Trait("Integration/Application", "ListCategories - Use Cases")]
     public async Task SearchRetursListAndTotal()
     {
-        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext();
         var exampleCategoriesList = _fixture.GetExampleCategoriesList(10);
+        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext(nameDbContext);
+
         await dbContext.AddRangeAsync(exampleCategoriesList);
         await dbContext.SaveChangesAsync(CancellationToken.None);
+
         var categoryRepository = new CategoryRepository(dbContext);
+
         var input = new ListCategoriesInputModel(1, 20);
+
         var useCase = new UseCase.ListCategories(
             categoryRepository
         );
@@ -40,6 +45,7 @@ public class ListCategoriesUseCaseTest
         output.PerPage.Should().Be(input.PerPage);
         output.Total.Should().Be(exampleCategoriesList.Count);
         output.Items.Should().HaveCount(exampleCategoriesList.Count);
+
         foreach (CategoryViewModel outputItem in output.Items)
         {
             var exampleItem = exampleCategoriesList.Find(
@@ -57,8 +63,9 @@ public class ListCategoriesUseCaseTest
     [Trait("Integration/Application", "ListCategories - Use Cases")]
     public async Task SearchReturnsEmptyWhenEmpty()
     {
-        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext();
+        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext(nameDbContext);
         var categoryRepository = new CategoryRepository(dbContext);
+
         var input = new ListCategoriesInputModel(1, 20);
         var useCase = new UseCase.ListCategories(
             categoryRepository
@@ -87,14 +94,17 @@ public class ListCategoriesUseCaseTest
         int expectedQuantityItems
     )
     {
-        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext();
+        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext(nameDbContext);
         var exampleCategoriesList = _fixture.GetExampleCategoriesList(
             quantityCategoriesToGenerate
         );
+
         await dbContext.AddRangeAsync(exampleCategoriesList);
         await dbContext.SaveChangesAsync(CancellationToken.None);
-        var categoryRepository = new CategoryRepository(dbContext);
+
         var input = new ListCategoriesInputModel(page, perPage);
+        var categoryRepository = new CategoryRepository(dbContext);
+
         var useCase = new UseCase.ListCategories(
             categoryRepository
         );
@@ -107,6 +117,7 @@ public class ListCategoriesUseCaseTest
         output.PerPage.Should().Be(input.PerPage);
         output.Total.Should().Be(exampleCategoriesList.Count);
         output.Items.Should().HaveCount(expectedQuantityItems);
+
         foreach (CategoryViewModel outputItem in output.Items)
         {
             var exampleItem = exampleCategoriesList.Find(
@@ -149,13 +160,16 @@ public class ListCategoriesUseCaseTest
             "Sci-fi Robots",
             "Sci-fi Future"
         };
-        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext();
+        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext(nameDbContext);
+
         var exampleCategoriesList = _fixture.GetExampleCategoriesListWithNames(
             categoryNamesList
         );
+
         await dbContext.AddRangeAsync(exampleCategoriesList);
         await dbContext.SaveChangesAsync(CancellationToken.None);
         var categoryRepository = new CategoryRepository(dbContext);
+
         var input = new ListCategoriesInputModel(page, perPage, search);
         var useCase = new UseCase.ListCategories(
             categoryRepository
@@ -169,6 +183,7 @@ public class ListCategoriesUseCaseTest
         output.PerPage.Should().Be(input.PerPage);
         output.Total.Should().Be(expectedQuantityTotalItems);
         output.Items.Should().HaveCount(expectedQuantityItemsReturned);
+
         foreach (CategoryViewModel outputItem in output.Items)
         {
             var exampleItem = exampleCategoriesList.Find(
@@ -196,11 +211,13 @@ public class ListCategoriesUseCaseTest
         string order
     )
     {
-        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext();
         var exampleCategoriesList = _fixture.GetExampleCategoriesList(10);
+        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext(nameDbContext);
+
         await dbContext.AddRangeAsync(exampleCategoriesList);
         await dbContext.SaveChangesAsync(CancellationToken.None);
         var categoryRepository = new CategoryRepository(dbContext);
+
         var useCaseOrder = order == "asc" ? SearchOrder.Asc : SearchOrder.Desc;
         var input = new ListCategoriesInputModel(1, 20, "", orderBy, useCaseOrder);
         var useCase = new UseCase.ListCategories(
@@ -214,12 +231,14 @@ public class ListCategoriesUseCaseTest
             input.Sort,
             input.Dir
         );
+
         output.Should().NotBeNull();
         output.Items.Should().NotBeNull();
         output.Page.Should().Be(input.Page);
         output.PerPage.Should().Be(input.PerPage);
         output.Total.Should().Be(exampleCategoriesList.Count);
         output.Items.Should().HaveCount(exampleCategoriesList.Count);
+
         for (int indice = 0; indice < expectedOrderedList.Count; indice++)
         {
             var outputItem = output.Items[indice];

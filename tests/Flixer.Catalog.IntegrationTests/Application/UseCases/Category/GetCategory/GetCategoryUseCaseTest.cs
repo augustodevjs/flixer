@@ -1,16 +1,18 @@
-﻿using Flixer.Catalog.Application.Dtos.InputModel.Category;
-using Flixer.Catalog.Application.Exceptions;
+﻿using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
+using Flixer.Catalog.Common.Tests.Fixture.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using UseCase = Flixer.Catalog.Application.UseCases.Category;
 
 namespace Flixer.Catalog.IntegrationTests.Application.UseCases.Category.GetCategory;
 
-[Collection(nameof(GetCategoryTestFixture))]
+[Collection(nameof(CategoryTestFixture))]
 public class GetCategoryUseCaseTest
 {
-    private readonly GetCategoryTestFixture _fixture;
+    private readonly CategoryTestFixture _fixture;
+    public const string nameDbContext = "integration-tests-db";
 
-    public GetCategoryUseCaseTest(GetCategoryTestFixture fixture)
+    public GetCategoryUseCaseTest(CategoryTestFixture fixture)
     {
         _fixture = fixture;
     }
@@ -19,8 +21,8 @@ public class GetCategoryUseCaseTest
     [Trait("Integration/Application", "GetCategory - Use Cases")]
     public async Task GetCategory()
     {
-        var dbContext = _fixture.CreateDbContext();
-        var exampleCategory = _fixture.GetExampleCategory();
+        var exampleCategory = _fixture.GetValidCategory();
+        var dbContext = _fixture.CreateDbContext(nameDbContext);
 
         dbContext.Categories.Add(exampleCategory);
         dbContext.SaveChanges();
@@ -44,8 +46,8 @@ public class GetCategoryUseCaseTest
     [Trait("Integration/Application", "GetCategory - Use Cases")]
     public async Task NotFoundExceptionWhenCategoryDoesntExist()
     {
-        var dbContext = _fixture.CreateDbContext();
-        var exampleCategory = _fixture.GetExampleCategory();
+        var exampleCategory = _fixture.GetValidCategory();
+        var dbContext = _fixture.CreateDbContext(nameDbContext);
 
         dbContext.Categories.Add(exampleCategory);
         dbContext.SaveChanges();
