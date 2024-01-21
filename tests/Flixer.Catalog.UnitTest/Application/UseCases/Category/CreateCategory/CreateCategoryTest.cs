@@ -1,17 +1,17 @@
-﻿using Flixer.Catalog.Domain.Exceptions; 
-using Flixer.Catalog.Application.UseCases.Category;
+﻿using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Common.Tests.Fixture.Category;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using UseCase = Flixer.Catalog.Application.UseCases.Category;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.CreateCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.CreateCategory;
 
 [Collection(nameof(CategoryTestFixture))]
-public class CreateCategoryUseCaseTest
+public class CreateCategoryTest
 {
     private readonly CategoryTestFixture _fixture;
 
-    public CreateCategoryUseCaseTest(CategoryTestFixture fixture) =>
+    public CreateCategoryTest(CategoryTestFixture fixture) =>
         _fixture = fixture;
 
     [Fact]
@@ -21,7 +21,7 @@ public class CreateCategoryUseCaseTest
         var unityOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
 
-        var useCase = new CreateCategory(repositoryMock.Object, unityOfWorkMock.Object);
+        var useCase = new UseCase.CreateCategory(repositoryMock.Object, unityOfWorkMock.Object);
 
         var input = _fixture.GetInputCreate();
 
@@ -49,7 +49,7 @@ public class CreateCategoryUseCaseTest
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
 
-        var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
+        var useCase = new UseCase.CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
         var input = new CreateCategoryInputModel(_fixture.GetValidCategoryName());
 
@@ -77,7 +77,7 @@ public class CreateCategoryUseCaseTest
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
 
-        var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
+        var useCase = new UseCase.CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
         var input = new CreateCategoryInputModel(_fixture.GetValidCategoryName(), _fixture.GetValidCategoryDescription());
 
@@ -106,14 +106,14 @@ public class CreateCategoryUseCaseTest
         MemberType = typeof(DataGenerator)
      )]
     public async void UseCase_ShouldThrowError_WhenMethodHandleIsCalledWithInvalidInputs(
-        CreateCategoryInputModel input, 
+        CreateCategoryInputModel input,
         string exceptionMessage
     )
     {
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var repositoryMock = _fixture.GetRepositoryMock();
 
-        var useCase = new CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
+        var useCase = new UseCase.CreateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
         Func<Task> task = async () => await useCase.Handle(input, CancellationToken.None);
 

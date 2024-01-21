@@ -16,7 +16,7 @@ public class GenreTest
     [Trait("Domain", "Genre - Aggregates")]
     public void Genre_ShouldHaveExpectedProperties_WhenInstantiated()
     {
-        var genreName = _fixture.GetValidName();
+        var genreName = _fixture.GetValidGenreName();
 
         var datetimeBefore = DateTime.Now;
 
@@ -51,7 +51,7 @@ public class GenreTest
     [InlineData(false)]
     public void Genre_ShouldThrowError_WhenInstantiatedWithIsActive(bool isActive)
     {
-        var genreName = _fixture.GetValidName();
+        var genreName = _fixture.GetValidGenreName();
 
         var datetimeBefore = DateTime.Now;
 
@@ -109,7 +109,7 @@ public class GenreTest
     public void Genre_ShouldUpdate_WhenMethodUpdateIsCalledWithParameters()
     {
         var genre = _fixture.GetExampleGenre();
-        var newName = _fixture.GetValidName();
+        var newName = _fixture.GetValidGenreName();
 
         var oldIsActive = genre.IsActive;
 
@@ -173,7 +173,7 @@ public class GenreTest
     {
         var exampleGuid = Guid.NewGuid();
         var genre = _fixture.GetExampleGenre(
-            categoriesIdsList: new List<Guid>()
+            categoriesIds: new List<Guid>()
             {
                 Guid.NewGuid(),
                 Guid.NewGuid(),
@@ -194,7 +194,7 @@ public class GenreTest
     public void Genre_ShouldRemoveAllCategories_WhenMethodRemoveAllCategoriesIsCalled()
     {
         var genre = _fixture.GetExampleGenre(
-            categoriesIdsList: new List<Guid>()
+            categoriesIds: new List<Guid>()
             {
                 Guid.NewGuid(),
                 Guid.NewGuid(),

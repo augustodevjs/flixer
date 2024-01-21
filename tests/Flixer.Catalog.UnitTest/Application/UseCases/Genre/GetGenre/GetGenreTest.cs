@@ -1,16 +1,17 @@
-﻿//using Flixer.Catalog.Application.Dtos.InputModel.Genre;
-//using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
-//using Flixer.Catalog.Application.Exceptions;
+﻿//using Flixer.Catalog.Application.Exceptions;
+//using Flixer.Catalog.Common.Tests.Fixture.Genre;
 //using Flixer.Catalog.Application.UseCases.Genre;
+//using Flixer.Catalog.Application.Dtos.ViewModel.Genre;
+//using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 
 //namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.GetGenreUseCase;
 
-//[Collection(nameof(GetGenreTestFixture))]
-//public class GetGenreUseCaseTest
+//[Collection(nameof(GenreTestFixture))]
+//public class GetGenreTest
 //{
-//    private readonly GetGenreTestFixture _fixture;
+//    private readonly GenreTestFixture _fixture;
 
-//    public GetGenreUseCaseTest(GetGenreTestFixture fixture)
+//    public GetGenreTest(GenreTestFixture fixture)
 //        => _fixture = fixture;
 
 //    [Fact]

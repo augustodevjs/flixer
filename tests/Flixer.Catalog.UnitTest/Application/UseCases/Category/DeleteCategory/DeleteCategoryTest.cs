@@ -1,17 +1,17 @@
 ﻿using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Application.UseCases.Category;
 using Flixer.Catalog.Common.Tests.Fixture.Category;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using UseCase = Flixer.Catalog.Application.UseCases.Category;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.DeleteCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.DeleteCategory;
 
 [Collection(nameof(CategoryTestFixture))]
-public class DeleteCategoryUseCaseTest
+public class DeleteCategoryTest
 {
     private readonly CategoryTestFixture _fixture;
 
-    public DeleteCategoryUseCaseTest(CategoryTestFixture fixture) =>
+    public DeleteCategoryTest(CategoryTestFixture fixture) =>
         _fixture = fixture;
 
     [Fact]
@@ -29,7 +29,7 @@ public class DeleteCategoryUseCaseTest
 
         var input = new DeleteCategoryInputModel(categoryExample.Id);
 
-        var useCase = new DeleteCategory(
+        var useCase = new UseCase.DeleteCategory(
             repositoryMock.Object,
             unitOfWorkMock.Object
          );
@@ -51,7 +51,7 @@ public class DeleteCategoryUseCaseTest
 
         var input = new DeleteCategoryInputModel(exampleGuid);
 
-        var useCase = new DeleteCategory(
+        var useCase = new UseCase.DeleteCategory(
             repositoryMock.Object,
             unitOfWorkMock.Object);
 

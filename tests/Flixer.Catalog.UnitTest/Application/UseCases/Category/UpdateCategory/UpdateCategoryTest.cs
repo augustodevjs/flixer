@@ -1,19 +1,20 @@
 ﻿using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Common.Tests.Fixture.Category;
-using Flixer.Catalog.Application.UseCases.Category;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using UseCase = Flixer.Catalog.Application.UseCases.Category;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategoryUseCase;
+
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.UpdateCategory;
 
 [Collection(nameof(CategoryTestFixture))]
-public class UpdateCategoryUseCaseTest
+public class UpdateCategoryTest
 {
     private readonly CategoryTestFixture _fixture;
 
-    public UpdateCategoryUseCaseTest(CategoryTestFixture fixture)
+    public UpdateCategoryTest(CategoryTestFixture fixture)
         => _fixture = fixture;
 
     [Theory]
@@ -24,7 +25,7 @@ public class UpdateCategoryUseCaseTest
         MemberType = typeof(DataGenerator)
     )]
     public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalled(
-        DomainEntity.Category exampleCategory, 
+        DomainEntity.Category exampleCategory,
         UpdateCategoryInputModel input
     )
     {
@@ -36,7 +37,7 @@ public class UpdateCategoryUseCaseTest
             It.IsAny<CancellationToken>())
         ).ReturnsAsync(exampleCategory);
 
-        var useCase = new UpdateCategory(
+        var useCase = new UseCase.UpdateCategory(
             repositoryMock.Object,
             unitOfWorkMock.Object
         );
@@ -79,7 +80,7 @@ public class UpdateCategoryUseCaseTest
             It.IsAny<CancellationToken>())
         ).ReturnsAsync(exampleCategory);
 
-        var useCase = new UpdateCategory(
+        var useCase = new UseCase.UpdateCategory(
             repositoryMock.Object,
             unitOfWorkMock.Object
         );
@@ -104,7 +105,7 @@ public class UpdateCategoryUseCaseTest
         MemberType = typeof(DataGenerator)
     )]
     public async Task UseCase_ShouldUpdateCategory_WhenMethodHandleIsCalledWithOnlyName(
-        DomainEntity.Category exampleCategory, 
+        DomainEntity.Category exampleCategory,
         UpdateCategoryInputModel exampleInput
     )
     {
@@ -121,7 +122,7 @@ public class UpdateCategoryUseCaseTest
             It.IsAny<CancellationToken>())
         ).ReturnsAsync(exampleCategory);
 
-        var useCase = new UpdateCategory(
+        var useCase = new UseCase.UpdateCategory(
             repositoryMock.Object,
             unitOfWorkMock.Object
         );
@@ -145,7 +146,7 @@ public class UpdateCategoryUseCaseTest
         var repositoryMock = _fixture.GetRepositoryMock();
         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
-        var useCase = new UpdateCategory(repositoryMock.Object, unitOfWorkMock.Object);
+        var useCase = new UseCase.UpdateCategory(repositoryMock.Object, unitOfWorkMock.Object);
 
         var task = async () => await useCase.Handle(input, CancellationToken.None);
 
@@ -165,7 +166,7 @@ public class UpdateCategoryUseCaseTest
         MemberType = typeof(DataGenerator)
     )]
     public async Task UseCase_ShouldThrowError_WhenCantUpdateCategory(
-        UpdateCategoryInputModel input, 
+        UpdateCategoryInputModel input,
         string expectedExceptionMessage
     )
     {
@@ -180,7 +181,7 @@ public class UpdateCategoryUseCaseTest
             It.IsAny<CancellationToken>())
         ).ReturnsAsync(exampleCategory);
 
-        var useCase = new UpdateCategory(
+        var useCase = new UseCase.UpdateCategory(
             repositoryMock.Object,
             unitOfWorkMock.Object
         );

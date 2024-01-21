@@ -1,16 +1,17 @@
-﻿//using Flixer.Catalog.Application.Dtos.InputModel.Genre;
-//using Flixer.Catalog.Application.Exceptions;
+﻿//using Flixer.Catalog.Application.Exceptions;
 //using Flixer.Catalog.Application.UseCases.Genre;
+//using Flixer.Catalog.Common.Tests.Fixture.Genre;
 //using DomainEntity = Flixer.Catalog.Domain.Entities;
+//using Flixer.Catalog.Application.Dtos.InputModel.Genre;
 
 //namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.DeleteGenreUseCase;
 
-//[Collection(nameof(DeleteGenreTestFixture))]
-//public class DeleteGenreUseCaseTest
+//[Collection(nameof(GenreTestFixture))]
+//public class DeleteGenreTest
 //{
-//    private readonly DeleteGenreTestFixture _fixture;
+//    private readonly GenreTestFixture _fixture;
 
-//    public DeleteGenreUseCaseTest(DeleteGenreTestFixture fixture)
+//    public DeleteGenreTest(GenreTestFixture fixture)
 //        => _fixture = fixture;
 
 //    [Fact]

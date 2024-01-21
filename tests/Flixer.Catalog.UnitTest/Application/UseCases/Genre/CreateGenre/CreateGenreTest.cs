@@ -1,16 +1,17 @@
-﻿//using Flixer.Catalog.Application.Exceptions;
+﻿//using Flixer.Catalog.Domain.Exceptions;
+//using Flixer.Catalog.Application.Exceptions;
+//using Flixer.Catalog.Common.Tests.Fixture.Genre;
 //using Flixer.Catalog.Application.UseCases.Genre;
-//using Flixer.Catalog.Domain.Exceptions;
 //using DomainEntity = Flixer.Catalog.Domain.Entities;
 
 //namespace Flixer.Catalog.UnitTest.Application.UseCases.Genre.CreateGenreUseCase;
 
-//[Collection(nameof(CreateGenreTestFixture))]
-//public class CreateGenreUseCaseTest
+//[Collection(nameof(GenreTestFixture))]
+//public class CreateGenreTest
 //{
-//    private readonly CreateGenreTestFixture _fixture;
+//    private readonly GenreTestFixture _fixture;
 
-//    public CreateGenreUseCaseTest(CreateGenreTestFixture fixture)
+//    public CreateGenreTest(GenreTestFixture fixture)
 //        => _fixture = fixture;
 
 //    [Fact]
@@ -27,7 +28,7 @@
 //            categoryRepositoryMock.Object
 //        );
 
-//        var input = _fixture.GetExampleInput();
+//        var input = _fixture.GetGenreCreateInput();
 
 //        var datetimeBefore = DateTime.Now;
 
@@ -53,7 +54,7 @@
 //    public async Task UseCase_ShouldCreateGenre_WhenMethodHandleIsCalledWithRelatedCategories()
 //    {
 //        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
-//        var input = _fixture.GetExampleInputWithCategories();
+//        var input = _fixture.GetGenreCreateInputWithCategories();
 //        var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
 //        var categoryRepositoryMock = _fixture.GetCategoryRepositoryMock();
 
@@ -86,7 +87,7 @@
 //    public async Task UseCase_ShouldThrowError_WhenRelatedCategoryNotFound()
 //    {
 //        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
-//        var input = _fixture.GetExampleInputWithCategories();
+//        var input = _fixture.GetGenreCreateInputWithCategories();
 //        var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
 //        var categoryRepositoryMock = _fixture.GetCategoryRepositoryMock();
 
@@ -123,7 +124,7 @@
 //    [InlineData("  ")]
 //    public async Task UseCase_ShouldThrowErro_WhenNameIsInvalid(string name)
 //    {
-//        var input = _fixture.GetExampleInput(name);
+//        var input = _fixture.GetGenreCreateInput(name);
 //        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 //        var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
 //        var categoryRepositoryMock = _fixture.GetCategoryRepositoryMock();

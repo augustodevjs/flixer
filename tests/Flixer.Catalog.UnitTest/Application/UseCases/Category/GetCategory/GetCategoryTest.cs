@@ -1,16 +1,16 @@
 ﻿using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Application.UseCases.Category;
 using Flixer.Catalog.Common.Tests.Fixture.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using UseCase = Flixer.Catalog.Application.UseCases.Category;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategory;
 
 [Collection(nameof(CategoryTestFixture))]
-public class GetCategoryUseCaseTest
+public class GetCategoryTest
 {
     private readonly CategoryTestFixture _fixture;
 
-    public GetCategoryUseCaseTest(CategoryTestFixture fixture) => _fixture = fixture;
+    public GetCategoryTest(CategoryTestFixture fixture) => _fixture = fixture;
 
     [Fact]
     [Trait("Application", "GetCategory - Use Cases")]
@@ -25,7 +25,7 @@ public class GetCategoryUseCaseTest
         )).ReturnsAsync(exampleCategory);
 
         var input = new GetCategoryInputModel(exampleCategory.Id);
-        var useCase = new GetCategory(repositoryMock.Object);
+        var useCase = new UseCase.GetCategory(repositoryMock.Object);
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
@@ -50,7 +50,7 @@ public class GetCategoryUseCaseTest
         var exampleGuid = Guid.NewGuid();
 
         var input = new GetCategoryInputModel(exampleGuid);
-        var useCase = new GetCategory(repositoryMock.Object);
+        var useCase = new UseCase.GetCategory(repositoryMock.Object);
 
         var task = async () => await useCase.Handle(input, CancellationToken.None);
 

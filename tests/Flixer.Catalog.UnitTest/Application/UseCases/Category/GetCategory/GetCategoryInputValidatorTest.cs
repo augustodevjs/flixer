@@ -1,7 +1,7 @@
 ﻿using Flixer.Catalog.Common.Tests.Fixture.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategoryUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.GetCategory;
 
 [Collection(nameof(CategoryTestFixture))]
 public class GetCategoryInputValidatorTest

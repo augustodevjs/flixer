@@ -5,14 +5,14 @@ using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 
-namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategoriesUseCase;
+namespace Flixer.Catalog.UnitTest.Application.UseCases.Category.ListCategories;
 
 [Collection(nameof(CategoryTestFixture))]
-public class ListCategoriesUseCase
+public class ListCategories
 {
     private readonly CategoryTestFixture _fixture;
 
-    public ListCategoriesUseCase(CategoryTestFixture fixture)
+    public ListCategories(CategoryTestFixture fixture)
         => _fixture = fixture;
 
     [Fact]
@@ -41,7 +41,7 @@ public class ListCategoriesUseCase
             It.IsAny<CancellationToken>()
         )).ReturnsAsync(outputRepositorySearch);
 
-        var useCase = new ListCategories(repositoryMock.Object);
+        var useCase = new Catalog.Application.UseCases.Category.ListCategories(repositoryMock.Object);
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
@@ -100,7 +100,7 @@ public class ListCategoriesUseCase
             It.IsAny<CancellationToken>()
         )).ReturnsAsync(outputRepositorySearch);
 
-        var useCase = new ListCategories(repositoryMock.Object);
+        var useCase = new Catalog.Application.UseCases.Category.ListCategories(repositoryMock.Object);
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
@@ -154,7 +154,7 @@ public class ListCategoriesUseCase
             It.IsAny<CancellationToken>()
         )).ReturnsAsync(outputRepositorySearch);
 
-        var useCase = new ListCategories(repositoryMock.Object);
+        var useCase = new Catalog.Application.UseCases.Category.ListCategories(repositoryMock.Object);
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
