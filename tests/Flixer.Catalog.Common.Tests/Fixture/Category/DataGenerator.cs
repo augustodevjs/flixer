@@ -114,7 +114,7 @@ public class DataGenerator
 
         for (int indice = 0; indice < times; indice++)
         {
-            var exampleCategory = fixture.GetInputUpdate();
+            var exampleCategory = fixture.GetValidCategory();
             var exampleInput = fixture.GetInputUpdate(exampleCategory.Id);
 
             yield return new object[] {
