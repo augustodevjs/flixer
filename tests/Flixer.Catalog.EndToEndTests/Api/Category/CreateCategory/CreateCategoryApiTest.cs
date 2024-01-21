@@ -27,7 +27,7 @@ public class CreateCategoryApiTest
         var dbCategory = await _fixture.Persistence.GetById(output!.Id);
 
         response!.Should().NotBeNull();
-        response!.StatusCode.Should().Be(HttpStatusCode.Created);
+        response!.StatusCode.Should().Be((HttpStatusCode) StatusCodes.Status201Created);
 
         output.Should().NotBeNull();
         output.Id.Should().NotBeEmpty();
@@ -58,7 +58,7 @@ public class CreateCategoryApiTest
         var (response, output) = await _fixture.ApiClient.Post<ProblemDetails>("/categories", input);
 
         response!.Should().NotBeNull();
-        response!.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
+        response!.StatusCode.Should().Be((HttpStatusCode) StatusCodes.Status422UnprocessableEntity);
 
         output.Should().NotBeNull();
         output!.Detail.Should().Be(expectedDetails);

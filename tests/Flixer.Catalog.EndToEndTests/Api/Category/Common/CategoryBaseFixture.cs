@@ -1,4 +1,5 @@
 ﻿using Flixer.Catalog.EndToEndTests.Base;
+using DomainEntity = Flixer.Catalog.Domain.Entities;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.Common;
 
@@ -59,5 +60,10 @@ public class CategoryBaseFixture : BaseFixture
         var tooShortName = Faker.Commerce.ProductName().Substring(0, 2);
 
         return tooShortName;
+    }
+
+    public DomainEntity.Category GetExampleCategory()
+    {
+        return new(GetValidCategoryName(), GetValidCategoryDescription(), GetRandomBoolean());
     }
 }
