@@ -1,7 +1,7 @@
-using Flixer.Catalog.Application.Dtos.InputModel.Category;
-using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 
 namespace Flixer.Catalog.Api.Controllers;
 
@@ -25,5 +25,14 @@ public class CategoriesController : ControllerBase
         var output = await _mediator.Send(input, cancellationToken);
         
         return CreatedAtAction(nameof(Create), new { output.Id }, output);
+    }
+
+    [HttpGet("{id:guid}")]
+    [ProducesResponseType(typeof(CategoryViewModel), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetById([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        var output = await _mediator.Send(new GetCategoryInputModel(id), cancellationToken);
+
+        return Ok(output);
     }
 }

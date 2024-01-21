@@ -17,7 +17,7 @@ public class CreateCategoryApiTest
     }
 
     [Fact]
-    [Trait("EndToEnd/API", "Category - Endpoints")]
+    [Trait("EndToEnd/API", "Category/Create - Endpoints")]
     public async Task EndToEnd_ShouldCreateCategory_WhenCalledHttpPostMethod()
     {
         var input = _fixture.GetExampleInput();
@@ -45,7 +45,7 @@ public class CreateCategoryApiTest
     }
 
     [Theory]
-    [Trait("EndToEnd/API", "Category - Endpoints")]
+    [Trait("EndToEnd/API", "Category/Create - Endpoints")]
     [MemberData(
         nameof(CreateCategoryApiTestDataGenerator.GetInvalidInputs),
         MemberType = typeof(CreateCategoryApiTestDataGenerator)

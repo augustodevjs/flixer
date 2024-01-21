@@ -65,6 +65,28 @@ public class CategoryTestFixture : BaseFixture
         return category;
     }).ToList();
 
+    public List<DomainEntity.Category> CloneCategoriesListOrdered(
+       List<DomainEntity.Category> categoriesList,
+       string orderBy,
+       SearchOrder order
+    )
+    {
+        var listClone = new List<DomainEntity.Category>(categoriesList);
+        var orderedEnumerable = (orderBy.ToLower(), order) switch
+        {
+            ("name", SearchOrder.Asc) => listClone.OrderBy(x => x.Name)
+                .ThenBy(x => x.Id),
+            ("name", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Name)
+                .ThenByDescending(x => x.Id),
+            ("id", SearchOrder.Asc) => listClone.OrderBy(x => x.Id),
+            ("id", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Id),
+            ("createdat", SearchOrder.Asc) => listClone.OrderBy(x => x.CreatedAt),
+            ("createdat", SearchOrder.Desc) => listClone.OrderByDescending(x => x.CreatedAt),
+            _ => listClone.OrderBy(x => x.Name).ThenBy(x => x.Id),
+        };
+        return orderedEnumerable.ToList();
+    }
+
     public CreateCategoryInputModel GetInputCreate()
     {
         return new(
@@ -72,6 +94,48 @@ public class CategoryTestFixture : BaseFixture
             GetValidCategoryDescription(), 
             GetRandomBoolean()
         );
+    }
+
+    public CreateCategoryInputModel GetInvalidCreateInputShortName()
+    {
+        var invalidInputShortName = GetInputCreate();
+        invalidInputShortName.Name = invalidInputShortName.Name[..2];
+
+        return invalidInputShortName;
+    }
+
+    public CreateCategoryInputModel GetInvaliCreatedInputTooLongName()
+    {
+        var invalidInputTooLongName = GetInputCreate();
+        var tooLongNameForCategory = Faker.Commerce.ProductName();
+
+        while (tooLongNameForCategory.Length <= 255)
+            tooLongNameForCategory = $"{tooLongNameForCategory} {Faker.Commerce.ProductName()}";
+
+        invalidInputTooLongName.Name = tooLongNameForCategory;
+
+        return invalidInputTooLongName;
+    }
+
+    public CreateCategoryInputModel GetInvalidCreateInputNull()
+    {
+        var invalidInputDescriptionNull = GetInputCreate();
+        invalidInputDescriptionNull.Description = null!;
+
+        return invalidInputDescriptionNull;
+    }
+
+    public CreateCategoryInputModel GetInvalidCreateInputTooLongDescription()
+    {
+        var invalidInputTooLongDescription = GetInputCreate();
+        var tooLongDescriptionForCategory = Faker.Commerce.ProductDescription();
+
+        while (tooLongDescriptionForCategory.Length <= 10000)
+            tooLongDescriptionForCategory = $"{tooLongDescriptionForCategory} {Faker.Commerce.ProductDescription()}";
+
+        invalidInputTooLongDescription.Description = tooLongDescriptionForCategory;
+
+        return invalidInputTooLongDescription;
     }
 
     public UpdateCategoryInputModel GetInputUpdate(Guid? id = null)
@@ -118,48 +182,6 @@ public class CategoryTestFixture : BaseFixture
         return invalidInputTooLongDescription;
     }
 
-    public CreateCategoryInputModel GetInvalidCreateInputShortName()
-    {
-        var invalidInputShortName = GetInputCreate();
-        invalidInputShortName.Name = invalidInputShortName.Name[..2];
-
-        return invalidInputShortName;
-    }
-
-    public CreateCategoryInputModel GetInvaliCreatedInputTooLongName()
-    {
-        var invalidInputTooLongName = GetInputCreate();
-        var tooLongNameForCategory = Faker.Commerce.ProductName();
-
-        while (tooLongNameForCategory.Length <= 255)
-            tooLongNameForCategory = $"{tooLongNameForCategory} {Faker.Commerce.ProductName()}";
-
-        invalidInputTooLongName.Name = tooLongNameForCategory;
-
-        return invalidInputTooLongName;
-    }
-
-    public CreateCategoryInputModel GetInvalidCreateInputNull()
-    {
-        var invalidInputDescriptionNull = GetInputCreate();
-        invalidInputDescriptionNull.Description = null!;
-
-        return invalidInputDescriptionNull;
-    }
-
-    public CreateCategoryInputModel GetInvalidCreateInputTooLongDescription()
-    {
-        var invalidInputTooLongDescription = GetInputCreate();
-        var tooLongDescriptionForCategory = Faker.Commerce.ProductDescription();
-
-        while (tooLongDescriptionForCategory.Length <= 10000)
-            tooLongDescriptionForCategory = $"{tooLongDescriptionForCategory} {Faker.Commerce.ProductDescription()}";
-
-        invalidInputTooLongDescription.Description = tooLongDescriptionForCategory;
-
-        return invalidInputTooLongDescription;
-    }
-
     public ListCategoriesInputModel GetListInput()
     {
         var random = new Random();
@@ -172,27 +194,5 @@ public class CategoryTestFixture : BaseFixture
             dir: random.Next(0, 10) > 5 ?
                 SearchOrder.Asc : SearchOrder.Desc
         );
-    }
-
-    public List<DomainEntity.Category> CloneCategoriesListOrdered(
-       List<DomainEntity.Category> categoriesList,
-       string orderBy,
-       SearchOrder order
-   )
-    {
-        var listClone = new List<DomainEntity.Category>(categoriesList);
-        var orderedEnumerable = (orderBy.ToLower(), order) switch
-        {
-            ("name", SearchOrder.Asc) => listClone.OrderBy(x => x.Name)
-                .ThenBy(x => x.Id),
-            ("name", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Name)
-                .ThenByDescending(x => x.Id),
-            ("id", SearchOrder.Asc) => listClone.OrderBy(x => x.Id),
-            ("id", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Id),
-            ("createdat", SearchOrder.Asc) => listClone.OrderBy(x => x.CreatedAt),
-            ("createdat", SearchOrder.Desc) => listClone.OrderByDescending(x => x.CreatedAt),
-            _ => listClone.OrderBy(x => x.Name).ThenBy(x => x.Id),
-        };
-        return orderedEnumerable.ToList();
     }
 }
