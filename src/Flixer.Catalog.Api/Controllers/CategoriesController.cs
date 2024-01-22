@@ -29,10 +29,20 @@ public class CategoriesController : ControllerBase
 
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(CategoryViewModel), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById([FromRoute] Guid id, CancellationToken cancellationToken)
     {
         var output = await _mediator.Send(new GetCategoryInputModel(id), cancellationToken);
 
         return Ok(output);
+    }
+
+    [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> Delete([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(new DeleteCategoryInputModel(id), cancellationToken);
+
+        return NoContent();
     }
 }
