@@ -10,11 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      UNIT_TESTS_FLIXER: ../tests/Flixer.Catalog.UnitTest/Flixer.Catalog.UnitTest.csproj
-      INTEGRATION_TESTS_FLIXER: ../tests/Flixer.Catalog.IntegrationTests/Flixer.Catalog.IntegrationTests.csproj
-      ENDTOEND_TESTS_FLIXER: ../tests/Flixer.Catalog.EndToEndTests/Flixer.Catalog.EndToEndTests.csproj
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -30,14 +25,5 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
 
-      - name: Run Unit Tests
-        run: dotnet test --no-build --verbosity normal ${{ env.UNIT_TESTS_FLIXER }}
-        working-directory: tests/Flixer.Catalog.UnitTest
-
-      - name: Run Integration Tests
-        run: dotnet test --no-build --verbosity normal ${{ env.INTEGRATION_TESTS_FLIXER }}
-        working-directory: tests/Flixer.Catalog.IntegrationTests
-
-      - name: Run End-to-End Tests
-        run: dotnet test --no-build --verbosity normal ${{ env.ENDTOEND_TESTS_FLIXER }}
-        working-directory: tests/Flixer.Catalog.EndToEndTests
+      - name: Run Tests
+        run: dotnet test --no-build --verbosity normal
