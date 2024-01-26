@@ -84,7 +84,8 @@ public class CategoryTestFixture : BaseFixture
             ("createdat", SearchOrder.Desc) => listClone.OrderByDescending(x => x.CreatedAt),
             _ => listClone.OrderBy(x => x.Name).ThenBy(x => x.Id),
         };
-        return orderedEnumerable.ToList();
+
+        return orderedEnumerable.ThenBy(x => x.CreatedAt).ToList();
     }
 
     public CreateCategoryInputModel GetInputCreate()

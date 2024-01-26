@@ -160,8 +160,8 @@ public class ListCategoriesUseCaseTest
             "Sci-fi Robots",
             "Sci-fi Future"
         };
-        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext(nameDbContext);
 
+        FlixerCatalogDbContext dbContext = _fixture.CreateDbContext(nameDbContext);
         var exampleCategoriesList = _fixture.GetExampleCategoriesListWithNames(
             categoryNamesList
         );

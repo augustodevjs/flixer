@@ -35,8 +35,8 @@ public class UpdateCategory : IUpdateCategory
             else
                 category.Deactivate();
 
-        await _unitOfWork.Commit(cancellationToken);
         await _categoryRepository.Update(category, cancellationToken);
+        await _unitOfWork.Commit(cancellationToken);
 
         return CategoryViewModel.FromCategory(category);
     }

@@ -7,7 +7,7 @@ using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 namespace Flixer.Catalog.EndToEndTests.Api.Category.CreateCategory;
 
 [Collection(nameof(CreateCategoryApiTestFixture))]
-public class CreateCategoryApiTest
+public class CreateCategoryApiTest : IDisposable
 {
     private readonly CreateCategoryApiTestFixture _fixture;
 
@@ -66,4 +66,7 @@ public class CreateCategoryApiTest
         output!.Title.Should().Be("One or more validation errors ocurred");
         output.Status.Should().Be((int)StatusCodes.Status422UnprocessableEntity);
     }
+
+    public void Dispose() 
+        => _fixture.CleanPersistence();  
 }

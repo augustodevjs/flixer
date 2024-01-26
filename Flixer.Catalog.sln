@@ -21,7 +21,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flixer.Catalog.EndToEndTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flixer.Catalog.Api", "src\Flixer.Catalog.Api\Flixer.Catalog.Api.csproj", "{1C29DDC1-F190-4E14-BA3C-F5429D1BD38B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flixer.Catalog.Common.Tests", "tests\Flixer.Catalog.Common.Tests\Flixer.Catalog.Common.Tests.csproj", "{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flixer.Catalog.Common.Tests", "tests\Flixer.Catalog.Common.Tests\Flixer.Catalog.Common.Tests.csproj", "{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "env", "env", "{A1DAF102-6EFF-4B2F-BF5E-D7605952804E}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

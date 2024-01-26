@@ -6,7 +6,7 @@ using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 namespace Flixer.Catalog.EndToEndTests.Api.Category.GetCategory;
 
 [Collection(nameof(GetCategoryApiTestFixture))]
-public class GetCategoryApiTest
+public class GetCategoryApiTest : IDisposable
 {
     private readonly GetCategoryApiTestFixture _fixture;
 
@@ -56,4 +56,7 @@ public class GetCategoryApiTest
         output.Status.Should().Be((int)StatusCodes.Status404NotFound);
         output!.Detail.Should().Be($"Category '{randomGuid}' not found.");
     }
+
+    public void Dispose()
+        => _fixture.CleanPersistence();
 }

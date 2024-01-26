@@ -31,4 +31,11 @@
     <ProjectReference Include="..\..\src\Flixer.Catalog.Infra.Data.EF\Flixer.Catalog.Infra.Data.EF.csproj" />
   </ItemGroup>
 
+    <ItemGroup>
+	    <None Update="xunit.runner.json">
+		    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    </None>
+    </ItemGroup>
+
+
 </Project>

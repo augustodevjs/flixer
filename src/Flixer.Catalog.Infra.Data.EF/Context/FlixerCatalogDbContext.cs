@@ -1,6 +1,6 @@
-﻿using Flixer.Catalog.Domain.Entities;
+﻿using System.Reflection;
+using Flixer.Catalog.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace Flixer.Catalog.Infra.Data.EF.Context;
 

@@ -23,4 +23,10 @@ public class CategoryPersistence
         await _context.Categories.AddAsync(category);
         await _context.SaveChangesAsync();
     }
+
+    public async Task InsertList(List<DomainEntity.Category> categories)
+    {
+        await _context.Categories.AddRangeAsync(categories);
+        await _context.SaveChangesAsync();
+    }
 }
