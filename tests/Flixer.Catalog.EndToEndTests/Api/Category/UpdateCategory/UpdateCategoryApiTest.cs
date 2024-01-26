@@ -1,179 +1,179 @@
-﻿//using System.Net;
-//using Microsoft.AspNetCore.Mvc;
-//using Microsoft.AspNetCore.Http;
-//using Flixer.Catalog.Application.Dtos.ViewModel.Category;
-//using Flixer.Catalog.Application.Dtos.InputModel.Category;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Flixer.Catalog.Application.Dtos.ViewModel.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
-//namespace Flixer.Catalog.EndToEndTests.Api.Category.UpdateCategory;
+namespace Flixer.Catalog.EndToEndTests.Api.Category.UpdateCategory;
 
-//[Collection(nameof(UpdateCategoryApiTestFixture))]
-//public class UpdateCategoryApiTest : IDisposable
-//{
-//    private readonly UpdateCategoryApiTestFixture _fixture;
+[Collection(nameof(UpdateCategoryApiTestFixture))]
+public class UpdateCategoryApiTest : IDisposable
+{
+    private readonly UpdateCategoryApiTestFixture _fixture;
 
-//    public UpdateCategoryApiTest(UpdateCategoryApiTestFixture fixture)
-//        => _fixture = fixture;
+    public UpdateCategoryApiTest(UpdateCategoryApiTestFixture fixture)
+        => _fixture = fixture;
 
-//    [Fact]
-//    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
-//    public async void EndToEnd_ShouldUpdateCategory_WhenCalledHttpPutMethod()
-//    {
-//        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
-//        await _fixture.Persistence.InsertList(exampleCategoriesList);
+    [Fact]
+    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
+    public async void EndToEnd_ShouldUpdateCategory_WhenCalledHttpPutMethod()
+    {
+        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        await _fixture.Persistence.InsertList(exampleCategoriesList);
 
-//        var exampleCategory = exampleCategoriesList[10];
+        var exampleCategory = exampleCategoriesList[10];
 
-//        var dbCategory = await _fixture.Persistence.GetById(exampleCategory.Id);
+        var input = _fixture.GetExampleInput(exampleCategory.Id);
 
-//        var input = _fixture.GetExampleInput(exampleCategory.Id);
+        var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
+            $"/categories/{exampleCategory.Id}",
+            input
+        );
 
-//        var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
-//            $"/categories/{exampleCategory.Id}",
-//            input
-//        );
+        var dbCategory = await _fixture.Persistence.GetById(exampleCategory.Id);
 
-//        response.Should().NotBeNull();
-//        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status200OK);
+        response.Should().NotBeNull();
+        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status200OK);
 
-//        output.Should().NotBeNull();
-//        output!.Name.Should().Be(input.Name);
-//        output!.Id.Should().Be(exampleCategory.Id);
-//        output.Description.Should().Be(input.Description);
-//        output.IsActive.Should().Be((bool)input.IsActive!);
+        output.Should().NotBeNull();
+        output!.Name.Should().Be(input.Name);
+        output!.Id.Should().Be(exampleCategory.Id);
+        output.Description.Should().Be(input.Description);
+        output.IsActive.Should().Be((bool)input.IsActive!);
 
-//        dbCategory.Should().NotBeNull();
-//        dbCategory!.Name.Should().Be(input.Name);
-//        dbCategory.Description.Should().Be(input.Description);
-//        dbCategory.IsActive.Should().Be((bool)input.IsActive!);
-//    }
+        dbCategory.Should().NotBeNull();
+        dbCategory!.Name.Should().Be(input.Name);
+        dbCategory.Description.Should().Be(input.Description);
+        dbCategory.IsActive.Should().Be((bool)input.IsActive!);
+    }
 
-//    [Fact]
-//    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
-//    public async void EndToEnd_ShouldUpdateCategoryOnlyName_WhenCalledHttpPutMethod()
-//    {
-//        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
-//        await _fixture.Persistence.InsertList(exampleCategoriesList);
+    [Fact]
+    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
+    public async void EndToEnd_ShouldUpdateCategoryOnlyName_WhenCalledHttpPutMethod()
+    {
+        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        await _fixture.Persistence.InsertList(exampleCategoriesList);
 
-//        var exampleCategory = exampleCategoriesList[10];
+        var exampleCategory = exampleCategoriesList[10];
 
-//        var dbCategory = await _fixture.Persistence.GetById(exampleCategory.Id);
+        var input = new UpdateCategoryInputModel(exampleCategory.Id, _fixture.GetValidCategoryName());
 
-//        var input = new UpdateCategoryInputModel(exampleCategory.Id, _fixture.GetValidCategoryName());
+        var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
+            $"/categories/{exampleCategory.Id}",
+            input
+        );
 
-//        var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
-//            $"/categories/{exampleCategory.Id}",
-//            input
-//        );
+        var dbCategory = await _fixture.Persistence.GetById(exampleCategory.Id);
 
-//        response.Should().NotBeNull();
-//        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status200OK);
+        response.Should().NotBeNull();
+        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status200OK);
 
-//        output.Should().NotBeNull();
-//        output!.Name.Should().Be(input.Name);
-//        output!.Id.Should().Be(exampleCategory.Id);
-//        output.IsActive.Should().Be(exampleCategory.IsActive);
-//        output.Description.Should().Be(exampleCategory.Description);
+        output.Should().NotBeNull();
+        output!.Name.Should().Be(input.Name);
+        output!.Id.Should().Be(exampleCategory.Id);
+        output.IsActive.Should().Be(exampleCategory.IsActive);
+        output.Description.Should().Be(exampleCategory.Description);
 
-//        dbCategory.Should().NotBeNull();
-//        dbCategory!.Name.Should().Be(input.Name);
-//        dbCategory.IsActive.Should().Be(exampleCategory.IsActive);
-//        dbCategory.Description.Should().Be(exampleCategory.Description);
-//    }
+        dbCategory.Should().NotBeNull();
+        dbCategory!.Name.Should().Be(input.Name);
+        dbCategory.IsActive.Should().Be(exampleCategory.IsActive);
+        dbCategory.Description.Should().Be(exampleCategory.Description);
+    }
 
-//    [Fact]
-//    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
-//    public async void EndToEnd_ShouldUpdateCategoryNameAndDescription_WhenCalledHttpPutMethod()
-//    {
-//        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
-//        await _fixture.Persistence.InsertList(exampleCategoriesList);
+    [Fact]
+    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
+    public async void EndToEnd_ShouldUpdateCategoryNameAndDescription_WhenCalledHttpPutMethod()
+    {
+        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        await _fixture.Persistence.InsertList(exampleCategoriesList);
 
-//        var exampleCategory = exampleCategoriesList[10];
+        var exampleCategory = exampleCategoriesList[10];
 
-//        var dbCategory = await _fixture.Persistence.GetById(exampleCategory.Id);
+        var input = new UpdateCategoryInputModel(
+            exampleCategory.Id,
+            _fixture.GetValidCategoryName(),
+            null,
+            _fixture.GetValidCategoryDescription()
+        );
 
-//        var input = new UpdateCategoryInputModel(
-//            exampleCategory.Id,
-//            _fixture.GetValidCategoryName(),
-//            null,
-//            _fixture.GetValidCategoryDescription()
-//        );
+        var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
+            $"/categories/{exampleCategory.Id}",
+            input
+        );
 
-//        var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
-//            $"/categories/{exampleCategory.Id}",
-//            input
-//        );
+        var dbCategory = await _fixture.Persistence.GetById(exampleCategory.Id);
 
-//        response.Should().NotBeNull();
-//        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status200OK);
+        response.Should().NotBeNull();
+        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status200OK);
 
-//        output.Should().NotBeNull();
-//        output!.Name.Should().Be(input.Name);
-//        output!.Id.Should().Be(exampleCategory.Id);
-//        output.Description.Should().Be(input.Description);
-//        output.IsActive.Should().Be(exampleCategory.IsActive);
+        output.Should().NotBeNull();
+        output!.Name.Should().Be(input.Name);
+        output!.Id.Should().Be(exampleCategory.Id);
+        output.Description.Should().Be(input.Description);
+        output.IsActive.Should().Be(exampleCategory.IsActive);
 
-//        dbCategory.Should().NotBeNull();
-//        dbCategory!.Name.Should().Be(input.Name);
-//        dbCategory.Description.Should().Be(input.Description);
-//        dbCategory.IsActive.Should().Be(exampleCategory.IsActive);
-//    }
+        dbCategory.Should().NotBeNull();
+        dbCategory!.Name.Should().Be(input.Name);
+        dbCategory.Description.Should().Be(input.Description);
+        dbCategory.IsActive.Should().Be(exampleCategory.IsActive);
+    }
 
 
-//    [Fact]
-//    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
-//    public async void EndToEnd_ShouldThrowError_WhenCategoryNotFound()
-//    {
-//        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
-//        await _fixture.Persistence.InsertList(exampleCategoriesList);
+    [Fact]
+    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
+    public async void EndToEnd_ShouldThrowError_WhenCategoryNotFound()
+    {
+        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        await _fixture.Persistence.InsertList(exampleCategoriesList);
 
-//        var randomGuid = Guid.NewGuid();
+        var randomGuid = Guid.NewGuid();
 
-//        var input = _fixture.GetExampleInput(randomGuid);
+        var input = _fixture.GetExampleInput(randomGuid);
 
-//        var (response, output) = await _fixture.ApiClient.Put<ProblemDetails>(
-//            $"/categories/{randomGuid}",
-//            input
-//        );
+        var (response, output) = await _fixture.ApiClient.Put<ProblemDetails>(
+            $"/categories/{randomGuid}",
+            input
+        );
 
-//        response.Should().NotBeNull();
-//        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status404NotFound);
+        response.Should().NotBeNull();
+        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status404NotFound);
 
-//        output.Should().NotBeNull();
-//        output!.Type.Should().Be("NotFound");
-//        output!.Title.Should().Be("Not Found");
-//        output.Status.Should().Be((int)StatusCodes.Status404NotFound);
-//        output.Detail.Should().Be($"Category '{randomGuid}' not found.");
-//    }
+        output.Should().NotBeNull();
+        output!.Type.Should().Be("NotFound");
+        output!.Title.Should().Be("Not Found");
+        output.Status.Should().Be((int)StatusCodes.Status404NotFound);
+        output.Detail.Should().Be($"Category '{randomGuid}' not found.");
+    }
 
-//    [Theory(DisplayName = nameof(ErrorWhenCantInstantiateAggregate))]
-//    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
-//    [MemberData(
-//        nameof(UpdateCategoryApiTestDataGenerator.GetInvalidInputs),
-//        MemberType = typeof(UpdateCategoryApiTestDataGenerator)
-//    )]
-//    public async void ErrorWhenCantInstantiateAggregate(UpdateCategoryInputModel input, string expectedDetail)
-//    {
-//        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
-//        await _fixture.Persistence.InsertList(exampleCategoriesList);
+    [Theory(DisplayName = nameof(ErrorWhenCantInstantiateAggregate))]
+    [Trait("EndToEnd/API", "Category/Update - Endpoints")]
+    [MemberData(
+        nameof(UpdateCategoryApiTestDataGenerator.GetInvalidInputs),
+        MemberType = typeof(UpdateCategoryApiTestDataGenerator)
+    )]
+    public async void ErrorWhenCantInstantiateAggregate(UpdateCategoryInputModel input, string expectedDetail)
+    {
+        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        await _fixture.Persistence.InsertList(exampleCategoriesList);
 
-//        var exampleCategory = exampleCategoriesList[10];
-//        input.Id = exampleCategory.Id;
+        var exampleCategory = exampleCategoriesList[10];
+        input.Id = exampleCategory.Id;
 
-//        var (response, output) = await _fixture.ApiClient.Put<ProblemDetails>(
-//            $"/categories/{exampleCategory.Id}",
-//            input
-//        );
+        var (response, output) = await _fixture.ApiClient.Put<ProblemDetails>(
+            $"/categories/{exampleCategory.Id}",
+            input
+        );
 
-//        response.Should().NotBeNull();
-//        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status422UnprocessableEntity);
+        response.Should().NotBeNull();
+        response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status422UnprocessableEntity);
 
-//        output.Should().NotBeNull();
-//        output!.Detail.Should().Be(expectedDetail);
-//        output.Type.Should().Be("UnprocessableEntity");
-//        output!.Title.Should().Be("One or more validation errors ocurred");
-//        output.Status.Should().Be((int)StatusCodes.Status422UnprocessableEntity);
-//    }
+        output.Should().NotBeNull();
+        output!.Detail.Should().Be(expectedDetail);
+        output.Type.Should().Be("UnprocessableEntity");
+        output!.Title.Should().Be("One or more validation errors ocurred");
+        output.Status.Should().Be((int)StatusCodes.Status422UnprocessableEntity);
+    }
 
-//    public void Dispose()
-//    => _fixture.CleanPersistence();
-//}
+    public void Dispose()
+    => _fixture.CleanPersistence();
+}
