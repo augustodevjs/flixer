@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
+using Flixer.Catalog.EndToEndTests.Exntesions;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.ListCategories;
 
@@ -43,7 +44,7 @@ public class ListCategories : IDisposable
             exampleItem.Should().NotBeNull();
             outputItem.Name.Should().Be(exampleItem!.Name);
             outputItem.IsActive.Should().Be(exampleItem.IsActive);
-            outputItem.CreatedAt.Should().Be(exampleItem.CreatedAt);
+            outputItem.CreatedAt.TrimMilisseconds().Should().Be(exampleItem.CreatedAt.TrimMilisseconds());
             outputItem.Description.Should().Be(exampleItem.Description);
         }
     }
@@ -89,7 +90,7 @@ public class ListCategories : IDisposable
             exampleItem.Should().NotBeNull();
             outputItem.Name.Should().Be(exampleItem!.Name);
             outputItem.IsActive.Should().Be(exampleItem.IsActive);
-            outputItem.CreatedAt.Should().Be(exampleItem.CreatedAt);
+            outputItem.CreatedAt.TrimMilisseconds().Should().Be(exampleItem.CreatedAt.TrimMilisseconds());
             outputItem.Description.Should().Be(exampleItem.Description);
         }
     }
@@ -130,7 +131,7 @@ public class ListCategories : IDisposable
             exampleItem.Should().NotBeNull();
             outputItem.Name.Should().Be(exampleItem!.Name);
             outputItem.IsActive.Should().Be(exampleItem.IsActive);
-            outputItem.CreatedAt.Should().Be(exampleItem.CreatedAt);
+            outputItem.CreatedAt.TrimMilisseconds().Should().Be(exampleItem.CreatedAt.TrimMilisseconds());
             outputItem.Description.Should().Be(exampleItem.Description);
         }
     }
@@ -188,7 +189,7 @@ public class ListCategories : IDisposable
             exampleItem.Should().NotBeNull();
             outputItem.Name.Should().Be(exampleItem!.Name);
             outputItem.IsActive.Should().Be(exampleItem.IsActive);
-            outputItem.CreatedAt.Should().Be(exampleItem.CreatedAt);
+            outputItem.CreatedAt.TrimMilisseconds().Should().Be(exampleItem.CreatedAt.TrimMilisseconds());
             outputItem.Description.Should().Be(exampleItem.Description);
         }
     }
@@ -243,7 +244,7 @@ public class ListCategories : IDisposable
             outputItem.Id.Should().Be(exampleItem.Id);
             outputItem.Name.Should().Be(exampleItem!.Name);
             outputItem.IsActive.Should().Be(exampleItem.IsActive);
-            outputItem.CreatedAt.Should().Be(exampleItem.CreatedAt);
+            outputItem.CreatedAt.TrimMilisseconds().Should().Be(exampleItem.CreatedAt.TrimMilisseconds());
             outputItem.Description.Should().Be(exampleItem.Description);
         }
     }

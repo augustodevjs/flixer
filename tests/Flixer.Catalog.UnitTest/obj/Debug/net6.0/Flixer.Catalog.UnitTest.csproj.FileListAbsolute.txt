@@ -263,3 +263,7 @@ C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Flixer.Catalog.Common.Tests.pdb
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Flixer.Catalog.Infra.Data.EF.dll
 C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Flixer.Catalog.Infra.Data.EF.pdb
+C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\joaoa\source\repos\flixer\tests\Flixer.Catalog.UnitTest\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll

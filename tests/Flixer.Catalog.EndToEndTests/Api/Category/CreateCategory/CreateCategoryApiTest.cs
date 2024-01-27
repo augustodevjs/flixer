@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.CreateCategory;
 
