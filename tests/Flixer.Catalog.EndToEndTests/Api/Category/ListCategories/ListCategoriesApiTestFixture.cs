@@ -22,10 +22,10 @@ public class ListCategoriesApiTestFixture : CategoryBaseFixture
    }).ToList();
 
     public List<DomainEntity.Category> CloneCategoriesListOrdered(
-        string orderBy,
-        SearchOrder order,
-        List<DomainEntity.Category> categoriesList
-    )
+      List<DomainEntity.Category> categoriesList,
+      string orderBy,
+      SearchOrder order
+  )
     {
         var listClone = new List<DomainEntity.Category>(categoriesList);
 

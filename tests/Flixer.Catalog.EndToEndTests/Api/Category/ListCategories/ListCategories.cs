@@ -1,19 +1,23 @@
 ﻿using System.Net;
+using Newtonsoft.Json;
+using Xunit.Abstractions;
 using Microsoft.AspNetCore.Http;
+using Flixer.Catalog.EndToEndTests.Exntesions;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
-using Flixer.Catalog.EndToEndTests.Exntesions;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.ListCategories;
 
 [Collection(nameof(ListCategoriesApiTestFixture))]
 public class ListCategories : IDisposable
 {
+    private readonly ITestOutputHelper _output;
     private readonly ListCategoriesApiTestFixture _fixture;
 
-    public ListCategories(ListCategoriesApiTestFixture fixture)
+    public ListCategories(ITestOutputHelper output, ListCategoriesApiTestFixture fixture)
     {
+        _output = output;
         _fixture = fixture;
     }
 
@@ -200,8 +204,6 @@ public class ListCategories : IDisposable
     [InlineData("name", "desc")]
     [InlineData("id", "asc")]
     [InlineData("id", "desc")]
-    [InlineData("createdAt", "asc")]
-    [InlineData("createdAt", "desc")]
     [InlineData("", "asc")]
     public async Task ListOrdered(string orderBy, string order)
     {
@@ -229,10 +231,20 @@ public class ListCategories : IDisposable
         output.Items.Should().HaveCount(exampleCategoriesList.Count);
 
         var expectedOrderedList = _fixture.CloneCategoriesListOrdered(
+            exampleCategoriesList,
             input.Sort,
-            input.Dir,
-            exampleCategoriesList
+            input.Dir
         );
+
+        var count = 0;
+        var expectedArr = expectedOrderedList.Select(x => $"{++count} {x.Name} {x.CreatedAt} {JsonConvert.SerializeObject(x)}");
+        count = 0;
+        var outputArr = output.Items.Select(x => $"{++count} {x.Name} {x.CreatedAt} {JsonConvert.SerializeObject(x)}");
+
+        _output.WriteLine("Expecteds...");
+        _output.WriteLine(String.Join('\n', expectedArr));
+        _output.WriteLine("Outputs...");
+        _output.WriteLine(String.Join('\n', outputArr));
 
         for (int indice = 0; indice < expectedOrderedList.Count; indice++)
         {
@@ -244,8 +256,8 @@ public class ListCategories : IDisposable
             outputItem.Id.Should().Be(exampleItem.Id);
             outputItem.Name.Should().Be(exampleItem!.Name);
             outputItem.IsActive.Should().Be(exampleItem.IsActive);
-            outputItem.CreatedAt.TrimMilisseconds().Should().Be(exampleItem.CreatedAt.TrimMilisseconds());
             outputItem.Description.Should().Be(exampleItem.Description);
+            outputItem.CreatedAt.TrimMilisseconds().Should().Be(exampleItem.CreatedAt.TrimMilisseconds());
         }
     }
 

@@ -44,4 +44,4 @@ jobs:
           context: .
           file: ./src/Flixer.Catalog.Api/Dockerfile
           push: true
-          tags: jaugustodev/flixer.catalog.docker:latest
+          tags: jaugustodev/flixer.catalog.docker:v2

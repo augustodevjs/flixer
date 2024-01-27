@@ -66,18 +66,17 @@ public class CategoryTestFixture : BaseFixture
     }).ToList();
 
     public List<DomainEntity.Category> CloneCategoriesListOrdered(
-       List<DomainEntity.Category> categoriesList,
-       string orderBy,
-       SearchOrder order
-    )
+           List<DomainEntity.Category> categoriesList,
+           string orderBy,
+           SearchOrder order
+       )
     {
         var listClone = new List<DomainEntity.Category>(categoriesList);
+
         var orderedEnumerable = (orderBy.ToLower(), order) switch
         {
-            ("name", SearchOrder.Asc) => listClone.OrderBy(x => x.Name)
-                .ThenBy(x => x.Id),
-            ("name", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Name)
-                .ThenByDescending(x => x.Id),
+            ("name", SearchOrder.Asc) => listClone.OrderBy(x => x.Name).ThenBy(x => x.Id),
+            ("name", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Name).ThenByDescending(x => x.Id),
             ("id", SearchOrder.Asc) => listClone.OrderBy(x => x.Id),
             ("id", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Id),
             ("createdat", SearchOrder.Asc) => listClone.OrderBy(x => x.CreatedAt),
@@ -85,7 +84,7 @@ public class CategoryTestFixture : BaseFixture
             _ => listClone.OrderBy(x => x.Name).ThenBy(x => x.Id),
         };
 
-        return orderedEnumerable.ThenBy(x => x.CreatedAt).ToList();
+        return orderedEnumerable.ToList();
     }
 
     public CreateCategoryInputModel GetInputCreate()

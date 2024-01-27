@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: flixer-server
+  labels:
+    app: flixer-server
+spec:
+  selector:
+    matchLabels:
+      app: flixer-server
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: flixer-server
+    spec:
+      containers:
+      - name: flixer-server
+        image: "jaugustodev/flixer.catalog.docker:latest"

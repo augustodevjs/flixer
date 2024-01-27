@@ -16,6 +16,7 @@ public class CategoriesController : ControllerBase
     {
         _mediator = mediator;
     }
+    
     [HttpGet]
     [ProducesResponseType(typeof(ListCategoriesViewModel), StatusCodes.Status200OK)]
     public async Task<IActionResult> List(
@@ -36,7 +37,6 @@ public class CategoriesController : ControllerBase
         if (!String.IsNullOrWhiteSpace(search)) input.Search = search;
 
         var output = await _mediator.Send(input, cancellationToken);
-
         return Ok(output);
     }
 
@@ -46,7 +46,6 @@ public class CategoriesController : ControllerBase
     public async Task<IActionResult> GetById([FromRoute] Guid id, CancellationToken cancellationToken)
     {
         var output = await _mediator.Send(new GetCategoryInputModel(id), cancellationToken);
-
         return Ok(output);
     }
 
@@ -57,7 +56,6 @@ public class CategoriesController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateCategoryInputModel input, CancellationToken cancellationToken)
     {
         var output = await _mediator.Send(input, cancellationToken);
-        
         return CreatedAtAction(nameof(Create), new { output.Id }, output);
     }
 
@@ -68,7 +66,6 @@ public class CategoriesController : ControllerBase
     public async Task<IActionResult> Update([FromBody] UpdateCategoryInputModel input, CancellationToken cancellationToken)
     {
         var output = await _mediator.Send(input, cancellationToken);
-
         return Ok(output);
     }
 
@@ -79,7 +76,6 @@ public class CategoriesController : ControllerBase
     public async Task<IActionResult> Delete([FromRoute] Guid id, CancellationToken cancellationToken)
     {
         await _mediator.Send(new DeleteCategoryInputModel(id), cancellationToken);
-
         return NoContent();
     }
 }

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "flixer-server"
+  labels:
+    app: flixer-server
+spec:
+  containers:
+  - name: flixer-server
+    image: "jaugustodev/flixer.catalog.docker:latest"
