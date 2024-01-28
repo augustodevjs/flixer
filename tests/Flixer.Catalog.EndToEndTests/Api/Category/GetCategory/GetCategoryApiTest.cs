@@ -9,7 +9,7 @@ namespace Flixer.Catalog.EndToEndTests.Api.Category.GetCategory;
 public class GetCategoryApiTest : IDisposable
 {
     private readonly GetCategoryApiTestFixture _fixture;
-
+    
     public GetCategoryApiTest(GetCategoryApiTestFixture fixture)
     {
         _fixture = fixture;

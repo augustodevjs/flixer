@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: flixer-server
-  replicas: 2
+  replicas: 10
   template:
     metadata:
       labels:
@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
       - name: flixer-server
-        image: "jaugustodev/flixer.catalog.docker:v5"
+        image: "jaugustodev/flixer.catalog.docker:v2"
