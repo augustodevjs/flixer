@@ -1,11 +1,15 @@
-version: '3.4'
+version: "3.4"
 
 services:
-    flixer.catalog.db:
-        container_name: catalogdb
-        hostname: catalogdb
-        image: mysql
-        ports: 
-            - 3001:3306
-        environment:
-            MYSQL_ROOT_PASSWORD: Flixer
+  flixer.catalog.db:
+    container_name: catalogdb
+    hostname: catalogdb
+    image: mysql
+    ports:
+      - 3001:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: Flixer
+networks:
+  default:
+    external:
+      name: flixer-catalog-service-network

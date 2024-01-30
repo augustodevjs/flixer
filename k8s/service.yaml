@@ -5,8 +5,9 @@ metadata:
 spec:
   selector:
     app: flixer-server
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-  - name: flixer-server-port
+  - name: flixer-server
     port: 80
+    targetPort: 80
     protocol: TCP

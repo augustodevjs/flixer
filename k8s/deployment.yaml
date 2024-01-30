@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
       - name: flixer-server
-        image: "jaugustodev/flixer.catalog.docker:v2"
+        image: "jaugustodev/flixer.catalog.docker:latest"

@@ -16,7 +16,7 @@ public class CategoriesController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+
     [HttpGet]
     [ProducesResponseType(typeof(ListCategoriesViewModel), StatusCodes.Status200OK)]
     public async Task<IActionResult> List(
@@ -37,6 +37,7 @@ public class CategoriesController : ControllerBase
         if (!String.IsNullOrWhiteSpace(search)) input.Search = search;
 
         var output = await _mediator.Send(input, cancellationToken);
+
         return Ok(output);
     }
 
