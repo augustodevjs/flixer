@@ -79,4 +79,10 @@ public class CategoriesController : ControllerBase
         await _mediator.Send(new DeleteCategoryInputModel(id), cancellationToken);
         return NoContent();
     }
+
+    [HttpGet("env")]
+    public async Task<IActionResult> Env()
+    {
+        return Ok(Environment.GetEnvironmentVariable("ENV"));
+    }
 }

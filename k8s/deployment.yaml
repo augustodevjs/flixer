@@ -17,3 +17,6 @@ spec:
       containers:
       - name: flixer-server
         image: "jaugustodev/flixer.catalog.docker:latest"
+        envFrom:
+          - configMapRef:
+              name: flixer-server-env
