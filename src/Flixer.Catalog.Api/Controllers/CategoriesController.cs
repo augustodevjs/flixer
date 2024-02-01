@@ -80,9 +80,12 @@ public class CategoriesController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("env")]
-    public async Task<IActionResult> Env()
+    [HttpGet("secret")]
+    public async Task<IActionResult> Secret()
     {
-        return Ok(Environment.GetEnvironmentVariable("ENV"));
+        var user = Environment.GetEnvironmentVariable("USER");
+        var password = Environment.GetEnvironmentVariable("PASSWORD");
+
+        return Ok(new { user, password });
     }
 }
