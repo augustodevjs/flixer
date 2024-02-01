@@ -20,3 +20,5 @@ spec:
         envFrom:
           - configMapRef:
               name: flixer-server-env
+          - secretRef:
+              name: flixer-server-secret

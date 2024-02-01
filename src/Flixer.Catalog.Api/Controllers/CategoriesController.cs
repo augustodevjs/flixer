@@ -79,13 +79,4 @@ public class CategoriesController : ControllerBase
         await _mediator.Send(new DeleteCategoryInputModel(id), cancellationToken);
         return NoContent();
     }
-
-    [HttpGet("secret")]
-    public async Task<IActionResult> Secret()
-    {
-        var user = Environment.GetEnvironmentVariable("USER");
-        var password = Environment.GetEnvironmentVariable("PASSWORD");
-
-        return Ok(new { user, password });
-    }
 }
