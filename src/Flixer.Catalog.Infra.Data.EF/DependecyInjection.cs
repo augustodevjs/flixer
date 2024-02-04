@@ -12,8 +12,8 @@ public static class DependecyInjection
 {
     public static void AddInfraData(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbConnection(configuration);
         services.AddRepositories();
+        services.AddDbConnection(configuration);
     }
 
     private static void AddRepositories(this IServiceCollection services)

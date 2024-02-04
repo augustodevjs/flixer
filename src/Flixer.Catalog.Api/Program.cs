@@ -4,7 +4,7 @@ using Flixer.Catalog.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddUseCases();
+builder.Services.AddUseCases(); 
 builder.Services.AddInfraData(builder.Configuration);
 builder.Services.AddAndConfigureControllers();
 
