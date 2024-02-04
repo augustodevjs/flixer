@@ -3,19 +3,20 @@ using Newtonsoft.Json;
 using Xunit.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Flixer.Catalog.EndToEndTests.Exntesions;
+using Flixer.Catalog.EndToEndTests.Api.Category.Common;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.ListCategories;
 
-[Collection(nameof(ListCategoriesApiTestFixture))]
+[Collection(nameof(CategoryFixture))]
 public class ListCategories : IDisposable
 {
     private readonly ITestOutputHelper _output;
-    private readonly ListCategoriesApiTestFixture _fixture;
+    private readonly CategoryFixture _fixture;
 
-    public ListCategories(ITestOutputHelper output, ListCategoriesApiTestFixture fixture)
+    public ListCategories(ITestOutputHelper output, CategoryFixture fixture)
     {
         _output = output;
         _fixture = fixture;

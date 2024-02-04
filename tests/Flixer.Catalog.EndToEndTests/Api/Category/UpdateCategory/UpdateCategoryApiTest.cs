@@ -1,17 +1,18 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Flixer.Catalog.EndToEndTests.Api.Category.Common;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.UpdateCategory;
 
-[Collection(nameof(UpdateCategoryApiTestFixture))]
+[Collection(nameof(CategoryFixture))]
 public class UpdateCategoryApiTest : IDisposable
 {
-    private readonly UpdateCategoryApiTestFixture _fixture;
+    private readonly CategoryFixture _fixture;
 
-    public UpdateCategoryApiTest(UpdateCategoryApiTestFixture fixture)
+    public UpdateCategoryApiTest(CategoryFixture fixture)
         => _fixture = fixture;
 
     [Fact]
@@ -23,7 +24,7 @@ public class UpdateCategoryApiTest : IDisposable
 
         var exampleCategory = exampleCategoriesList[10];
 
-        var input = _fixture.GetExampleInput(exampleCategory.Id);
+        var input = _fixture.GetExampleUpdateInput(exampleCategory.Id);
 
         var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
             $"/categories/{exampleCategory.Id}",
@@ -128,7 +129,7 @@ public class UpdateCategoryApiTest : IDisposable
 
         var randomGuid = Guid.NewGuid();
 
-        var input = _fixture.GetExampleInput(randomGuid);
+        var input = _fixture.GetExampleUpdateInput(randomGuid);
 
         var (response, output) = await _fixture.ApiClient.Put<ProblemDetails>(
             $"/categories/{randomGuid}",
@@ -148,8 +149,8 @@ public class UpdateCategoryApiTest : IDisposable
     [Theory(DisplayName = nameof(ErrorWhenCantInstantiateAggregate))]
     [Trait("EndToEnd/API", "Category/Update - Endpoints")]
     [MemberData(
-        nameof(UpdateCategoryApiTestDataGenerator.GetInvalidInputs),
-        MemberType = typeof(UpdateCategoryApiTestDataGenerator)
+        nameof(DataGenerator.GetInvalidUpdateInputs),
+        MemberType = typeof(DataGenerator)
     )]
     public async void ErrorWhenCantInstantiateAggregate(UpdateCategoryInputModel input, string expectedDetail)
     {

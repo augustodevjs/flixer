@@ -1,13 +1,20 @@
 ﻿using Flixer.Catalog.EndToEndTests.Base;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.Common;
 
-public class CategoryBaseFixture : BaseFixture
+[CollectionDefinition(nameof(CategoryFixture))]
+public class CategoryFixtureCollection : ICollectionFixture<CategoryFixture>
+{
+}
+
+public class CategoryFixture : BaseFixture
 {
     public CategoryPersistence Persistence;
 
-    public CategoryBaseFixture() : base()
+    public CategoryFixture() : base()
     {
         Persistence = new CategoryPersistence(CreateDbContext());
     }
@@ -75,4 +82,52 @@ public class CategoryBaseFixture : BaseFixture
                 GetRandomBoolean()
             )
         ).ToList();
+
+    public CreateCategoryInputModel GetExampleCreateInput()
+    => new(
+        GetValidCategoryName(),
+        GetValidCategoryDescription(),
+        GetRandomBoolean()
+    );
+
+    public List<DomainEntity.Category> GetExampleCategoriesListWithNames(List<string> names)
+        => names.Select(name =>
+        {
+            var category = GetExampleCategory();
+            category.Update(name);
+
+            return category;
+        }).ToList();
+
+    public List<DomainEntity.Category> CloneCategoriesListOrdered(
+      List<DomainEntity.Category> categoriesList,
+      string orderBy,
+      SearchOrder order
+  )
+    {
+        var listClone = new List<DomainEntity.Category>(categoriesList);
+
+        var orderedEnumerable = (orderBy.ToLower(), order) switch
+        {
+            ("name", SearchOrder.Asc) => listClone.OrderBy(x => x.Name)
+                .ThenBy(x => x.Id),
+            ("name", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Name)
+                .ThenByDescending(x => x.Id),
+            ("id", SearchOrder.Asc) => listClone.OrderBy(x => x.Id),
+            ("id", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Id),
+            ("createdat", SearchOrder.Asc) => listClone.OrderBy(x => x.CreatedAt),
+            ("createdat", SearchOrder.Desc) => listClone.OrderByDescending(x => x.CreatedAt),
+            _ => listClone.OrderBy(x => x.Name).ThenBy(x => x.Id),
+        };
+
+        return orderedEnumerable.ToList();
+    }
+
+    public UpdateCategoryInputModel GetExampleUpdateInput(Guid? id = null)
+    => new(
+        id ?? Guid.NewGuid(),
+        GetValidCategoryName(),
+        GetRandomBoolean(),
+        GetValidCategoryDescription()
+    );
 }

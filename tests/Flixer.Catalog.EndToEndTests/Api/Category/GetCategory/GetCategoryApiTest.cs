@@ -1,16 +1,17 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Flixer.Catalog.EndToEndTests.Api.Category.Common;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.GetCategory;
 
-[Collection(nameof(GetCategoryApiTestFixture))]
+[Collection(nameof(CategoryFixture))]
 public class GetCategoryApiTest : IDisposable
 {
-    private readonly GetCategoryApiTestFixture _fixture;
+    private readonly CategoryFixture _fixture;
     
-    public GetCategoryApiTest(GetCategoryApiTestFixture fixture)
+    public GetCategoryApiTest(CategoryFixture fixture)
     {
         _fixture = fixture;
     }

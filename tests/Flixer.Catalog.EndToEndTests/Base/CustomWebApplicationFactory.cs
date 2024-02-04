@@ -1,6 +1,6 @@
-﻿using Flixer.Catalog.Infra.Data.EF.Context;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Flixer.Catalog.Infra.Data.EF.Context;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Flixer.Catalog.EndToEndTests.Base;
