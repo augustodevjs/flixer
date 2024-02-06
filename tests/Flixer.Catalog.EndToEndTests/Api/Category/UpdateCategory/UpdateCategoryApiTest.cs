@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Flixer.Catalog.EndToEndTests.Api.Category.Common;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using CommonTests = Flixer.Catalog.Common.Tests.Fixture.Category;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.UpdateCategory;
 
@@ -19,12 +20,12 @@ public class UpdateCategoryApiTest : IDisposable
     [Trait("EndToEnd/API", "Category/Update - Endpoints")]
     public async void EndToEnd_ShouldUpdateCategory_WhenCalledHttpPutMethod()
     {
-        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(20);
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var exampleCategory = exampleCategoriesList[10];
 
-        var input = _fixture.GetExampleUpdateInput(exampleCategory.Id);
+        var input = _fixture.CategoryTest.GetInputUpdate(exampleCategory.Id);
 
         var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
             $"/categories/{exampleCategory.Id}",
@@ -52,12 +53,12 @@ public class UpdateCategoryApiTest : IDisposable
     [Trait("EndToEnd/API", "Category/Update - Endpoints")]
     public async void EndToEnd_ShouldUpdateCategoryOnlyName_WhenCalledHttpPutMethod()
     {
-        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(20);
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var exampleCategory = exampleCategoriesList[10];
 
-        var input = new UpdateCategoryInputModel(exampleCategory.Id, _fixture.GetValidCategoryName());
+        var input = new UpdateCategoryInputModel(exampleCategory.Id, _fixture.CategoryTest.GetValidCategoryName());
 
         var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
             $"/categories/{exampleCategory.Id}",
@@ -85,16 +86,16 @@ public class UpdateCategoryApiTest : IDisposable
     [Trait("EndToEnd/API", "Category/Update - Endpoints")]
     public async void EndToEnd_ShouldUpdateCategoryNameAndDescription_WhenCalledHttpPutMethod()
     {
-        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(20);
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var exampleCategory = exampleCategoriesList[10];
 
         var input = new UpdateCategoryInputModel(
             exampleCategory.Id,
-            _fixture.GetValidCategoryName(),
+            _fixture.CategoryTest.GetValidCategoryName(),
             null,
-            _fixture.GetValidCategoryDescription()
+            _fixture.CategoryTest.GetValidCategoryDescription()
         );
 
         var (response, output) = await _fixture.ApiClient.Put<CategoryViewModel>(
@@ -124,12 +125,12 @@ public class UpdateCategoryApiTest : IDisposable
     [Trait("EndToEnd/API", "Category/Update - Endpoints")]
     public async void EndToEnd_ShouldThrowError_WhenCategoryNotFound()
     {
-        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(20);
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var randomGuid = Guid.NewGuid();
 
-        var input = _fixture.GetExampleUpdateInput(randomGuid);
+        var input = _fixture.CategoryTest.GetInputUpdate(randomGuid);
 
         var (response, output) = await _fixture.ApiClient.Put<ProblemDetails>(
             $"/categories/{randomGuid}",
@@ -149,12 +150,14 @@ public class UpdateCategoryApiTest : IDisposable
     [Theory(DisplayName = nameof(ErrorWhenCantInstantiateAggregate))]
     [Trait("EndToEnd/API", "Category/Update - Endpoints")]
     [MemberData(
-        nameof(DataGenerator.GetInvalidUpdateInputs),
-        MemberType = typeof(DataGenerator)
+        nameof(CommonTests.DataGenerator.GetInvalidUpdateInputs),
+        parameters: 12,
+        MemberType = typeof(CommonTests.DataGenerator)
     )]
     public async void ErrorWhenCantInstantiateAggregate(UpdateCategoryInputModel input, string expectedDetail)
     {
-        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(20);
+
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var exampleCategory = exampleCategoriesList[10];

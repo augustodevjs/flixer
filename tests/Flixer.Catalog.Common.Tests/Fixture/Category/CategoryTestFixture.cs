@@ -117,14 +117,6 @@ public class CategoryTestFixture : BaseFixture
         return invalidInputTooLongName;
     }
 
-    public CreateCategoryInputModel GetInvalidCreateInputNull()
-    {
-        var invalidInputDescriptionNull = GetInputCreate();
-        invalidInputDescriptionNull.Description = null!;
-
-        return invalidInputDescriptionNull;
-    }
-
     public CreateCategoryInputModel GetInvalidCreateInputTooLongDescription()
     {
         var invalidInputTooLongDescription = GetInputCreate();

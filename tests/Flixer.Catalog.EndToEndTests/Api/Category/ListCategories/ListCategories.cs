@@ -28,7 +28,8 @@ public class ListCategories : IDisposable
     {
         var defaultPerPage = 15;
 
-        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(20);
+
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var (response, output) = await _fixture.ApiClient.Get<ListCategoriesViewModel>("/categories");
@@ -72,7 +73,8 @@ public class ListCategories : IDisposable
     [Trait("EndToEnd/API", "Category/List - Endpoints")]
     public async void EndToEnd_ShouldListCategoriesAndTotal_WhenCalledHttpMethod()
     {
-        var exampleCategoriesList = _fixture.GetExampleCategoriesList(20);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(20);
+
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var input = new ListCategoriesInputModel(page: 1, perPage: 5);
@@ -113,7 +115,8 @@ public class ListCategories : IDisposable
         int expectedQuantityItems
     )
     {
-        var exampleCategoriesList = _fixture.GetExampleCategoriesList(quantityCategoriesToGenerate);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(quantityCategoriesToGenerate);
+
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var input = new ListCategoriesInputModel(page, perPage);
@@ -171,7 +174,8 @@ public class ListCategories : IDisposable
             "Sci-fi Future"
         };
 
-        var exampleCategoriesList = _fixture.GetExampleCategoriesListWithNames(categoryNamesList);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesListWithNames(categoryNamesList);
+
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var input = new ListCategoriesInputModel(page, perPage, search);
@@ -208,7 +212,8 @@ public class ListCategories : IDisposable
     [InlineData("", "asc")]
     public async Task ListOrdered(string orderBy, string order)
     {
-        var exampleCategoriesList = _fixture.GetExampleCategoriesList(10);
+        var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(10);
+
         await _fixture.Persistence.InsertList(exampleCategoriesList);
 
         var inputOrder = order == "asc" ? SearchOrder.Asc : SearchOrder.Desc;
@@ -231,7 +236,7 @@ public class ListCategories : IDisposable
         output.Total.Should().Be(exampleCategoriesList.Count);
         output.Items.Should().HaveCount(exampleCategoriesList.Count);
 
-        var expectedOrderedList = _fixture.CloneCategoriesListOrdered(
+        var expectedOrderedList = _fixture.CategoryTest.CloneCategoriesListOrdered(
             exampleCategoriesList,
             input.Sort,
             input.Dir

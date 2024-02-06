@@ -20,7 +20,7 @@ public class GetCategoryApiTest : IDisposable
     [Trait("EndToEnd/API", "Category/Get - Endpoints")]
     public async Task EndToEnd_ShouldGetCategory_WhenCalledHttpGetByIdMethod()
     {
-        var exampleCategory = _fixture.GetExampleCategory();
+        var exampleCategory = _fixture.CategoryTest.GetValidCategory();
 
         await _fixture.Persistence.Insert(exampleCategory);
 
@@ -41,7 +41,7 @@ public class GetCategoryApiTest : IDisposable
     [Trait("EndToEnd/API", "Category/Get - Endpoints")]
     public async Task EndToEnd_ThrowError_WhenDoesntExistCategory()
     {
-        var exampleCategory = _fixture.GetExampleCategory();
+        var exampleCategory = _fixture.CategoryTest.GetValidCategory();
         await _fixture.Persistence.Insert(exampleCategory);
 
         var randomGuid = Guid.NewGuid();

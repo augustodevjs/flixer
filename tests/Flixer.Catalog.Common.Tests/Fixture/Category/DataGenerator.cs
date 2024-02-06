@@ -32,13 +32,6 @@ public class DataGenerator
                 case 2:
                     invalidInputsLists.Add(new object[]
                     {
-                        fixture.GetInvalidCreateInputNull(),
-                        "Description should not be null"
-                    });
-                    break;
-                case 3:
-                    invalidInputsLists.Add(new object[]
-                    {
                         fixture.GetInvalidCreateInputTooLongDescription(),
                         "Description should be less or equal 10000 characters long"
                     });

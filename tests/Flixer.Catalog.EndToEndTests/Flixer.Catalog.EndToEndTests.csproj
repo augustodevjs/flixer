@@ -30,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Flixer.Catalog.Api\Flixer.Catalog.Api.csproj" />
     <ProjectReference Include="..\..\src\Flixer.Catalog.Infra.Data.EF\Flixer.Catalog.Infra.Data.EF.csproj" />
+    <ProjectReference Include="..\Flixer.Catalog.Common.Tests\Flixer.Catalog.Common.Tests.csproj" />
   </ItemGroup>
 
     <ItemGroup>

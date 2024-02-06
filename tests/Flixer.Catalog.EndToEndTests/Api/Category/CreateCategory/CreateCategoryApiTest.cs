@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Flixer.Catalog.EndToEndTests.Api.Category.Common;
 using Flixer.Catalog.Application.Dtos.ViewModel.Category;
 using Flixer.Catalog.Application.Dtos.InputModel.Category;
+using CommonTests = Flixer.Catalog.Common.Tests.Fixture.Category;
 
 namespace Flixer.Catalog.EndToEndTests.Api.Category.CreateCategory;
 
@@ -21,7 +22,7 @@ public class CreateCategoryApiTest : IDisposable
     [Trait("EndToEnd/API", "Category/Create - Endpoints")]
     public async Task EndToEnd_ShouldCreateCategory_WhenCalledHttpPostMethod()
     {
-        var input = _fixture.GetExampleCreateInput();
+        var input = _fixture.CategoryTest.GetValidCategory();
 
         var (response, output) = await _fixture.ApiClient.Post<CategoryViewModel>("/categories", input);
 
@@ -48,8 +49,9 @@ public class CreateCategoryApiTest : IDisposable
     [Theory]
     [Trait("EndToEnd/API", "Category/Create - Endpoints")]
     [MemberData(
-        nameof(DataGenerator.GetInvalidCreateInputs),
-        MemberType = typeof(DataGenerator)
+        nameof(CommonTests.DataGenerator.GetInvalidCreateInputs),
+        parameters: 12,
+        MemberType = typeof(CommonTests.DataGenerator)
     )]
     public async Task EndToEnd_ThrowError_WhenCantInstantieteAggregate(
         CreateCategoryInputModel input,

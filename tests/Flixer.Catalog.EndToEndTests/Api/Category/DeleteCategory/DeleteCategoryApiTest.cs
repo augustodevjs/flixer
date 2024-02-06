@@ -19,7 +19,7 @@ public class DeleteCategoryApiTest : IDisposable
     [Trait("EndToEnd/API", "Category/Delete - Endpoints")]
     public async void EndToEnd_ShouldDeleteCategory_WhenCalledHttpDeleteMethod()
     {
-        var exampleCategory = _fixture.GetExampleCategory();
+        var exampleCategory = _fixture.CategoryTest.GetValidCategory();
 
         await _fixture.Persistence.Insert(exampleCategory);
 
@@ -37,7 +37,7 @@ public class DeleteCategoryApiTest : IDisposable
     [Trait("EndToEnd/API", "Category/Delete - Endpoints")]
     public async Task EndToEnd_ThrowError_WhenDoesntExistCategory()
     {
-        var exampleCategory = _fixture.GetExampleCategory();
+        var exampleCategory = _fixture.CategoryTest.GetValidCategory();
         await _fixture.Persistence.Insert(exampleCategory);
 
         var randomGuid = Guid.NewGuid();
