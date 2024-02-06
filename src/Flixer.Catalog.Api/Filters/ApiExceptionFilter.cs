@@ -1,66 +1,53 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc; 
 using Flixer.Catalog.Domain.Exceptions;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Flixer.Catalog.Application.Exceptions;
 
-namespace Flixer.Catalog.Api.Filters
+namespace Flixer.Catalog.Api.Filters;
+
+public class ApiExceptionFilter : IExceptionFilter
 {
-    public class ApiExceptionFilter : IExceptionFilter
+    private readonly IHostEnvironment _env;
+
+    public ApiExceptionFilter(IHostEnvironment env)
     {
-        private readonly IHostEnvironment _env;
+        _env = env;
+    }
 
-        public ApiExceptionFilter(IHostEnvironment env)
+    public void OnException(ExceptionContext context)
+    {
+        var details = new ProblemDetails();
+        var exception = context.Exception;
+
+        if(_env.IsDevelopment())
         {
-            _env = env;
+            details.Extensions.Add("StackTrace", exception.StackTrace);
         }
 
-        public void OnException(ExceptionContext context)
+        if (exception is EntityValidationException)
         {
-            var details = CreateProblemDetails(context.Exception);
-
-            context.ExceptionHandled = true;
-            context.Result = new ObjectResult(details);
-            context.HttpContext.Response.StatusCode = (int)details.Status!;
+            details.Title = "One or more validation errors ocurred";
+            details.Status = StatusCodes.Status422UnprocessableEntity;
+            details.Type = "UnprocessableEntity";
+            details.Detail = exception!.Message;
+        } 
+        else if (exception is NotFoundException)
+        {
+            details.Title = "Not Found";
+            details.Status = StatusCodes.Status404NotFound;
+            details.Type = "NotFound";
+            details.Detail = exception!.Message;
         }
-
-        private ProblemDetails CreateProblemDetails(Exception exception)
+        else
         {
-            var details = new ProblemDetails();
-
-            if (_env.IsDevelopment())
-            {
-                details.Extensions.Add("StackTrace", exception.StackTrace);
-            }
-
-            SetProblemDetailsByExceptionType(details, exception);
-
-            return details;
-        }
-
-        private static void SetProblemDetailsByExceptionType(ProblemDetails details, Exception exception)
-        {
-            details.Title = exception switch
-            {
-                EntityValidationException => "One or more validation errors occurred",
-                NotFoundException => "Not Found",
-                _ => "An unexpected error occurred"
-            };
-
-            details.Status = exception switch
-            {
-                EntityValidationException => StatusCodes.Status422UnprocessableEntity,
-                NotFoundException => StatusCodes.Status404NotFound,
-                _ => StatusCodes.Status500InternalServerError
-            };
-
-            details.Type = exception switch
-            {
-                EntityValidationException => "UnprocessableEntity",
-                NotFoundException => "NotFound",
-                _ => "UnexpectedError"
-            };
-
+            details.Title = "An unexpected error ocurred";
+            details.Status = StatusCodes.Status422UnprocessableEntity;
+            details.Type = "UnexpectedError";
             details.Detail = exception.Message;
         }
+
+        context.ExceptionHandled = true;
+        context.Result = new ObjectResult(details);
+        context.HttpContext.Response.StatusCode = (int) details.Status;
     }
 }
