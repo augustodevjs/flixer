@@ -18,7 +18,30 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 
+app.UseRouting();
+
 app.UseAuthorization();
+
+var appStartTime = DateTime.UtcNow;
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapGet("/healthz", async context =>
+    {
+        var currentTime = DateTime.UtcNow;
+
+        if ((currentTime - appStartTime).TotalSeconds >= 25)
+        {
+            context.Response.StatusCode = 500;
+            await context.Response.WriteAsync("Internal Server Error");
+        }
+        else
+        {
+            await context.Response.WriteAsync("OK");
+        }
+    });
+});
 
 app.MapControllers();
 

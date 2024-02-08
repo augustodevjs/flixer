@@ -17,6 +17,14 @@ spec:
       containers:
       - name: flixer-server
         image: "jaugustodev/flixer.catalog.docker:latest"
+        livenessProbe: 
+          httpGet:
+            path: /healthz
+            port: 80
+          periodSeconds: 5
+          failureThreshold: 1
+          timeoutSeconds: 1
+          successThreshold: 1
         envFrom:
           - configMapRef:
               name: flixer-server-env
