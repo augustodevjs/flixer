@@ -31,7 +31,7 @@ app.UseEndpoints(endpoints =>
     {
         var currentTime = DateTime.UtcNow;
 
-        if ((currentTime - appStartTime).TotalSeconds >= 25)
+        if ((currentTime - appStartTime).TotalSeconds < 10)
         {
             context.Response.StatusCode = 500;
             await context.Response.WriteAsync("Internal Server Error");
