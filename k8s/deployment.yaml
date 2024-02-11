@@ -17,6 +17,20 @@ spec:
       containers:
       - name: flixer-server
         image: "jaugustodev/flixer.catalog.docker:latest"
+        startupProbe: 
+          httpGet:
+            path: /healthz
+            port: 80
+          periodSeconds: 3
+          failureThreshold: 30
+
+        readinessProbe: 
+          httpGet:
+            path: /healthz
+            port: 80
+          periodSeconds: 3
+          failureThreshold: 1
+
         livenessProbe: 
           httpGet:
             path: /healthz
