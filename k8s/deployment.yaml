@@ -17,6 +17,15 @@ spec:
       containers:
       - name: flixer-server
         image: "jaugustodev/flixer.catalog.docker:latest"
+
+        resources:
+          requests:
+            cpu: "1" 
+            memory: 0.5Gi 
+          limits:
+            cpu: "2" 
+            memory: 1Gi 
+
         startupProbe: 
           httpGet:
             path: /healthz
@@ -39,6 +48,7 @@ spec:
           failureThreshold: 1
           timeoutSeconds: 1
           successThreshold: 1
+
         envFrom:
           - configMapRef:
               name: flixer-server-env
