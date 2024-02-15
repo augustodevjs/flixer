@@ -17,7 +17,6 @@ spec:
       containers:
       - name: flixer-server
         image: "jaugustodev/flixer.catalog.docker:latest"
-
         resources:
           requests:
             cpu: "1" 
@@ -54,3 +53,12 @@ spec:
               name: flixer-server-env
           - secretRef:
               name: flixer-server-secret
+
+        volumeMounts:
+          - mountPath: "/flixer/pvc"
+            name: flixer-server-volume
+
+      volumes:
+        - name: flixer-server-volume
+          persistentVolumeClaim:
+            claimName: flixer-server-pvc
