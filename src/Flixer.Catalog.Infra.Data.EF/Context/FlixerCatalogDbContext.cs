@@ -1,24 +1,20 @@
 ﻿using System.Reflection;
-using Flixer.Catalog.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Domain.Contracts;
 
 namespace Flixer.Catalog.Infra.Data.EF.Context;
 
-public class FlixerCatalogDbContext : DbContext
+public class FlixerCatalogDbContext : DbContext, IUnityOfWork
 {
-    private object options;
-
     public FlixerCatalogDbContext(DbContextOptions<FlixerCatalogDbContext> options) : base(options)
     {
 
     }
 
-    public FlixerCatalogDbContext(object options)
-    {
-        this.options = options;
-    }
-
     public DbSet<Category> Categories { get; set; } = null!;
+    
+    public async Task<bool> Commit() => await SaveChangesAsync() > 0;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

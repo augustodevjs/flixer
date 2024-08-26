@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "gsiFQCjIOfGS/GboIVmKuLOi9Y71Gd8Fvbq1X2DWYNqgVgEktpjYQQiOR6+lG9/17CTUj6+PmpWrNQntqdZ0Rg==",
+  "dgSpecHash": "iZU5iSQRzWc=",
   "success": true,
   "projectFilePath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\joaoa\\.nuget\\packages\\fluentvalidation\\11.9.2\\fluentvalidation.11.9.2.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -46,19 +46,19 @@
           "dependencies": {
             "FluentValidation": {
               "target": "Package",
-              "version": "[11.9.0, )"
+              "version": "[11.9.2, )"
             },
             "MediatR": {
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[12.4.0, )"
             },
-            "MediatR.Extensions.Microsoft.DependencyInjection": {
+            "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[2.2.5, )"
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[8.0.1, )"
             }
           },
           "imports": [
@@ -116,152 +116,10 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Infra.Data.EF\\Flixer.Catalog.Infra.Data.EF.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Infra.Data.EF\\Flixer.Catalog.Infra.Data.EF.csproj",
-        "projectName": "Flixer.Catalog.Infra.Data.EF",
-        "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Infra.Data.EF\\Flixer.Catalog.Infra.Data.EF.csproj",
-        "packagesPath": "C:\\Users\\joaoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Infra.Data.EF\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\joaoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj": {
-                "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Application\\Flixer.Catalog.Application.csproj"
-              },
-              "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
-                "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
+            "FluentValidation": {
               "target": "Package",
-              "version": "[6.0.26, )"
-            },
-            "Microsoft.EntityFrameworkCore.InMemory": {
-              "target": "Package",
-              "version": "[6.0.3, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql": {
-              "target": "Package",
-              "version": "[6.0.2, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.Common.Tests\\Flixer.Catalog.Common.Tests.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.Common.Tests\\Flixer.Catalog.Common.Tests.csproj",
-        "projectName": "Flixer.Catalog.Common.Tests",
-        "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.Common.Tests\\Flixer.Catalog.Common.Tests.csproj",
-        "packagesPath": "C:\\Users\\joaoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.Common.Tests\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\joaoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
-                "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj"
-              },
-              "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Infra.Data.EF\\Flixer.Catalog.Infra.Data.EF.csproj": {
-                "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Infra.Data.EF\\Flixer.Catalog.Infra.Data.EF.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
-          "dependencies": {
-            "Bogus": {
-              "target": "Package",
-              "version": "[35.3.0, )"
-            },
-            "Moq": {
-              "target": "Package",
-              "version": "[4.20.70, )"
+              "version": "[11.9.2, )"
             }
           },
           "imports": [
@@ -313,9 +171,6 @@
               },
               "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj": {
                 "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\src\\Flixer.Catalog.Domain\\Flixer.Catalog.Domain.csproj"
-              },
-              "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.Common.Tests\\Flixer.Catalog.Common.Tests.csproj": {
-                "projectPath": "C:\\Users\\joaoa\\source\\repos\\flixer\\tests\\Flixer.Catalog.Common.Tests\\Flixer.Catalog.Common.Tests.csproj"
               }
             }
           }

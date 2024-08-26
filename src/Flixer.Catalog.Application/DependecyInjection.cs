@@ -1,13 +1,16 @@
-﻿using MediatR;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Flixer.Catalog.Application.UseCases.Category;
 
 namespace Flixer.Catalog.Application;
 
 public static class DependecyInjection
 {
-    public static void AddUseCases(this IServiceCollection services)
+    public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddMediatR(typeof(CreateCategory));
+        services.Configure<ApiBehaviorOptions>(o => o.SuppressModelStateInvalidFilter = true);
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+        return services;
     }
 }

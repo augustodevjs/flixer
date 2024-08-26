@@ -1,4 +1,6 @@
-﻿using Flixer.Catalog.Domain.SeedWork;
+﻿using FluentValidation.Results;
+using Flixer.Catalog.Domain.SeedWork;
+using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Domain.Validation;
 
 namespace Flixer.Catalog.Domain.Entities;
@@ -11,41 +13,46 @@ public class Category : AggregateRoot
     public DateTime CreatedAt { get; private set; }
 
     public Category(string name, string description, bool isActive = true)
-        : base()
     {
         Name = name;
         Description = description;
         IsActive = isActive;
         CreatedAt = DateTime.Now;
 
-        Validate();
+        ValidateAndThrow();
     }
 
     public void Activate()
     {
         IsActive = true;
-        Validate();
+        ValidateAndThrow();
     }
 
     public void Deactivate()
     {
         IsActive = false;
-        Validate();
+        ValidateAndThrow();
     }
 
     public void Update(string name, string? description = null )
     {
         Name = name;
         Description = description ?? Description;
-        Validate();
+        ValidateAndThrow();
     }
 
-    private void Validate()
+    public override bool Validate(out ValidationResult validationResult)
     {
-        DomainValidation.NotNullOrEmpty(Name, nameof(Name));
-        DomainValidation.MinLength(Name, 3, nameof(Name));
-        DomainValidation.MaxLength(Name, 255, nameof(Name));
-        DomainValidation.NotNull(Description, nameof(Description));
-        DomainValidation.MaxLength(Description, 10_000, nameof(Description));
+        validationResult = new CategoryValidator().Validate(this);
+        return validationResult.IsValid;
+    }
+
+    private void ValidateAndThrow()
+    {
+        if (!Validate(out var validationResult))
+        {
+            var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+            throw new EntityValidationException("Category is invalid", errors);
+        }
     }
 }
