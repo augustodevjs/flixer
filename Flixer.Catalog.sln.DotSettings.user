@@ -8,6 +8,16 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ALoggerExtensions_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003F7b65d91392de3e7dfe8363cf4a858f4d564ff6579a6a335c2acfb9983beced_003FLoggerExtensions_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AMock_00601_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003Fa81ee8c4b239a5f464b996b6cb5ab701e2bca7511eb164cb746c7590c3b6b1_003FMock_00601_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ATestInvoker_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003Ff5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8_003FTestInvoker_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=30a17c3f_002D49de_002D4871_002Db3ff_002D23d49d8d11ba/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Command_ShouldDeleteCategory_WhenMethodHandleIsCalled" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3::net6.0::Flixer.Catalog.UnitTest.Application.Category.DeleteCategoryTest.Command_ShouldDeleteCategory_WhenMethodHandleIsCalled&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=51b47158_002D62f8_002D4fc6_002D9307_002Dc3e145d02a8a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Command_ShouldDeleteCategory_WhenMethodHandleIsCalled #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A3CA1D2F-B80B-46C1-B5FD-A0BFE8FFBEE3::net6.0::Flixer.Catalog.UnitTest.Application.Category.DeleteCategoryTest.Command_ShouldDeleteCategory_WhenMethodHandleIsCalled&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=75d36a98_002Def3f_002D4711_002D8133_002Dcb7e861c8f84/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CategoryTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;

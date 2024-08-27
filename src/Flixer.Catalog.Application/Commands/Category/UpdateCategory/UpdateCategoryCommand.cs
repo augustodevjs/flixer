@@ -13,8 +13,8 @@ public class UpdateCategoryCommand : IRequest<CategoryViewModel>
     public UpdateCategoryCommand(
         Guid id,
         string name,
-        bool? isActive = null,
-        string? description = null
+        string description,
+        bool? isActive = null
     )
     {
         Id = id;
