@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Moq;
+using Xunit;
+using Microsoft.Extensions.Logging;
 using Flixer.Catalog.UnitTest.Common;
 using Flixer.Catalog.Domain.Contracts.Repository;
 using Flixer.Catalog.UnitTest.Domain.Fixtures.Category;
@@ -6,7 +8,7 @@ using Flixer.Catalog.Application.Commands.Category.DeleteCategory;
 
 namespace Flixer.Catalog.UnitTest.Application.Fixtures.Category.DeleteCategory;
 
-[CollectionDefinition(nameof(DeleteCategoryCommandFixtureCollection))]
+[CollectionDefinition(nameof(DeleteCategoryCommandFixture))]
 public class DeleteCategoryCommandFixtureCollection : ICollectionFixture<DeleteCategoryCommandFixture>
 {
     

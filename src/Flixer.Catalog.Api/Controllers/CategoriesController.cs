@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Flixer.Catalog.Application.Queries.Category;
+using Flixer.Catalog.Domain.Enums;
+using Flixer.Catalog.Application.Queries.Category.GetCategory;
+using Flixer.Catalog.Application.Queries.Category.ListCategories;
 using Flixer.Catalog.Application.Commands.Category.CreateCategory;
 using Flixer.Catalog.Application.Commands.Category.DeleteCategory;
 using Flixer.Catalog.Application.Commands.Category.UpdateCategory;
@@ -16,6 +18,30 @@ public class CategoriesController : ControllerBase
     public CategoriesController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(ListCategoriesOutput), StatusCodes.Status200OK)]
+    public async Task<IActionResult> List(
+        CancellationToken cancellationToken,
+        [FromQuery] int? page = null,
+        [FromQuery] int? perPage = null,
+        [FromQuery] string? sort = null,
+        [FromQuery] string? search = null,
+        [FromQuery] SearchOrder? dir = null
+    )
+    {
+        var input = new ListCategoriesQuery();
+
+        if (dir is not null) input.Dir = dir.Value;
+        if (page is not null) input.Page = page.Value;
+        if (perPage is not null) input.PerPage = perPage.Value;
+        if (!String.IsNullOrWhiteSpace(sort)) input.Sort = sort;
+        if (!String.IsNullOrWhiteSpace(search)) input.Search = search;
+
+        var output = await _mediator.Send(input, cancellationToken);
+
+        return Ok(output);
     }
 
     [HttpGet("{id:guid}")]

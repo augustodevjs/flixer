@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Flixer.Catalog.Application.Commands.Category.CreateCategory;
 
-namespace Flixer.Catalog.Application.Queries.Category;
+namespace Flixer.Catalog.Application.Queries.Category.GetCategory;
 
 public class GetCategoryQuery : IRequest<CategoryViewModel>
 {

@@ -1,13 +1,11 @@
-using Serilog;
-using Flixer.Catalog.Application;
-using Flixer.Catalog.Infra.Data.EF;
 using Flixer.Catalog.Api.Configuration;
+using Flixer.Catalog.Application.Extensions;
+using Flixer.Catalog.Infra.Data.EF.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddApplication()
-    .ConfigureCulture()
     .AddInfraData(builder.Configuration)
     .AddAndConfigureControllers()
     .AddHealthChecks()
@@ -17,14 +15,9 @@ builder.Host.ConfigureApplicationLogging();
 
 var app = builder.Build();
 
-app.UseSerilogRequestLogging(o =>
-{
-    o.IncludeQueryInRequestPath = true;
-});
-
-app.UseMigrations(app.Services);
-app.UseConfiguredRequestLocalization();
 app.UseDocumentation();
+app.ConfigureRequestLogging();
+app.UseMigrations(app.Services);
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();

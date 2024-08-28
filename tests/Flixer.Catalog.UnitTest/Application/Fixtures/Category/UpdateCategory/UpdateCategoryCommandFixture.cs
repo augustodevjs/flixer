@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Moq;
+using Xunit;
+using Microsoft.Extensions.Logging;
 using Flixer.Catalog.UnitTest.Common;
 using Flixer.Catalog.Domain.Contracts.Repository;
 using Flixer.Catalog.UnitTest.Domain.Fixtures.Category;
@@ -6,7 +8,7 @@ using Flixer.Catalog.Application.Commands.Category.UpdateCategory;
 
 namespace Flixer.Catalog.UnitTest.Application.Fixtures.Category.UpdateCategory;
 
-[CollectionDefinition(nameof(UpdateCategoryCommandFixtureCollection))]
+[CollectionDefinition(nameof(UpdateCategoryCommandFixture))]
 public class UpdateCategoryCommandFixtureCollection : ICollectionFixture<UpdateCategoryCommandFixture>
 {
     

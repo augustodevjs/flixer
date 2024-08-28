@@ -33,7 +33,7 @@ namespace Flixer.Catalog.Application.Commands.Category.DeleteCategory
             
             _logger.LogInformation("Deleting category with ID: {CategoryId}", request.Id);
 
-            _categoryRepository.Delete(category);
+            _categoryRepository.Delete(category!);
 
             await _categoryRepository.UnityOfWork.Commit();
 

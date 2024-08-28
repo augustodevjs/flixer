@@ -1,12 +1,15 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Moq;
+using Xunit;
+using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Flixer.Catalog.Domain.Exceptions;
+using Flixer.Catalog.UnitTest.Helpers;
 using Flixer.Catalog.Application.Commands.Category.CreateCategory;
 using Flixer.Catalog.UnitTest.Application.Fixtures.Category.CreateCategory;
-using Flixer.Catalog.UnitTest.Helpers;
 
 namespace Flixer.Catalog.UnitTest.Application.Category;
 
-[Collection(nameof(CreateCategoryCommandFixtureCollection))]
+[Collection(nameof(CreateCategoryCommandFixture))]
 public class CreateCategoryCommandTest
 {
     private readonly CreateCategoryCommandFixture _fixture;
@@ -79,13 +82,13 @@ public class CreateCategoryCommandTest
     }
     
     [Theory]
-    [Trait("Application", "CreateCategory - Use Cases")]
+    [Trait("Application", "CreateCategory - Command")]
     [MemberData(
         nameof(DataGenerator.GetInvalidCreateInputs),
         parameters: 24,
         MemberType = typeof(DataGenerator)
      )]
-    public async void UseCase_ShouldThrowError_WhenMethodHandleIsCalledWithInvalidInputs(CreateCategoryCommand input)
+    public async void Command_ShouldThrowError_WhenMethodHandleIsCalledWithInvalidInputs(CreateCategoryCommand input)
     {
         var loggerMock = _fixture.GetLoggerMock();
         var repositoryMock = _fixture.GetRepositoryMock();

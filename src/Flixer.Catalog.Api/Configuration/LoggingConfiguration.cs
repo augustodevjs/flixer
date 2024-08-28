@@ -18,4 +18,12 @@ public static class LoggingConfiguration
                 .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day);
         });
     }
+    
+    public static void ConfigureRequestLogging(this IApplicationBuilder app)
+    {
+        app.UseSerilogRequestLogging(o =>
+        {
+            o.IncludeQueryInRequestPath = true;
+        });
+    }
 }

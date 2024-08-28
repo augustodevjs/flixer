@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Flixer.Catalog.Application;
+namespace Flixer.Catalog.Application.Extensions;
 
 public static class DependecyInjection
 {

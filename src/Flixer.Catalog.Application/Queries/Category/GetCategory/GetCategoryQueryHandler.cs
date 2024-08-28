@@ -4,7 +4,7 @@ using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Domain.Contracts.Repository;
 using Flixer.Catalog.Application.Commands.Category.CreateCategory;
 
-namespace Flixer.Catalog.Application.Queries.Category
+namespace Flixer.Catalog.Application.Queries.Category.GetCategory
 {
     public class GetCategoryQueryHandler : IRequestHandler<GetCategoryQuery, CategoryViewModel>
     {

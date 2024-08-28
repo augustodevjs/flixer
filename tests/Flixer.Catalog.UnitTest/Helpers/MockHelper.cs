@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Moq;
+using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 
 namespace Flixer.Catalog.UnitTest.Helpers;

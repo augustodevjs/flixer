@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Moq;
+using Xunit;
+using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Flixer.Catalog.UnitTest.Helpers;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.Commands.Category.DeleteCategory;
@@ -6,7 +9,7 @@ using Flixer.Catalog.UnitTest.Application.Fixtures.Category.DeleteCategory;
 
 namespace Flixer.Catalog.UnitTest.Application.Category;
 
-[Collection(nameof(DeleteCategoryCommandFixtureCollection))]
+[Collection(nameof(DeleteCategoryCommandFixture))]
 public class DeleteCategoryCommandTest
 {
     private readonly DeleteCategoryCommandFixture _fixture;

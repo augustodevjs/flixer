@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
 using Flixer.Catalog.Domain.Contracts.Repository;
 
-namespace Flixer.Catalog.Infra.Data.EF;
+namespace Flixer.Catalog.Infra.Data.EF.Extensions;
 
 public static class DependencyInjection
 {

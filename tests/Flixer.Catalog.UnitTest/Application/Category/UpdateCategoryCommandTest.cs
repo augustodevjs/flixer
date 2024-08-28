@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Moq;
+using Xunit;
+using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Flixer.Catalog.UnitTest.Helpers;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
@@ -8,7 +11,7 @@ using Flixer.Catalog.UnitTest.Application.Fixtures.Category.UpdateCategory;
 
 namespace Flixer.Catalog.UnitTest.Application.Category;
 
-[Collection(nameof(UpdateCategoryCommandFixtureCollection))]
+[Collection(nameof(UpdateCategoryCommandFixture))]
 public class UpdateCategoryCommandTest
 {
     private readonly UpdateCategoryCommandFixture _fixture;
