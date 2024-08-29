@@ -10,7 +10,8 @@ public static class MockHelper
         logger.Verify(m => m.Log(
                 level,
                 It.IsAny<EventId>(),
-                It.Is<It.IsAnyType>((x, y) => regex == null || Regex.IsMatch(x.ToString() ?? string.Empty, regex)),
+                It.Is<It.IsAnyType>((x, y) => 
+                    regex == null || Regex.IsMatch(x.ToString() ?? string.Empty, regex)),
                 It.IsAny<Exception?>(),
                 It.IsAny<Func<It.IsAnyType, Exception?, string>>()),
             times);

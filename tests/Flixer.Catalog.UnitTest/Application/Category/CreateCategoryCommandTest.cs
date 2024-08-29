@@ -3,9 +3,9 @@ using Xunit;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Flixer.Catalog.Domain.Exceptions;
-using Flixer.Catalog.UnitTest.Helpers;
 using Flixer.Catalog.Application.Commands.Category.CreateCategory;
-using Flixer.Catalog.UnitTest.Application.Fixtures.Category.CreateCategory;
+using Flixer.Catalog.UnitTest.Fixture.Application.Category.CreateCategory;
+using Flixer.Catalog.UnitTest.Helpers;
 
 namespace Flixer.Catalog.UnitTest.Application.Category;
 

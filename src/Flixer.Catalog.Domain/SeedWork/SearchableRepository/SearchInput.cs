@@ -15,7 +15,8 @@ public class SearchInput
         int perPage, 
         string search, 
         string orderBy, 
-        SearchOrder order)
+        SearchOrder order
+    )
     {
         Page = page;
         Order = order;

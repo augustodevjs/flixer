@@ -2,11 +2,10 @@
 using Xunit;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
-using Flixer.Catalog.UnitTest.Helpers;
 using Flixer.Catalog.Application.Exceptions;
-using Flixer.Catalog.Application.Queries.Category;
 using Flixer.Catalog.Application.Queries.Category.GetCategory;
-using Flixer.Catalog.UnitTest.Application.Fixtures.Category.GetCategory;
+using Flixer.Catalog.UnitTest.Fixture.Application.Category.GetCategory;
+using Flixer.Catalog.UnitTest.Helpers;
 
 namespace Flixer.Catalog.UnitTest.Application.Category;
 

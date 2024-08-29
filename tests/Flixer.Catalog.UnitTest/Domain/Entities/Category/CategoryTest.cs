@@ -2,7 +2,7 @@
 using FluentAssertions;
 using Flixer.Catalog.Domain.Exceptions;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.UnitTest.Domain.Fixtures.Category;
+using Flixer.Catalog.UnitTest.Fixture.Domain.Category;
 
 namespace Flixer.Catalog.UnitTest.Domain.Entities.Category;
 

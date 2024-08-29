@@ -1,6 +1,6 @@
 ﻿using Bogus;
 
-namespace Flixer.Catalog.UnitTest.Common;
+namespace Flixer.Catalog.UnitTest.Fixture;
 
 public abstract class BaseFixture
 {

@@ -2,12 +2,12 @@
 using Xunit;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
-using Flixer.Catalog.UnitTest.Helpers;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Commands.Category.UpdateCategory;
-using Flixer.Catalog.UnitTest.Application.Fixtures.Category.UpdateCategory;
+using Flixer.Catalog.UnitTest.Fixture.Application.Category.UpdateCategory;
+using Flixer.Catalog.UnitTest.Helpers;
 
 namespace Flixer.Catalog.UnitTest.Application.Category;
 

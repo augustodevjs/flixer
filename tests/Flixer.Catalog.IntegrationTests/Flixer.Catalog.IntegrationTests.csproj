@@ -28,7 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Flixer.Catalog.Application\Flixer.Catalog.Application.csproj" />
     <ProjectReference Include="..\..\src\Flixer.Catalog.Domain\Flixer.Catalog.Domain.csproj" />
-    <ProjectReference Include="..\Flixer.Catalog.Common.Tests\Flixer.Catalog.Common.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>

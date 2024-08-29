@@ -1,4 +1,4 @@
-﻿namespace Flixer.Catalog.UnitTest.Application.Fixtures.Category.UpdateCategory;
+﻿namespace Flixer.Catalog.UnitTest.Fixture.Application.Category.UpdateCategory;
 
 public class DataGenerator
 {    

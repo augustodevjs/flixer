@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flixer.Catalog.EndToEndTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flixer.Catalog.Api", "src\Flixer.Catalog.Api\Flixer.Catalog.Api.csproj", "{1C29DDC1-F190-4E14-BA3C-F5429D1BD38B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flixer.Catalog.Common.Tests", "tests\Flixer.Catalog.Common.Tests\Flixer.Catalog.Common.Tests.csproj", "{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "env", "env", "{A1DAF102-6EFF-4B2F-BF5E-D7605952804E}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
@@ -122,18 +120,6 @@ Global
 		{1C29DDC1-F190-4E14-BA3C-F5429D1BD38B}.Release|x64.Build.0 = Release|Any CPU
 		{1C29DDC1-F190-4E14-BA3C-F5429D1BD38B}.Release|x86.ActiveCfg = Release|Any CPU
 		{1C29DDC1-F190-4E14-BA3C-F5429D1BD38B}.Release|x86.Build.0 = Release|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Debug|x64.Build.0 = Debug|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Debug|x86.Build.0 = Debug|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Release|x64.ActiveCfg = Release|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Release|x64.Build.0 = Release|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Release|x86.ActiveCfg = Release|Any CPU
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,7 +132,6 @@ Global
 		{30F9FAA9-682C-4C11-9658-19BCEC587559} = {19FC4517-0BCD-4F0E-B25F-9147FFEA40A0}
 		{6141B776-B8B7-4F39-8AAA-3EA3AE06484E} = {81B9CC25-FC26-4227-97CF-8588F091E51D}
 		{1C29DDC1-F190-4E14-BA3C-F5429D1BD38B} = {19FC4517-0BCD-4F0E-B25F-9147FFEA40A0}
-		{8F9A5B70-4EAB-4607-86DF-4205FBDB3D60} = {81B9CC25-FC26-4227-97CF-8588F091E51D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32361620-3495-4970-866C-8B2FAB2A9F43}

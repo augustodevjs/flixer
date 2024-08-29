@@ -38,8 +38,8 @@ public class ListCategoriesOutput : PaginatedListOutput<CategoryViewModel>
     public static ListCategoriesOutput FromSearchOutput(SearchOutput<Domain.Entities.Category> searchOutput)
         => new(
             searchOutput.CurrentPage,
-            searchOutput.PerPage,
             searchOutput.Total,
+            searchOutput.PerPage,
             searchOutput.Items
                 .Select(CategoryViewModel.FromCategory)
                 .ToList()
