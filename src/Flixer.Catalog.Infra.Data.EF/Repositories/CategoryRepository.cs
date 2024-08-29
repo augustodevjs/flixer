@@ -48,7 +48,7 @@ public class CategoryRepository : Repository<Category>, ICategoryRepository
             .Take(input.PerPage)
             .ToListAsync();
 
-        return new SearchOutput<Category>(input.Page, input.PerPage, total, items);
+        return new SearchOutput<Category>(total, input.PerPage, input.Page, items);
     }
     
     private IQueryable<Category> AddOrderToQuery(IQueryable<Category> query, string orderProperty, SearchOrder order)
