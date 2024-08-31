@@ -2,7 +2,7 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace Flixer.Catalog.EndToEndTests.Base;
+namespace Flixer.Catalog.EndToEndTests.Configuration;
 
 public class ApiClient
 {

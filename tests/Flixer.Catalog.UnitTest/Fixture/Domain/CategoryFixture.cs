@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Flixer.Catalog.UnitTest.Fixture.Domain.Category;
+namespace Flixer.Catalog.UnitTest.Fixture.Domain;
 
 [CollectionDefinition(nameof(CategoryFixture))]
 public class CategoryFixtureCollection : ICollectionFixture<CategoryFixture>

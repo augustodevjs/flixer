@@ -1,10 +1,9 @@
-﻿// using System.Net;
-// using Microsoft.AspNetCore.Mvc;
+﻿// using Xunit;
+// using System.Net;
+// using FluentAssertions;
 // using Microsoft.AspNetCore.Http;
-// using Flixer.Catalog.EndToEndTests.Api.Category.Common;
-// using Flixer.Catalog.Application.Dtos.ViewModel.Category;
-// using Flixer.Catalog.Application.Dtos.InputModel.Category;
-// using CommonTests = Flixer.Catalog.Common.Tests.Fixture.Category;
+// using Flixer.Catalog.EndToEndTests.Fixtures.Category;
+// using Flixer.Catalog.Application.Commands.Category.CreateCategory;
 //
 // namespace Flixer.Catalog.EndToEndTests.Api.Category.CreateCategory;
 //
@@ -22,7 +21,7 @@
 //     [Trait("EndToEnd/API", "Category/Create - Endpoints")]
 //     public async Task EndToEnd_ShouldCreateCategory_WhenCalledHttpPostMethod()
 //     {
-//         var input = _fixture.CategoryTest.GetValidCategory();
+//         var input = _fixture.DomainCategoryFixture.GetValidCategory();
 //
 //         var (response, output) = await _fixture.ApiClient.Post<CategoryViewModel>("/categories", input);
 //
@@ -46,30 +45,33 @@
 //         dbCategory.CreatedAt.Should().NotBeSameDateAs(default);
 //     }
 //
-//     [Theory]
-//     [Trait("EndToEnd/API", "Category/Create - Endpoints")]
-//     [MemberData(
-//         nameof(CommonTests.DataGenerator.GetInvalidCreateInputs),
-//         parameters: 12,
-//         MemberType = typeof(CommonTests.DataGenerator)
-//     )]
-//     public async Task EndToEnd_ThrowError_WhenCantInstantieteAggregate(
-//         CreateCategoryInputModel input,
-//         string expectedDetails
-//     )
+//     // [Theory]
+//     // [Trait("EndToEnd/API", "Category/Create - Endpoints")]
+//     // [MemberData(
+//     //     nameof(CommonTests.DataGenerator.GetInvalidCreateInputs),
+//     //     parameters: 12,
+//     //     MemberType = typeof(CommonTests.DataGenerator)
+//     // )]
+//     // public async Task EndToEnd_ThrowError_WhenCantInstantieteAggregate(
+//     //     CreateCategoryInputModel input,
+//     //     string expectedDetails
+//     // )
+//     // {
+//     //     var (response, output) = await _fixture.ApiClient.Post<ProblemDetails>("/categories", input);
+//     //
+//     //     response!.Should().NotBeNull();
+//     //     response!.StatusCode.Should().Be((HttpStatusCode) StatusCodes.Status422UnprocessableEntity);
+//     //
+//     //     output.Should().NotBeNull();
+//     //     output!.Detail.Should().Be(expectedDetails);
+//     //     output.Type.Should().Be("UnprocessableEntity");
+//     //     output!.Title.Should().Be("One or more validation errors ocurred");
+//     //     output.Status.Should().Be((int)StatusCodes.Status422UnprocessableEntity);
+//     // }
+//     //
+//     // public void Dispose() 
+//     //     => _fixture.CleanPersistence();  
+//     public void Dispose()
 //     {
-//         var (response, output) = await _fixture.ApiClient.Post<ProblemDetails>("/categories", input);
-//
-//         response!.Should().NotBeNull();
-//         response!.StatusCode.Should().Be((HttpStatusCode) StatusCodes.Status422UnprocessableEntity);
-//
-//         output.Should().NotBeNull();
-//         output!.Detail.Should().Be(expectedDetails);
-//         output.Type.Should().Be("UnprocessableEntity");
-//         output!.Title.Should().Be("One or more validation errors ocurred");
-//         output.Status.Should().Be((int)StatusCodes.Status422UnprocessableEntity);
 //     }
-//
-//     public void Dispose() 
-//         => _fixture.CleanPersistence();  
 // }

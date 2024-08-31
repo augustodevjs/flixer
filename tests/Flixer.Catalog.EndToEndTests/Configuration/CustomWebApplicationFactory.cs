@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Flixer.Catalog.Infra.Data.EF.Context;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Flixer.Catalog.EndToEndTests.Base;
+namespace Flixer.Catalog.EndToEndTests.Configuration;
 
 public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("EndToEndTest");
+        
         builder.ConfigureServices(services =>
         {
             var serviceProvder = services.BuildServiceProvider();

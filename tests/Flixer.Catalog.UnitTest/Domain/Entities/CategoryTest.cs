@@ -1,10 +1,10 @@
 ﻿using Xunit;
 using FluentAssertions;
 using Flixer.Catalog.Domain.Exceptions;
+using Flixer.Catalog.UnitTest.Fixture.Domain;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.UnitTest.Fixture.Domain.Category;
 
-namespace Flixer.Catalog.UnitTest.Domain.Entities.Category;
+namespace Flixer.Catalog.UnitTest.Domain.Entities;
 
 [Collection(nameof(CategoryFixture))]
 public class CategoryTest

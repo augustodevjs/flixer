@@ -5,20 +5,22 @@ using Flixer.Catalog.Domain.Validation;
 
 namespace Flixer.Catalog.Domain.Entities;
 
-public class Category : AggregateRoot
+public class Genre : AggregateRoot
 {
+    private readonly List<Guid> _categories;
     public string Name { get; private set; }
     public bool IsActive { get; private set; }
-    public string Description { get; private set; }
     public DateTime CreatedAt { get; private set; }
+    
+    public IReadOnlyList<Guid> Categories => _categories.AsReadOnly();
 
-    public Category(string name, string description, bool isActive = true)
+    public Genre(string name, bool isActive = true)
     {
         Name = name;
-        Description = description;
         IsActive = isActive;
         CreatedAt = DateTime.Now;
-
+        _categories = new List<Guid>();
+        
         ValidateAndThrow();
     }
 
@@ -34,16 +36,33 @@ public class Category : AggregateRoot
         ValidateAndThrow();
     }
 
-    public void Update(string name, string? description = null )
+    public void Update(string name)
     {
         Name = name;
-        Description = description ?? Description;
+        ValidateAndThrow();
+    }
+    
+    public void AddCategory(Guid categoryId)
+    {
+        _categories.Add(categoryId);
+        ValidateAndThrow();
+    }
+    
+    public void RemoveCategory(Guid categoryId)
+    {
+        _categories.Remove(categoryId);
         ValidateAndThrow();
     }
 
+    public void RemoveAllCategories()
+    {
+        _categories.Clear();
+        ValidateAndThrow();
+    }
+    
     public override bool Validate(out ValidationResult validationResult)
     {
-        validationResult = new CategoryValidator().Validate(this);
+        validationResult = new GenreValidator().Validate(this);
         return validationResult.IsValid;
     }
 
@@ -53,6 +72,6 @@ public class Category : AggregateRoot
         
         var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
         
-        throw new EntityValidationException("Category is invalid", errors);
+        throw new EntityValidationException("Genre is invalid", errors);
     }
 }

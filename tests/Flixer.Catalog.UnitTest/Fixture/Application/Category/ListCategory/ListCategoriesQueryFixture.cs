@@ -3,8 +3,8 @@ using Xunit;
 using Flixer.Catalog.Domain.Enums;
 using Microsoft.Extensions.Logging;
 using Flixer.Catalog.Domain.Contracts.Repository;
-using Flixer.Catalog.UnitTest.Fixture.Domain.Category;
 using Flixer.Catalog.Application.Queries.Category.ListCategories;
+using Flixer.Catalog.UnitTest.Fixture.Domain;
 
 namespace Flixer.Catalog.UnitTest.Fixture.Application.Category.ListCategory;
 

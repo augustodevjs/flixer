@@ -1,10 +1,10 @@
 ﻿using Xunit; 
 using Flixer.Catalog.Domain.Enums;
 using Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.UnitTest.Fixture.Domain.Category;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.ListCategory;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.CreateCategory;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.UpdateCategory;
+using Flixer.Catalog.UnitTest.Fixture.Domain;
 
 namespace Flixer.Catalog.IntegrationTests.Fixtures.Repository;
 
