@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Flixer.Catalog.Domain.SeedWork;
 using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Infra.Data.EF.Context;
@@ -20,16 +19,6 @@ public abstract class Repository<TAggregate> : IRepository<TAggregate> where TAg
     
     public IUnityOfWork UnityOfWork => Context;
         
-    public async Task<TAggregate?> FirstOrDefault(Expression<Func<TAggregate, bool>> expression)
-    {
-        return await _dbSet.AsNoTrackingWithIdentityResolution().Where(expression).FirstOrDefaultAsync();
-    }
-    
-    public virtual async Task<List<TAggregate>> GetAll()
-    {
-        return await _dbSet.ToListAsync();
-    }
-    
     public virtual async Task<TAggregate?> GetById(Guid? id)
     {
         return await _dbSet.FindAsync(id);

@@ -23,7 +23,7 @@ public class CategoryRepository : Repository<Category>, ICategoryRepository
             .ToListAsync();
     }
 
-    public async Task<IReadOnlyList<Category>> GetListByIds(List<Guid> ids)
+    public async Task<IReadOnlyList<Category>> GetListByIdsAsync(List<Guid> ids)
     {
         return await Context.Categories
             .AsNoTracking()

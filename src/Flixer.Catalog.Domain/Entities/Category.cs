@@ -15,8 +15,8 @@ public class Category : AggregateRoot
     public Category(string name, string description, bool isActive = true)
     {
         Name = name;
-        Description = description;
         IsActive = isActive;
+        Description = description;
         CreatedAt = DateTime.Now;
 
         ValidateAndThrow();

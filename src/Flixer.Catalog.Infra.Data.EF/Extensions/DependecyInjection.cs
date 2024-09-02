@@ -20,7 +20,9 @@ public static class DependencyInjection
 
     private static void AddRepositories(this IServiceCollection services)
     {
+        services.AddTransient<IGenreRepository, GenreRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
+        services.AddTransient<ICastMemberRepository, CastMemberRepository>();
     }
 
     private static void AddDbConnection(this IServiceCollection services, IConfiguration configuration)
@@ -29,7 +31,16 @@ public static class DependencyInjection
         {
             var connectionString = configuration.GetConnectionString("CatalogDb");
             var serverVersion = ServerVersion.AutoDetect(connectionString);
-            options.UseMySql(connectionString, serverVersion);
+        
+            options.UseMySql(connectionString, serverVersion, mysqlOptions =>
+            {
+                mysqlOptions.EnableRetryOnFailure(
+                    maxRetryCount: 3,
+                    maxRetryDelay: TimeSpan.FromSeconds(10), 
+                    errorNumbersToAdd: null 
+                );
+            });
+
             options.EnableDetailedErrors();
             options.EnableSensitiveDataLogging();
         });

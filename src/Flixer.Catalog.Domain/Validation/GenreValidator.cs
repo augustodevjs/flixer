@@ -11,7 +11,7 @@ namespace Flixer.Catalog.Domain.Validation
                 .NotEmpty()
                 .WithMessage("Name is required.")
                 .NotNull()
-                .WithMessage("Name is require.");
+                .WithMessage("Name is required.");
         }
     }
 }

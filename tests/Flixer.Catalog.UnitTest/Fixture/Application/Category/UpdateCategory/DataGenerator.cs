@@ -4,7 +4,7 @@ public class DataGenerator
 {    
      public static IEnumerable<object[]> GetCategoriesToUpdate(int times = 10)
      {
-         var fixture = new UpdateCategoryCommandFixture();
+         var fixture = new UpdateCategoryFixture();
 
          for (var indice = 0; indice < times; indice++)
          {
@@ -21,7 +21,7 @@ public class DataGenerator
      {
          var totalInvalidCases = 3;
          var invalidInputsList = new List<object[]>();
-         var fixture = new UpdateCategoryCommandFixture();
+         var fixture = new UpdateCategoryFixture();
 
          for (var index = 0; index < times; index++)
          {

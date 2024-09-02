@@ -6,6 +6,17 @@ public static class ControllersConfiguration
 {
     public static IServiceCollection AddAndConfigureControllers(this IServiceCollection services)
     {
+        services.AddCors(options =>
+        {
+            options.AddPolicy("*",
+                policy =>
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                });
+        });
+        
         services.AddDocumentation();
         services.AddControllers(options => options.Filters.Add(typeof(ApiExceptionFilter)));
 

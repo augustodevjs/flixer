@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Flixer.Catalog.Domain\Flixer.Catalog.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\Category\" />
-  </ItemGroup>
-
 </Project>

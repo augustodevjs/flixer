@@ -64,6 +64,48 @@ public class CategoryRepositoryTest
     
     [Fact]
     [Trait("Integration/Infra.Data", "CategoryRepository - Repositories")]
+    public async Task CategoryRepository_GetIdsListByIds()
+    {
+        var dbContext = _fixture.CreateDbContext(NameDbContext);
+        var examplesCategoriesList = _fixture.ListCategoriesFixture.GetExampleCategoriesList();
+        var exampleCategoriesGuids = examplesCategoriesList.Select(x => x.Id).ToList();
+
+        await dbContext.Categories.AddRangeAsync(examplesCategoriesList);
+        await dbContext.SaveChangesAsync(CancellationToken.None);
+        
+        var categoryRepository = new Catalog.Infra.Data.EF.Repositories.CategoryRepository(
+            _fixture.CreateDbContext(NameDbContext, true)
+        );
+
+        var dbCategory = await categoryRepository.GetIdsListByIds(exampleCategoriesGuids);
+    
+        dbCategory.Should().NotBeNull();
+        dbCategory.Count.Should().BeGreaterOrEqualTo(exampleCategoriesGuids.Count);
+    }
+    
+    [Fact]
+    [Trait("Integration/Infra.Data", "CategoryRepository - Repositories")]
+    public async Task CategoryRepository_GetListByIdsAsync()
+    {
+        var dbContext = _fixture.CreateDbContext(NameDbContext);
+        var examplesCategoriesList = _fixture.ListCategoriesFixture.GetExampleCategoriesList();
+        var exampleCategoriesGuids = examplesCategoriesList.Select(x => x.Id).ToList();
+
+        await dbContext.Categories.AddRangeAsync(examplesCategoriesList);
+        await dbContext.SaveChangesAsync(CancellationToken.None);
+        
+        var categoryRepository = new Catalog.Infra.Data.EF.Repositories.CategoryRepository(
+            _fixture.CreateDbContext(NameDbContext, true)
+        );
+
+        var dbCategory = await categoryRepository.GetListByIdsAsync(exampleCategoriesGuids);
+    
+        dbCategory.Should().NotBeNull();
+        dbCategory.Should().BeEquivalentTo(examplesCategoriesList);
+    }
+    
+    [Fact]
+    [Trait("Integration/Infra.Data", "CategoryRepository - Repositories")]
     public async Task CategoryRepository_Update()
     {
         var dbContext = _fixture.CreateDbContext(NameDbContext);
@@ -117,7 +159,7 @@ public class CategoryRepositoryTest
     public async Task CategoryRepository_SearchReturnsListAndTotal()
     {
         var dbContext = _fixture.CreateDbContext(NameDbContext);
-        var exampleCategoriesList = _fixture.ListCategoriesQueryFixture.GetExampleCategoriesList(15);
+        var exampleCategoriesList = _fixture.ListCategoriesFixture.GetExampleCategoriesList(15);
 
         foreach (var category in exampleCategoriesList)
         {
@@ -186,7 +228,7 @@ public class CategoryRepositoryTest
     {
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         var exampleCategoriesList = 
-            _fixture.ListCategoriesQueryFixture.GetExampleCategoriesList(quantityCategoriesToGenerate);
+            _fixture.ListCategoriesFixture.GetExampleCategoriesList(quantityCategoriesToGenerate);
         
         await dbContext.AddRangeAsync(exampleCategoriesList);
         await dbContext.SaveChangesAsync(CancellationToken.None);
@@ -289,7 +331,7 @@ public class CategoryRepositoryTest
     )
     {
         var dbContext = _fixture.CreateDbContext(NameDbContext);
-        var exampleCategoriesList = _fixture.ListCategoriesQueryFixture.GetExampleCategoriesList();
+        var exampleCategoriesList = _fixture.ListCategoriesFixture.GetExampleCategoriesList();
         
         await dbContext.AddRangeAsync(exampleCategoriesList);
         await dbContext.SaveChangesAsync(CancellationToken.None);

@@ -6,7 +6,7 @@ public class DataGenerator
      {
          var totalInvalidCases = 3;
          var invalidInputsLists = new List<object[]>();
-         var fixture = new CreateCategoryCommandFixture();
+         var fixture = new CreateCategoryFixture();
 
          for (var index = 0; index < times; index++)
          {
@@ -32,6 +32,7 @@ public class DataGenerator
                      break;
              }
          }
+         
          return invalidInputsLists;
      }
 }

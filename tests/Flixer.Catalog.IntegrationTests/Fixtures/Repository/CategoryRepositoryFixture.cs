@@ -1,10 +1,10 @@
 ﻿using Xunit; 
 using Flixer.Catalog.Domain.Enums;
 using Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.UnitTest.Fixture.Domain;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.ListCategory;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.CreateCategory;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.UpdateCategory;
-using Flixer.Catalog.UnitTest.Fixture.Domain;
 
 namespace Flixer.Catalog.IntegrationTests.Fixtures.Repository;
 
@@ -17,9 +17,9 @@ public class CategoryRepositoryFixtureCollection : ICollectionFixture<CategoryRe
 public class CategoryRepositoryFixture : BaseFixture
 {
     public CategoryFixture CategoryFixture { get; } = new();
-    public ListCategoriesQueryFixture ListCategoriesQueryFixture { get; } = new();
-    public CreateCategoryCommandFixture CreateCategoryCommandFixture { get; } = new();
-    public UpdateCategoryCommandFixture UpdateCategoryCommandFixture { get; } = new();
+    public ListCategoriesFixture ListCategoriesFixture { get; } = new();
+    public CreateCategoryFixture CreateCategoryFixture { get; } = new();
+    public UpdateCategoryFixture UpdateCategoryFixture { get; } = new();
     
     public List<Category> GetExampleCategoriesListWithNames(List<string> names)
         => names.Select(name =>

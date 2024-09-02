@@ -15,6 +15,7 @@ builder.Host.ConfigureApplicationLogging();
 
 var app = builder.Build();
 
+app.UseCors("*");
 app.UseDocumentation();
 app.ConfigureRequestLogging();
 app.UseMigrations(app.Services);

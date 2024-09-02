@@ -1,4 +1,4 @@
-﻿using Flixer.Catalog.Application.Queries.Category.ListCategories;
+﻿using Flixer.Catalog.Application.Common.Input.Category;
 
 namespace Flixer.Catalog.UnitTest.Fixture.Application.Category.ListCategory;
 
@@ -6,7 +6,7 @@ public class DataGenerator
 {
          public static IEnumerable<object[]> GetInputsListWithoutAllParameter(int times = 14)
      {
-         var fixture = new ListCategoriesQueryFixture();
+         var fixture = new ListCategoriesFixture();
          var inputListExample = fixture.GetListInput();
 
          for (int i = 0; i < times; i++)
@@ -15,17 +15,17 @@ public class DataGenerator
              {
                  case 0:
                      yield return new object[] {
-                         new ListCategoriesQuery()
+                         new ListCategoriesInput()
                      };
                      break;
                  case 1:
                      yield return new object[] {
-                         new ListCategoriesQuery(inputListExample.Page)
+                         new ListCategoriesInput(inputListExample.Page)
                      };
                      break;
                  case 3:
                      yield return new object[] {
-                         new ListCategoriesQuery(
+                         new ListCategoriesInput(
                              inputListExample.Page,
                              inputListExample.PerPage
                          )
@@ -33,7 +33,7 @@ public class DataGenerator
                      break;
                  case 4:
                      yield return new object[] {
-                         new ListCategoriesQuery(
+                         new ListCategoriesInput(
                              inputListExample.Page,
                              inputListExample.PerPage,
                              inputListExample.Search
@@ -42,7 +42,7 @@ public class DataGenerator
                      break;
                  case 5:
                      yield return new object[] {
-                         new ListCategoriesQuery(
+                         new ListCategoriesInput(
                              inputListExample.Page,
                              inputListExample.PerPage,
                              inputListExample.Search,
@@ -55,7 +55,7 @@ public class DataGenerator
                      break;
                  default:
                      yield return new object[] {
-                         new ListCategoriesQuery()
+                         new ListCategoriesInput()
                      };
                      break;
              }
