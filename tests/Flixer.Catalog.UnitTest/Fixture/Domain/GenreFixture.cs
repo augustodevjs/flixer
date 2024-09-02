@@ -1,5 +1,5 @@
 ﻿using Xunit;
-using Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Tests.Shared.DataGenerators;
 
 namespace Flixer.Catalog.UnitTest.Fixture.Domain;
 
@@ -9,24 +9,7 @@ public class GenreFixtureCollection : ICollectionFixture<GenreFixture>
     
 }
 
-public class GenreFixture : BaseFixture
+public class GenreFixture 
 {
-    public string GetValidName()
-    {
-        return Faker.Commerce.Categories(1)[0];
-    }
-
-    public Genre GetValidGenre(bool isActive = true, List<Guid>? categoriesIdsList = null)
-    {
-        var genre = new Genre(GetValidName(), isActive);
-
-        if (categoriesIdsList is null) return genre;
-        
-        foreach (var categoryId in categoriesIdsList)
-        {
-            genre.AddCategory(categoryId);
-        }
-
-        return genre;
-    }
+    public GenreDataGenerator DataGenerator { get; } = new();
 }

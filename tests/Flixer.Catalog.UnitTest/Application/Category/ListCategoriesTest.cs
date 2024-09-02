@@ -2,7 +2,7 @@
 using Xunit;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
-using Flixer.Catalog.UnitTest.Helpers;
+using Flixer.Catalog.Tests.Shared.Helpers;
 using Flixer.Catalog.Application.Queries.Category;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Common.Input.Category;
@@ -26,8 +26,8 @@ public class ListCategoriesTest
     {
         var loggerMock = _fixture.GetLogger();
         var repositoryMock = _fixture.GetRepositoryMock();
-        var input = _fixture.GetListInput();
-        var categoriesExampleList = _fixture.GetExampleCategoriesList();
+        var input = _fixture.DataGenerator.GetListInput();
+        var categoriesExampleList = _fixture.DataGenerator.GetExampleCategoriesList();
 
         var outputRepositorySearch = new SearchOutput<DomainEntity.Category>(
             currentPage: input.Page,
@@ -86,7 +86,7 @@ public class ListCategoriesTest
     {
         var loggerMock = _fixture.GetLogger();
         var repositoryMock = _fixture.GetRepositoryMock();
-        var input = _fixture.GetListInput();
+        var input = _fixture.DataGenerator.GetListInput();
     
         var outputRepositorySearch = new SearchOutput<DomainEntity.Category>(
             currentPage: input.Page,
@@ -141,7 +141,7 @@ public class ListCategoriesTest
     {
         var loggerMock = _fixture.GetLogger();
         var repositoryMock = _fixture.GetRepositoryMock();
-        var categoriesExampleList = _fixture.GetExampleCategoriesList();
+        var categoriesExampleList = _fixture.DataGenerator.GetExampleCategoriesList();
     
         var outputRepositorySearch = new SearchOutput<DomainEntity.Category>(
             currentPage: input.Page,

@@ -24,7 +24,7 @@ public class DeleteCategoryTest
     [Trait("Integration/Application", "DeleteCategory - Command")]
     public async Task Command_DeleteCategory()
     {
-        var categoryExample = _fixture.CategoryFixture.GetValidCategory();
+        var categoryExample = _fixture.DataGenerator.GetValidCategory();
         var dbContext = _fixture.CreateDbContext(NameDbContext, true);
         
         var loggerFactory = LoggerFactory.Create(builder =>
@@ -57,7 +57,7 @@ public class DeleteCategoryTest
     public async Task Command_DeleteCategoryThrowsWhenNotFound()
     {
         var dbContext = _fixture.CreateDbContext(NameDbContext);
-        var exampleList = _fixture.ListCategoriesFixture.GetExampleCategoriesList();
+        var exampleList = _fixture.DataGenerator.GetExampleCategoriesList();
         
         var loggerFactory = LoggerFactory.Create(builder =>
         {

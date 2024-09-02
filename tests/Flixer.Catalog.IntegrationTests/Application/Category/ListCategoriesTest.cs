@@ -23,7 +23,7 @@ public class ListCategoriesTest
     [Trait("Integration/Application", "ListCategories - Query")]
     public async Task Query_SearchReturnsListAndTotal()
     {
-        var exampleCategoriesList = _fixture.ListCategoriesFixture.GetExampleCategoriesList();
+        var exampleCategoriesList = _fixture.DataGenerator.GetExampleCategoriesList();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>
@@ -105,7 +105,7 @@ public class ListCategoriesTest
     )
     {
         var dbContext = _fixture.CreateDbContext(NameDbContext);
-        var exampleCategoriesList = _fixture.ListCategoriesFixture.GetExampleCategoriesList(
+        var exampleCategoriesList = _fixture.DataGenerator.GetExampleCategoriesList(
             quantityCategoriesToGenerate
         );
         
@@ -232,7 +232,7 @@ public class ListCategoriesTest
         string order
     )
     {
-        var exampleCategoriesList = _fixture.ListCategoriesFixture.GetExampleCategoriesList();
+        var exampleCategoriesList = _fixture.DataGenerator.GetExampleCategoriesList();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>

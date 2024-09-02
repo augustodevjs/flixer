@@ -2,7 +2,7 @@
 using Xunit;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
-using Flixer.Catalog.UnitTest.Helpers;
+using Flixer.Catalog.Tests.Shared.Helpers;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Application.Queries.Category;
 using Flixer.Catalog.Application.Common.Output.Category;
@@ -24,7 +24,7 @@ public class GetCategoryTest
     {
         var loggerMock = _fixture.GetLoggerMock();
         var repositoryMock = _fixture.GetRepositoryMock();
-        var exampleCategory = _fixture.CategoryFixture.GetValidCategory();
+        var exampleCategory = _fixture.DataGenerator.GetValidCategory();
 
         repositoryMock.Setup(x => x.GetById(
             It.IsAny<Guid>()

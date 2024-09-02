@@ -1,8 +1,8 @@
 ﻿using Moq;
 using Xunit;
 using Microsoft.Extensions.Logging;
-using Flixer.Catalog.UnitTest.Fixture.Domain;
 using Flixer.Catalog.Domain.Contracts.Repository;
+using Flixer.Catalog.Tests.Shared.DataGenerators;
 
 namespace Flixer.Catalog.UnitTest.Fixture.Application.Category.DeleteCategory;
 
@@ -12,9 +12,9 @@ public class DeleteCategoryCommandFixtureCollection : ICollectionFixture<DeleteC
     
 }
 
-public class DeleteCategoryFixture : BaseFixture
+public class DeleteCategoryFixture
 {
-    public CategoryFixture CategoryFixture { get; } = new();
+    public CategoryDataGenerator DataGenerator { get; } = new();
     public Mock<ICategoryRepository> GetRepositoryMock() => new();
     public Mock<ILogger<Catalog.Application.Commands.Category.DeleteCategory>> GetLoggerMock() => new();
 }

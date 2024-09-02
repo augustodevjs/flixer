@@ -1,6 +1,7 @@
 ﻿using Xunit; 
 using Flixer.Catalog.Domain.Enums;
 using Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Tests.Shared.DataGenerators;
 using Flixer.Catalog.UnitTest.Fixture.Domain;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.ListCategory;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.CreateCategory;
@@ -16,15 +17,12 @@ public class CategoryRepositoryFixtureCollection : ICollectionFixture<CategoryRe
 
 public class CategoryRepositoryFixture : BaseFixture
 {
-    public CategoryFixture CategoryFixture { get; } = new();
-    public ListCategoriesFixture ListCategoriesFixture { get; } = new();
-    public CreateCategoryFixture CreateCategoryFixture { get; } = new();
-    public UpdateCategoryFixture UpdateCategoryFixture { get; } = new();
+    public CategoryDataGenerator DataGenerator { get; } = new();
     
     public List<Category> GetExampleCategoriesListWithNames(List<string> names)
         => names.Select(name =>
         {
-            var category = CategoryFixture.GetValidCategory();
+            var category = DataGenerator.GetValidCategory();
             category.Update(name);
             return category;
         }).ToList();

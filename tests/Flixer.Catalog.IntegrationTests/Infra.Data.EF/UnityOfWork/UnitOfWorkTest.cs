@@ -21,7 +21,7 @@ public class UnitOfWorkTest
     public async Task Repository_ShouldCommit()
     {
         var dbContext = _fixture.CreateDbContext("integrations-tests-repository");
-        var exampleCategoriesList = _fixture.ListCategoriesFixture.GetExampleCategoriesList();
+        var exampleCategoriesList = _fixture.DataGenerator.GetExampleCategoriesList();
         
         await dbContext.AddRangeAsync(exampleCategoriesList);
         
@@ -43,7 +43,7 @@ public class UnitOfWorkTest
     public async Task Repository_ShouldNotCommit()
     {
         var dbContext = _fixture.CreateDbContext("integrations-tests-repository");
-        var exampleCategoriesList = _fixture.ListCategoriesFixture.GetExampleCategoriesList();
+        var exampleCategoriesList = _fixture.DataGenerator.GetExampleCategoriesList();
         
         await dbContext.AddRangeAsync(exampleCategoriesList);
 

@@ -95,7 +95,7 @@ public class UpdateCategoryTest
         
         var logger = loggerFactory.CreateLogger<Catalog.Application.Commands.Category.UpdateCategory>();
         
-        await dbContext.AddRangeAsync(_fixture.ListCategoriesFixture.GetExampleCategoriesList());
+        await dbContext.AddRangeAsync(_fixture.DataGenerator.GetExampleCategoriesList());
         
         var trackingInfo = await dbContext.AddAsync(exampleCategory);
         await dbContext.SaveChangesAsync();
@@ -125,7 +125,7 @@ public class UpdateCategoryTest
     [Trait("Integration/Application", "UpdateCategory - Command")]
     public async Task Command_UpdateThrowsWhenNotFoundCategory()
     {
-        var input = _fixture.UpdateCategoryFixture.GetInputUpdate();
+        var input = _fixture.DataGenerator.GetInputUpdate();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>
@@ -135,7 +135,7 @@ public class UpdateCategoryTest
         
         var logger = loggerFactory.CreateLogger<Catalog.Application.Commands.Category.UpdateCategory>();
         
-        await dbContext.AddRangeAsync(_fixture.ListCategoriesFixture.GetExampleCategoriesList());
+        await dbContext.AddRangeAsync(_fixture.DataGenerator.GetExampleCategoriesList());
         await dbContext.SaveChangesAsync();
         
         var repository = new CategoryRepository(dbContext);
@@ -159,7 +159,7 @@ public class UpdateCategoryTest
     )
     {
         var dbContext = _fixture.CreateDbContext(NameDbContext);
-        var exampleCategories = _fixture.ListCategoriesFixture.GetExampleCategoriesList();
+        var exampleCategories = _fixture.DataGenerator.GetExampleCategoriesList();
         
         var loggerFactory = LoggerFactory.Create(builder =>
         {

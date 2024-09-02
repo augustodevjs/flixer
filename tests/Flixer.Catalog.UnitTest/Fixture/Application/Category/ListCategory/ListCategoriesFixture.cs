@@ -1,11 +1,9 @@
 ﻿using Moq;
 using Xunit;
-using Flixer.Catalog.Domain.Enums;
 using Microsoft.Extensions.Logging;
-using Flixer.Catalog.UnitTest.Fixture.Domain;
 using Flixer.Catalog.Domain.Contracts.Repository;
+using Flixer.Catalog.Tests.Shared.DataGenerators;
 using Flixer.Catalog.Application.Queries.Category;
-using Flixer.Catalog.Application.Common.Input.Category;
 
 namespace Flixer.Catalog.UnitTest.Fixture.Application.Category.ListCategory;
 
@@ -15,33 +13,9 @@ public class ListCategoryQueryFixtureCollection : ICollectionFixture<ListCategor
     
 }
 
-public class ListCategoriesFixture : BaseFixture
+public class ListCategoriesFixture
 {
-    public CategoryFixture CategoryFixture { get; } = new();
+    public CategoryDataGenerator DataGenerator { get; } = new();
     public Mock<ICategoryRepository> GetRepositoryMock() => new();
     public Mock<ILogger<ListCategories>> GetLogger() => new();
-
-     public List<Catalog.Domain.Entities.Category> GetExampleCategoriesList(int length = 10)
-     {
-         var list = new List<Catalog.Domain.Entities.Category>();
-
-         for (var i = 0; i < length; i++)
-             list.Add(CategoryFixture.GetValidCategory());
-
-         return list;
-     }
-     
-     public ListCategoriesInput GetListInput()
-     {
-         var random = new Random();
-
-         return new ListCategoriesInput(
-             page: random.Next(1, 10),
-             perPage: random.Next(15, 100),
-             search: Faker.Commerce.ProductName(),
-             sort: Faker.Commerce.ProductName(),
-             dir: random.Next(0, 10) > 5 ?
-                 SearchOrder.Asc : SearchOrder.Desc
-         );
-     }
 }

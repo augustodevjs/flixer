@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 
-namespace Flixer.Catalog.UnitTest.Helpers;
+namespace Flixer.Catalog.Tests.Shared.Helpers;
 
 public static class MockHelper
 {

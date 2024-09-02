@@ -1,8 +1,8 @@
 ﻿using Moq;
 using Xunit;
 using Microsoft.Extensions.Logging;
-using Flixer.Catalog.UnitTest.Fixture.Domain;
 using Flixer.Catalog.Domain.Contracts.Repository;
+using Flixer.Catalog.Tests.Shared.DataGenerators;
 
 namespace Flixer.Catalog.UnitTest.Fixture.Application.Category.GetCategory;
 
@@ -12,9 +12,9 @@ public class GetCategoryQueryFixtureCollection : ICollectionFixture<GetCategoryF
     
 }
 
-public class GetCategoryFixture : BaseFixture
+public class GetCategoryFixture
 {
-    public CategoryFixture CategoryFixture { get; } = new();
+    public CategoryDataGenerator DataGenerator { get; } = new();
     public Mock<ICategoryRepository> GetRepositoryMock() => new();
     public Mock<ILogger<Catalog.Application.Queries.Category.GetCategory>> GetLoggerMock() => new();
 }

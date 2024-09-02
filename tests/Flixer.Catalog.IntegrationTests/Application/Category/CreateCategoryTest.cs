@@ -22,7 +22,7 @@ public class CreateCategoryTest
     [Trait("Integration/Application", "CreateCategory - Command")]
     public async void Command_CreateCategory()
     {
-        var input = _fixture.CreateCategoryFixture.GetInputCreate();
+        var input = _fixture.DataGenerator.GetInputCreate();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>
@@ -59,7 +59,7 @@ public class CreateCategoryTest
     [Trait("Integration/Application", "CreateCategory - Command")]
     public async void Command_CreateCategoryOnlyWithNameAndDescription()
     {
-        var exampleInput = _fixture.CreateCategoryFixture.GetInputCreate();
+        var exampleInput = _fixture.DataGenerator.GetInputCreate();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>

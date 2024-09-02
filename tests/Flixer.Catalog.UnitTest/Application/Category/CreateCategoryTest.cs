@@ -2,8 +2,8 @@
 using Xunit;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
-using Flixer.Catalog.UnitTest.Helpers;
 using Flixer.Catalog.Domain.Exceptions;
+using Flixer.Catalog.Tests.Shared.Helpers;
 using Flixer.Catalog.Application.Commands.Category;
 using Flixer.Catalog.Application.Common.Input.Category;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.CreateCategory;
@@ -27,7 +27,7 @@ public class CreateCategoryTest
 
         var command = new CreateCategory(loggerMock.Object, repositoryMock.Object);
 
-        var input = _fixture.GetInputCreate();
+        var input = _fixture.DataGenerator.GetInputCreate();
         
         repositoryMock.Setup(repo => repo.UnityOfWork.Commit())
             .ReturnsAsync(true);
@@ -59,7 +59,7 @@ public class CreateCategoryTest
 
         var command = new CreateCategory(loggerMock.Object, repositoryMock.Object);
 
-        var input = _fixture.GetInputCreateWithNameAndDescription();
+        var input = _fixture.DataGenerator.GetInputCreateWithNameAndDescription();
         
         repositoryMock.Setup(repo => repo.UnityOfWork.Commit())
             .ReturnsAsync(true);

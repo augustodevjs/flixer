@@ -23,7 +23,7 @@ public class GetCategoryTest
     [Trait("Integration/Application", "GetCategory - Query")]
     public async Task Query_GetCategory()
     {
-        var exampleCategory = _fixture.CategoryFixture.GetValidCategory();
+        var exampleCategory = _fixture.DataGenerator.GetValidCategory();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>
@@ -55,7 +55,7 @@ public class GetCategoryTest
     [Trait("Integration/Application", "GetCategory - Query")]
     public async Task Query_NotFoundExceptionWhenCategoryDoesntExist()
     {
-        var exampleCategory = _fixture.CategoryFixture.GetValidCategory();
+        var exampleCategory = _fixture.DataGenerator.GetValidCategory();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>

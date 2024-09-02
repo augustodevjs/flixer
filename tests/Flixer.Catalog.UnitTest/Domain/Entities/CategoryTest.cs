@@ -20,7 +20,7 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldHaveExpectedProperties_WhenInstantiated()
     {
-        var validCategory = _fixture.GetValidCategory();
+        var validCategory = _fixture.DataGenerator.GetValidCategory();
 
         var datetimeBefore = DateTime.Now;
 
@@ -44,7 +44,7 @@ public class CategoryTest
     [InlineData(false)]
     public void Category_ShouldHaveExpectedProperties_WhenInstantiatedWithIsActive(bool isActive)
     {
-        var validCategory = _fixture.GetValidCategory();
+        var validCategory = _fixture.DataGenerator.GetValidCategory();
 
         var datetimeBefore = DateTime.Now;
 
@@ -69,7 +69,7 @@ public class CategoryTest
     [InlineData("   ")]
     public void Category_ShouldThrowError_WhenInstantiatedWithNameEmpty(string? name)
     {
-        var validCategory = _fixture.GetValidCategory();
+        var validCategory = _fixture.DataGenerator.GetValidCategory();
 
         Action action = () => new DomainEntity.Category(name!, validCategory.Description);
 
@@ -82,7 +82,7 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldThrowError_WhenInstantiatedWithNullDescription()
     {
-        var validCategory = _fixture.GetValidCategory();
+        var validCategory = _fixture.DataGenerator.GetValidCategory();
 
         Action action = () => new DomainEntity.Category(validCategory.Name, null!);
 
@@ -95,8 +95,8 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldThrowError_WhenInstantiatedWithNameIsLessThan3Characters()
     {
-        var validCategory = _fixture.GetValidCategory();
-        var invalidName = _fixture.GetNamesWithLessThan3Characters();
+        var validCategory = _fixture.DataGenerator.GetValidCategory();
+        var invalidName = _fixture.DataGenerator.GetNamesWithLessThan3Characters();
     
         Action action = () => new DomainEntity.Category(invalidName, validCategory.Description);
     
@@ -109,7 +109,7 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldThrowError_WhenInstantiatedWithNameIsGreaterThan255Characters()
     {
-        var validCategory = _fixture.GetValidCategory();
+        var validCategory = _fixture.DataGenerator.GetValidCategory();
         var invalidName = string.Join(null, Enumerable.Range(1, 256).Select(_ => "a").ToArray());
 
         Action action = () => new DomainEntity.Category(invalidName, validCategory.Description);
@@ -124,7 +124,7 @@ public class CategoryTest
     public void Category_ShouldThrowError_WhenInstantiatedWithDescriptionIsGreaterThan10_000Characters()
     {
         var invalidDescription = string.Join(null, Enumerable.Range(1, 10_001).Select(_ => "a").ToArray());
-        var validCategory = _fixture.GetValidCategory();
+        var validCategory = _fixture.DataGenerator.GetValidCategory();
 
         Action action = () => new DomainEntity.Category(validCategory.Name, invalidDescription);
 
@@ -137,7 +137,7 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldIsActiveBeTrue_WhenMethodActivateIsCalled()
     {
-        var validCategory = _fixture.GetValidCategory();
+        var validCategory = _fixture.DataGenerator.GetValidCategory();
 
         var category = new DomainEntity.Category(validCategory.Name, validCategory.Description, false);
         category.Activate();
@@ -149,7 +149,7 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldIsActiveBeFalse_WhenMethodDeactivateIsCalled()
     {
-        var validCategory = _fixture.GetValidCategory();
+        var validCategory = _fixture.DataGenerator.GetValidCategory();
 
         var category = new DomainEntity.Category(validCategory.Name, validCategory.Description, true);
         category.Deactivate();
@@ -161,8 +161,8 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldUpdate_WhenMethodUpdateIsCalledWithParameters()
     {
-        var category = _fixture.GetValidCategory();
-        var categoryWithNewValues = _fixture.GetValidCategory();
+        var category = _fixture.DataGenerator.GetValidCategory();
+        var categoryWithNewValues = _fixture.DataGenerator.GetValidCategory();
 
         category.Update(categoryWithNewValues.Name, categoryWithNewValues.Description);
 
@@ -174,8 +174,8 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldUpdateOnlyName_WhenMethodUpdateIsCalled()
     {
-        var category = _fixture.GetValidCategory();
-        var newName = _fixture.GetValidCategoryName();
+        var category = _fixture.DataGenerator.GetValidCategory();
+        var newName = _fixture.DataGenerator.GetValidCategoryName();
         var currentDescription = category.Description;
 
         category.Update(newName);
@@ -191,7 +191,7 @@ public class CategoryTest
     [InlineData("   ")]
     public void Category_ShouldThrowError_WhenNameIsEmpty(string? name)
     {
-        var category = _fixture.GetValidCategory();
+        var category = _fixture.DataGenerator.GetValidCategory();
         
         Action action = () => category.Update(name!);
 
@@ -204,8 +204,8 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldThrowError_WhenNameIsLessThan3Characters()
     {
-        var category = _fixture.GetValidCategory();
-        var invalidName = _fixture.GetNamesWithLessThan3Characters();
+        var category = _fixture.DataGenerator.GetValidCategory();
+        var invalidName = _fixture.DataGenerator.GetNamesWithLessThan3Characters();
     
         Action action =
             () => category.Update(invalidName);
@@ -219,8 +219,8 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldThrowError_WhenNameIsGreaterThan255Characters()
     {
-        var category = _fixture.GetValidCategory();
-        var invalidName = _fixture.Faker.Lorem.Letter(256);
+        var category = _fixture.DataGenerator.GetValidCategory();
+        var invalidName = _fixture.DataGenerator.Faker.Lorem.Letter(256);
 
         Action action =
             () => category.Update(invalidName);
@@ -234,8 +234,8 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Category_ShouldThrowError_WhenDescriptionIsGreaterThan10_000Characters()
     {
-        var category = _fixture.GetValidCategory();
-        var invalidDescription = _fixture.GetDescriptionWithGreaterThan10_000Characters();
+        var category = _fixture.DataGenerator.GetValidCategory();
+        var invalidDescription = _fixture.DataGenerator.GetDescriptionWithGreaterThan10_000Characters();
 
         Action action = () => category.Update("Category New Name", invalidDescription);
 

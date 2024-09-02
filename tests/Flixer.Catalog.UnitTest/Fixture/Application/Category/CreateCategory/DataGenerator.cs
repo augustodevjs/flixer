@@ -15,19 +15,19 @@ public class DataGenerator
                  case 0:
                      invalidInputsLists.Add(new object[]
                      {
-                         fixture.GetInvalidCreateInputShortName(),
+                         fixture.DataGenerator.GetInvalidCreateInputShortName(),
                      });
                      break;
                  case 1:
                      invalidInputsLists.Add(new object[]
                      {
-                         fixture.GetInvaliCreatedInputTooLongName(),
+                         fixture.DataGenerator.GetInvaliCreatedInputTooLongName(),
                      });
                      break;
                  case 2:
                      invalidInputsLists.Add(new object[]
                      {
-                         fixture.GetInvalidCreateInputTooLongDescription(),
+                         fixture.DataGenerator.GetInvalidCreateInputTooLongDescription(),
                      });
                      break;
              }

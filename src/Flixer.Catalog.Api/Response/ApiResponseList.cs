@@ -1,5 +1,4 @@
-﻿using Flixer.Catalog.Application.Common.Output;
-using Flixer.Catalog.Application.Common.Output.Common;
+﻿using Flixer.Catalog.Application.Common.Output.Common;
 
 namespace Flixer.Catalog.Api.Response;
 

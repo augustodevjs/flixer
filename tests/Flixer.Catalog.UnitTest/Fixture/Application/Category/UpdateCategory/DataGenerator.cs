@@ -8,8 +8,8 @@ public class DataGenerator
 
          for (var indice = 0; indice < times; indice++)
          {
-             var exampleCategory = fixture.CategoryFixture.GetValidCategory();
-             var exampleInput = fixture.GetInputUpdate(exampleCategory.Id);
+             var exampleCategory = fixture.DataGenerator.GetValidCategory();
+             var exampleInput = fixture.DataGenerator.GetInputUpdate(exampleCategory.Id);
 
              yield return new object[] {
                  exampleCategory, exampleInput
@@ -29,17 +29,17 @@ public class DataGenerator
              {
                  case 0:
                      invalidInputsList.Add(new object[] {
-                         fixture.GetInvalidUpdateInputShortName(),
+                         fixture.DataGenerator.GetInvalidUpdateInputShortName(),
                      });
                      break;
                  case 1:
                      invalidInputsList.Add(new object[] {
-                         fixture.GetInvalidUpdateInputTooLongName(),
+                         fixture.DataGenerator.GetInvalidUpdateInputTooLongName(),
                      });
                      break;
                  case 2:
                      invalidInputsList.Add(new object[] {
-                         fixture.GetInvalidUpdateInputTooLongDescription(),
+                         fixture.DataGenerator.GetInvalidUpdateInputTooLongDescription(),
                      });
                      break;
              }

@@ -7,7 +7,7 @@ public class DataGenerator
          public static IEnumerable<object[]> GetInputsListWithoutAllParameter(int times = 14)
      {
          var fixture = new ListCategoriesFixture();
-         var inputListExample = fixture.GetListInput();
+         var inputListExample = fixture.DataGenerator.GetListInput();
 
          for (int i = 0; i < times; i++)
          {

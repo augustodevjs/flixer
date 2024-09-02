@@ -149,7 +149,7 @@ public class UpdateCategoryTest
      {
          var loggerMock = _fixture.GetLoggerMock();
          var repositoryMock = _fixture.GetRepositoryMock();
-         var input = _fixture.GetInputUpdate();
+         var input = _fixture.DataGenerator.GetInputUpdate();
 
          var command = new UpdateCategory(loggerMock.Object, repositoryMock.Object);
 
@@ -171,7 +171,7 @@ public class UpdateCategoryTest
      )]
      public async Task Command_ShouldThrowError_WhenCantUpdateCategory(UpdateCategoryInput input)
      {
-         var exampleCategory = _fixture.CategoryFixture.GetValidCategory();
+         var exampleCategory = _fixture.DataGenerator.GetValidCategory();
          input.Id = exampleCategory.Id;
 
          var repositoryMock = _fixture.GetRepositoryMock();
