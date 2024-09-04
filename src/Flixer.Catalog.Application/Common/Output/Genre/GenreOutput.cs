@@ -3,13 +3,13 @@
 public class GenreOutput
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public bool IsActive { get; set; }
     public DateTime CreatedAt { get; set; }
     public IReadOnlyList<GenreOutputCategory> Categories { get; private set; }
     public GenreOutput(
         Guid id, 
-        string name, 
+        string? name, 
         bool isActive, 
         DateTime createdAt, 
         IReadOnlyList<GenreOutputCategory> categories

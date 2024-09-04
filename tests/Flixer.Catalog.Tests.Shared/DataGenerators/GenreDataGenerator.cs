@@ -1,11 +1,11 @@
-﻿using Flixer.Catalog.Application.Common.Input.Genre;
-using Flixer.Catalog.Domain.Entities;
+﻿using Flixer.Catalog.Domain.Entities;
+using Flixer.Catalog.Application.Common.Input.Genre;
 
 namespace Flixer.Catalog.Tests.Shared.DataGenerators;
 
 public class GenreDataGenerator : DataGeneratorBase
 {
-    public string GetValidName()
+    public string? GetValidName()
     {
         return Faker.Commerce.Categories(1)[0];
     }
@@ -29,4 +29,23 @@ public class GenreDataGenerator : DataGeneratorBase
             GetValidName(),
             GetRandomBoolean()
         );
+    
+    public CreateGenreInput GetInputInvalid(string? input) =>
+        new(
+            input,
+            GetRandomBoolean()
+        );
+    
+    public CreateGenreInput GetExampleInputWithGenre()
+    {
+        var numberOfCategoriesIds = (new Random()).Next(1, 10);
+        var categoriesIds = Enumerable.Range(1, numberOfCategoriesIds)
+            .Select(_ => Guid.NewGuid()).ToList();
+        
+        return new CreateGenreInput(
+            GetValidName(),
+            GetRandomBoolean(),
+            categoriesIds
+        );
+    }
 }

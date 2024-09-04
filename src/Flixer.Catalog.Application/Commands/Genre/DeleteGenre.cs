@@ -8,8 +8,8 @@ namespace Flixer.Catalog.Application.Commands.Genre;
 
 public class DeleteGenre : IRequestHandler<DeleteGenreInput>
 {
-    private readonly IGenreRepository _genreRepository;
     private readonly ILogger<DeleteGenre> _logger;
+    private readonly IGenreRepository _genreRepository;
 
     public DeleteGenre(
         IGenreRepository genreRepository, 
@@ -23,12 +23,9 @@ public class DeleteGenre : IRequestHandler<DeleteGenreInput>
     public async Task Handle(DeleteGenreInput request, CancellationToken cancellationToken)
     {
         var genre = await _genreRepository.GetById(request.Id);
-        
+
         if (genre == null)
-        {
-            _logger.LogWarning("Genre with ID: {GenreId} not found.", request.Id);
             NotFoundException.ThrowIfNull(genre, $"Genre '{request.Id}' not found.");
-        }
 
         _genreRepository.Delete(genre!);
 

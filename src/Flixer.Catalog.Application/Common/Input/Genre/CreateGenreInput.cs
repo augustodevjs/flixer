@@ -6,12 +6,12 @@ namespace Flixer.Catalog.Application.Common.Input.Genre;
 
 public class CreateGenreInput : IRequest<GenreOutput>
 {
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public bool IsActive { get; set; }
     public List<Guid>? CategoriesIds { get; set; }
 
     public CreateGenreInput(
-        string name, 
+        string? name, 
         bool isActive, 
         List<Guid>? categoriesIds = null 
     )

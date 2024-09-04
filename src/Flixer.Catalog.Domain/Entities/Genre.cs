@@ -8,13 +8,13 @@ namespace Flixer.Catalog.Domain.Entities;
 public class Genre : AggregateRoot
 {
     private readonly List<Guid> _categories;
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
     public bool IsActive { get; private set; }
     public DateTime CreatedAt { get; private set; }
     
     public IReadOnlyList<Guid> Categories => _categories.AsReadOnly();
 
-    public Genre(string name, bool isActive = true)
+    public Genre(string? name, bool isActive = true)
     {
         Name = name;
         IsActive = isActive;
@@ -36,7 +36,7 @@ public class Genre : AggregateRoot
         ValidateAndThrow();
     }
 
-    public void Update(string name)
+    public void Update(string? name)
     {
         Name = name;
         ValidateAndThrow();

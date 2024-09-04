@@ -22,3 +22,8 @@
 | Visual Studio Code      |         [Link](https://code.visualstudio.com/download)         |  Editor  |
 | Visual Studio Community | [Link](https://visualstudio.microsoft.com/pt-br/vs/community/) |   IDE    |
 | JetBrains Rider         |    [Link](https://www.jetbrains.com/pt-br/rider/download/)     |   IDE    |
+
+### Extensões para auxilio
+| Nome             |                    Descrição                    |                    Link                     |
+|:-----------------|:-----------------------------------------------:|:-------------------------------------------:|
+| **SonarLint**    |  Marca possíveis bug e code smells no código.   |  [Link](https://www.sonarlint.org/vscode)   | 
