@@ -13,7 +13,7 @@ public class ApiClient
         _httpClient = httpClient;
     }
 
-    public async Task<(HttpResponseMessage?, TOutput?)> Post<TOutput>(string route,object payload) where TOutput : class
+    public async Task<(HttpResponseMessage?, TOutput?)> Post<TOutput>(string route, object payload) where TOutput : class
     {
         var response = await _httpClient.PostAsync(
             route,
@@ -56,6 +56,7 @@ public class ApiClient
 
         return (response, output);
     }
+    
     public async Task<(HttpResponseMessage?, TOutput?)> Delete<TOutput>(string route) where TOutput : class
     {
         var response = await _httpClient.DeleteAsync(route);

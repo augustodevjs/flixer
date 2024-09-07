@@ -1,4 +1,4 @@
-﻿namespace Flixer.Catalog.EndToEndTests.Exntesions;
+﻿namespace Flixer.Catalog.EndToEndTests.Extensions;
 
 internal static class DateTimeExtensions
 {

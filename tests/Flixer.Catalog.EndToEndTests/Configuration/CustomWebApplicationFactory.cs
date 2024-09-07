@@ -13,9 +13,9 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStar
         
         builder.ConfigureServices(services =>
         {
-            var serviceProvder = services.BuildServiceProvider();
+            var serviceProvider = services.BuildServiceProvider();
 
-            using var scope = serviceProvder.CreateScope();
+            using var scope = serviceProvider.CreateScope();
 
             var context = scope.ServiceProvider.GetService<FlixerCatalogDbContext>();
 

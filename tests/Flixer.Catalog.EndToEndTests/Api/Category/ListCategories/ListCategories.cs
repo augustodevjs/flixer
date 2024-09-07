@@ -1,12 +1,12 @@
 ﻿// using System.Net;
+// using Flixer.Catalog.Api.Response;
+// using Flixer.Catalog.Application.Common.Output.Category;
+// using Flixer.Catalog.EndToEndTests.Fixtures.Category;
+// using FluentAssertions;
 // using Newtonsoft.Json;
 // using Xunit.Abstractions;
 // using Microsoft.AspNetCore.Http;
-// using Flixer.Catalog.EndToEndTests.Exntesions;
-// using Flixer.Catalog.EndToEndTests.Api.Category.Common;
-// using Flixer.Catalog.Application.Dtos.ViewModel.Category;
-// using Flixer.Catalog.Application.Dtos.InputModel.Category;
-// using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
+// using Xunit;
 //
 // namespace Flixer.Catalog.EndToEndTests.Api.Category.ListCategories;
 //
@@ -28,24 +28,25 @@
 //     {
 //         var defaultPerPage = 15;
 //
-//         var exampleCategoriesList = _fixture.CategoryTest.GetExampleCategoriesList(20);
+//         var exampleCategoriesList = _fixture.DataGenerator.GetExampleCategoriesList(20);
 //
 //         await _fixture.Persistence.InsertList(exampleCategoriesList);
 //
-//         var (response, output) = await _fixture.ApiClient.Get<ListCategoriesViewModel>("/categories");
+//         var (response, output) = await _fixture.ApiClient
+//             .Get<ApiResponseList<ListCategoriesOutput>>("/categories");
 //
 //         response.Should().NotBeNull();
 //         response!.StatusCode.Should().Be((HttpStatusCode)StatusCodes.Status200OK);
 //
-//         output!.Page.Should().Be(1);
 //         output.Should().NotBeNull();
-//         output.PerPage.Should().Be(defaultPerPage);
-//         output.Items.Should().HaveCount(defaultPerPage);
-//         output!.Total.Should().Be(exampleCategoriesList.Count);
+//         output!.Meta.Page.Should().Be(1);
+//         output.Meta.CurrentPage.Should().Be(defaultPerPage);
+//         output.Data.Should().HaveCount(defaultPerPage);
+//         output!.Meta.Total.Should().Be(exampleCategoriesList.Count);
 //
-//         foreach (CategoryViewModel outputItem in output.Items)
+//         foreach (var outputItem in output.Data.Select(x => x.Items))
 //         {
-//             var exampleItem = exampleCategoriesList.FirstOrDefault(x => x.Id == outputItem.Id);
+//             var exampleItem = exampleCategoriesList.FirstOrDefault(x => x.Id == outputItem.);
 //
 //             exampleItem.Should().NotBeNull();
 //             outputItem.Name.Should().Be(exampleItem!.Name);

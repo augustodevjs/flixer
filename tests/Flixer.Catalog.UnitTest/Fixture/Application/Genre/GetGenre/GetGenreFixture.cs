@@ -15,7 +15,8 @@ public class GetGenreFixtureCollection : ICollectionFixture<GetGenreFixture>
 
 public class GetGenreFixture
 {
-    public GenreDataGenerator DataGenerator { get; } = new();
+    public GenreDataGenerator GenreDataGenerator { get; } = new();
+    public CategoryDataGenerator CategoryDataGenerator { get; } = new();
     public Mock<IGenreRepository> GetGenreRepositoryMock() => new();
     public Mock<ICategoryRepository> GetCategoryRepositoryMock() => new();
     public Mock<ILogger<Catalog.Application.Queries.Genre.GetGenre>> GetLoggerMock() => new();

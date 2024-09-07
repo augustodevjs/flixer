@@ -24,6 +24,16 @@ public class GenreDataGenerator : DataGeneratorBase
         return genre;
     }
     
+    public List<Guid> GenerateGuids(int count)
+    {
+        var list = new List<Guid>();
+
+        for (var i = 0; i < count; i++)
+            list.Add(Guid.NewGuid());
+
+        return list;
+    }
+    
     public CreateGenreInput GetInput() =>
         new(
             GetValidName(),

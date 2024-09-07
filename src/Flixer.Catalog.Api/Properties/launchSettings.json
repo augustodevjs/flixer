@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Flixer.Catalog.Api": {
+    "Flixer.Catalog.API - Development": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -10,13 +10,35 @@
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7019;http://localhost:5008"
     },
-    "IIS Express": {
-      "commandName": "IISExpress",
+    "Flixer.Catalog.API - Staging": {
+      "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Staging"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7019;http://localhost:5008"
+    },
+    "Flixer.Catalog.API - Production": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7019;http://localhost:5008"
+    },
+    "Flixer.Catalog.API - Testing": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "EndToEndTest"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7019;http://localhost:5008"
     },
     "Docker": {
       "commandName": "Docker",

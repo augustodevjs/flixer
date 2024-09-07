@@ -9,7 +9,7 @@ public class CategoryFixtureCollection : ICollectionFixture<CategoryFixture>
     
 }
 
-public class CategoryFixture 
+public class CategoryFixture
 {
     public CategoryDataGenerator DataGenerator { get; } = new();
 }
