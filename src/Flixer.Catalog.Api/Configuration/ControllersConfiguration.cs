@@ -1,4 +1,5 @@
 ﻿using Flixer.Catalog.Api.Filters;
+using Flixer.Catalog.Api.Configuration.Policies;
 
 namespace Flixer.Catalog.Api.Configuration;
 
@@ -18,7 +19,12 @@ public static class ControllersConfiguration
         });
         
         services.AddDocumentation();
-        services.AddControllers(options => options.Filters.Add(typeof(ApiExceptionFilter)));
+        services
+            .AddControllers(options => options.Filters.Add(typeof(ApiExceptionFilter)))
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = new JsonSnakeCasePolicy();
+            });
 
         return services;
     }

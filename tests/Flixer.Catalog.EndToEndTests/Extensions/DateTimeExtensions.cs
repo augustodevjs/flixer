@@ -1,8 +1,8 @@
 ﻿namespace Flixer.Catalog.EndToEndTests.Extensions;
 
-internal static class DateTimeExtensions
+public static class DateTimeExtensions
 {
-    public static DateTime TrimMilisseconds(this DateTime dateTime)
+    public static DateTime TrimMillisseconds(this DateTime dateTime)
     {
         return new DateTime(
             dateTime.Year,

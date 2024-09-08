@@ -35,7 +35,7 @@ public static class DependencyInjection
             options.UseMySql(connectionString, serverVersion, mysqlOptions =>
             {
                 mysqlOptions.EnableRetryOnFailure(
-                    maxRetryCount: 3,
+                    maxRetryCount: 5,
                     maxRetryDelay: TimeSpan.FromSeconds(10), 
                     errorNumbersToAdd: null 
                 );
