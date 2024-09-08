@@ -29,7 +29,7 @@ public class CastMember : AggregateRoot
         ValidateAndThrow();
     }
 
-    public override bool Validate(out ValidationResult validationResult)
+    private bool Validate(out ValidationResult validationResult)
     {
         validationResult = new CastMemberValidator().Validate(this);
         return validationResult.IsValid;

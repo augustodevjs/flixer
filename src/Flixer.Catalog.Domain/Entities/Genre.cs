@@ -59,8 +59,8 @@ public class Genre : AggregateRoot
         _categories.Clear();
         ValidateAndThrow();
     }
-    
-    public override bool Validate(out ValidationResult validationResult)
+
+    private bool Validate(out ValidationResult validationResult)
     {
         validationResult = new GenreValidator().Validate(this);
         return validationResult.IsValid;

@@ -41,7 +41,7 @@ public class Category : AggregateRoot
         ValidateAndThrow();
     }
 
-    public override bool Validate(out ValidationResult validationResult)
+    private bool Validate(out ValidationResult validationResult)
     {
         validationResult = new CategoryValidator().Validate(this);
         return validationResult.IsValid;

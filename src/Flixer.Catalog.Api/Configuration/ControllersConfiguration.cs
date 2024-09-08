@@ -35,13 +35,11 @@ public static class ControllersConfiguration
         services.AddEndpointsApiExplorer();
     }
     
-    public static WebApplication UseDocumentation(this WebApplication app)
+    public static void UseDocumentation(this WebApplication app)
     {
-        if (!app.Environment.IsDevelopment()) return app;
-        
+        if (!app.Environment.IsDevelopment()) return;
+
         app.UseSwagger();
         app.UseSwaggerUI();
-
-        return app;
     }
 }
