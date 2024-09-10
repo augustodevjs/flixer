@@ -9,6 +9,6 @@ public abstract class DataGeneratorBase
     protected DataGeneratorBase()
         => Faker = new Faker("pt_BR");
 
-    protected bool GetRandomBoolean()
+    public bool GetRandomBoolean()
         => new Random().NextDouble() < 0.5;
 }
