@@ -37,7 +37,10 @@ public class VideoTest
             expectedDuration,
             expectedRating
         );
-
+        
+        video.Thumb.Should().BeNull();
+        video.Banner.Should().BeNull();
+        video.ThumbHalf.Should().BeNull();
         video.Title.Should().Be(expectedTitle);
         video.Rating.Should().Be(expectedRating);
         video.Opened.Should().Be(expectedOpened);
@@ -151,6 +154,9 @@ public class VideoTest
             expectedDuration
         );
 
+        video.Thumb.Should().BeNull();
+        video.Banner.Should().BeNull();
+        video.ThumbHalf.Should().BeNull();
         video.Title.Should().Be(expectedTitle);
         video.Opened.Should().Be(expectedOpened);
         video.Duration.Should().Be(expectedDuration);
@@ -182,5 +188,44 @@ public class VideoTest
 
         action.Should().Throw<EntityValidationException>()
             .WithMessage("Video is invalid");
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldUpdateThumb_WhenMethodIsCalled()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        var validImagePath = _fixture.DataGenerator.GetValidImagePath();
+
+        validVideo.UpdateThumb(validImagePath);
+
+        validVideo.Thumb.Should().NotBeNull();
+        validVideo.Thumb!.Path.Should().Be(validImagePath);
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldUpdateBanner_WhenMethodIsCalled()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        var validImagePath = _fixture.DataGenerator.GetValidImagePath();
+
+        validVideo.UpdateBanner(validImagePath);
+
+        validVideo.Banner.Should().NotBeNull();
+        validVideo.Banner!.Path.Should().Be(validImagePath);
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldUpdateThumbHalf_WhenMethodIsCalled()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        var validImagePath = _fixture.DataGenerator.GetValidImagePath();
+
+        validVideo.UpdateBanner(validImagePath);
+
+        validVideo.Banner.Should().NotBeNull();
+        validVideo.Banner!.Path.Should().Be(validImagePath);
     }
 }

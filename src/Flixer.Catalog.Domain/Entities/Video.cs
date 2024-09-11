@@ -3,6 +3,7 @@ using Flixer.Catalog.Domain.Enums;
 using Flixer.Catalog.Domain.SeedWork;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Domain.Validation;
+using Flixer.Catalog.Domain.ValueObject;
 
 namespace Flixer.Catalog.Domain.Entities;
 
@@ -16,6 +17,10 @@ public class Video : AggregateRoot
     public int Duration { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public Rating Rating { get; private set; }
+    
+    public Image? Thumb { get; private set; }
+    public Image? ThumbHalf { get; private set; }
+    public Image? Banner { get; private set; }
 
     public Video(
         string title, 
@@ -56,6 +61,15 @@ public class Video : AggregateRoot
 
         ValidateAndThrow();
     }
+
+    public void UpdateThumb(string path)
+        => Thumb = new Image(path);
+    
+    public void UpdateThumbHalf(string path)
+        => ThumbHalf = new Image(path);
+
+    public void UpdateBanner(string path)
+        => Banner = new Image(path);
     
     private bool Validate(out ValidationResult validationResult)
     {

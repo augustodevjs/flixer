@@ -42,4 +42,7 @@ public class VideoDataGenerator : DataGeneratorBase
 
     public string GetTooLongTitle()
         => Faker.Lorem.Letter(400);
+    
+    public string GetValidImagePath()
+        => Faker.Image.PlaceImgUrl();
 }
