@@ -1,5 +1,4 @@
-﻿
-namespace Flixer.Catalog.Domain.SeedWork;
+﻿namespace Flixer.Catalog.Domain.SeedWork;
 
 public abstract class Entity
 {

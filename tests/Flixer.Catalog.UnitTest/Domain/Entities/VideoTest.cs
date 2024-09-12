@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using FluentAssertions;
+using Flixer.Catalog.Domain.Enums;
 using Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.UnitTest.Fixture.Domain;
@@ -223,9 +224,198 @@ public class VideoTest
         var validVideo = _fixture.DataGenerator.GetValidVideo();
         var validImagePath = _fixture.DataGenerator.GetValidImagePath();
 
-        validVideo.UpdateBanner(validImagePath);
+        validVideo.UpdateThumbHalf(validImagePath);
 
-        validVideo.Banner.Should().NotBeNull();
-        validVideo.Banner!.Path.Should().Be(validImagePath);
+        validVideo.ThumbHalf.Should().NotBeNull();
+        validVideo.ThumbHalf!.Path.Should().Be(validImagePath);
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldUpdateMedia_WhenMethodIsCalled()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        var validPath = _fixture.DataGenerator.GetValidMediaPath();
+
+        validVideo.UpdateMedia(validPath);
+
+        validVideo.Media.Should().NotBeNull();
+        validVideo.Media!.FilePath.Should().Be(validPath);
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldUpdateTrailer_WhenMethodIsCalled()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        var validPath = _fixture.DataGenerator.GetValidMediaPath();
+
+        validVideo.UpdateTrailer(validPath);
+
+        validVideo.Trailer.Should().NotBeNull();
+        validVideo.Trailer!.FilePath.Should().Be(validPath);
+    }
+
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldUpdateAsSentToEncode_WhenMethodIsCalled()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        var validPath = _fixture.DataGenerator.GetValidMediaPath();
+        
+        validVideo.UpdateMedia(validPath);
+        validVideo.UpdateAsSentToEncode();
+
+        validVideo.Media!.Status.Should().Be(MediaStatus.Processing);
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldThrowExceptionInUpdateAsSentToEncode_WhenThereIsNoMedia()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+
+        var action = () => validVideo.UpdateAsSentToEncode();
+
+        action.Should().Throw<EntityValidationException>()
+            .WithMessage("There is no Media");
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldAddCategory_WhenMethodIsCalled()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        var categoryIdExample = Guid.NewGuid();
+
+        validVideo.AddCategory(categoryIdExample);
+
+        validVideo.Categories.Should().HaveCount(1);
+        validVideo.Categories[0].Should().Be(categoryIdExample);
+    }
+
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldRemoveCategory_WhenMethodIsCalled()
+    {
+        var categoryIdExample = Guid.NewGuid();
+        var categoryIdExample2 = Guid.NewGuid();
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        
+        validVideo.AddCategory(categoryIdExample);
+        validVideo.AddCategory(categoryIdExample2);
+
+        validVideo.RemoveCategory(categoryIdExample);
+
+        validVideo.Categories.Should().HaveCount(1);
+        validVideo.Categories[0].Should().Be(categoryIdExample2);
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldRemoveAllCategory_WhenMethodIsCalled()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        var categoryIdExample = Guid.NewGuid();
+        var categoryIdExample2 = Guid.NewGuid();
+        
+        validVideo.AddCategory(categoryIdExample);
+        validVideo.AddCategory(categoryIdExample2);
+
+        validVideo.RemoveAllCategories();
+
+        validVideo.Categories.Should().HaveCount(0);
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldAddGenre_WhenMethodIsCalled()
+    {
+        var exampleId = Guid.NewGuid();
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+
+        validVideo.AddGenre(exampleId);
+
+        validVideo.Genres.Should().HaveCount(1);
+        validVideo.Genres[0].Should().Be(exampleId);
+    }
+
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldRemoveGenre_WhenMethodIsCalled()
+    {
+        var exampleId = Guid.NewGuid();
+        var exampleId2 = Guid.NewGuid();
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        
+        validVideo.AddGenre(exampleId);
+        validVideo.AddGenre(exampleId2);
+
+        validVideo.RemoveGenre(exampleId2);
+
+        validVideo.Genres.Should().HaveCount(1);
+        validVideo.Genres[0].Should().Be(exampleId);
+    }
+
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldRemoveAllGenre_WhenMethodIsCalled()
+    {
+        var exampleId = Guid.NewGuid();
+        var exampleId2 = Guid.NewGuid();
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        
+        validVideo.AddGenre(exampleId);
+        validVideo.AddGenre(exampleId2);
+
+        validVideo.RemoveAllGenres();
+
+        validVideo.Genres.Should().HaveCount(0);
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldAddCastMember_WhenMethodIsCalled()
+    {
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        var exampleId = Guid.NewGuid();
+
+        validVideo.AddCastMember(exampleId);
+
+        validVideo.CastMembers[0].Should().Be(exampleId);
+        validVideo.CastMembers.Should().HaveCount(1);
+    }
+
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldRemoveCastMember_WhenMethodIsCalled()
+    {
+        var exampleId = Guid.NewGuid();
+        var exampleId2 = Guid.NewGuid();
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        
+        validVideo.AddCastMember(exampleId);
+        validVideo.AddCastMember(exampleId2);
+
+        validVideo.RemoveCastMember(exampleId2);
+
+        validVideo.CastMembers[0].Should().Be(exampleId);
+        validVideo.CastMembers.Should().HaveCount(1);
+    }
+
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldRemoveAllCastMembers_WhenMethodIsCalled()
+    {
+        var exampleId = Guid.NewGuid();
+        var exampleId2 = Guid.NewGuid();
+        var validVideo = _fixture.DataGenerator.GetValidVideo();
+        
+        validVideo.AddCastMember(exampleId);
+        validVideo.AddCastMember(exampleId2);
+
+        validVideo.RemoveAllCastMembers();
+
+        validVideo.CastMembers.Should().HaveCount(0);
     }
 }

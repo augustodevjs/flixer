@@ -22,6 +22,18 @@ public class Video : AggregateRoot
     public Image? ThumbHalf { get; private set; }
     public Image? Banner { get; private set; }
 
+    private List<Guid> _categories;
+    public IReadOnlyList<Guid> Categories => _categories.AsReadOnly();
+
+    private List<Guid> _genres;
+    public IReadOnlyList<Guid> Genres => _genres.AsReadOnly();
+    
+    private List<Guid> _castMembers;
+    public IReadOnlyList<Guid> CastMembers => _castMembers.AsReadOnly();
+    
+    public Media? Media { get; private set; }
+    public Media? Trailer { get; private set; }
+
     public Video(
         string title, 
         string description, 
@@ -40,6 +52,10 @@ public class Video : AggregateRoot
         Description = description;
         YearLaunched = yearLaunched;
         CreatedAt = DateTime.Now;
+        
+        _genres = new List<Guid>();
+        _categories = new List<Guid>();
+        _castMembers = new List<Guid>();
 
         ValidateAndThrow();
     }
@@ -70,6 +86,47 @@ public class Video : AggregateRoot
 
     public void UpdateBanner(string path)
         => Banner = new Image(path);
+    
+    public void UpdateMedia(string path)
+        => Media = new Media(path);
+    
+    public void UpdateTrailer(string path)
+        => Trailer = new Media(path);
+
+    public void UpdateAsSentToEncode()
+    {
+        if (Media is null)
+            throw new EntityValidationException("There is no Media", null);
+        
+        Media.UpdateAsSentToEncode();
+    }
+    
+    public void AddCategory(Guid categoryId)
+        => _categories.Add(categoryId);
+
+    public void RemoveCategory(Guid categoryId)
+        => _categories.Remove(categoryId);
+
+    public void RemoveAllCategories()
+        => _categories = new List<Guid>();
+    
+    public void AddGenre(Guid genreId)
+        => _genres.Add(genreId);
+
+    public void RemoveGenre(Guid genreId)
+        => _genres.Remove(genreId);
+
+    public void RemoveAllGenres()
+        => _genres = new List<Guid>();
+    
+    public void AddCastMember(Guid castMemberId)
+        => _castMembers.Add(castMemberId);
+
+    public void RemoveCastMember(Guid castMemberid)
+        => _castMembers.Remove(castMemberid);
+
+    public void RemoveAllCastMembers()
+        => _castMembers = new List<Guid>();
     
     private bool Validate(out ValidationResult validationResult)
     {

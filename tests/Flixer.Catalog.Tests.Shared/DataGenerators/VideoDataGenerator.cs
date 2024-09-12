@@ -1,5 +1,5 @@
-﻿using Flixer.Catalog.Domain.Entities;
-using Flixer.Catalog.Domain.Enums;
+﻿using Flixer.Catalog.Domain.Enums;
+using Flixer.Catalog.Domain.Entities;
 
 namespace Flixer.Catalog.Tests.Shared.DataGenerators;
 
@@ -45,4 +45,20 @@ public class VideoDataGenerator : DataGeneratorBase
     
     public string GetValidImagePath()
         => Faker.Image.PlaceImgUrl();
+    
+    public string GetValidMediaPath()
+    {
+        var exampleMedias = new[]
+        {
+            "https://www.googlestorage.com/file-example.mp4",
+            "https://www.storage.com/another-example-of-video.mp4",
+            "https://www.S3.com.br/example.mp4",
+            "https://www.glg.io/file.mp4"
+        };
+        var random = new Random();
+        return exampleMedias[random.Next(exampleMedias.Length)];
+    }
+    
+    public Media GetValidMedia()
+        => new(GetValidMediaPath());
 }

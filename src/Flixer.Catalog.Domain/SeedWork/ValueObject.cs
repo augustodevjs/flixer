@@ -9,7 +9,7 @@ public abstract class ValueObject : IEquatable<ValueObject>
     {
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
-        return obj.GetType() == this.GetType() 
+        return obj.GetType() == GetType() 
                && Equals((ValueObject)obj);
     }
 

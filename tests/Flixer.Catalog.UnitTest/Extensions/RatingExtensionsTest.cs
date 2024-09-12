@@ -23,7 +23,7 @@ public class RatingExtensionsTest
 
     [Fact]
     [Trait("Domain", "Rating - Extensions")]
-    public void Extensions_ShouldThrowArgumentOutOfRangeException_WhenInvalidString()
+    public void Extensions_ShouldThrowArgumentOutOfRangeException_WhenInvalidStringIsPassedInMethodToRating()
     {
         var action = () => "Invalid".ToRating();
         action.Should().Throw<ArgumentOutOfRangeException>();
