@@ -1,8 +1,9 @@
 ﻿using Flixer.Catalog.Domain.Enums;
+using Flixer.Catalog.Domain.SeedWork;
 
 namespace Flixer.Catalog.Domain.Entities;
 
-public class Media
+public class Media : Entity
 {
     public string FilePath { get; private set; }
     public string? EncodedPath { get; private set; }

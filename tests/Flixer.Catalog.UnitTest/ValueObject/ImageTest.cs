@@ -24,6 +24,7 @@ public class ImageTest : DataGeneratorBase
     public void ValueObject_EqualsByPath()
     {
         var path = Faker.Image.PicsumUrl();
+        
         var image = new Image(path);
         var sameImage = new Image(path);
 
@@ -38,6 +39,7 @@ public class ImageTest : DataGeneratorBase
     {
         var path = Faker.Image.PicsumUrl();
         var differentPath = Faker.Image.PicsumUrl();
+        
         var image = new Image(path);
         var sameImage = new Image(differentPath);
 

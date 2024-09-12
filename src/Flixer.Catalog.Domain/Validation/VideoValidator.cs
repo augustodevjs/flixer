@@ -13,6 +13,6 @@ public class VideoValidator : AbstractValidator<Video>
 
         RuleFor(video => video.Description)
             .NotEmpty().WithMessage("Description is required")
-            .MaximumLength(500).WithMessage($"Description should be less or equal {500} characters long");
+            .MaximumLength(4000).WithMessage($"Description should be less or equal {500} characters long");
     }
 }

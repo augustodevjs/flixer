@@ -14,9 +14,14 @@ public class FlixerCatalogDbContext : DbContext, IUnityOfWork
     }
 
     public DbSet<Genre> Genres { get; set; } = null!;
+    public DbSet<Video> Videos { get; set; } = null!;
     public DbSet<Category> Categories { get; set; } = null!;
     public DbSet<CastMember> CastMembers { get; set; } = null!;
+    
+    public DbSet<VideosGenres> VideosGenres { get; set; } = null!;
     public DbSet<GenresCategories> GenresCategories { get; set; } = null!;
+    public DbSet<VideosCategories> VideosCategories { get; set; } = null!;
+    public DbSet<VideosCastMembers> VideosCastMembers { get; set; } = null!;
     
     public async Task<bool> Commit() => await SaveChangesAsync() > 0;
 

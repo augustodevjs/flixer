@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Flixer.Catalog.Infra.Data.EF.Mappings;
 
-public class CastMemberMapping : IEntityTypeConfiguration<CastMember>
+public class MediaMapping : IEntityTypeConfiguration<Media>
 {
-    public void Configure(EntityTypeBuilder<CastMember> builder)
+    public void Configure(EntityTypeBuilder<Media> builder)
     {
-        builder.HasKey(c => c.Id);
+        builder.Property(media => media.Id).ValueGeneratedNever();
     }
 }

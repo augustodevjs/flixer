@@ -66,7 +66,8 @@ public class Video : AggregateRoot
         int yearLaunched,
         bool opened,
         bool published,
-        int duration)
+        int duration,
+        Rating? rating = null)
     {
         Title = title;
         Opened = opened;
@@ -74,6 +75,9 @@ public class Video : AggregateRoot
         Published = published;
         Description = description;
         YearLaunched = yearLaunched;
+        
+        if (rating is not null)
+            Rating = (Rating) rating;
 
         ValidateAndThrow();
     }
@@ -122,8 +126,8 @@ public class Video : AggregateRoot
     public void AddCastMember(Guid castMemberId)
         => _castMembers.Add(castMemberId);
 
-    public void RemoveCastMember(Guid castMemberid)
-        => _castMembers.Remove(castMemberid);
+    public void RemoveCastMember(Guid castMemberId)
+        => _castMembers.Remove(castMemberId);
 
     public void RemoveAllCastMembers()
         => _castMembers = new List<Guid>();
