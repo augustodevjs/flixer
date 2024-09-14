@@ -13,6 +13,7 @@ public class FlixerCatalogDbContext : DbContext, IUnityOfWork
 
     }
 
+    public DbSet<Media> Medias { get; set; } = null!;
     public DbSet<Genre> Genres { get; set; } = null!;
     public DbSet<Video> Videos { get; set; } = null!;
     public DbSet<Category> Categories { get; set; } = null!;
