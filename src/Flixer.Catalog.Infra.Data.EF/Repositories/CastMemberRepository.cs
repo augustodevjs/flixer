@@ -13,6 +13,15 @@ public class CastMemberRepository  : Repository<CastMember>, ICastMemberReposito
     public CastMemberRepository(FlixerCatalogDbContext context) : base(context)
     {
     }
+    
+    public async Task<IReadOnlyList<Guid>> GetIdsListByIds(List<Guid> ids)
+    {
+        return await Context.CastMembers
+            .AsNoTracking()
+            .Where(x => ids.Contains(x.Id))
+            .Select(x => x.Id)
+            .ToListAsync();
+    }
 
     public async Task<SearchOutput<CastMember>> Search(SearchInput input)
     {
@@ -33,7 +42,7 @@ public class CastMemberRepository  : Repository<CastMember>, ICastMemberReposito
 
         return new SearchOutput<CastMember>(total, input.PerPage, input.Page, items);
     }
-    
+
     private IQueryable<CastMember> AddOrderToQuery(
         IQueryable<CastMember> query,
         string orderProperty,

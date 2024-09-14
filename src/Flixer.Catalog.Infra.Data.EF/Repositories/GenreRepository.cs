@@ -110,6 +110,21 @@ public class GenreRepository : Repository<Genre>, IGenreRepository
         return new SearchOutput<Genre>(total, input.PerPage, input.Page, genres);
     }
 
+    public async Task<IReadOnlyList<Guid>> GetIdsListByIdsAsync(List<Guid> ids)
+    {
+        return await Context.Genres.AsNoTracking()
+            .Where(genre => ids.Contains(genre.Id))
+            .Select(genre => genre.Id)
+            .ToListAsync();
+    }
+
+    public async Task<IReadOnlyList<Genre>> GetListByIdsAsync(List<Guid> ids)
+    {
+        return await Context.Genres.AsNoTracking()
+            .Where(genre => ids.Contains(genre.Id))
+            .ToListAsync();
+    }
+
     private IQueryable<Genre> AddOrderToQuery(IQueryable<Genre> query, string orderProperty, SearchOrder order)
     {
         var orderedQuery = (orderProperty.ToLower(), order) switch
