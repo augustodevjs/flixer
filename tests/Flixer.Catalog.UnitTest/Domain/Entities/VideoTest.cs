@@ -168,6 +168,41 @@ public class VideoTest
     
     [Fact]
     [Trait("Domain", "Video - Aggregate")]
+    public void Video_ShouldUpdateWithRating_WhenMethodIsCalled()
+    {
+        var video = _fixture.DataGenerator.GetValidVideo();
+        var expectedRating = _fixture.DataGenerator.GetRandomRating();
+        var expectedTitle = _fixture.DataGenerator.GetValidTitle();
+        var expectedOpened = _fixture.DataGenerator.GetRandomBoolean();
+        var expectedDuration = _fixture.DataGenerator.GetValidDuration();
+        var expectedPublished = _fixture.DataGenerator.GetRandomBoolean();
+        var expectedDescription = _fixture.DataGenerator.GetValidDescription();
+        var expectedYearLaunched = _fixture.DataGenerator.GetValidYearLaunched();
+
+        video.Update(
+            expectedTitle,
+            expectedDescription,
+            expectedYearLaunched,
+            expectedOpened,
+            expectedPublished,
+            expectedDuration,
+            expectedRating
+        );
+
+        video.Thumb.Should().BeNull();
+        video.Banner.Should().BeNull();
+        video.ThumbHalf.Should().BeNull();
+        video.Title.Should().Be(expectedTitle);
+        video.Opened.Should().Be(expectedOpened);
+        video.Rating.Should().Be(expectedRating);
+        video.Duration.Should().Be(expectedDuration);
+        video.Published.Should().Be(expectedPublished);
+        video.Description.Should().Be(expectedDescription);
+        video.YearLaunched.Should().Be(expectedYearLaunched);
+    }
+    
+    [Fact]
+    [Trait("Domain", "Video - Aggregate")]
     public void Video_ShouldThrowException_WhenUpdateMethodIsCalledWithDescriptionTooLongAndTitleTooLong()
     {
         var video = _fixture.DataGenerator.GetValidVideo();
