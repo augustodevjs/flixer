@@ -177,7 +177,7 @@ public class ListCategoriesTest
         };
     
         var dbContext = _fixture.CreateDbContext(NameDbContext);
-        var exampleCategoriesList = _fixture.GetExampleCategoriesListWithNames(
+        var exampleCategoriesList = _fixture.DataGenerator.GetExampleCategoriesListWithNames(
             categoryNamesList
         );
         
@@ -254,7 +254,7 @@ public class ListCategoriesTest
     
         var output = await useCase.Handle(input, CancellationToken.None);
     
-        var expectedOrderedList = _fixture.CloneCategoriesListOrdered(
+        var expectedOrderedList = _fixture.DataGenerator.CloneCategoriesListOrdered(
             exampleCategoriesList,
             input.Sort,
             input.Dir

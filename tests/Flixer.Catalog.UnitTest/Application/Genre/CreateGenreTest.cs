@@ -23,10 +23,12 @@ public class CreateGenreTest
     public async void Command_ShouldCreateGenre_WhenMethodHandleIsCalled()
     {
         var loggerMock = _fixture.GetLoggerMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
         var categoryRepositoryMock = _fixture.GetCategoryeRepositoryMock();
         
         var command = new CreateGenre(
+            unitOfWorkMock.Object,
             loggerMock.Object,
             genreRepositoryMock.Object,
             categoryRepositoryMock.Object
@@ -34,7 +36,7 @@ public class CreateGenreTest
         
         var input = _fixture.DataGenerator.GetInput();
         
-        genreRepositoryMock.Setup(repo => repo.UnityOfWork.Commit())
+        unitOfWorkMock.Setup(uow => uow.Commit())
             .ReturnsAsync(true);
 
         var datetimeBefore = DateTime.Now;
@@ -56,9 +58,7 @@ public class CreateGenreTest
         genreRepositoryMock.Verify(x => 
             x.Create(It.IsAny<Catalog.Domain.Entities.Genre>()), Times.Once);
         
-        genreRepositoryMock.Verify(repository => 
-            repository.UnityOfWork.Commit(), Times.Once);
-        
+        unitOfWorkMock.Verify(uow => uow.Commit(), Times.Once);
         loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(1));
     }
     
@@ -67,6 +67,7 @@ public class CreateGenreTest
     public async Task Command_ShoulCreateWithRelatedCategories()
     {
         var loggerMock = _fixture.GetLoggerMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
         var categoryRepositoryMock = _fixture.GetCategoryeRepositoryMock();
         
@@ -74,12 +75,13 @@ public class CreateGenreTest
         
         categoryRepositoryMock.Setup(
             x => x.GetIdsListByIds(It.IsAny<List<Guid>>()))
-        .ReturnsAsync((IReadOnlyList<Guid>) input.CategoriesIds!);
+        .ReturnsAsync(input.CategoriesIds!);
         
-        genreRepositoryMock.Setup(repo => repo.UnityOfWork.Commit())
+        unitOfWorkMock.Setup(uow => uow.Commit())
             .ReturnsAsync(true);
         
         var command = new CreateGenre(
+            unitOfWorkMock.Object,
             loggerMock.Object,
             genreRepositoryMock.Object,
             categoryRepositoryMock.Object
@@ -98,9 +100,7 @@ public class CreateGenreTest
             It.IsAny<Catalog.Domain.Entities.Genre>()
         ), Times.Once);
         
-        genreRepositoryMock.Verify(repository => 
-            repository.UnityOfWork.Commit(), Times.Once);
-        
+        unitOfWorkMock.Verify(uow => uow.Commit(), Times.Once);
         loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(1));
     }
 
@@ -109,6 +109,7 @@ public class CreateGenreTest
     public async Task Command_ShouldThrowError_WhenCreateRelatedCategoryNotFound()
     {
         var loggerMock = _fixture.GetLoggerMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
         var categoryRepositoryMock = _fixture.GetCategoryeRepositoryMock();
         
@@ -124,10 +125,11 @@ public class CreateGenreTest
                 .FindAll(x => x != exampleGuid)
         );
         
-        genreRepositoryMock.Setup(repo => repo.UnityOfWork.Commit())
+        unitOfWorkMock.Setup(uow => uow.Commit())
             .ReturnsAsync(true);
         
         var command = new CreateGenre(
+            unitOfWorkMock.Object,
             loggerMock.Object,
             genreRepositoryMock.Object,
             categoryRepositoryMock.Object
@@ -144,9 +146,7 @@ public class CreateGenreTest
             ), Times.Once
         );
         
-        genreRepositoryMock.Verify(repository => 
-            repository.UnityOfWork.Commit(), Times.Never);
-        
+        unitOfWorkMock.Verify(uow => uow.Commit(), Times.Never);
         loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(0));
     }
     
@@ -158,12 +158,14 @@ public class CreateGenreTest
     public async Task Command_ShouldThrowError_WhenNameIsInvalid(string name)
     {
         var loggerMock = _fixture.GetLoggerMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
         var categoryRepositoryMock = _fixture.GetCategoryeRepositoryMock();
         
         var input = _fixture.DataGenerator.GetInputInvalid(name);
         
         var command = new CreateGenre(
+            unitOfWorkMock.Object,
             loggerMock.Object,
             genreRepositoryMock.Object,
             categoryRepositoryMock.Object

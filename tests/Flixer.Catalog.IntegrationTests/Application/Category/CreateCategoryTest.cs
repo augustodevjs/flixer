@@ -3,6 +3,7 @@ using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
 using Flixer.Catalog.Application.Common.Input.Category;
+using Flixer.Catalog.Infra.Data.EF.UnitOfWork;
 using Flixer.Catalog.IntegrationTests.Fixtures.Repository;
 
 namespace Flixer.Catalog.IntegrationTests.Application.Category;
@@ -25,6 +26,8 @@ public class CreateCategoryTest
         var input = _fixture.DataGenerator.GetInputCreate();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
+        var unitOfWork = new UnitOfWork(dbContext);
+        
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder.SetMinimumLevel(LogLevel.Debug);
@@ -34,7 +37,7 @@ public class CreateCategoryTest
 
         var repository = new CategoryRepository(dbContext);
 
-        var command = new Catalog.Application.Commands.Category.CreateCategory(logger, repository);
+        var command = new Catalog.Application.Commands.Category.CreateCategory(unitOfWork, logger, repository);
 
         var output = await command.Handle(input, CancellationToken.None);
 
@@ -62,6 +65,8 @@ public class CreateCategoryTest
         var exampleInput = _fixture.DataGenerator.GetInputCreate();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
+        var unitOfWork = new UnitOfWork(dbContext);
+        
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder.SetMinimumLevel(LogLevel.Debug);
@@ -71,7 +76,7 @@ public class CreateCategoryTest
     
         var repository = new CategoryRepository(dbContext);
     
-        var command = new Catalog.Application.Commands.Category.CreateCategory(logger, repository);
+        var command = new Catalog.Application.Commands.Category.CreateCategory(unitOfWork, logger, repository);
     
         var input = new CreateCategoryInput(exampleInput.Name, exampleInput.Description);
     

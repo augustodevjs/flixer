@@ -24,12 +24,13 @@ public class CreateCategoryTest
     {
         var loggerMock = _fixture.GetLoggerMock();
         var repositoryMock = _fixture.GetRepositoryMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
-        var command = new CreateCategory(loggerMock.Object, repositoryMock.Object);
+        var command = new CreateCategory(unitOfWorkMock.Object, loggerMock.Object, repositoryMock.Object);
 
         var input = _fixture.DataGenerator.GetInputCreate();
         
-        repositoryMock.Setup(repo => repo.UnityOfWork.Commit())
+        unitOfWorkMock.Setup(uow => uow.Commit())
             .ReturnsAsync(true);
 
         var output = await command.Handle(input, CancellationToken.None);
@@ -44,8 +45,7 @@ public class CreateCategoryTest
         repositoryMock.Verify(repository => repository.Create(
             It.IsAny<Catalog.Domain.Entities.Category>()), Times.Once);
         
-        repositoryMock.Verify(repository => 
-            repository.UnityOfWork.Commit(), Times.Once);
+        unitOfWorkMock.Verify(x => x.Commit(), Times.Once);
         
         loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(1));
     }
@@ -56,12 +56,13 @@ public class CreateCategoryTest
     {
         var loggerMock = _fixture.GetLoggerMock();
         var repositoryMock = _fixture.GetRepositoryMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
-        var command = new CreateCategory(loggerMock.Object, repositoryMock.Object);
+        var command = new CreateCategory(unitOfWorkMock.Object, loggerMock.Object, repositoryMock.Object);
 
         var input = _fixture.DataGenerator.GetInputCreateWithNameAndDescription();
         
-        repositoryMock.Setup(repo => repo.UnityOfWork.Commit())
+        unitOfWorkMock.Setup(uow => uow.Commit())
             .ReturnsAsync(true);
 
         var output = await command.Handle(input, CancellationToken.None);
@@ -76,8 +77,7 @@ public class CreateCategoryTest
         repositoryMock.Verify(repository => repository.Create(
             It.IsAny<Catalog.Domain.Entities.Category>()), Times.Once);
         
-        repositoryMock.Verify(repository => 
-            repository.UnityOfWork.Commit(), Times.Once);
+        unitOfWorkMock.Verify(uow => uow.Commit(), Times.Once);
         
         loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(1));
     }
@@ -93,8 +93,9 @@ public class CreateCategoryTest
     {
         var loggerMock = _fixture.GetLoggerMock();
         var repositoryMock = _fixture.GetRepositoryMock();
-
-        var command = new CreateCategory(loggerMock.Object, repositoryMock.Object);
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
+        
+        var command = new CreateCategory(unitOfWorkMock.Object, loggerMock.Object, repositoryMock.Object);
     
         Func<Task> task = async () => await command.Handle(input, CancellationToken.None);
     
@@ -102,7 +103,7 @@ public class CreateCategoryTest
             .WithMessage("Category is invalid");
         
         loggerMock.VerifyLog(LogLevel.Error, Times.Exactly(1));
-        repositoryMock.Verify(uow => uow.UnityOfWork.Commit(), Times.Never);
+        unitOfWorkMock.Verify(uow => uow.Commit(), Times.Never);
         repositoryMock.Verify(repository => repository.Create(
             It.IsAny<Catalog.Domain.Entities.Category>()),
             Times.Never

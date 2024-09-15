@@ -24,24 +24,25 @@ public class DeleteCategoryTest
      {
          var loggerMock = _fixture.GetLoggerMock();
          var repositoryMock = _fixture.GetRepositoryMock();
+         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
          var categoryExample = _fixture.DataGenerator.GetValidCategory();
          
          repositoryMock.Setup(x => x
                  .GetById(categoryExample.Id))
         .ReturnsAsync(categoryExample);
          
-         repositoryMock.Setup(x => x
-                 .UnityOfWork.Commit())
+         unitOfWorkMock.Setup(uow => uow.Commit())
              .ReturnsAsync(true);
 
          var input = new DeleteCategoryInput(categoryExample.Id);
 
-         var command = new DeleteCategory(loggerMock.Object, repositoryMock.Object);
+         var command = new DeleteCategory(unitOfWorkMock.Object, loggerMock.Object, repositoryMock.Object);
 
          await command.Handle(input, CancellationToken.None);
 
          loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(1));
-         repositoryMock.Verify(x => x.UnityOfWork.Commit(), Times.Once);
+         
+         unitOfWorkMock.Verify(uow => uow.Commit(), Times.Once);
          repositoryMock.Verify(x => x.Delete(categoryExample), Times.Once);
          repositoryMock.Verify(x => x.GetById(categoryExample.Id), Times.Once);
      }
@@ -53,10 +54,11 @@ public class DeleteCategoryTest
          var exampleGuid = Guid.NewGuid();
          var loggerMock = _fixture.GetLoggerMock();
          var repositoryMock = _fixture.GetRepositoryMock();
+         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
          var input = new DeleteCategoryInput(exampleGuid);
 
-         var command = new DeleteCategory(loggerMock.Object, repositoryMock.Object);
+         var command = new DeleteCategory(unitOfWorkMock.Object, loggerMock.Object, repositoryMock.Object);
 
          var task = async () => await command.Handle(input, CancellationToken.None);
 
@@ -64,8 +66,9 @@ public class DeleteCategoryTest
              .WithMessage($"Category '{exampleGuid}' not found.");
 
          loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(0));
+         
+         unitOfWorkMock.Verify(uow => uow.Commit(), Times.Never);
          repositoryMock.Verify(x => x.GetById(exampleGuid), Times.Once);
-         repositoryMock.Verify(x => x.UnityOfWork.Commit(), Times.Never);
          repositoryMock.Verify(x => x.Delete(It.IsAny<Catalog.Domain.Entities.Category>()), Times.Never);
      }
 }

@@ -278,7 +278,7 @@ public class CategoryRepositoryTest
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         
         var exampleCategoriesList =
-            _fixture.GetExampleCategoriesListWithNames(new List<string>() { 
+            _fixture.DataGenerator.GetExampleCategoriesListWithNames(new List<string>() { 
                 "Action",
                 "Horror",
                 "Horror - Robots",
@@ -343,7 +343,7 @@ public class CategoryRepositoryTest
 
         var output = await categoryRepository.Search(searchInput);
 
-        var expectedOrderedList = _fixture.CloneCategoriesListOrdered(
+        var expectedOrderedList = _fixture.DataGenerator.CloneCategoriesListOrdered(
             exampleCategoriesList,
             orderBy,
             searchOrder
@@ -355,6 +355,7 @@ public class CategoryRepositoryTest
         output.PerPage.Should().Be(searchInput.PerPage);
         output.Total.Should().Be(exampleCategoriesList.Count);
         output.Items.Should().HaveCount(exampleCategoriesList.Count);
+        
         for(var index = 0; index < expectedOrderedList.Count; index++)
         {
             var expectedItem = expectedOrderedList[index];

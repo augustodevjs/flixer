@@ -32,4 +32,8 @@
     <ProjectReference Include="..\Flixer.Catalog.Tests.Shared\Flixer.Catalog.Tests.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\CastMember\" />
+  </ItemGroup>
+
 </Project>

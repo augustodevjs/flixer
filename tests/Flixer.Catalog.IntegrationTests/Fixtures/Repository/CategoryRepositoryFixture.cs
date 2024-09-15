@@ -1,11 +1,5 @@
 ﻿using Xunit; 
-using Flixer.Catalog.Domain.Enums;
-using Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Tests.Shared.DataGenerators;
-using Flixer.Catalog.UnitTest.Fixture.Domain;
-using Flixer.Catalog.UnitTest.Fixture.Application.Category.ListCategory;
-using Flixer.Catalog.UnitTest.Fixture.Application.Category.CreateCategory;
-using Flixer.Catalog.UnitTest.Fixture.Application.Category.UpdateCategory;
 
 namespace Flixer.Catalog.IntegrationTests.Fixtures.Repository;
 
@@ -18,36 +12,4 @@ public class CategoryRepositoryFixtureCollection : ICollectionFixture<CategoryRe
 public class CategoryRepositoryFixture : BaseFixture
 {
     public CategoryDataGenerator DataGenerator { get; } = new();
-    
-    public List<Category> GetExampleCategoriesListWithNames(List<string> names)
-        => names.Select(name =>
-        {
-            var category = DataGenerator.GetValidCategory();
-            category.Update(name);
-            return category;
-        }).ToList();
-    
-    public List<Category> CloneCategoriesListOrdered(
-        List<Category> categoriesList,
-        string orderBy,
-        SearchOrder order
-    )
-    {
-        var listClone = new List<Category>(categoriesList);
-        
-        var orderedEnumerable = (orderBy.ToLower(), order) switch
-        {
-            ("name", SearchOrder.Asc) => listClone.OrderBy(x => x.Name)
-                .ThenBy(x => x.Id),
-            ("name", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Name)
-                .ThenByDescending(x => x.Id),
-            ("id", SearchOrder.Asc) => listClone.OrderBy(x => x.Id),
-            ("id", SearchOrder.Desc) => listClone.OrderByDescending(x => x.Id),
-            ("createdat", SearchOrder.Asc) => listClone.OrderBy(x => x.CreatedAt),
-            ("createdat", SearchOrder.Desc) => listClone.OrderByDescending(x => x.CreatedAt),
-            _ => listClone.OrderBy(x => x.Name).ThenBy(x => x.Id),
-        };
-        
-        return orderedEnumerable.ToList();
-    }
 }

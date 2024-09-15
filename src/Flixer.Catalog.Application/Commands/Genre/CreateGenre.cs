@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Domain.Contracts.Repository;
@@ -10,17 +11,20 @@ namespace Flixer.Catalog.Application.Commands.Genre;
 
 public class CreateGenre : IRequestHandler<CreateGenreInput, GenreOutput>
 {
+    private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<CreateGenre> _logger;
     private readonly IGenreRepository _genreRepository;
     private readonly ICategoryRepository _categoryRepository;
 
     public CreateGenre(
+        IUnitOfWork unitOfWork,
         ILogger<CreateGenre> logger,
         IGenreRepository genreRepository, 
         ICategoryRepository categoryRepository
     )
     {
         _logger = logger;
+        _unitOfWork = unitOfWork;
         _genreRepository = genreRepository;
         _categoryRepository = categoryRepository;
     }
@@ -39,7 +43,7 @@ public class CreateGenre : IRequestHandler<CreateGenreInput, GenreOutput>
             
             _genreRepository.Create(genre);
             
-            await _genreRepository.UnityOfWork.Commit();
+            await _unitOfWork.Commit();
             
             _logger.LogInformation("Genre created successfully with ID: {GenreId}", genre.Id);
 

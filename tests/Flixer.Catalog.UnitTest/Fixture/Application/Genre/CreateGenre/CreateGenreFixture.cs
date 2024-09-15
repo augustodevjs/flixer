@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Xunit;
 using Microsoft.Extensions.Logging;
+using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Domain.Contracts.Repository;
 using Flixer.Catalog.Tests.Shared.DataGenerators;
 
@@ -14,6 +15,7 @@ public class CreateGenreFixtureCollection : ICollectionFixture<CreateGenreFixtur
 
 public class CreateGenreFixture
 {
+    public Mock<IUnitOfWork> GetUnitOfWorkMock() => new();
     public GenreDataGenerator DataGenerator { get; } = new();
     public Mock<IGenreRepository> GetGenreRepositoryMock() => new();
     public Mock<ICategoryRepository> GetCategoryeRepositoryMock() => new();

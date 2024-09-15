@@ -17,7 +17,6 @@ public abstract class Repository<TAggregate> : IRepository<TAggregate> where TAg
         _dbSet = context.Set<TAggregate>();
     }
     
-    public IUnityOfWork UnityOfWork => Context;
         
     public virtual async Task<TAggregate?> GetById(Guid? id)
     {

@@ -32,15 +32,16 @@ public class UpdateCategoryTest
      {
          var loggerMock = _fixture.GetLoggerMock();
          var repositoryMock = _fixture.GetRepositoryMock();
+         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
          repositoryMock.Setup(x => x.GetById(
              exampleCategory.Id)
          ).ReturnsAsync(exampleCategory);
          
-         repositoryMock.Setup(x => x.UnityOfWork.Commit())
+         unitOfWorkMock.Setup(uow => uow.Commit())
              .ReturnsAsync(true);
 
-         var command = new UpdateCategory(loggerMock.Object, repositoryMock.Object);
+         var command = new UpdateCategory(unitOfWorkMock.Object, loggerMock.Object, repositoryMock.Object);
          
          var output = await command.Handle(input, CancellationToken.None);
 
@@ -49,7 +50,7 @@ public class UpdateCategoryTest
          output.Description.Should().Be(input.Description);
          output.IsActive.Should().Be((bool)input.IsActive!);
          
-         repositoryMock.Verify(x => x.UnityOfWork.Commit(), Times.Once);
+         unitOfWorkMock.Verify(uow => uow.Commit(), Times.Once);
          repositoryMock.Verify(x => x.Update(exampleCategory), Times.Once);
          repositoryMock.Verify(x => x.GetById(exampleCategory.Id), Times.Once);
      }
@@ -74,15 +75,17 @@ public class UpdateCategoryTest
 
          var loggerMock = _fixture.GetLoggerMock();
          var repositoryMock = _fixture.GetRepositoryMock();
+         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
          repositoryMock.Setup(x => x
              .GetById(exampleCategory.Id)
          ).ReturnsAsync(exampleCategory);
          
-         repositoryMock.Setup(x => x.UnityOfWork.Commit())
+         unitOfWorkMock.Setup(uow => uow.Commit())
              .ReturnsAsync(true);
 
          var command = new UpdateCategory(
+             unitOfWorkMock.Object,
              loggerMock.Object,
              repositoryMock.Object
          );
@@ -93,7 +96,8 @@ public class UpdateCategoryTest
          output.Name.Should().Be(input.Name);
          output.Description.Should().Be(input.Description);
          output.IsActive.Should().Be(exampleCategory.IsActive);
-         repositoryMock.Verify(x => x.UnityOfWork.Commit(), Times.Once);
+         
+         unitOfWorkMock.Verify(uow => uow.Commit(), Times.Once);
          repositoryMock.Verify(x => x.Update(exampleCategory), Times.Once);
          repositoryMock.Verify(x => x.GetById(exampleCategory.Id), Times.Once);
      }
@@ -118,15 +122,17 @@ public class UpdateCategoryTest
 
          var loggerMock = _fixture.GetLoggerMock();
          var repositoryMock = _fixture.GetRepositoryMock();
+         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
          repositoryMock.Setup(x => x
              .GetById(exampleCategory.Id)
          ).ReturnsAsync(exampleCategory);
          
-         repositoryMock.Setup(x => x.UnityOfWork.Commit())
+         unitOfWorkMock.Setup(uow => uow.Commit())
              .ReturnsAsync(true);
 
          var command = new UpdateCategory(
+             unitOfWorkMock.Object,
              loggerMock.Object,
              repositoryMock.Object
          );
@@ -138,7 +144,7 @@ public class UpdateCategoryTest
          output.IsActive.Should().Be(exampleCategory.IsActive);
          output.Description.Should().Be(exampleCategory.Description);
          
-         repositoryMock.Verify(x => x.UnityOfWork.Commit(), Times.Once);
+         unitOfWorkMock.Verify(uow => uow.Commit(), Times.Once);
          repositoryMock.Verify(x => x.Update(exampleCategory), Times.Once);
          repositoryMock.Verify(x => x.GetById(exampleCategory.Id), Times.Once);
      }
@@ -149,9 +155,10 @@ public class UpdateCategoryTest
      {
          var loggerMock = _fixture.GetLoggerMock();
          var repositoryMock = _fixture.GetRepositoryMock();
+         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
          var input = _fixture.DataGenerator.GetInputUpdate();
 
-         var command = new UpdateCategory(loggerMock.Object, repositoryMock.Object);
+         var command = new UpdateCategory(unitOfWorkMock.Object, loggerMock.Object, repositoryMock.Object);
 
          var task = async () => await command.Handle(input, CancellationToken.None);
 
@@ -174,14 +181,16 @@ public class UpdateCategoryTest
          var exampleCategory = _fixture.DataGenerator.GetValidCategory();
          input.Id = exampleCategory.Id;
 
-         var repositoryMock = _fixture.GetRepositoryMock();
          var loggerMock = _fixture.GetLoggerMock();
+         var repositoryMock = _fixture.GetRepositoryMock();
+         var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
 
          repositoryMock.Setup(x => x.GetById(
              exampleCategory.Id)
          ).ReturnsAsync(exampleCategory);
 
          var command = new UpdateCategory(
+             unitOfWorkMock.Object,
              loggerMock.Object,
              repositoryMock.Object
          );

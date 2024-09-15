@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Flixer.Catalog.Infra.Data.EF.Repositories;
+using Flixer.Catalog.Infra.Data.EF.UnitOfWork;
 using Flixer.Catalog.IntegrationTests.Fixtures.Repository;
 
 namespace Flixer.Catalog.IntegrationTests.Infra.Data.EF.UnityOfWork;
@@ -10,45 +10,42 @@ namespace Flixer.Catalog.IntegrationTests.Infra.Data.EF.UnityOfWork;
 public class UnitOfWorkTest
 {
     private readonly CategoryRepositoryFixture _fixture;
+    private const string DatabaseName = "integration-tests-repository"; 
 
     public UnitOfWorkTest(CategoryRepositoryFixture fixture)
     {
         _fixture = fixture;
     }
-    
+
     [Fact]
     [Trait("Integration/Infra.Data", "UnitOfWork - Persistence")]
     public async Task Repository_ShouldCommit()
     {
-        var dbContext = _fixture.CreateDbContext("integrations-tests-repository");
         var exampleCategoriesList = _fixture.DataGenerator.GetExampleCategoriesList();
-        
+
+        var dbContext = _fixture.CreateDbContext(DatabaseName);
         await dbContext.AddRangeAsync(exampleCategoriesList);
-        
-        var categoryRepository = new CategoryRepository(dbContext);
+        var unitOfWork = new UnitOfWork(dbContext);
 
-        await categoryRepository.UnityOfWork.Commit();
+        await unitOfWork.Commit();
 
-        var assertDbContext = _fixture.CreateDbContext("integrations-tests-repository", true);
-        
-        var savedCategories = assertDbContext.Categories
-            .AsNoTracking().ToList();
-        
-        savedCategories.Should()
-            .HaveCount(exampleCategoriesList.Count);
+        var assertDbContext = _fixture.CreateDbContext(DatabaseName, true);
+        var savedCategories = assertDbContext.Categories.AsNoTracking().ToList();
+
+        savedCategories.Should().HaveCount(exampleCategoriesList.Count);
     }
-    
+
     [Fact]
     [Trait("Integration/Infra.Data", "UnitOfWork - Persistence")]
     public async Task Repository_ShouldNotCommit()
     {
-        var dbContext = _fixture.CreateDbContext("integrations-tests-repository");
+        var dbContext = _fixture.CreateDbContext(DatabaseName);
         var exampleCategoriesList = _fixture.DataGenerator.GetExampleCategoriesList();
-        
+
         await dbContext.AddRangeAsync(exampleCategoriesList);
 
-        var assertDbContext = _fixture.CreateDbContext("integrations-tests-repository", true);
-        
+        var assertDbContext = _fixture.CreateDbContext(DatabaseName, true);
+
         var savedCategories = assertDbContext.Categories
             .AsNoTracking().ToList();
 

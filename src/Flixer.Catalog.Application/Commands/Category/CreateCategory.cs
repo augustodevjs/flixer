@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Domain.Contracts.Repository;
 using Flixer.Catalog.Application.Common.Input.Category;
@@ -9,15 +10,18 @@ namespace Flixer.Catalog.Application.Commands.Category
 {
     public class CreateCategory : IRequestHandler<CreateCategoryInput, CategoryOutput>
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<CreateCategory> _logger;
         private readonly ICategoryRepository _categoryRepository;
 
         public CreateCategory(
+            IUnitOfWork unityOfWork,
             ILogger<CreateCategory> logger,
             ICategoryRepository categoryRepository
         )
         {
             _logger = logger;
+            _unitOfWork = unityOfWork;
             _categoryRepository = categoryRepository;
         }
 
@@ -29,7 +33,7 @@ namespace Flixer.Catalog.Application.Commands.Category
 
                 _categoryRepository.Create(category);
 
-                await _categoryRepository.UnityOfWork.Commit();
+                await _unitOfWork.Commit();
 
                 _logger.LogInformation("Category created successfully with ID: {CategoryId}", category.Id);
 

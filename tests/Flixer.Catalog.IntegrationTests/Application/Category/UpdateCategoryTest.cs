@@ -7,6 +7,7 @@ using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
 using DomainEntity = Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Application.Common.Input.Category;
+using Flixer.Catalog.Infra.Data.EF.UnitOfWork;
 using Flixer.Catalog.IntegrationTests.Fixtures.Repository;
 using Flixer.Catalog.UnitTest.Fixture.Application.Category.UpdateCategory;
 
@@ -36,6 +37,7 @@ public class UpdateCategoryTest
      )
     {
         var dbContext = _fixture.CreateDbContext(NameDbContext);
+        var unitOfWork = new UnitOfWork(dbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>
         {
@@ -49,7 +51,7 @@ public class UpdateCategoryTest
         trackingInfo.State = EntityState.Detached;
 
         var repository = new CategoryRepository(dbContext);
-        var command = new Catalog.Application.Commands.Category.UpdateCategory(logger, repository);
+        var command = new Catalog.Application.Commands.Category.UpdateCategory(unitOfWork, logger, repository);
 
         var output = await command.Handle(input, CancellationToken.None);
 
@@ -87,6 +89,7 @@ public class UpdateCategoryTest
         );
         
         var dbContext = _fixture.CreateDbContext(NameDbContext);
+        var unitOfWork = new UnitOfWork(dbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>
         {
@@ -103,7 +106,7 @@ public class UpdateCategoryTest
         trackingInfo.State = EntityState.Detached;
         var repository = new CategoryRepository(dbContext);
         
-        var command = new Catalog.Application.Commands.Category.UpdateCategory(logger, repository);
+        var command = new Catalog.Application.Commands.Category.UpdateCategory(unitOfWork, logger, repository);
     
         var output = await command.Handle(input, CancellationToken.None);
     
@@ -127,6 +130,7 @@ public class UpdateCategoryTest
     {
         var input = _fixture.DataGenerator.GetInputUpdate();
         var dbContext = _fixture.CreateDbContext(NameDbContext);
+        var unitOfWork = new UnitOfWork(dbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>
         {
@@ -139,7 +143,7 @@ public class UpdateCategoryTest
         await dbContext.SaveChangesAsync();
         
         var repository = new CategoryRepository(dbContext);
-        var command = new Catalog.Application.Commands.Category.UpdateCategory(logger, repository);
+        var command = new Catalog.Application.Commands.Category.UpdateCategory(unitOfWork, logger, repository);
     
         var task = async () => await command.Handle(input, CancellationToken.None);
     
@@ -160,6 +164,7 @@ public class UpdateCategoryTest
     {
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         var exampleCategories = _fixture.DataGenerator.GetExampleCategoriesList();
+        var unitOfWork = new UnitOfWork(dbContext);
         
         var loggerFactory = LoggerFactory.Create(builder =>
         {
@@ -173,7 +178,7 @@ public class UpdateCategoryTest
         
         var repository = new CategoryRepository(dbContext);
         
-        var command = new Catalog.Application.Commands.Category.UpdateCategory(logger, repository);
+        var command = new Catalog.Application.Commands.Category.UpdateCategory(unitOfWork, logger, repository);
         input.Id = exampleCategories[0].Id;
     
         var task = async () => await command.Handle(input, CancellationToken.None);

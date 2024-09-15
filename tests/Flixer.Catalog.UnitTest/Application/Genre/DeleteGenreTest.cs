@@ -23,6 +23,7 @@ public class DeleteGenreTest
     public async Task Command_ShouldDeleteGenre()
     {
         var loggerMock = _fixture.GetLoggerMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var genreRepositoryMock = _fixture.GetRepositoryMock();
         
         var exampleGenre = _fixture.DataGenerator.GetValidGenre();
@@ -31,14 +32,15 @@ public class DeleteGenreTest
             x.GetById(It.IsAny<Guid>()))
             .ReturnsAsync(exampleGenre);
         
-        genreRepositoryMock.Setup(repo => repo.UnityOfWork.Commit())
+        unitOfWorkMock.Setup(uow => uow.Commit())
             .ReturnsAsync(true);
         
         var input = new DeleteGenreInput(exampleGenre.Id);
         
         var command = new DeleteGenre(
-            genreRepositoryMock.Object,
-            loggerMock.Object
+            unitOfWorkMock.Object,
+            loggerMock.Object,
+            genreRepositoryMock.Object
         );
 
         await command.Handle(input, CancellationToken.None);
@@ -49,9 +51,7 @@ public class DeleteGenreTest
         genreRepositoryMock.Verify(x => 
             x.Delete(It.IsAny<Catalog.Domain.Entities.Genre>()), Times.Once);
         
-        genreRepositoryMock.Verify(repository => 
-            repository.UnityOfWork.Commit(), Times.Once);
-        
+        unitOfWorkMock.Verify(uow => uow.Commit(), Times.Once);
         loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(1));
     }
     
@@ -60,6 +60,7 @@ public class DeleteGenreTest
     public async Task Command_ShouldThrowError_WhenGenreNotFound()
     {
         var loggerMock = _fixture.GetLoggerMock();
+        var unitOfWorkMock = _fixture.GetUnitOfWorkMock();
         var genreRepositoryMock = _fixture.GetRepositoryMock();
         
         var exampleId = Guid.NewGuid();
@@ -67,8 +68,9 @@ public class DeleteGenreTest
         var input = new DeleteGenreInput(exampleId);
         
         var command = new DeleteGenre(
-            genreRepositoryMock.Object,
-            loggerMock.Object
+            unitOfWorkMock.Object,
+            loggerMock.Object,
+            genreRepositoryMock.Object
         );
     
         var action = async () => await command.Handle(input, CancellationToken.None);
@@ -82,7 +84,6 @@ public class DeleteGenreTest
         genreRepositoryMock.Verify(x => 
             x.Delete(It.IsAny<Catalog.Domain.Entities.Genre>()), Times.Never);
         
-        genreRepositoryMock.Verify(repository => 
-            repository.UnityOfWork.Commit(), Times.Never);
+        unitOfWorkMock.Verify(uow => uow.Commit(), Times.Never);
     }
 }

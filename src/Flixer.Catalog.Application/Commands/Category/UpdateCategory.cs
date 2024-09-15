@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Domain.Contracts.Repository;
@@ -10,15 +11,18 @@ namespace Flixer.Catalog.Application.Commands.Category;
 
 public class UpdateCategory : IRequestHandler<UpdateCategoryInput, CategoryOutput>
 {
+    private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<UpdateCategory> _logger;
     private readonly ICategoryRepository _categoryRepository;
 
     public UpdateCategory(
+        IUnitOfWork unitOfWork,
         ILogger<UpdateCategory> logger,
         ICategoryRepository categoryRepository
     )
     {
         _logger = logger;
+        _unitOfWork = unitOfWork;
         _categoryRepository = categoryRepository;
     }
 
@@ -39,7 +43,7 @@ public class UpdateCategory : IRequestHandler<UpdateCategoryInput, CategoryOutpu
             }
 
             _categoryRepository.Update(category);
-            await _categoryRepository.UnityOfWork.Commit();
+            await _unitOfWork.Commit();
 
             _logger.LogInformation("Category with ID: {CategoryId} updated successfully.", request.Id);
 

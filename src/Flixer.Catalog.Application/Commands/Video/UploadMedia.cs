@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Application.Intefaces;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Domain.Contracts.Repository;
@@ -9,11 +10,17 @@ namespace Flixer.Catalog.Application.Commands.Video;
 
 public class UploadMedia : IRequestHandler<UploadMediasInput>
 {
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IStorageService _storageService;
     private readonly IVideoRepository _videoRepository;
 
-    public UploadMedia(IStorageService storageService, IVideoRepository videoRepository)
+    public UploadMedia(
+        IUnitOfWork unitOfWork,
+        IStorageService storageService, 
+        IVideoRepository videoRepository
+    )
     {
+        _unitOfWork = unitOfWork;
         _storageService = storageService;
         _videoRepository = videoRepository;
     }
@@ -31,7 +38,7 @@ public class UploadMedia : IRequestHandler<UploadMediasInput>
             await UploadTrailer(input, video);
 
             _videoRepository.Update(video);
-            await _videoRepository.UnityOfWork.Commit();
+            await _unitOfWork.Commit();
         }
         catch (Exception)
         {

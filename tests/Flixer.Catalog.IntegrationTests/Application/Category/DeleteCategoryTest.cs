@@ -3,6 +3,7 @@ using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Flixer.Catalog.Application.Exceptions;
+using Flixer.Catalog.Infra.Data.EF.UnitOfWork;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
 using Flixer.Catalog.Application.Common.Input.Category;
 using Flixer.Catalog.IntegrationTests.Fixtures.Repository;
@@ -27,6 +28,8 @@ public class DeleteCategoryTest
         var categoryExample = _fixture.DataGenerator.GetValidCategory();
         var dbContext = _fixture.CreateDbContext(NameDbContext, true);
         
+        var unitOfWork = new UnitOfWork(dbContext);
+        
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder.SetMinimumLevel(LogLevel.Debug);
@@ -40,7 +43,7 @@ public class DeleteCategoryTest
 
         var repository = new CategoryRepository(dbContext);
 
-        var command = new Catalog.Application.Commands.Category.DeleteCategory(logger, repository);
+        var command = new Catalog.Application.Commands.Category.DeleteCategory(unitOfWork, logger, repository);
 
         var input = new DeleteCategoryInput(categoryExample.Id);
 
@@ -59,6 +62,8 @@ public class DeleteCategoryTest
         var dbContext = _fixture.CreateDbContext(NameDbContext);
         var exampleList = _fixture.DataGenerator.GetExampleCategoriesList();
         
+        var unitOfWork = new UnitOfWork(dbContext);
+        
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder.SetMinimumLevel(LogLevel.Debug);
@@ -71,7 +76,7 @@ public class DeleteCategoryTest
     
         var repository = new CategoryRepository(dbContext);
     
-        var command = new Catalog.Application.Commands.Category.DeleteCategory(logger, repository);
+        var command = new Catalog.Application.Commands.Category.DeleteCategory(unitOfWork, logger, repository);
     
         var input = new DeleteCategoryInput(Guid.NewGuid());
     
