@@ -92,7 +92,7 @@ public class CreateVideo : IRequestHandler<CreateVideoInput, VideoOutput>
                 .Create(video.Id, nameof(video.Thumb), input.Thumb.Extension);
             
             var thumbUrl = await _storageService
-                .Upload(fileName, input.Thumb.FileStream);
+                .Upload(fileName, input.Thumb.ContentType, input.Thumb.FileStream);
             
             video.UpdateThumb(thumbUrl);
         }
@@ -103,7 +103,7 @@ public class CreateVideo : IRequestHandler<CreateVideoInput, VideoOutput>
                 .Create(video.Id, nameof(video.Banner), input.Banner.Extension);
             
             var bannerUrl = await _storageService
-                .Upload(fileName, input.Banner.FileStream);
+                .Upload(fileName, input.Banner!.ContentType, input.Banner.FileStream);
             
             video.UpdateBanner(bannerUrl);
         }
@@ -114,7 +114,7 @@ public class CreateVideo : IRequestHandler<CreateVideoInput, VideoOutput>
                 .Create(video.Id, nameof(video.ThumbHalf), input.ThumbHalf.Extension);
             
             var thumbHalfUrl = await _storageService
-                .Upload(fileName, input.ThumbHalf.FileStream);
+                .Upload(fileName, input.ThumbHalf!.ContentType, input.ThumbHalf.FileStream);
             
             video.UpdateThumbHalf(thumbHalfUrl);
         }
@@ -128,7 +128,7 @@ public class CreateVideo : IRequestHandler<CreateVideoInput, VideoOutput>
                 .Create(video.Id, nameof(video.Media), input.Media.Extension);
             
             var mediaUrl = await _storageService
-                .Upload(fileName, input.Media.FileStream);
+                .Upload(fileName, input.Media!.ContentType, input.Media.FileStream);
             
             video.UpdateMedia(mediaUrl);
         }
@@ -139,7 +139,7 @@ public class CreateVideo : IRequestHandler<CreateVideoInput, VideoOutput>
                 .Create(video.Id, nameof(video.Trailer), input.Trailer.Extension);
             
             var mediaUrl = await _storageService
-                .Upload(fileName, input.Trailer.FileStream);
+                .Upload(fileName,  input.Trailer!.ContentType, input.Trailer.FileStream);
             
             video.UpdateTrailer(mediaUrl);
         }

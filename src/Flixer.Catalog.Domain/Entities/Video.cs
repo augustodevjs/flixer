@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using Flixer.Catalog.Domain.Enums;
+using Flixer.Catalog.Domain.Events;
 using Flixer.Catalog.Domain.SeedWork;
 using Flixer.Catalog.Domain.Exceptions;
 using Flixer.Catalog.Domain.Validation;
@@ -21,6 +22,9 @@ public class Video : AggregateRoot
     public Image? Thumb { get; private set; }
     public Image? ThumbHalf { get; private set; }
     public Image? Banner { get; private set; }
+    
+    public Media? Media { get; private set; }
+    public Media? Trailer { get; private set; }
 
     private List<Guid> _categories;
     public IReadOnlyList<Guid> Categories => _categories.AsReadOnly();
@@ -30,9 +34,6 @@ public class Video : AggregateRoot
     
     private List<Guid> _castMembers;
     public IReadOnlyList<Guid> CastMembers => _castMembers.AsReadOnly();
-    
-    public Media? Media { get; private set; }
-    public Media? Trailer { get; private set; }
 
     public Video(
         string title, 
@@ -90,9 +91,12 @@ public class Video : AggregateRoot
 
     public void UpdateBanner(string path)
         => Banner = new Image(path);
-    
+
     public void UpdateMedia(string path)
-        => Media = new Media(path);
+    {
+        Media = new Media(path);
+        RaiseEvent(new VideoUploadedEvent(Id, path));
+    }
     
     public void UpdateTrailer(string path)
         => Trailer = new Media(path);
@@ -103,6 +107,22 @@ public class Video : AggregateRoot
             throw new EntityValidationException("There is no Media", null);
         
         Media.UpdateAsSentToEncode();
+    }
+    
+    public void UpdateAsEncoded(string validEncodedPath)
+    {
+        if (Media is null)
+            throw new EntityValidationException("There is no Media", null);
+        
+        Media.UpdateAsEncoded(validEncodedPath);
+    }
+
+    public void UpdateAsEncodingError()
+    {
+        if (Media is null)
+            throw new EntityValidationException("There is no Media", null);
+        
+        Media.UpdateAsEncodingError();
     }
     
     public void AddCategory(Guid categoryId)

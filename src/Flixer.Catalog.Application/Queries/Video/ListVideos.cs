@@ -31,7 +31,7 @@ public class ListVideos : IRequestHandler<ListVideosInput, ListVideosOutput>
         var relatedCategoriesIds = result.Items
             .SelectMany(video => video.Categories).Distinct().ToList();
         
-        if(relatedCategoriesIds.Count > 0)
+        if (relatedCategoriesIds.Count > 0)
             categories = await _categoryRepository.GetListByIdsAsync(relatedCategoriesIds);
 
         IReadOnlyList<Domain.Entities.Genre>? genres = null;
@@ -39,7 +39,7 @@ public class ListVideos : IRequestHandler<ListVideosInput, ListVideosOutput>
         var relatedGenresIds = result.Items
             .SelectMany(item => item.Genres).Distinct().ToList();
         
-        if(relatedGenresIds.Count > 0)
+        if (relatedGenresIds.Count > 0)
             genres = await _genreRepository.GetListByIdsAsync(relatedGenresIds);
 
         var output = new ListVideosOutput(

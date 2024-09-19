@@ -61,55 +61,61 @@ public class GetGenreTest
         loggerMock.VerifyLog(LogLevel.Information, Times.Never());
     }
     
-    // [Fact]
-    // [Trait("Application", "GetGenre - Query")]
-    // public async Task Query_ShouldGetGenreWithCategories()
-    // {
-    //     var loggerMock = _fixture.GetLoggerMock();
-    //     var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
-    //     var categoryRepositoryMock = _fixture.GetCategoryRepositoryMock();
-    //     var exampleListGuids = _fixture.GenreDataGenerator.GenerateGuids(10);
-    //
-    //     var exampleGenre = _fixture.GenreDataGenerator.GetValidGenre(true, exampleListGuids);
-    //     var exampleCategoriesList = _fixture.CategoryDataGenerator.GetExampleCategoriesList(exampleListGuids.Count);
-    //     
-    //     genreRepositoryMock.Setup(x => x.GetById(
-    //         It.IsAny<Guid>()
-    //     )).ReturnsAsync(exampleGenre);
-    //
-    //     categoryRepositoryMock.Setup(x =>
-    //         x.GetListByIdsAsync(It.IsAny<List<Guid>>())
-    //     ).ReturnsAsync(exampleCategoriesList);
-    //     
-    //     var input = new GetGenreInput(exampleGenre.Id);
-    //
-    //     var command = new GetGenre(
-    //         loggerMock.Object,
-    //         genreRepositoryMock.Object,
-    //         categoryRepositoryMock.Object
-    //     );
-    //
-    //     var output = await command.Handle(input, CancellationToken.None);
-    //
-    //     output.Should().NotBeNull();
-    //     output.Id.Should().Be(exampleGenre.Id);
-    //     output.Name.Should().Be(exampleGenre.Name);
-    //     output.IsActive.Should().Be(exampleGenre.IsActive);
-    //     output.CreatedAt.Should().BeSameDateAs(exampleGenre.CreatedAt);
-    //     output.Categories.Should().HaveCount(exampleGenre.Categories.Count);
-    //     
-    //     genreRepositoryMock.Verify(
-    //         x => x.GetById(It.IsAny<Guid>()),
-    //         Times.Once
-    //     );
-    //     
-    //     categoryRepositoryMock.Verify(x => 
-    //         x.GetListByIdsAsync(It.IsAny<List<Guid>>()), 
-    //         Times.Once()
-    //     );
-    //     
-    //     loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(1));
-    // }
+    [Fact]
+    [Trait("Application", "GetGenre - Query")]
+    public async Task Query_ShouldGetGenreWithCategories()
+    {
+        var loggerMock = _fixture.GetLoggerMock();
+        var genreRepositoryMock = _fixture.GetGenreRepositoryMock();
+        var categoryRepositoryMock = _fixture.GetCategoryRepositoryMock();
+        var exampleCategoriesList = _fixture.CategoryDataGenerator.GetExampleCategoriesList();
+        
+        var exampleGenre = _fixture.GenreDataGenerator
+            .GetValidGenre(true, exampleCategoriesList.Select(x => x.Id).ToList());
+        
+        genreRepositoryMock.Setup(x => x.GetById(
+            It.IsAny<Guid>()
+        )).ReturnsAsync(exampleGenre);
+        
+        categoryRepositoryMock.Setup(x =>
+            x.GetListByIdsAsync(It.IsAny<List<Guid>>())
+        ).ReturnsAsync(exampleCategoriesList);
+        
+        var input = new GetGenreInput(exampleGenre.Id);
+        
+        var command = new GetGenre(
+            loggerMock.Object,
+            genreRepositoryMock.Object,
+            categoryRepositoryMock.Object
+        );
+        
+        var output = await command.Handle(input, CancellationToken.None);
+        
+        output.Should().NotBeNull();
+        output.Id.Should().Be(exampleGenre.Id);
+        output.Name.Should().Be(exampleGenre.Name);
+        output.IsActive.Should().Be(exampleGenre.IsActive);
+        output.CreatedAt.Should().BeSameDateAs(exampleGenre.CreatedAt);
+        output.Categories.Should().HaveCount(exampleGenre.Categories.Count);
+        
+        foreach (var category in output.Categories)
+        {
+            var expectedCategory = exampleCategoriesList.Single(x => x.Id == category.Id);
+            category.Name.Should().Be(expectedCategory.Name);
+        }
+        
+        genreRepositoryMock.Verify(
+            x => x.GetById(It.IsAny<Guid>()),
+            Times.Once
+        );
+        
+        categoryRepositoryMock.Verify(x => 
+            x.GetListByIdsAsync(It.IsAny<List<Guid>>()), 
+            Times.Once()
+        );
+        
+        loggerMock.VerifyLog(LogLevel.Information, Times.Exactly(1));
+    }
 
     [Fact]
     [Trait("Application", "GetGenre - Use Cases")]
@@ -144,6 +150,6 @@ public class GetGenreTest
             Times.Never
         );
         
-        loggerMock.VerifyLog(LogLevel.Warning, Times.Once());
+        loggerMock.VerifyLog(LogLevel.Warning, Times.Never());
     }
 }

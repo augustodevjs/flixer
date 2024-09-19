@@ -150,7 +150,7 @@ public class UpdateVideo : IRequestHandler<UpdateVideoInput, VideoOutput>
                 .Create(video.Id, nameof(video.Banner), input.Banner.Extension);
             
             var bannerUrl = await _storageService
-                .Upload(fileName, input.Banner.FileStream);
+                .Upload(fileName, input.Banner!.ContentType, input.Banner.FileStream);
             
             video.UpdateBanner(bannerUrl);
         }
@@ -161,7 +161,7 @@ public class UpdateVideo : IRequestHandler<UpdateVideoInput, VideoOutput>
                 .Create(video.Id, nameof(video.Thumb), input.Thumb.Extension);
             
             var thumbUrl = await _storageService
-                .Upload(fileName, input.Thumb.FileStream);
+                .Upload(fileName, input.Thumb!.ContentType, input.Thumb.FileStream);
             
             video.UpdateThumb(thumbUrl);
         }
@@ -172,7 +172,7 @@ public class UpdateVideo : IRequestHandler<UpdateVideoInput, VideoOutput>
                 .Create(video.Id, nameof(video.ThumbHalf), input.ThumbHalf.Extension);
             
             var thumbUrl = await _storageService
-                .Upload(fileName, input.ThumbHalf.FileStream);
+                .Upload(fileName, input.ThumbHalf!.ContentType, input.ThumbHalf.FileStream);
             
             video.UpdateThumbHalf(thumbUrl);
         }

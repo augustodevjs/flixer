@@ -275,6 +275,7 @@ public class VideoTest
         validVideo.UpdateMedia(validPath);
 
         validVideo.Media.Should().NotBeNull();
+        validVideo.Events.Should().HaveCount(1);
         validVideo.Media!.FilePath.Should().Be(validPath);
     }
     

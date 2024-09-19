@@ -15,5 +15,4 @@ public class VideosCategories
         VideoId = videoId;
         CategoryId = categoryId;
     }
-
 }

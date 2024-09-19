@@ -1,9 +1,9 @@
-﻿using Xunit;
-using FluentAssertions;
-using Flixer.Catalog.Domain.ValueObject;
+﻿using Flixer.Catalog.Domain.ValueObject;
 using Flixer.Catalog.Tests.Shared.DataGenerators;
+using FluentAssertions;
+using Xunit;
 
-namespace Flixer.Catalog.UnitTest.ValueObject
+namespace Flixer.Catalog.UnitTest.Domain.ValueObject
 {
     public class ImageTest : DataGeneratorBase
     {

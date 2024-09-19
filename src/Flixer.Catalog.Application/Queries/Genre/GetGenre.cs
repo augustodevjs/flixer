@@ -29,10 +29,7 @@ public class GetGenre : IRequestHandler<GetGenreInput, GenreOutput>
         var genre = await _genreRepository.GetById(request.Id);
 
         if (genre == null)
-        {
-            _logger.LogWarning("Genre with ID: {GenreId} not found.", request.Id);
             NotFoundException.ThrowIfNull(genre, $"Genre '{request.Id}' not found.");
-        }
 
         var output = GenreOutput.FromGenre(genre!);
 

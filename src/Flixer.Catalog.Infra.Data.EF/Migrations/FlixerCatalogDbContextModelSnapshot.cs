@@ -104,7 +104,7 @@ namespace Flixer.Catalog.Infra.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Media");
+                    b.ToTable("Medias");
                 });
 
             modelBuilder.Entity("Flixer.Catalog.Domain.Entities.Video", b =>

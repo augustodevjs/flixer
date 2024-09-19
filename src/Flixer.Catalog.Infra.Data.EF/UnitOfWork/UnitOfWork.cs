@@ -1,17 +1,50 @@
-﻿using Flixer.Catalog.Domain.Contracts;
+﻿using Microsoft.Extensions.Logging;
+using Flixer.Catalog.Domain.Contracts;
+using Flixer.Catalog.Domain.SeedWork;
 using Flixer.Catalog.Infra.Data.EF.Context;
 
 namespace Flixer.Catalog.Infra.Data.EF.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork
 {
+    private readonly ILogger<UnitOfWork> _logger;
+    private readonly IDomainEventPublisher _publisher;
     private readonly FlixerCatalogDbContext _context;
 
-    public UnitOfWork(FlixerCatalogDbContext context)
+    public UnitOfWork(
+        ILogger<UnitOfWork> logger, 
+        FlixerCatalogDbContext context, 
+        IDomainEventPublisher publisher
+    )
     {
+        _logger = logger;
         _context = context;
+        _publisher = publisher;
     }
 
     public async Task<bool> Commit()
-        => await _context.SaveChangesAsync() > 0;
+    {
+        var aggregateRoots = _context.ChangeTracker
+            .Entries<AggregateRoot>()
+            .Where(entry => entry.Entity.Events.Any())
+            .Select(entry => entry.Entity).ToArray();
+
+        _logger.LogInformation(
+            "Commit: {AggregatesCount} aggregate roots with events.",
+            aggregateRoots.Count());
+
+        var events = aggregateRoots
+            .SelectMany(aggregate => aggregate.Events).ToArray();
+
+        _logger.LogInformation(
+            "Commit: {EventsCount} events raised.", events.Count());
+
+        foreach (var @event in events)
+            await _publisher.PublishAsync((dynamic)@event);
+
+        foreach (var aggregate in aggregateRoots)
+            aggregate.ClearEvents();
+
+        return await _context.SaveChangesAsync() > 0;
+    }
 }

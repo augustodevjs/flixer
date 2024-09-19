@@ -63,7 +63,7 @@ public class UploadMedia : IRequestHandler<UploadMediasInput>
             var fileName = StorageFileName.Create(video.Id, nameof(video.Trailer), input.TrailerFile.Extension);
             
             var uploadedFilePath = await _storageService.
-                Upload(fileName, input.TrailerFile.FileStream);
+                Upload(fileName, input.TrailerFile!.ContentType, input.TrailerFile.FileStream);
             
             video.UpdateTrailer(uploadedFilePath);
         }
@@ -77,7 +77,7 @@ public class UploadMedia : IRequestHandler<UploadMediasInput>
                 .Create(video.Id, nameof(video.Media), input.VideoFile.Extension);
             
             var uploadedFilePath = await _storageService.
-                Upload(fileName, input.VideoFile.FileStream);
+                Upload(fileName, input.VideoFile!.ContentType, input.VideoFile.FileStream);
             
             video.UpdateMedia(uploadedFilePath);
         }

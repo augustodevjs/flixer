@@ -39,5 +39,7 @@ public class VideoMapping  : IEntityTypeConfiguration<Video>
 
         builder.Property<DateTime>("LastUpdated")
             .ValueGeneratedOnAdd();
+        
+        builder.Ignore(video => video.Events);
     }
 }

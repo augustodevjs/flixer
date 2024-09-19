@@ -1,9 +1,9 @@
-﻿using Xunit;
-using FluentAssertions;
-using Flixer.Catalog.Domain.Enums;
+﻿using Flixer.Catalog.Domain.Enums;
 using Flixer.Catalog.Domain.Extensions;
+using FluentAssertions;
+using Xunit;
 
-namespace Flixer.Catalog.UnitTest.Extensions;
+namespace Flixer.Catalog.UnitTest.Domain.Extensions;
 
 public class RatingExtensionsTest
 {

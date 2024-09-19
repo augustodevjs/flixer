@@ -10,5 +10,6 @@ public class CategoryMapping : IEntityTypeConfiguration<Category>
         builder.HasKey(category => category.Id);
         builder.Property(category => category.Name).HasMaxLength(255);
         builder.Property(category => category.Description).HasMaxLength(10_000);
+        builder.Ignore(category => category.Events);
     }
 }

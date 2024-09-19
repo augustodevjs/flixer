@@ -9,5 +9,6 @@ public class CastMemberMapping : IEntityTypeConfiguration<CastMember>
     public void Configure(EntityTypeBuilder<CastMember> builder)
     {
         builder.HasKey(c => c.Id);
+        builder.Ignore(castMember => castMember.Events);
     }
 }

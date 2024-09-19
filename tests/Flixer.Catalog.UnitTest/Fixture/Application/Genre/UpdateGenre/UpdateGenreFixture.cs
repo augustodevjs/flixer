@@ -17,6 +17,7 @@ public class UpdateGenreFixture
 {
     public Mock<IUnitOfWork> GetUnitOfWorkMock() => new();
     public GenreDataGenerator DataGenerator { get; } = new();
-    public Mock<IGenreRepository> GetRepositoryMock() => new();
+    public Mock<IGenreRepository> GetGenreRepositoryMock() => new();
+    public Mock<ICategoryRepository> GetCategoryRepositoryMock() => new();
     public Mock<ILogger<Catalog.Application.Commands.Genre.UpdateGenre>> GetLoggerMock() => new();
 }

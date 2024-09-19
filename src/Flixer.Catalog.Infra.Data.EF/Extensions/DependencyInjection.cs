@@ -22,6 +22,7 @@ public static class DependencyInjection
     private static void AddRepositories(this IServiceCollection services)
     {
         services.AddTransient<IGenreRepository, GenreRepository>();
+        services.AddTransient<IVideoRepository, VideoRepository>();
         services.AddTransient<IUnitOfWork, UnitOfWork.UnitOfWork>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<ICastMemberRepository, CastMemberRepository>();

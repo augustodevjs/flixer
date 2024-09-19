@@ -17,7 +17,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="6.0.33" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Flixer.Catalog.Application\Flixer.Catalog.Application.csproj" />
     <ProjectReference Include="..\Flixer.Catalog.Infra.Data.EF\Flixer.Catalog.Infra.Data.EF.csproj" />
+    <ProjectReference Include="..\Flixer.Catalog.Infra.Storage\Flixer.Catalog.Infra.Storage.csproj" />
   </ItemGroup>
 
 </Project>

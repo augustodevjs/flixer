@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Flixer.Catalog.Domain.Entities;
 using Flixer.Catalog.Infra.Data.EF.Models;
 using Flixer.Catalog.Infra.Data.EF.Context;
+using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Infra.Data.EF.Abstractions;
 using Flixer.Catalog.Domain.Contracts.Repository;
 using Flixer.Catalog.Domain.SeedWork.SearchableRepository;
@@ -49,6 +50,7 @@ public class VideoRepository : Repository<Video>, IVideoRepository
                     castMemberId,
                     video.Id
                 ));
+            
             Context.VideosCastMembers.AddRangeAsync(relations);
         }
     }
@@ -135,6 +137,8 @@ public class VideoRepository : Repository<Video>, IVideoRepository
     {
         var video = await Context.Videos
             .FirstOrDefaultAsync(video => video.Id == id);
+        
+        NotFoundException.ThrowIfNull(video, $"Video '{id}' not found.");
 
         var categoryIds = await Context.VideosCategories
             .Where(x => x.VideoId == video!.Id)
