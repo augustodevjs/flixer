@@ -49,3 +49,14 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__CatalogDb=Server=flixer_db;Port=3306;Database=catalog;Uid=root;Pwd=senha;
+
+  rabbitmq:
+    container_name: adm_flixer_videos_rabbitmq
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=adm_videos
+      - RABBITMQ_DEFAULT_PASS=123456
+    ports:
+      - 15672:15672
+      - 5672:5672
