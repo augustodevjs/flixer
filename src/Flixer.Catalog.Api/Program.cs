@@ -2,11 +2,13 @@ using Flixer.Catalog.Api.Configuration;
 using Flixer.Catalog.Application.Extensions;
 using Flixer.Catalog.Infra.Data.EF.Extensions;
 using Flixer.Catalog.Infra.Storage.Extensions;
+using Flixer.Catalog.Infra.Messaging.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddApplication()
+    .AddMessaging(builder.Configuration)
     .AddInfraData(builder.Configuration)
     .AddInfraStorage(builder.Configuration)
     .AddAndConfigureControllers()
@@ -24,13 +26,9 @@ builder.Host.ConfigureApplicationLogging();
 
 var app = builder.Build();
 
-if (!app.Environment.IsEnvironment("EndToEndTest"))
-{
-    app.UseMigrations(app.Services);
-}
-
 app.UseCors("*");
 app.UseDocumentation();
+app.UseMigrations(app.Services);
 app.ConfigureRequestLogging();
 app.UseHttpsRedirection();
 app.UseRouting();

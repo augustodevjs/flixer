@@ -19,13 +19,16 @@ public class GenreRepository : Repository<Genre>, IGenreRepository
     {
         var genre = await Context.Genres
             .AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
-
+        
         var categoryIds = await Context.GenresCategories
             .Where(x => x.GenreId == genre!.Id)
             .Select(x => x.CategoryId)
             .ToListAsync();
-        
-        categoryIds.ForEach(genre!.AddCategory);
+
+        foreach (var categoryId in categoryIds)
+        {
+            genre?.AddCategory(categoryId);
+        }
 
         return genre;
     }
@@ -70,6 +73,21 @@ public class GenreRepository : Repository<Genre>, IGenreRepository
 
         Context.Genres.Remove(genre);
     }
+    
+    public async Task<IReadOnlyList<Guid>> GetIdsListByIdsAsync(List<Guid> ids)
+    {
+        return await Context.Genres.AsNoTracking()
+            .Where(genre => ids.Contains(genre.Id))
+            .Select(genre => genre.Id)
+            .ToListAsync();
+    }
+
+    public async Task<IReadOnlyList<Genre>> GetListByIdsAsync(List<Guid> ids)
+    {
+        return await Context.Genres.AsNoTracking()
+            .Where(genre => ids.Contains(genre.Id))
+            .ToListAsync();
+    }
 
     public async Task<SearchOutput<Genre>> Search(SearchInput input)
     {
@@ -80,7 +98,7 @@ public class GenreRepository : Repository<Genre>, IGenreRepository
         query = AddOrderToQuery(query, input.OrderBy, input.Order);
 
         if (string.IsNullOrEmpty(input.Search) is not true)
-            query = query.Where(genre => genre.Name.Contains(input.Search));
+            query = query.Where(genre => genre.Name!.Contains(input.Search));
 
         var total = await query.CountAsync();
 
@@ -108,21 +126,6 @@ public class GenreRepository : Repository<Genre>, IGenreRepository
         });
 
         return new SearchOutput<Genre>(total, input.PerPage, input.Page, genres);
-    }
-
-    public async Task<IReadOnlyList<Guid>> GetIdsListByIdsAsync(List<Guid> ids)
-    {
-        return await Context.Genres.AsNoTracking()
-            .Where(genre => ids.Contains(genre.Id))
-            .Select(genre => genre.Id)
-            .ToListAsync();
-    }
-
-    public async Task<IReadOnlyList<Genre>> GetListByIdsAsync(List<Guid> ids)
-    {
-        return await Context.Genres.AsNoTracking()
-            .Where(genre => ids.Contains(genre.Id))
-            .ToListAsync();
     }
 
     private IQueryable<Genre> AddOrderToQuery(IQueryable<Genre> query, string orderProperty, SearchOrder order)

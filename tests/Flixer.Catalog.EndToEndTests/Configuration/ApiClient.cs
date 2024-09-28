@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.WebUtilities;
-using Flixer.Catalog.Api.Configuration.Policies;
+using Flixer.Catalog.Infra.Messaging.JsonPolicies;
 
 namespace Flixer.Catalog.EndToEndTests.Configuration;
 

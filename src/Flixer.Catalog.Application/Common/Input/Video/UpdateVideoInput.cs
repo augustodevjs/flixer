@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Flixer.Catalog.Domain.Enums;
 using Flixer.Catalog.Application.Common.Output.Video;
-using Flixer.Catalog.Application.Common.Output.Common;
 
 namespace Flixer.Catalog.Application.Common.Input.Video;
 
@@ -18,9 +17,6 @@ public class UpdateVideoInput : IRequest<VideoOutput>
     public List<Guid>? GenresIds { get; private set; }
     public List<Guid>? CategoriesIds { get; private set; }
     public List<Guid>? CastMembersIds { get; private set; }
-    public FileInput? Banner { get; private set; }
-    public FileInput? Thumb { get; private set; }
-    public FileInput? ThumbHalf { get; private set; }
 
     public UpdateVideoInput(
         Guid videoId,
@@ -33,10 +29,7 @@ public class UpdateVideoInput : IRequest<VideoOutput>
         Rating rating,
         List<Guid>? genresIds = null,
         List<Guid>? categoriesIds = null,
-        List<Guid>? castMembersIds = null,
-        FileInput? banner = null,
-        FileInput? thumb = null,
-        FileInput? thumbHalf = null
+        List<Guid>? castMembersIds = null
     )
     {
         VideoId = videoId;
@@ -50,8 +43,5 @@ public class UpdateVideoInput : IRequest<VideoOutput>
         GenresIds = genresIds;
         CategoriesIds = categoriesIds;
         CastMembersIds = castMembersIds;
-        Banner = banner;
-        Thumb = thumb;
-        ThumbHalf = thumbHalf;
     }
 }

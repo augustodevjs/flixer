@@ -1,7 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Flixer.Catalog.Domain.Enums;
-using Flixer.Catalog.Api.Response;
+using Flixer.Catalog.Api.ApiModels.Genre;
+using Flixer.Catalog.Api.ApiModels.Response;
 using Flixer.Catalog.Application.Common.Input.Genre;
 using Flixer.Catalog.Application.Common.Output.Genre;
 
@@ -64,17 +65,29 @@ public class GenresController : ControllerBase
         var output = await _mediator.Send(input, cancellationToken);
         return CreatedAtAction(nameof(Create), new { output.Id }, new ApiResponse<GenreOutput>(output));
     }
-
+    
     [HttpPut("{id:guid}")]
     [ProducesResponseType(typeof(ApiResponse<GenreOutput>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status422UnprocessableEntity)]
-    public async Task<IActionResult> Update([FromBody] UpdateGenreInput input, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateGenre(
+        [FromBody] UpdateGenreApiInput apiInput,
+        [FromRoute] Guid id,
+        CancellationToken cancellationToken
+    )
     {
-        var result = await _mediator.Send(input, cancellationToken);
-        var output = new ApiResponse<GenreOutput>(result);
-        return Ok(output);
+        var output = await _mediator.Send(
+            new UpdateGenreInput(
+                id,
+                apiInput.Name, 
+                apiInput.IsActive, 
+                apiInput.CategoriesId
+            ), 
+            cancellationToken
+        );
+        
+        return Ok(new ApiResponse<GenreOutput>(output));
     }
 
     [HttpDelete("{id:guid}")]

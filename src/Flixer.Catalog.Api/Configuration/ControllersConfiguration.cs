@@ -1,5 +1,5 @@
 ﻿using Flixer.Catalog.Api.Filters;
-using Flixer.Catalog.Api.Configuration.Policies;
+using Flixer.Catalog.Infra.Messaging.JsonPolicies;
 
 namespace Flixer.Catalog.Api.Configuration;
 

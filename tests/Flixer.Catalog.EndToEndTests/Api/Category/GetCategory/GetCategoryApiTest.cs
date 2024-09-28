@@ -1,9 +1,9 @@
 ﻿using Xunit;
 using System.Net;
+using Flixer.Catalog.Api.ApiModels.Response;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using Flixer.Catalog.Api.Response;
 using Flixer.Catalog.EndToEndTests.Fixtures.Category;
 using Flixer.Catalog.Application.Common.Output.Category;
 

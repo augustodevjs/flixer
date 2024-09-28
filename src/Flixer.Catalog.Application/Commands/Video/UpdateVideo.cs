@@ -1,18 +1,15 @@
 ﻿using MediatR;
 using Flixer.Catalog.Domain.Contracts;
-using Flixer.Catalog.Application.Intefaces;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Domain.Contracts.Repository;
 using Flixer.Catalog.Application.Common.Input.Video;
 using Flixer.Catalog.Application.Common.Output.Video;
-using Flixer.Catalog.Application.Common.Input.Common;
 
 namespace Flixer.Catalog.Application.Commands.Video;
 
 public class UpdateVideo : IRequestHandler<UpdateVideoInput, VideoOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IStorageService _storageService;
     private readonly IVideoRepository _videoRepository;
     private readonly IGenreRepository _genreRepository;
     private readonly ICategoryRepository _categoryRepository;
@@ -20,15 +17,13 @@ public class UpdateVideo : IRequestHandler<UpdateVideoInput, VideoOutput>
 
     public UpdateVideo(
         IUnitOfWork unitOfWork,
-        IStorageService storageService, 
         IVideoRepository videoRepository,
         IGenreRepository genreRepository, 
         ICategoryRepository categoryRepository, 
         ICastMemberRepository castMemberRepository
-    )
+    ) 
     {
         _unitOfWork = unitOfWork;
-        _storageService = storageService;
         _videoRepository = videoRepository;
         _genreRepository = genreRepository;
         _categoryRepository = categoryRepository;
@@ -52,8 +47,6 @@ public class UpdateVideo : IRequestHandler<UpdateVideoInput, VideoOutput>
             input.Rating);
 
         await ValidateAndAddRelations(input, video);
-
-        await UploadImagesMedia(video, input);
 
         _videoRepository.Update(video);
         await _unitOfWork.Commit();
@@ -139,42 +132,6 @@ public class UpdateVideo : IRequestHandler<UpdateVideoInput, VideoOutput>
             
             throw new RelatedAggregateException(
                 $"Related cast member(s) id (or ids) not found: {string.Join(',', notFoundIds)}.");
-        }
-    }
-
-    private async Task UploadImagesMedia(Domain.Entities.Video video, UpdateVideoInput input)
-    {
-        if (input.Banner is not null)
-        {
-            var fileName = StorageFileName
-                .Create(video.Id, nameof(video.Banner), input.Banner.Extension);
-            
-            var bannerUrl = await _storageService
-                .Upload(fileName, input.Banner!.ContentType, input.Banner.FileStream);
-            
-            video.UpdateBanner(bannerUrl);
-        }
-
-        if (input.Thumb is not null)
-        {
-            var fileName = StorageFileName
-                .Create(video.Id, nameof(video.Thumb), input.Thumb.Extension);
-            
-            var thumbUrl = await _storageService
-                .Upload(fileName, input.Thumb!.ContentType, input.Thumb.FileStream);
-            
-            video.UpdateThumb(thumbUrl);
-        }
-
-        if (input.ThumbHalf is not null)
-        {
-            var fileName = StorageFileName
-                .Create(video.Id, nameof(video.ThumbHalf), input.ThumbHalf.Extension);
-            
-            var thumbUrl = await _storageService
-                .Upload(fileName, input.ThumbHalf!.ContentType, input.ThumbHalf.FileStream);
-            
-            video.UpdateThumbHalf(thumbUrl);
         }
     }
 }

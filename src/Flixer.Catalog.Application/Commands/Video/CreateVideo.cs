@@ -1,10 +1,8 @@
 ﻿using MediatR;
 using Flixer.Catalog.Domain.Contracts;
-using Flixer.Catalog.Application.Intefaces;
 using Flixer.Catalog.Application.Exceptions;
 using Flixer.Catalog.Domain.Contracts.Repository;
 using Flixer.Catalog.Application.Common.Input.Video;
-using Flixer.Catalog.Application.Common.Input.Common;
 using Flixer.Catalog.Application.Common.Output.Video;
 
 namespace Flixer.Catalog.Application.Commands.Video;
@@ -12,7 +10,6 @@ namespace Flixer.Catalog.Application.Commands.Video;
 public class CreateVideo : IRequestHandler<CreateVideoInput, VideoOutput>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IStorageService _storageService;
     private readonly IGenreRepository _genreRepository;
     private readonly IVideoRepository _videoRepository;
     private readonly ICategoryRepository _categoryRepository;
@@ -20,7 +17,6 @@ public class CreateVideo : IRequestHandler<CreateVideoInput, VideoOutput>
 
     public CreateVideo(
         IUnitOfWork unitOfWork,
-        IStorageService storageService, 
         IGenreRepository genreRepository, 
         IVideoRepository videoRepository, 
         ICategoryRepository categoryRepository, 
@@ -28,7 +24,6 @@ public class CreateVideo : IRequestHandler<CreateVideoInput, VideoOutput>
     )
     {
         _unitOfWork = unitOfWork;
-        _storageService = storageService;
         _genreRepository = genreRepository;
         _videoRepository = videoRepository;
         _categoryRepository = categoryRepository;
@@ -49,102 +44,12 @@ public class CreateVideo : IRequestHandler<CreateVideoInput, VideoOutput>
 
         await ValidateAndAddRelations(input, video);
 
-        try
-        {
-            await UploadImagesMedia(input, video);
-            await UploadVideosMedia(input, video);
+        _videoRepository.Create(video);
+        await _unitOfWork.Commit();
 
-            _videoRepository.Create(video);
-            await _unitOfWork.Commit();
-
-            return VideoOutput.FromVideo(video);
-        }
-        catch (Exception)
-        {
-            await ClearStorage(video);
-            throw;
-        }
+        return VideoOutput.FromVideo(video);
     }
-    
-    private async Task ClearStorage(Domain.Entities.Video video)
-    {
-        if (video.Thumb is not null)
-            await _storageService.Delete(video.Thumb.Path);
         
-        if (video.ThumbHalf is not null)
-            await _storageService.Delete(video.ThumbHalf.Path);
-        
-        if (video.Banner is not null)
-            await _storageService.Delete(video.Banner.Path);
-        
-        if (video.Media is not null)
-            await _storageService.Delete(video.Media.FilePath);
-        
-        if (video.Trailer is not null)
-            await _storageService.Delete(video.Trailer.FilePath);
-    }
-
-    private async Task UploadImagesMedia(CreateVideoInput input, Domain.Entities.Video video)
-    {
-        if (input.Thumb is not null)
-        {
-            var fileName = StorageFileName
-                .Create(video.Id, nameof(video.Thumb), input.Thumb.Extension);
-            
-            var thumbUrl = await _storageService
-                .Upload(fileName, input.Thumb.ContentType, input.Thumb.FileStream);
-            
-            video.UpdateThumb(thumbUrl);
-        }
-
-        if (input.Banner is not null)
-        {
-            var fileName = StorageFileName
-                .Create(video.Id, nameof(video.Banner), input.Banner.Extension);
-            
-            var bannerUrl = await _storageService
-                .Upload(fileName, input.Banner!.ContentType, input.Banner.FileStream);
-            
-            video.UpdateBanner(bannerUrl);
-        }
-
-        if (input.ThumbHalf is not null)
-        {
-            var fileName = StorageFileName
-                .Create(video.Id, nameof(video.ThumbHalf), input.ThumbHalf.Extension);
-            
-            var thumbHalfUrl = await _storageService
-                .Upload(fileName, input.ThumbHalf!.ContentType, input.ThumbHalf.FileStream);
-            
-            video.UpdateThumbHalf(thumbHalfUrl);
-        }
-    }
-
-    private async Task UploadVideosMedia(CreateVideoInput input, Domain.Entities.Video video)
-    {
-        if (input.Media is not null)
-        {
-            var fileName = StorageFileName
-                .Create(video.Id, nameof(video.Media), input.Media.Extension);
-            
-            var mediaUrl = await _storageService
-                .Upload(fileName, input.Media!.ContentType, input.Media.FileStream);
-            
-            video.UpdateMedia(mediaUrl);
-        }
-        
-        if (input.Trailer is not null)
-        {
-            var fileName = StorageFileName
-                .Create(video.Id, nameof(video.Trailer), input.Trailer.Extension);
-            
-            var mediaUrl = await _storageService
-                .Upload(fileName,  input.Trailer!.ContentType, input.Trailer.FileStream);
-            
-            video.UpdateTrailer(mediaUrl);
-        }
-    }
-
     private async Task ValidateAndAddRelations(CreateVideoInput input, Domain.Entities.Video video)
     {
         if ((input.CategoriesIds?.Count ?? 0) > 0)

@@ -1,6 +1,6 @@
 ﻿using Flixer.Catalog.Application.Common.Output.Common;
 
-namespace Flixer.Catalog.Api.Response;
+namespace Flixer.Catalog.Api.ApiModels.Response;
 
 public class ApiResponseList<TItemData> : ApiResponse<IReadOnlyList<TItemData>>
 {

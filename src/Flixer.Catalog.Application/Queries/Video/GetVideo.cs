@@ -32,14 +32,16 @@ public class GetVideo : IRequestHandler<GetVideoInput, VideoOutput>
         
         IReadOnlyList<Domain.Entities.Category>? categories = null;
         var relatedCategoriesIds = video.Categories?.Distinct().ToList();
+        
         if (relatedCategoriesIds is not null && relatedCategoriesIds.Any())
             categories = await _categoryRepository.GetListByIdsAsync(relatedCategoriesIds);
 
         IReadOnlyList<Domain.Entities.Genre>? genres = null;
         var relatedGenresIds = video.Genres?.Distinct().ToList();
+        
         if (relatedGenresIds is not null && relatedGenresIds.Count > 0)
             genres = await _genreRepository.GetListByIdsAsync(relatedGenresIds);
         
-        return VideoOutput.FromVideo(video);
+        return VideoOutput.FromVideo(video, categories, genres);
     }
 }

@@ -5,7 +5,6 @@ using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Application.EventHandlers;
 using Microsoft.Extensions.DependencyInjection;
 using Flixer.Catalog.Application.EventPublisher;
-using Flixer.Catalog.Application.Intefaces;
 
 namespace Flixer.Catalog.Application.Extensions;
 
@@ -21,13 +20,9 @@ public static class DependencyInjection
         return services;
     }
     
-    private static IServiceCollection AddDomainEvents(
-        this IServiceCollection services)
+    private static void AddDomainEvents(this IServiceCollection services)
     {
         services.AddTransient<IDomainEventPublisher, DomainEventPublisher>();
-        services.AddTransient<IDomainEventHandler<VideoUploadedEvent>,
-            SendToEncoderEventHandler>();
-        
-        return services;
+        services.AddTransient<IDomainEventHandler<VideoUploadedEvent>, SendToEncoderEventHandler>();
     }
 }

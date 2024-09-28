@@ -30,7 +30,7 @@ public class CategoryRepository : Repository<Category>, ICategoryRepository
             .Where(category => ids.Contains(category.Id))
             .ToListAsync();
     }
-
+    
     public async Task<SearchOutput<Category>> Search(SearchInput input)
     {
         var toSkip = (input.Page - 1) * input.PerPage;

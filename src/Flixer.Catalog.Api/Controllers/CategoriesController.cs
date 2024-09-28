@@ -1,7 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Flixer.Catalog.Domain.Enums;
-using Flixer.Catalog.Api.Response;
+using Flixer.Catalog.Api.ApiModels.Category;
+using Flixer.Catalog.Api.ApiModels.Response;
 using Flixer.Catalog.Application.Common.Input.Category;
 using Flixer.Catalog.Application.Common.Output.Category;
 
@@ -17,6 +18,7 @@ public class CategoriesController : ControllerBase
     {
         _mediator = mediator;
     }
+    
 
     [HttpGet]
     [ProducesResponseType(typeof(ApiResponseList<CategoryOutput>), StatusCodes.Status200OK)]
@@ -64,17 +66,27 @@ public class CategoriesController : ControllerBase
         var output = await _mediator.Send(input, cancellationToken);
         return CreatedAtAction(nameof(Create), new { output.Id }, new ApiResponse<CategoryOutput>(output));
     }
-
+    
     [HttpPut("{id:guid}")]
     [ProducesResponseType(typeof(ApiResponse<CategoryOutput>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status422UnprocessableEntity)]
-    public async Task<IActionResult> Update([FromBody] UpdateCategoryInput input, CancellationToken cancellationToken)
+    public async Task<IActionResult> Update(
+        [FromBody] UpdateCategoryApiInput apiInput,
+        [FromRoute] Guid id,
+        CancellationToken cancellationToken
+    )
     {
-        var result = await _mediator.Send(input, cancellationToken);
-        var output = new ApiResponse<CategoryOutput>(result);
-        return Ok(output);
+        var input = new UpdateCategoryInput(
+            id,
+            apiInput.Name,
+            apiInput.Description!,
+            apiInput.IsActive
+        );
+        
+        var output = await _mediator.Send(input, cancellationToken);
+        return Ok(new ApiResponse<CategoryOutput>(output));
     }
 
     [HttpDelete("{id:guid}")]

@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flixer.Catalog.Tests.Shared
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flixer.Catalog.Infra.Storage", "src\Flixer.Catalog.Infra.Storage\Flixer.Catalog.Infra.Storage.csproj", "{97B3C02F-7901-4961-9F05-FF1E3161EEF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flixer.Catalog.Infra.Messaging", "src\Flixer.Catalog.Infra.Messaging\Flixer.Catalog.Infra.Messaging.csproj", "{0E81447B-6523-4560-B1A4-A72A4F76D9AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +153,18 @@ Global
 		{97B3C02F-7901-4961-9F05-FF1E3161EEF8}.Release|x64.Build.0 = Release|Any CPU
 		{97B3C02F-7901-4961-9F05-FF1E3161EEF8}.Release|x86.ActiveCfg = Release|Any CPU
 		{97B3C02F-7901-4961-9F05-FF1E3161EEF8}.Release|x86.Build.0 = Release|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Debug|x64.Build.0 = Debug|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Debug|x86.Build.0 = Debug|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Release|x64.ActiveCfg = Release|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Release|x64.Build.0 = Release|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Release|x86.ActiveCfg = Release|Any CPU
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,6 +179,7 @@ Global
 		{1C29DDC1-F190-4E14-BA3C-F5429D1BD38B} = {19FC4517-0BCD-4F0E-B25F-9147FFEA40A0}
 		{743E6F44-A1FA-4AA5-9423-5E34ED26B738} = {81B9CC25-FC26-4227-97CF-8588F091E51D}
 		{97B3C02F-7901-4961-9F05-FF1E3161EEF8} = {19FC4517-0BCD-4F0E-B25F-9147FFEA40A0}
+		{0E81447B-6523-4560-B1A4-A72A4F76D9AB} = {19FC4517-0BCD-4F0E-B25F-9147FFEA40A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32361620-3495-4970-866C-8B2FAB2A9F43}

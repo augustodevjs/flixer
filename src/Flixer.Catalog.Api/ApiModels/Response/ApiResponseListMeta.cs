@@ -1,4 +1,4 @@
-﻿namespace Flixer.Catalog.Api.Response;
+﻿namespace Flixer.Catalog.Api.ApiModels.Response;
 
 public class ApiResponseListMeta
 {

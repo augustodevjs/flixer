@@ -51,8 +51,15 @@ public static class DependencyInjection
     
     public static void UseMigrations(this IApplicationBuilder app, IServiceProvider services)
     {
+        var environment = Environment
+            .GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        
+        if (environment == "EndToEndTest") return;
+        
         using var scope = services.CreateScope();
-        var db = scope.ServiceProvider.GetRequiredService<FlixerCatalogDbContext>();
-        db.Database.Migrate();
+        
+        var dbContext = scope.ServiceProvider.GetRequiredService<FlixerCatalogDbContext>();
+        
+        dbContext.Database.Migrate();
     }
 }

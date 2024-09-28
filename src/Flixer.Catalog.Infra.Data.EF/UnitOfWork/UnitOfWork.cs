@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Domain.SeedWork;
+using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Infra.Data.EF.Context;
 
 namespace Flixer.Catalog.Infra.Data.EF.UnitOfWork;

@@ -31,8 +31,8 @@ public class DeleteVideo : IRequestHandler<DeleteVideoInput>
         if (video == null)
             NotFoundException.ThrowIfNull(video, $"Video '{video!.Id}' not found.");
         
-        var trailerFilePath = video.Trailer?.FilePath;
         var mediaFilePath = video.Media?.FilePath;
+        var trailerFilePath = video.Trailer?.FilePath;
         
         _videoRepository.Delete(video);
         await _unitOfWork.Commit();
@@ -57,10 +57,7 @@ public class DeleteVideo : IRequestHandler<DeleteVideoInput>
             await _storageService.Delete(thumbHalfFilePath);
     }
 
-    private async Task ClearVideoMedias(
-        string? mediaFilePath,
-        string? trailerFilePath
-    )
+    private async Task ClearVideoMedias(string? mediaFilePath, string? trailerFilePath)
     {
         if (trailerFilePath is not null)
             await _storageService.Delete(trailerFilePath);
