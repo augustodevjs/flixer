@@ -1,12 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Flixer.Catalog.Application.Intefaces;
 using Flixer.Catalog.Infra.Storage.Service;
-using Flixer.Catalog.Application.Intefaces;
-using Microsoft.Extensions.DependencyInjection;
 using Flixer.Catalog.Infra.Storage.Configuration;
 
-namespace Flixer.Catalog.Infra.Storage.Extensions;
+namespace Flixer.Catalog.Api.Configuration;
 
-public static class DependencyInjection
+public static class StorageConfiguration
 {
     public static IServiceCollection AddInfraStorage(this IServiceCollection services, IConfiguration configuration)
     {

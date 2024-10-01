@@ -1,24 +1,22 @@
 ﻿using RabbitMQ.Client;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Configuration;
 using Flixer.Catalog.Application.Intefaces;
 using Flixer.Catalog.Infra.Messaging.Producer;
-using Microsoft.Extensions.DependencyInjection;
 using Flixer.Catalog.Infra.Messaging.Configuration;
 
-namespace Flixer.Catalog.Infra.Messaging.Extensions;
+namespace Flixer.Catalog.Api.Configuration;
 
-public static class DependencyInjection
+public static class RabbitMqConfiguration
 {
     public static IServiceCollection AddMessaging(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<RabbitMqConfiguration>(configuration.GetSection("RabbitMqConfiguration"));
+        services.Configure<Infra.Messaging.Configuration.RabbitMqConfiguration>(configuration.GetSection("RabbitMqConfiguration"));
 
         services.AddSingleton(sp =>
         {
-            var config = sp.GetRequiredService<IOptions<RabbitMqConfiguration>>().Value;
+            var config = sp.GetRequiredService<IOptions<Infra.Messaging.Configuration.RabbitMqConfiguration>>().Value;
             
-            var factory = new ConnectionFactory
+            var factory = new ConnectionFactory()
             {
                 HostName = config.Hostname,
                 UserName = config.Username,
@@ -33,7 +31,7 @@ public static class DependencyInjection
         services.AddTransient<IMessageProducer>(sp =>
         {
             var channelManager = sp.GetRequiredService<ChannelManager>();
-            var config = sp.GetRequiredService<IOptions<RabbitMqConfiguration>>();
+            var config = sp.GetRequiredService<IOptions<Infra.Messaging.Configuration.RabbitMqConfiguration>>();
             
             return new RabbitMqProducer(channelManager.GetChannel(), config);
         });

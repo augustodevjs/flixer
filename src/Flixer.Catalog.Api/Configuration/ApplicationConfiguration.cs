@@ -1,19 +1,18 @@
-﻿using System.Reflection;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Flixer.Catalog.Domain.Events;
 using Flixer.Catalog.Domain.Contracts;
 using Flixer.Catalog.Application.EventHandlers;
-using Microsoft.Extensions.DependencyInjection;
 using Flixer.Catalog.Application.EventPublisher;
 
-namespace Flixer.Catalog.Application.Extensions;
+namespace Flixer.Catalog.Api.Configuration;
 
-public static class DependencyInjection
+public static class ApplicationConfiguration
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.Configure<ApiBehaviorOptions>(o => o.SuppressModelStateInvalidFilter = true);
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(Application.Commands.Category.CreateCategory).Assembly));
         
         services.AddDomainEvents();
 

@@ -8,7 +8,7 @@
 2. **Suba os Containers de Teste:**
     - Execute:
       ```bash
-      docker compose -f docker/docker-compose-integration.yml up -d
+      docker compose -f docker-compose-integration.yml up -d
       ```
 3. **Verifique o Status dos Containers:**
     - Use:
@@ -23,5 +23,5 @@
 5. **Para Parar e Remover os Containers de Teste:**
     - Execute:
       ```bash
-      docker compose -f docker/docker-compose-integration.yml down
+      docker compose -f docker-compose-integration.yml down
       ```

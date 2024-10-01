@@ -8,8 +8,8 @@ namespace Flixer.Catalog.Infra.Data.EF.UnitOfWork;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly ILogger<UnitOfWork> _logger;
-    private readonly IDomainEventPublisher _publisher;
     private readonly FlixerCatalogDbContext _context;
+    private readonly IDomainEventPublisher _publisher;
 
     public UnitOfWork(
         ILogger<UnitOfWork> logger, 
@@ -31,13 +31,12 @@ public class UnitOfWork : IUnitOfWork
 
         _logger.LogInformation(
             "Commit: {AggregatesCount} aggregate roots with events.",
-            aggregateRoots.Count());
+            aggregateRoots.Length);
 
         var events = aggregateRoots
             .SelectMany(aggregate => aggregate.Events).ToArray();
 
-        _logger.LogInformation(
-            "Commit: {EventsCount} events raised.", events.Count());
+        _logger.LogInformation("Commit: {EventsCount} events raised.", events.Length);
 
         foreach (var @event in events)
             await _publisher.PublishAsync((dynamic)@event);

@@ -20,7 +20,7 @@ jobs:
           dotnet-version: "6.x"
 
       - name: Start containers
-        run: docker compose -f docker/docker-compose-integration.yml up -d --build
+        run: docker compose -f docker-compose-integration.yml up -d --build
 
       - name: Restore Dependencies
         run: dotnet restore

@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Flixer.Catalog.Domain.Contracts;
-using Microsoft.Extensions.Configuration;
 using Flixer.Catalog.Infra.Data.EF.Context;
-using Microsoft.Extensions.DependencyInjection;
+using Flixer.Catalog.Infra.Data.EF.UnitOfWork;
 using Flixer.Catalog.Infra.Data.EF.Repositories;
 using Flixer.Catalog.Domain.Contracts.Repository;
 
-namespace Flixer.Catalog.Infra.Data.EF.Extensions;
+namespace Flixer.Catalog.Api.Configuration;
 
-public static class DependencyInjection
+public static class InfrastructureConfiguration
 {
     public static IServiceCollection AddInfraData(this IServiceCollection services, IConfiguration configuration)
     {
@@ -23,7 +21,7 @@ public static class DependencyInjection
     {
         services.AddTransient<IGenreRepository, GenreRepository>();
         services.AddTransient<IVideoRepository, VideoRepository>();
-        services.AddTransient<IUnitOfWork, UnitOfWork.UnitOfWork>();
+        services.AddTransient<IUnitOfWork, UnitOfWork>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<ICastMemberRepository, CastMemberRepository>();
     }
@@ -32,7 +30,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<FlixerCatalogDbContext>(options =>
         {
-            var connectionString = configuration.GetConnectionString("CatalogDb");
+            var connectionString = configuration.GetConnectionString("CatalogDb")!;
             var serverVersion = ServerVersion.AutoDetect(connectionString);
         
             options.UseMySql(connectionString, serverVersion, mysqlOptions =>

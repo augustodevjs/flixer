@@ -8,7 +8,7 @@
 2. **Suba os Containers:**
     - Execute:
       ```bash
-      docker compose -f docker/docker-compose.yml up -d
+      docker compose -f docker-compose.yml up -d
       ```
 3. **Verifique o Status dos Containers:**
     - Use:
@@ -21,5 +21,5 @@
 5. **Para Parar e Remover os Containers:**
     - Execute:
       ```bash
-      docker compose -f docker/docker-compose.yml down
+      docker compose -f docker-compose.yml down
       ```

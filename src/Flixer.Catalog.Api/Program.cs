@@ -1,16 +1,12 @@
 using Flixer.Catalog.Api.Configuration;
-using Flixer.Catalog.Application.Extensions;
-using Flixer.Catalog.Infra.Data.EF.Extensions;
-using Flixer.Catalog.Infra.Storage.Extensions;
-using Flixer.Catalog.Infra.Messaging.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddApplication()
-    .AddMessaging(builder.Configuration)
     .AddInfraData(builder.Configuration)
     .AddInfraStorage(builder.Configuration)
+    .AddMessaging(builder.Configuration)
     .AddAndConfigureControllers()
     .AddHealthChecks()
     .ConfigureApplicationHealthChecks(builder.Configuration);
