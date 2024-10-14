@@ -1,21 +1,22 @@
 version: "3.8"
 
 networks:
-  flixer.catalog.network:
+  default:
+    name: flixer.catalog.network
 
 volumes:
   datafiles:
 
 services:
   flixer_db:
+    container_name: flixerdb
     image: mysql:latest
+    hostname: flixerdb
     ports:
       - "3300:3306"
     volumes:
       - datafiles:/var/lib/mysql
     restart: always
-    networks:
-      - flixer.catalog.network
     environment:
       MYSQL_DATABASE: catalog
       MYSQL_ROOT_PASSWORD: senha
@@ -29,7 +30,7 @@ services:
           "localhost",
           "-u",
           "root",
-          "-p$$MYSQL_ROOT_PASSWORD",
+          "-p$MYSQL_ROOT_PASSWORD",
         ]
       timeout: 20s
       retries: 10
@@ -41,8 +42,6 @@ services:
     depends_on:
       flixer_db:
         condition: service_healthy
-    networks:
-      - flixer.catalog.network
     ports:
       - "5000:80"
     restart: always
@@ -60,3 +59,23 @@ services:
     ports:
       - 15672:15672
       - 5672:5672
+  
+  keycloak:
+    container_name: adm_videos_keycloak
+    image: quay.io/keycloak/keycloak:20.0.3
+    hostname: keycloak
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_DB=mysql
+      - KC_DB_URL_HOST=flixerdb
+      - KC_DB_URL_PORT=3306
+      - KC_DB_SCHEMA=keycloak
+      - KC_DB_USERNAME=root
+      - KC_DB_PASSWORD=senha
+    ports:
+      - 8443:8080
+    command:
+      - start-dev
+    depends_on:
+      - flixer_db

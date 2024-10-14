@@ -7,6 +7,7 @@ builder.Services
     .AddInfraData(builder.Configuration)
     .AddInfraStorage(builder.Configuration)
     .AddMessaging(builder.Configuration)
+    .AddSecurityConfiguration(builder.Configuration)
     .AddAndConfigureControllers()
     .AddHealthChecks()
     .ConfigureApplicationHealthChecks(builder.Configuration);
@@ -28,6 +29,7 @@ app.UseMigrations(app.Services);
 app.ConfigureRequestLogging();
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseApplicationHealthCheck();
 app.MapControllers();

@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Flixer.Catalog.Domain.Enums;
+using Flixer.Catalog.Api.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Flixer.Catalog.Api.ApiModels.Genre;
 using Flixer.Catalog.Api.ApiModels.Response;
 using Flixer.Catalog.Application.Common.Input.Genre;
@@ -10,6 +12,7 @@ namespace Flixer.Catalog.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize(Roles = $"{Roles.Genres}, {Roles.Admin}")]
 public class GenresController : ControllerBase
 {
     private readonly IMediator _mediator;

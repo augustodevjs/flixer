@@ -3,13 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using Flixer.Catalog.Domain.Enums;
 using Flixer.Catalog.Api.ApiModels.Category;
 using Flixer.Catalog.Api.ApiModels.Response;
+using Flixer.Catalog.Api.Authorization;
 using Flixer.Catalog.Application.Common.Input.Category;
 using Flixer.Catalog.Application.Common.Output.Category;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Flixer.Catalog.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize(Roles = $"{Roles.Categories}, {Roles.Admin}")]
 public class CategoriesController : ControllerBase
 {
     private readonly IMediator _mediator;
