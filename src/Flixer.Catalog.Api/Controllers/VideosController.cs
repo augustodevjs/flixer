@@ -1,18 +1,18 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Flixer.Catalog.Domain.Enums;
-using Flixer.Catalog.Api.ApiModels.Video;
-using Flixer.Catalog.Api.ApiModels.Response;
 using Flixer.Catalog.Api.Authorization;
+using Flixer.Catalog.Api.ApiModels.Video;
+using Microsoft.AspNetCore.Authorization;
+using Flixer.Catalog.Api.ApiModels.Response;
 using Flixer.Catalog.Application.Common.Input.Video;
 using Flixer.Catalog.Application.Common.Output.Video;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Flixer.Catalog.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Roles = $"{Roles.Videos}, {Roles.Admin}")]
+[Authorize(Policy = Policies.VideosManager)]
 public class VideosController : ControllerBase
 {
     private readonly IMediator _mediator;
