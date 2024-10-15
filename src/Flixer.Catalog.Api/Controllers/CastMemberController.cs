@@ -1,18 +1,19 @@
+using Amazon.Auth.AccessControlPolicy;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Flixer.Catalog.Domain.Enums;
+using Flixer.Catalog.Api.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Flixer.Catalog.Api.ApiModels.Response;
 using Flixer.Catalog.Api.ApiModels.CastMember;
-using Flixer.Catalog.Api.Authorization;
 using Flixer.Catalog.Application.Common.Input.CastMember;
 using Flixer.Catalog.Application.Common.Output.CastMember;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Flixer.Catalog.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Roles = $"{Roles.CastMembers}, {Roles.Admin}")]
+[Authorize(Policy = Policies.CastMembersPolicy)]
 public class CastMemberController : ControllerBase
 {
     private readonly IMediator _mediator;

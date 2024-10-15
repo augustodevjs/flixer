@@ -12,7 +12,7 @@ namespace Flixer.Catalog.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Roles = $"{Roles.Genres}, {Roles.Admin}")]
+[Authorize(Policy = Policies.GenresPolicy)]
 public class GenresController : ControllerBase
 {
     private readonly IMediator _mediator;

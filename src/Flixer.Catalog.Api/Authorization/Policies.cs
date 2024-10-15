@@ -2,5 +2,8 @@
 
 public static class Policies
 {
-    public const string VideosManager = "VideosManager";
+    public const string VideosPolicy = "VideosPolicy";
+    public const string GenresPolicy = "GenresPolicy";
+    public const string CategoriesPolicy = "CategoriesPolicy";
+    public const string CastMembersPolicy = "CastMembersPolicy";
 }

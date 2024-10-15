@@ -12,7 +12,7 @@ namespace Flixer.Catalog.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[Authorize(Policy = Policies.VideosManager)]
+[Authorize(Policy = Policies.VideosPolicy)]
 public class VideosController : ControllerBase
 {
     private readonly IMediator _mediator;
