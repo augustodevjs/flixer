@@ -10,7 +10,8 @@ public static class RabbitMqConfiguration
 {
     public static IServiceCollection AddMessaging(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<Infra.Messaging.Configuration.RabbitMqConfiguration>(configuration.GetSection("RabbitMqConfiguration"));
+        services
+            .Configure<Infra.Messaging.Configuration.RabbitMqConfiguration>(configuration.GetSection("RabbitMqConfiguration"));
 
         services.AddSingleton(sp =>
         {
@@ -35,7 +36,13 @@ public static class RabbitMqConfiguration
             
             return new RabbitMqProducer(channelManager.GetChannel(), config);
         });
+
+        var rabbitMqConfig = configuration
+            .GetSection("RabbitMqConfiguration").Get<Infra.Messaging.Configuration.RabbitMqConfiguration>()!;
         
+        services.AddHealthChecks()
+            .AddRabbitMQ($"amqp://{rabbitMqConfig.Username}:{rabbitMqConfig.Password}@{rabbitMqConfig.Hostname}", name: "rabbitmq");
+
         return services;
     }
 }
